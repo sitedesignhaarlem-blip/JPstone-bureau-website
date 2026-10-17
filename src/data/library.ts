@@ -1,5 +1,8 @@
 // Shots in the library. Files live in public/media/<file>.{mp4,webm,jpg}.
 // To add a shot: run scripts/encode-media.sh <clip> <file>, then add an entry here.
+//
+// TODO before launch: get written permission from the owners to show these boats by name.
+// Southern Mist is named on the page; Freedom, Aventura and other names are visible in some shots.
 
 export type Category = 'exterior' | 'interior' | 'hotel';
 
