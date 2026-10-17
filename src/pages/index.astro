@@ -18,7 +18,7 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
 >
   <SiteNav />
 
-  <main>
+  <main id="inhoud">
     <section class="hero" data-hero-section>
       <div class="hero-media" data-hero-fade="0.8">
         <video autoplay muted playsinline loop preload="auto" poster="/media/southern-cross-varen-zij.jpg" aria-label="Motorcatamaran Southern Cross vaart over open zee, gemaakt van listingfoto's." data-hero>
@@ -29,7 +29,7 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
       <div class="wrap hero-inner" data-hero-fade="0.4">
         <p class="eyebrow">Voor jachtcharters en boutique hotels</p>
         <h1 class="hero-title">Je listingfoto's worden een film. Zonder draaidag.</h1>
-        <p class="lead">Je stuurt de foto's die al op je listing staan. Wij maken er een rustige rondleiding op video van.</p>
+        <p class="lead">Je stuurt de foto's die al op je listing staan. Wij maken er met AI een rustige rondleiding op video van.</p>
         <div class="actions">
           <a class="button" href="#contact">Vraag een gratis proefvideo aan</a>
           <a class="link-more" href="/bibliotheek/">Bekijk de bibliotheek</a>
@@ -54,7 +54,7 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
         <h2 class="steps-title">Zo werkt het.</h2>
         <ol class="steps" role="list">
           <li><span class="numeral">1</span><h3>Je stuurt foto's</h3><p class="muted">Een link naar je listing is genoeg.</p></li>
-          <li><span class="numeral">2</span><h3>Wij maken de film</h3><p class="muted">16:9 voor je site, 9:16 voor social.</p></li>
+          <li><span class="numeral">2</span><h3>Wij maken de film</h3><p class="muted">Met AI, op basis van jouw foto's. In 16:9 voor je site en 9:16 voor social.</p></li>
           <li><span class="numeral">3</span><h3>Jij publiceert</h3><p class="muted">Je krijgt mp4-bestanden, klaar om te plaatsen.</p></li>
         </ol>
       </div>
@@ -78,7 +78,7 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
             <input id="cf-name" name="naam" type="text" autocomplete="name" required />
           </div>
           <div class="field">
-            <label for="cf-company">Bedrijf</label>
+            <label for="cf-company">Bedrijf <span class="optional">(optioneel)</span></label>
             <input id="cf-company" name="bedrijf" type="text" autocomplete="organization" />
           </div>
           <div class="field">
@@ -86,11 +86,12 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
             <input id="cf-url" name="listing" type="url" inputmode="url" placeholder="https://" required />
           </div>
           <div class="field">
-            <label for="cf-msg">Bericht</label>
+            <label for="cf-msg">Bericht <span class="optional">(optioneel)</span></label>
             <textarea id="cf-msg" name="bericht" rows="4"></textarea>
           </div>
           <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <button class="button" type="submit">Vraag een gratis proefvideo aan</button>
+          <p class="form-note muted">We gebruiken je gegevens alleen om je aanvraag te beantwoorden en de proefvideo te maken. Meer in de <a href="/privacy/">privacyverklaring</a>. De proefvideo is gratis en vrijblijvend.</p>
           <p class="form-status muted" data-status aria-live="polite"></p>
         </form>
       </div>
@@ -132,7 +133,7 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
       const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
       if (!res.ok) throw new Error();
       form.reset();
-      if (status) status.textContent = 'Verstuurd. Je hoort binnen een werkdag van ons.';
+      if (status) status.textContent = 'Verstuurd. We nemen zo snel mogelijk contact met je op.';
     } catch {
       if (status) status.textContent = `Dat lukte niet. Mail ons op ${form.dataset.email} of stuur een WhatsApp.`;
     }
@@ -226,6 +227,8 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
   .contact-form .button { justify-content: center; }
   .hp { position: absolute; left: -9999px; width: 1px; height: 1px; }
   .form-status:empty { display: none; }
+  .form-note { font-size: 0.8125rem; }
+  .optional { font-weight: 400; color: var(--fg-muted); }
 
   dialog { width: min(100% - 2rem, 72rem); max-height: calc(100svh - 2rem); padding: 0; border: 0; border-radius: var(--radius); background: #000; color: var(--on-dark); overflow: hidden; }
   dialog::backdrop { background: rgb(0 0 0 / 0.8); }

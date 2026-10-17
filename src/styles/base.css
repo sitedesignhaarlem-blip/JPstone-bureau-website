@@ -49,6 +49,12 @@ a {
 a:hover {
   text-decoration: underline;
 }
+/* Links inside running text are underlined, so they don't rely on colour alone */
+p a,
+li a:not([class]) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
 
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -120,7 +126,8 @@ p {
   background: var(--dark);
   color: var(--on-dark);
 }
-.section--dark .muted {
+.section--dark .muted,
+.section--dark .eyebrow {
   color: var(--on-dark-muted);
 }
 .section--dark a {
@@ -157,6 +164,23 @@ p {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+/* Keyboard users jump past the menu; visible only when focused */
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -4rem;
+  z-index: 100;
+  padding: var(--space-3) var(--space-5);
+  background: var(--fg);
+  color: var(--bg);
+  border-radius: var(--radius-pill);
+  font-size: var(--step-small);
+}
+.skip-link:focus {
+  top: var(--space-3);
+  text-decoration: none;
 }
 
 /* Visible placeholder, so missing copy or data can never ship unnoticed */

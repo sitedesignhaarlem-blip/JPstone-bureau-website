@@ -1,0 +1,47 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { site } from '../data/site';
+---
+<Legal title="Algemene voorwaarden" description="De afspraken voor proefvideo's en opdrachten van JPstone Bureau: prijzen, levering, revisies, gebruiksrecht, annulering en terugbetaling.">
+  <p>Deze voorwaarden gelden voor elke offerte, proefvideo en opdracht van {site.name}. Ze zijn bedoeld voor zakelijke klanten. Waar de offerte iets anders zegt, gaat de offerte voor.</p>
+
+  <h2>1. Gratis proefvideo</h2>
+  <p>De proefvideo is gratis en vrijblijvend. Je zit nergens aan vast en we sturen geen factuur. Je mag de proefvideo bekijken en intern delen. Wil je hem publiceren, dan geldt dat als opdracht.</p>
+
+  <h2>2. Offerte en prijzen</h2>
+  <p>Je krijgt vooraf een offerte met de totaalprijs. Daarin staat wat je krijgt: aantal video's, lengte, formaten en revisies. Prijzen zijn exclusief btw, en dat staat er altijd bij. Er komen geen kosten bij die niet in de offerte staan. Wil je achteraf meer, dan krijg je eerst een prijs en beslis jij.</p>
+  <p>Een offerte is 30 dagen geldig.</p>
+
+  <h2>3. Jouw foto's</h2>
+  <p>Je levert de foto's aan, of een link naar je listing. Je verklaart dat je die foto's mag gebruiken voor een video, en dat herkenbare personen op de foto's daar toestemming voor hebben gegeven. Krijgen wij een claim omdat dat niet klopt, dan ben jij daarvoor verantwoordelijk.</p>
+
+  <h2>4. Gemaakt met AI</h2>
+  <p>We maken de video's met AI-software, op basis van jouw foto's. De video laat jouw jacht of hotel zien zoals op de foto's, maar camerabewegingen en tussenbeelden zijn door de software gemaakt. Kleine afwijkingen zijn mogelijk; die lossen we op binnen de revisies. Publiceer je de video, vermeld dan bij voorkeur dat hij met AI is gemaakt.</p>
+
+  <h2>5. Levering en revisies</h2>
+  <p>De levertijd staat in de offerte. Je krijgt de video als mp4, in 16:9 en/of 9:16, zoals afgesproken.</p>
+  <p>Per video zijn <span class="todo">[aantal]</span> revisierondes inbegrepen. Een revisie is een aanpassing binnen dezelfde opzet en dezelfde foto's. Nieuwe foto's of een andere opzet is een nieuwe opdracht.</p>
+
+  <h2>6. Betaling</h2>
+  <p>We factureren na oplevering. De betaaltermijn is <span class="todo">[14]</span> dagen. Bij grotere opdrachten kunnen we een aanbetaling vragen; dat staat dan in de offerte.</p>
+
+  <h2 id="annulering">7. Annulering en terugbetaling</h2>
+  <ul>
+    <li><strong>Voordat we begonnen zijn:</strong> je annuleert kosteloos.</li>
+    <li><strong>Als we al bezig zijn:</strong> je betaalt het deel dat al gemaakt is, naar rato van de offerte. We laten je vooraf weten om welk bedrag het gaat.</li>
+    <li><strong>Na oplevering:</strong> klopt de video niet met de offerte en lossen we dat niet op binnen de revisies, dan betalen we je terug wat je voor die video hebt betaald.</li>
+    <li>Een eventuele aanbetaling betalen we terug min het deel dat al gemaakt is.</li>
+  </ul>
+  <p>Terugbetalingen doen we binnen 14 dagen op de rekening waarvan je betaalde. Annuleren of terugbetaling vragen doe je per e-mail naar <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+
+  <h2>8. Gebruiksrecht</h2>
+  <p>Na betaling mag je de video onbeperkt gebruiken voor je eigen marketing: je website, listings, social media en advertenties. Je mag hem niet doorverkopen als losse video. Wij mogen de video alleen in ons portfolio of op deze site laten zien als je daar toestemming voor geeft.</p>
+
+  <h2>9. Aansprakelijkheid</h2>
+  <p>Onze aansprakelijkheid is beperkt tot het bedrag van de opdracht waar het om gaat. We zijn niet aansprakelijk voor indirecte schade, zoals gemiste boekingen. Dit geldt niet bij opzet of grove nalatigheid.</p>
+
+  <h2>10. Recht en geschillen</h2>
+  <p>Op deze voorwaarden geldt Nederlands recht. Komen we er samen niet uit, dan beslist de bevoegde rechter in Nederland.</p>
+
+  <p class="note">Bedrijfsgegevens: {site.name} · <span class="todo">{site.address}</span> · KvK <span class="todo">{site.kvk}</span> · btw <span class="todo">{site.vat}</span></p>
+</Legal>

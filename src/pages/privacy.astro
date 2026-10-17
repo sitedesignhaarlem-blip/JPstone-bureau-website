@@ -1,0 +1,64 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { site } from '../data/site';
+
+const deleteMail = `mailto:${site.email}?subject=${encodeURIComponent('Verzoek: mijn gegevens verwijderen')}&body=${encodeURIComponent('Graag verwijder ik alle gegevens die JPstone Bureau van mij heeft.\n\nNaam:\nE-mailadres of telefoonnummer waarmee ik contact had:\n')}`;
+const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Verzoek: inzage in mijn gegevens')}`;
+---
+<Legal title="Privacyverklaring" description="Welke gegevens JPstone Bureau verwerkt, waarom, hoe lang, en hoe je ze laat inzien of verwijderen.">
+  <p>JPstone Bureau maakt walkthrough-video's van listingfoto's voor bedrijven. Daarvoor hebben we zo min mogelijk gegevens nodig. Hieronder staat precies welke, waarom en hoe je ze laat verwijderen.</p>
+
+  <h2>Wie we zijn</h2>
+  <p>
+    {site.name}, {site.location}.<br />
+    Adres: <span class="todo">{site.address}</span><br />
+    KvK: <span class="todo">{site.kvk}</span><br />
+    E-mail: <a href={`mailto:${site.email}`}>{site.email}</a> · Telefoon: <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>
+  </p>
+
+  <h2>Welke gegevens en waarom</h2>
+  <div class="table-wrap" role="region" aria-label="Overzicht van gegevens, doelen en bewaartermijnen" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Gegevens</th><th scope="col">Waarvoor</th><th scope="col">Grondslag</th><th scope="col">Bewaren</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Gegevens">Naam, website of listing-link, en als je die invult bedrijf en bericht (contactformulier)</td><td data-label="Waarvoor">Je aanvraag beantwoorden en een proefvideo maken</td><td data-label="Grondslag">Op jouw verzoek, vóór een overeenkomst</td><td data-label="Bewaren">Maximaal 12 maanden als er geen opdracht volgt</td></tr>
+        <tr><td data-label="Gegevens">E-mail, WhatsApp-berichten en telefoonnummer als je ons zo benadert</td><td data-label="Waarvoor">Contact over je aanvraag of opdracht</td><td data-label="Grondslag">Op jouw verzoek, of uitvoering van de overeenkomst</td><td data-label="Bewaren">Zolang het contact loopt, daarna maximaal 12 maanden</td></tr>
+        <tr><td data-label="Gegevens">Foto's die je aanlevert</td><td data-label="Waarvoor">De video maken</td><td data-label="Grondslag">Uitvoering van de overeenkomst</td><td data-label="Bewaren">Tot 3 maanden na oplevering, daarna verwijderd</td></tr>
+        <tr><td data-label="Gegevens">Naam, bedrijfsgegevens en facturen</td><td data-label="Waarvoor">Administratie</td><td data-label="Grondslag">Wettelijke plicht</td><td data-label="Bewaren">7 jaar (fiscale bewaarplicht)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>We vragen niet meer dan nodig. Bedrijf en bericht zijn in het formulier optioneel. We maken geen profielen en gebruiken je gegevens niet voor advertenties.</p>
+
+  <h2>Wie je gegevens nog meer verwerkt</h2>
+  <p>We verkopen niets door. Voor het werk gebruiken we deze diensten:</p>
+  <ul>
+    <li><strong>Vercel</strong> (hosting van deze website). Bij elk bezoek ontvangt de server technische gegevens zoals je IP-adres, om de site te tonen en te beveiligen.</li>
+    <li><strong>Google (Gmail)</strong> voor e-mail.</li>
+    <li><strong>WhatsApp (Meta)</strong>, alleen als je ons zelf via WhatsApp benadert.</li>
+    <li><strong>Higgsfield</strong>, de AI-dienst waarmee we van je foto's een video maken. Je foto's worden daarvoor geüpload.</li>
+    <li><span class="todo">[Formulierdienst, bijvoorbeeld Formspree: invullen zodra die is gekoppeld]</span></li>
+  </ul>
+  <p>Sommige van deze partijen zitten buiten de Europese Economische Ruimte. Doorgifte gebeurt dan op basis van de afspraken die de AVG daarvoor eist, zoals het EU-VS Data Privacy Framework of standaardcontractbepalingen.</p>
+
+  <h2>Cookies en tracking</h2>
+  <p>Deze site plaatst geen cookies en gebruikt geen analytics, advertentiepixels of andere trackers. Lettertypes en video's staan op onze eigen server. Zie de <a href="/cookies/">cookieverklaring</a>.</p>
+
+  <h2>Nieuwsbrief</h2>
+  <p>We sturen geen nieuwsbrief en geen marketingmail. Komt dat er ooit, dan alleen als je daar zelf voor kiest, met een afmeldlink in elke mail.</p>
+
+  <h2>Kinderen</h2>
+  <p>Onze diensten zijn voor bedrijven en niet bedoeld voor kinderen onder de 16. We verzamelen niet bewust gegevens van kinderen. Denk je dat dat toch is gebeurd, mail ons dan, dan verwijderen we ze.</p>
+
+  <h2>Je rechten</h2>
+  <p>Je mag je gegevens inzien, laten corrigeren of laten verwijderen. Je mag ook bezwaar maken, de verwerking laten beperken, of je gegevens in een gangbaar bestand opvragen.</p>
+  <ul>
+    <li><a href={deleteMail}>Vraag verwijdering aan</a> (opent een kant-en-klare e-mail)</li>
+    <li><a href={accessMail}>Vraag inzage aan</a></li>
+  </ul>
+  <p>Je kunt ook gewoon mailen naar <a href={`mailto:${site.email}`}>{site.email}</a>. We reageren binnen een maand, zoals de AVG voorschrijft. Gegevens die we wettelijk moeten bewaren, zoals facturen, verwijderen we pas na die termijn.</p>
+  <p>Ben je niet tevreden over hoe we met je gegevens omgaan? Je kunt een klacht indienen bij de <a href="https://autoriteitpersoonsgegevens.nl" rel="noopener">Autoriteit Persoonsgegevens</a>.</p>
+
+  <h2>Wijzigingen</h2>
+  <p>Verandert er iets in hoe we met gegevens werken, dan passen we deze verklaring aan. Bovenaan staat de datum van de laatste wijziging.</p>
+</Legal>

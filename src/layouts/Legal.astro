@@ -1,0 +1,47 @@
+---
+// Shared layout for the legal pages (privacy, voorwaarden, cookies).
+import Base from './Base.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { legalUpdated } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+---
+<Base title={`${title} · JPstone Bureau`} description={description}>
+  <SiteNav />
+  <main id="inhoud" class="section legal">
+    <article class="wrap legal-inner">
+      <header class="legal-head">
+        <h1>{title}</h1>
+        <p class="muted">Laatst bijgewerkt: {legalUpdated}</p>
+      </header>
+      <slot />
+    </article>
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .legal-inner { max-width: calc(44rem + 2 * var(--gutter)); }
+  .legal-head { display: grid; gap: var(--space-2); margin-bottom: var(--space-7); }
+  .legal-head h1 { font-size: var(--step-h2); }
+  .legal :global(h2) { font-size: var(--step-h3); margin: var(--space-7) 0 var(--space-3); }
+  .legal :global(p), .legal :global(li) { color: var(--fg); }
+  .legal :global(p + p) { margin-top: var(--space-3); }
+  .legal :global(ul) { padding-left: 1.25rem; margin: var(--space-3) 0; display: grid; gap: var(--space-2); }
+  .legal :global(table) { width: 100%; border-collapse: collapse; margin: var(--space-4) 0; font-size: var(--step-small); }
+  .legal :global(th), .legal :global(td) { text-align: left; vertical-align: top; padding: var(--space-3) var(--space-3) var(--space-3) 0; border-bottom: 1px solid var(--line); }
+  .legal :global(th) { font-weight: 600; }
+  .legal :global(.table-wrap) { overflow-x: auto; }
+  @media (max-width: 40rem) {
+    .legal :global(thead) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    .legal :global(tr) { display: grid; gap: var(--space-2); padding: var(--space-4) 0; border-bottom: 1px solid var(--line); }
+    .legal :global(td) { display: grid; grid-template-columns: 6.5rem 1fr; gap: var(--space-3); padding: 0; border: 0; }
+    .legal :global(td::before) { content: attr(data-label); font-weight: 600; color: var(--fg-muted); }
+  }
+  .legal :global(.note) { margin-top: var(--space-7); padding: var(--space-5); background: var(--bg-alt); border-radius: 12px; font-size: var(--step-small); }
+</style>

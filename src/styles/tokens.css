@@ -17,8 +17,8 @@
   --fg: #1d1d1f;
   --fg-muted: #6e6e73; /* 5.1:1 on white, 4.7:1 on --bg-alt */
   --line: #d2d2d7;
-  --accent: #0071e3; /* links and the main button. 4.7:1 on white */
-  --accent-hover: #0077ed;
+  --accent: #0066cc; /* links and the main button. 5.6:1 on white, 5.1:1 on --bg-alt */
+  --accent-hover: #0071e3;
   --on-accent: #ffffff;
   --dark: #000000; /* video showcases */
   --on-dark: #f5f5f7;
