@@ -9,7 +9,7 @@ const en = {
     libraryTitle: 'Library · JPstone Bureau',
     libraryDesc: 'Southern Cross: six clips of a motor catamaran, made with AI from its existing listing photos.',
     howTitle: 'How it works · JPstone Bureau',
-    howDesc: 'How it works: you send your listing photos, we use AI to turn them into a walkthrough video, you publish.',
+    howDesc: 'How it works: you send your listing photos, we use AI to turn them into a walkthrough video, you tell us what to change, you publish.',
     contactTitle: 'Contact · JPstone Bureau',
     contactDesc: 'Request a free sample video. Send a link to your listing, or call or WhatsApp +31 6 57 24 96 07.',
   },
@@ -40,8 +40,10 @@ const en = {
     s1Text: 'A link to your listing is enough.',
     s2Title: 'We make the film',
     s2Text: 'With AI, based on your photos. In 16:9 for your website and 9:16 for social.',
-    s3Title: 'You publish',
-    s3Text: 'You get mp4 files, ready to post.',
+    s3Title: 'You give feedback',
+    s3Text: 'Want something changed? Tell us what, and we adjust it. Revisions are included.',
+    s4Title: 'You publish',
+    s4Text: 'You get mp4 files, ready to post.',
   },
   how: {
     nextTitle: 'Want to try it?',
@@ -128,6 +130,8 @@ const en = {
   packages: {
     title: 'Packages.',
     lead: 'Every project gets a fixed quote before we start. Prices exclude VAT.',
+    price: '€100',
+    perVideo: 'per video',
     from: 'from',
     items: [
       { name: 'Single', for: 'One yacht or one room type.', includes: 'One video in 16:9 and 9:16, [TODO: length] seconds.' },

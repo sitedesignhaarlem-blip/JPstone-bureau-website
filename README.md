@@ -59,7 +59,7 @@ De video bovenaan de homepage staat in `src/views/Home.astro`. Houd hem klein (o
 - [ ] **Domein:** invullen in `src/data/site.ts` (`SITE_URL`) en in `public/robots.txt`.
 - [ ] **Bedrijfsgegevens:** KvK-nummer, btw-id en vestigingsadres in `src/data/site.ts`.
 - [ ] **Formulier:** Formspree (of vergelijkbaar) koppelen via `formEndpoint` in `src/data/site.ts`, en de dienst noemen in de privacyverklaringen.
-- [ ] **Prijzen en pakketten:** de bedragen invullen, en de aantallen bij pakketten, revisies, levertijd en betaaltermijn (alle `[TODO]` in `src/i18n/` en `src/legal/`).
+- [ ] **Pakketten:** basisprijs is €100 per video (`packages.price` in `src/i18n/`). Nog invullen: aantallen bij pakketten, revisies, levertijd en betaaltermijn (alle `[TODO]` in `src/i18n/` en `src/legal/`).
 - [ ] **Case Virgin Charter Yachts:** levering, levertijd en citaat, pas na akkoord van de klant.
 - [ ] **Toestemming:** schriftelijke toestemming van de eigenaar om Southern Cross bij naam te tonen.
 - [ ] **Vertalingen:** Duits, Frans en Spaans laten nalezen door iemand met die moedertaal, vooral de voorwaarden.

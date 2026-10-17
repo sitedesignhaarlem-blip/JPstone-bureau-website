@@ -8,7 +8,7 @@ const es: UI = {
     libraryTitle: 'Biblioteca · JPstone Bureau',
     libraryDesc: 'Southern Cross: seis clips de un catamarán a motor, hechos con IA a partir de las fotos de su anuncio.',
     howTitle: 'Cómo funciona · JPstone Bureau',
-    howDesc: 'Cómo funciona: nos envías las fotos de tu anuncio, las convertimos con IA en un vídeo de recorrido y tú lo publicas.',
+    howDesc: 'Cómo funciona: nos envías las fotos de tu anuncio, las convertimos con IA en un vídeo de recorrido, nos dices qué cambiar y tú lo publicas.',
     contactTitle: 'Contacto · JPstone Bureau',
     contactDesc: 'Pide un vídeo de prueba gratis. Envíanos el enlace de tu anuncio, o llama o escribe por WhatsApp al +31 6 57 24 96 07.',
   },
@@ -39,8 +39,10 @@ const es: UI = {
     s1Text: 'Basta con el enlace de tu anuncio.',
     s2Title: 'Hacemos la película',
     s2Text: 'Con IA, a partir de tus fotos. En 16:9 para tu web y 9:16 para redes sociales.',
-    s3Title: 'Tú publicas',
-    s3Text: 'Recibes archivos MP4, listos para publicar.',
+    s3Title: 'Nos das tu opinión',
+    s3Text: '¿Quieres cambiar algo? Dinos qué y lo ajustamos. Las revisiones están incluidas.',
+    s4Title: 'Tú publicas',
+    s4Text: 'Recibes archivos MP4, listos para publicar.',
   },
   how: {
     nextTitle: '¿Quieres probarlo?',
@@ -126,6 +128,8 @@ const es: UI = {
   packages: {
     title: 'Paquetes.',
     lead: 'Cada encargo recibe un presupuesto cerrado antes de empezar. Precios sin IVA.',
+    price: '€100',
+    perVideo: 'por vídeo',
     from: 'desde',
     items: [
       { name: 'Individual', for: 'Un yate o un tipo de habitación.', includes: 'Un vídeo en 16:9 y 9:16, de [TODO: duración] segundos.' },

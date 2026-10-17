@@ -1,5 +1,5 @@
 ---
-// Packages as a calm list: name, who it's for, what's included, starting price. Prices are TODO until set.
+// Packages as a calm list: name, who it's for, what's included, starting price per video.
 import Text from './Text.astro';
 import { pagePath, useTranslations, type Locale } from '../i18n';
 
@@ -24,7 +24,7 @@ const p = t.packages;
             <p>{item.for}</p>
             <p class="muted"><Text text={item.includes} /></p>
           </div>
-          <p class="package-price"><span class="muted">{p.from}</span> <span class="todo">€[TODO]</span></p>
+          <p class="package-price"><span class="muted">{p.from}</span> {p.price} <span class="muted">{p.perVideo}</span></p>
         </li>
       ))}
     </ul>

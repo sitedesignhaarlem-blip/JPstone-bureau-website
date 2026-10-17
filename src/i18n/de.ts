@@ -8,7 +8,7 @@ const de: UI = {
     libraryTitle: 'Bibliothek · JPstone Bureau',
     libraryDesc: 'Southern Cross: sechs Clips eines Motorkatamarans, mit KI aus den vorhandenen Inseratsfotos erstellt.',
     howTitle: 'So funktioniert’s · JPstone Bureau',
-    howDesc: 'So funktioniert’s: Sie senden Ihre Inseratsfotos, wir machen daraus mit KI ein Walkthrough-Video, Sie veröffentlichen.',
+    howDesc: 'So funktioniert’s: Sie senden Ihre Inseratsfotos, wir machen daraus mit KI ein Walkthrough-Video, Sie sagen uns, was anders sein soll, Sie veröffentlichen.',
     contactTitle: 'Kontakt · JPstone Bureau',
     contactDesc: 'Fordern Sie ein kostenloses Probevideo an. Senden Sie einen Link zu Ihrem Inserat oder rufen Sie an: +31 6 57 24 96 07.',
   },
@@ -39,8 +39,10 @@ const de: UI = {
     s1Text: 'Ein Link zu Ihrem Inserat genügt.',
     s2Title: 'Wir machen den Film',
     s2Text: 'Mit KI, auf Basis Ihrer Fotos. In 16:9 für Ihre Website und 9:16 für Social Media.',
-    s3Title: 'Sie veröffentlichen',
-    s3Text: 'Sie erhalten MP4-Dateien, fertig zum Hochladen.',
+    s3Title: 'Sie geben Feedback',
+    s3Text: 'Soll etwas anders sein? Sagen Sie uns, was, und wir passen es an. Korrekturen sind inklusive.',
+    s4Title: 'Sie veröffentlichen',
+    s4Text: 'Sie erhalten MP4-Dateien, fertig zum Hochladen.',
   },
   how: {
     nextTitle: 'Selbst ausprobieren?',
@@ -126,6 +128,8 @@ const de: UI = {
   packages: {
     title: 'Pakete.',
     lead: 'Jeder Auftrag bekommt vorab ein Festpreisangebot. Preise zuzüglich Umsatzsteuer.',
+    price: '€100',
+    perVideo: 'pro Video',
     from: 'ab',
     items: [
       { name: 'Einzeln', for: 'Eine Yacht oder ein Zimmertyp.', includes: 'Ein Video in 16:9 und 9:16, [TODO: Länge] Sekunden.' },

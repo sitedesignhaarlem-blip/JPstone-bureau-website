@@ -8,7 +8,7 @@ const fr: UI = {
     libraryTitle: 'Bibliothèque · JPstone Bureau',
     libraryDesc: 'Southern Cross : six clips d’un catamaran à moteur, réalisés avec l’IA à partir des photos de son annonce.',
     howTitle: 'Comment ça marche · JPstone Bureau',
-    howDesc: 'Comment ça marche : vous envoyez vos photos d’annonce, nous en faisons une vidéo de visite avec l’IA, vous publiez.',
+    howDesc: 'Comment ça marche : vous envoyez vos photos d’annonce, nous en faisons une vidéo de visite avec l’IA, vous nous dites quoi changer, vous publiez.',
     contactTitle: 'Contact · JPstone Bureau',
     contactDesc: 'Demandez une vidéo d’essai gratuite. Envoyez le lien de votre annonce, ou appelez le +31 6 57 24 96 07.',
   },
@@ -39,8 +39,10 @@ const fr: UI = {
     s1Text: 'Le lien de votre annonce suffit.',
     s2Title: 'Nous réalisons le film',
     s2Text: 'Avec l’IA, à partir de vos photos. En 16:9 pour votre site et en 9:16 pour les réseaux sociaux.',
-    s3Title: 'Vous publiez',
-    s3Text: 'Vous recevez des fichiers MP4, prêts à être publiés.',
+    s3Title: 'Vous donnez votre avis',
+    s3Text: 'Vous voulez changer quelque chose ? Dites-nous quoi, et nous l’ajustons. Les révisions sont incluses.',
+    s4Title: 'Vous publiez',
+    s4Text: 'Vous recevez des fichiers MP4, prêts à être publiés.',
   },
   how: {
     nextTitle: 'Envie d’essayer ?',
@@ -126,6 +128,8 @@ const fr: UI = {
   packages: {
     title: 'Formules.',
     lead: 'Chaque commande reçoit un devis fixe avant de commencer. Prix hors TVA.',
+    price: '€100',
+    perVideo: 'par vidéo',
     from: 'à partir de',
     items: [
       { name: 'Unique', for: 'Un yacht ou un type de chambre.', includes: 'Une vidéo en 16:9 et 9:16, [TODO : durée] secondes.' },

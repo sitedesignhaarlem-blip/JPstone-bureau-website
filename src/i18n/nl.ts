@@ -8,7 +8,7 @@ const nl: UI = {
     libraryTitle: 'Bibliotheek · JPstone Bureau',
     libraryDesc: "Southern Cross: zes clips van een motorcatamaran, met AI gemaakt van de bestaande listingfoto's.",
     howTitle: 'Werkwijze · JPstone Bureau',
-    howDesc: "Zo werkt het: je stuurt je listingfoto's, wij maken er met AI een walkthrough-video van, jij publiceert.",
+    howDesc: 'Zo werkt het: je stuurt je listingfoto\'s, wij maken er met AI een walkthrough-video van, jij zegt wat er anders moet, jij publiceert.',
     contactTitle: 'Contact · JPstone Bureau',
     contactDesc: 'Vraag een gratis proefvideo aan. Stuur een link naar je listing, of bel of WhatsApp 06 57 24 96 07.',
   },
@@ -39,8 +39,10 @@ const nl: UI = {
     s1Text: 'Een link naar je listing is genoeg.',
     s2Title: 'Wij maken de film',
     s2Text: "Met AI, op basis van jouw foto's. In 16:9 voor je site en 9:16 voor social.",
-    s3Title: 'Jij publiceert',
-    s3Text: 'Je krijgt mp4-bestanden, klaar om te plaatsen.',
+    s3Title: 'Jij geeft feedback',
+    s3Text: 'Wil je iets anders? Zeg wat, dan passen we het aan. Revisies zitten erbij.',
+    s4Title: 'Jij publiceert',
+    s4Text: 'Je krijgt mp4-bestanden, klaar om te plaatsen.',
   },
   how: {
     nextTitle: 'Zelf proberen?',
@@ -126,6 +128,8 @@ const nl: UI = {
   packages: {
     title: 'Pakketten.',
     lead: 'Elke opdracht krijgt vooraf een vaste offerte. Prijzen zijn exclusief btw.',
+    price: '€100',
+    perVideo: 'per video',
     from: 'vanaf',
     items: [
       { name: 'Los', for: 'Eén jacht of één kamertype.', includes: 'Eén video in 16:9 en 9:16, [TODO: lengte] seconden.' },
