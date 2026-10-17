@@ -2,13 +2,12 @@
 import Base from '../layouts/Base.astro';
 import SiteNav from '../components/SiteNav.astro';
 import VideoTile from '../components/VideoTile.astro';
-import { shots, southernMist, categories } from '../data/library';
+import { shots, southernCross, categories } from '../data/library';
 
 const all = [...shots];
 const counts = Object.fromEntries(
   categories.map((c) => [c.id, c.id === 'all' ? all.length : all.filter((s) => s.category === c.id).length]),
 );
-const [smLead, ...smRest] = southernMist;
 ---
 <Base
   title="Bibliotheek · JPstone Bureau"
@@ -25,18 +24,15 @@ const [smLead, ...smRest] = southernMist;
       </div>
     </section>
 
-    <section class="section section--dark project" aria-labelledby="sm-title">
+    <section class="section section--dark project" aria-labelledby="sc-title">
       <div class="wrap-wide">
         <div class="project-head">
           <p class="eyebrow">Uitgelicht project</p>
-          <h2 id="sm-title">Southern Mist</h2>
-          <p class="lead muted">Motorcatamaran in de haven. Drie shots van romp, achterschip en dek, gemaakt van de listingfoto's.</p>
+          <h2 id="sc-title">Southern Cross</h2>
+          <p class="lead muted">Motorcatamaran, buiten en binnen. Zes clips: op zee, voor anker, het achterdek en een rondgang door kombuis, salon en hut.</p>
         </div>
         <div class="project-grid">
-          <VideoTile shot={smLead} size="large" />
-          <div class="project-rest">
-            {smRest.map((s) => <VideoTile shot={s} />)}
-          </div>
+          {southernCross.map((s) => <VideoTile shot={s} />)}
         </div>
       </div>
     </section>
@@ -93,8 +89,7 @@ const [smLead, ...smRest] = southernMist;
   .wrap-wide { max-width: calc(var(--max-wide) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
 
   .project-head { display: grid; gap: var(--space-3); margin-bottom: var(--space-7); max-width: 40rem; }
-  .project-grid { display: grid; gap: var(--space-6); }
-  .project-rest { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+  .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6) var(--space-3); }
 
   .all-head { display: grid; gap: var(--space-4); margin-bottom: var(--space-7); }
   .filters { display: flex; flex-wrap: wrap; gap: var(--space-2); }
@@ -126,7 +121,7 @@ const [smLead, ...smRest] = southernMist;
 
   @media (min-width: 40rem) {
     .grid { gap: var(--space-7) var(--space-5); }
-    .project-rest { gap: var(--space-5); }
+    .project-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-7) var(--space-5); }
   }
   @media (min-width: 64rem) {
     .grid { grid-template-columns: repeat(3, 1fr); }
