@@ -13,7 +13,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
-<Base title={t.meta.libraryTitle} description={t.meta.libraryDesc} lang={lang} page="library">
+<Base title={t.meta.libraryTitle} description={t.meta.libraryDesc} lang={lang} page="library" videos={southernCross.map((s) => s.file)}>
   <SiteNav lang={lang} page="library" />
 
   <main id="main">

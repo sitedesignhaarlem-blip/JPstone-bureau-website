@@ -1,0 +1,174 @@
+---
+// Before/after: the original listing photo (left) against the video made from it (right).
+// The video starts on exactly that photo, so dragging the line compares still with moving.
+// A native range input drives it, so mouse, touch and keyboard all work.
+import { useTranslations, type Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const c = t.compare;
+const pairs = ['southern-cross-varen-zij', 'southern-cross-drone-anker', 'southern-cross-kombuis'] as const;
+const photo = (file: string) => `/media/photo-${file.replace('southern-cross-', '')}.jpg`;
+---
+<section class="section compare" aria-labelledby="compare-title">
+  <div class="wrap">
+    <div class="compare-head">
+      <p class="eyebrow">{c.eyebrow}</p>
+      <h2 id="compare-title">{c.title}</h2>
+      <p class="lead muted">{c.lead}</p>
+    </div>
+
+    <div class="ba" data-ba style="--pos: 50%">
+      {pairs.map((file, i) => (
+        // Only the first example has its images set; the others get them when chosen (see script).
+        <div class="ba-pair" data-pair={file} hidden={i !== 0}>
+          <video class="ba-video" muted playsinline loop preload="none" poster={i === 0 ? photo(file) : undefined} data-poster={photo(file)} aria-label={t.shots[file].alt}>
+            <source src={`/media/${file}.mp4`} type="video/mp4" />
+            <source src={`/media/${file}.webm`} type="video/webm" />
+          </video>
+          <img class="ba-photo" src={i === 0 ? photo(file) : undefined} data-src={photo(file)} alt={`${t.photoAlt}: ${t.shots[file].title}`} width="960" height="712" loading="lazy" decoding="async" />
+        </div>
+      ))}
+      <span class="ba-tag ba-tag--photo" aria-hidden="true">{c.photo}</span>
+      <span class="ba-tag ba-tag--video" aria-hidden="true">{c.video}</span>
+      <div class="ba-handle" aria-hidden="true"><span class="ba-grip"></span></div>
+      <input class="ba-range" type="range" min="0" max="100" value="50" step="1" aria-label={c.slider} aria-valuetext="50%" data-ba-range />
+      <button class="ba-play" type="button" data-open={pairs[0]} data-title={c.pairs[pairs[0]]} data-ba-play>
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor" /></svg>
+        {c.play}
+      </button>
+    </div>
+
+    <div class="ba-tabs" role="group" aria-label={c.choose}>
+      {pairs.map((file, i) => (
+        <button type="button" class="ba-tab" data-ba-tab={file} aria-pressed={i === 0 ? 'true' : 'false'}>
+          <img src={`/media/thumb-${file.replace('southern-cross-', '')}.jpg`} alt="" width="96" height="71" loading="lazy" decoding="async" />
+          <span>{c.pairs[file]}</span>
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-ba]');
+  if (root) {
+    const range = root.querySelector<HTMLInputElement>('[data-ba-range]')!;
+    const play = root.querySelector<HTMLButtonElement>('[data-ba-play]')!;
+    const tabs = document.querySelectorAll<HTMLButtonElement>('[data-ba-tab]');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let current = root.querySelector<HTMLElement>('.ba-pair:not([hidden])')!;
+    let inView = false;
+
+    const setPos = () => {
+      root.style.setProperty('--pos', `${range.value}%`);
+      range.setAttribute('aria-valuetext', `${range.value}%`);
+    };
+    range.addEventListener('input', setPos);
+
+    const video = () => current.querySelector('video')!;
+    const sync = () => {
+      if (reduce) return;
+      const v = video();
+      if (inView) {
+        v.preload = 'auto';
+        v.play().catch(() => {});
+      } else v.pause();
+    };
+
+    new IntersectionObserver(([e]) => { inView = e.isIntersecting; sync(); }, { threshold: 0.4 }).observe(root);
+
+    tabs.forEach((tab) =>
+      tab.addEventListener('click', () => {
+        const file = tab.dataset.baTab!;
+        video().pause();
+        current.hidden = true;
+        current = root.querySelector<HTMLElement>(`[data-pair="${file}"]`)!;
+        const img = current.querySelector('img')!;
+        if (!img.getAttribute('src')) img.src = img.dataset.src!;
+        const v = current.querySelector('video')!;
+        if (!v.poster) v.poster = v.dataset.poster!;
+        current.hidden = false;
+        video().currentTime = 0;
+        tabs.forEach((t) => t.setAttribute('aria-pressed', String(t === tab)));
+        play.dataset.open = file;
+        play.dataset.title = tab.textContent?.trim() ?? '';
+        sync();
+      }),
+    );
+  }
+</script>
+
+<style>
+  .compare-head { display: grid; gap: var(--space-3); max-width: 40rem; margin-bottom: var(--space-7); }
+
+  .ba {
+    position: relative; aspect-ratio: 960 / 712; overflow: hidden;
+    border-radius: var(--radius); background: var(--bg-alt); touch-action: pan-y;
+  }
+  .ba-pair, .ba-video, .ba-photo { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .ba-pair[hidden] { display: none; }
+  .ba-video, .ba-photo { object-fit: cover; }
+  /* The photo covers the left part, up to the line */
+  .ba-photo { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+
+  .ba-handle {
+    position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px;
+    background: #fff; box-shadow: 0 0 0 1px rgb(0 0 0 / 0.15); pointer-events: none;
+  }
+  .ba-grip {
+    position: absolute; top: 50%; left: 50%; width: 2.75rem; height: 2.75rem; translate: -50% -50%;
+    border-radius: 50%; background: rgb(255 255 255 / 0.95); box-shadow: 0 2px 12px rgb(0 0 0 / 0.25);
+  }
+  .ba-grip::before, .ba-grip::after {
+    content: ''; position: absolute; top: 50%; width: 0; height: 0; translate: 0 -50%;
+    border-block: 6px solid transparent;
+  }
+  .ba-grip::before { left: 0.7rem; border-right: 7px solid var(--fg); }
+  .ba-grip::after { right: 0.7rem; border-left: 7px solid var(--fg); }
+
+  .ba-tag {
+    position: absolute; top: var(--space-4); padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-pill); background: rgb(0 0 0 / 0.55); color: #fff;
+    font-size: 0.75rem; font-weight: 600; pointer-events: none;
+  }
+  .ba-tag--photo { left: var(--space-4); }
+  .ba-tag--video { right: var(--space-4); }
+
+  /* Invisible range input over the whole image: drag anywhere, or use arrow keys */
+  .ba-range {
+    position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0;
+    cursor: ew-resize; -webkit-appearance: none; appearance: none; background: transparent;
+  }
+  .ba-range::-webkit-slider-thumb { -webkit-appearance: none; width: 3rem; height: 100vh; }
+  .ba-range::-moz-range-thumb { width: 3rem; height: 100vh; border: 0; }
+  .ba:has(.ba-range:focus-visible) { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .ba-play {
+    position: absolute; right: var(--space-4); bottom: var(--space-4); z-index: 2;
+    display: inline-flex; align-items: center; gap: var(--space-2); min-height: 2.75rem; padding: 0 var(--space-4);
+    border: 0; border-radius: var(--radius-pill); background: rgb(255 255 255 / 0.95); color: var(--fg);
+    font-size: var(--step-small); font-weight: 600; cursor: pointer; box-shadow: 0 2px 12px rgb(0 0 0 / 0.2);
+  }
+  .ba-play:hover { background: #fff; }
+
+  .ba-tabs { display: flex; gap: var(--space-3); margin-top: var(--space-5); overflow-x: auto; }
+  .ba-tab {
+    display: grid; gap: var(--space-2); justify-items: start; padding: 0; border: 0; background: none;
+    color: var(--fg-muted); font-size: var(--step-small); cursor: pointer; text-align: left;
+  }
+  .ba-tab img { width: 6rem; height: auto; border-radius: 10px; opacity: 0.6; transition: opacity var(--dur) var(--ease); outline: 2px solid transparent; outline-offset: 2px; }
+  .ba-tab:hover img { opacity: 1; }
+  .ba-tab[aria-pressed='true'] { color: var(--fg); font-weight: 600; }
+  .ba-tab[aria-pressed='true'] img { opacity: 1; outline-color: var(--fg); }
+
+  @media (max-width: 40rem) {
+    .ba-play { right: var(--space-3); bottom: var(--space-3); }
+    .ba-tag { top: var(--space-3); }
+    .ba-tag--photo { left: var(--space-3); }
+    .ba-tag--video { right: var(--space-3); }
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+// Packages as a calm list: name, who it's for, what's included, starting price. Prices are TODO until set.
+import Text from './Text.astro';
+import { pagePath, useTranslations, type Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const p = t.packages;
+---
+<section class="section section--alt packages" aria-labelledby="packages-title">
+  <div class="wrap">
+    <div class="packages-head">
+      <h2 id="packages-title">{p.title}</h2>
+      <p class="lead muted">{p.lead}</p>
+    </div>
+    <ul class="package-list" role="list">
+      {p.items.map((item) => (
+        <li class="package">
+          <h3>{item.name}</h3>
+          <div class="package-text">
+            <p>{item.for}</p>
+            <p class="muted"><Text text={item.includes} /></p>
+          </div>
+          <p class="package-price"><span class="muted">{p.from}</span> <span class="todo">€[TODO]</span></p>
+        </li>
+      ))}
+    </ul>
+    <p class="packages-note">{p.note} <a class="link-more" href={pagePath(lang, 'contact')}>{t.hero.cta}</a></p>
+  </div>
+</section>
+
+<style>
+  .packages-head { display: grid; gap: var(--space-3); margin-bottom: var(--space-7); }
+  .package-list { padding: 0; margin: 0; list-style: none; border-bottom: 1px solid var(--line); }
+  .package { display: grid; gap: var(--space-2); padding-block: var(--space-5); border-top: 1px solid var(--line); }
+  .package-text { display: grid; gap: var(--space-1); }
+  .package-price { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .packages-note { margin-top: var(--space-6); }
+  @media (min-width: 48rem) {
+    .package { grid-template-columns: 10rem 1fr 11rem; align-items: baseline; gap: var(--space-6); }
+    .package-price { text-align: right; }
+  }
+</style>

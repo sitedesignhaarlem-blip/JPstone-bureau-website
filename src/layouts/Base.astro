@@ -1,7 +1,7 @@
 ---
 import '../styles/tokens.css';
 import '../styles/base.css';
-import { SITE_URL } from '../data/site';
+import { SITE_URL, site } from '../data/site';
 import { locales, defaultLocale, htmlLang, ogLocale, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
 
 interface Props {
@@ -10,10 +10,40 @@ interface Props {
   lang: Locale;
   page: PageId;
   noindex?: boolean;
+  /** Clips shown on this page, added as VideoObject structured data. */
+  videos?: string[];
+  /** The first large image on the page; loaded with priority. */
+  preloadImage?: string;
 }
-const { title, description, lang, page, noindex = false } = Astro.props;
+const { title, description, lang, page, noindex = false, videos = [], preloadImage } = Astro.props;
 const t = useTranslations(lang);
 const canonical = new URL(pagePath(lang, page), SITE_URL).href;
+const abs = (path: string) => new URL(path, SITE_URL).href;
+
+// Structured data: the business on every page, plus the clips on pages that show them.
+const business = {
+  '@type': 'ProfessionalService',
+  '@id': abs('/#business'),
+  name: site.name,
+  url: abs(pagePath(lang, 'home')),
+  email: site.email,
+  telephone: site.phoneE164,
+  image: abs('/og.jpg'),
+  address: { '@type': 'PostalAddress', addressCountry: site.country },
+  areaServed: 'Worldwide',
+  description: t.meta.homeDesc,
+};
+const videoObjects = videos.map((file) => ({
+  '@type': 'VideoObject',
+  name: `${t.shots[file as keyof typeof t.shots].title} · Southern Cross`,
+  description: t.shots[file as keyof typeof t.shots].alt,
+  thumbnailUrl: abs(`/media/${file}.jpg`),
+  contentUrl: abs(`/media/${file}.mp4`),
+  uploadDate: '2026-09-03',
+  inLanguage: htmlLang[lang],
+  creator: { '@id': abs('/#business') },
+}));
+const jsonLd = { '@context': 'https://schema.org', '@graph': [business, ...videoObjects] };
 ---
 <!doctype html>
 <html lang={htmlLang[lang]}>
@@ -30,9 +60,17 @@ const canonical = new URL(pagePath(lang, page), SITE_URL).href;
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content={abs('/og.jpg')} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content={site.name} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:locale" content={ogLocale[lang]} />
     {locales.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={ogLocale[l]} />)}
     <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script is:inline>
       document.documentElement.classList.add('js');
       // A new page always opens at the top, unless the link points to a section (#…).

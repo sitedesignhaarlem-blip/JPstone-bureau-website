@@ -51,12 +51,13 @@ function setupDialog() {
 
   document.querySelectorAll<HTMLButtonElement>('[data-open]').forEach((btn) =>
     btn.addEventListener('click', () => {
+      // Read at click time: the before/after play button changes its clip when you switch examples.
       const file = btn.dataset.open!;
       opener = btn;
       video.innerHTML = `<source src="/media/${file}.webm" type="video/webm"><source src="/media/${file}.mp4" type="video/mp4">`;
       video.poster = `/media/${file}.jpg`;
       video.load();
-      caption.textContent = btn.closest('figure')?.querySelector('.tile-title')?.textContent ?? '';
+      caption.textContent = btn.dataset.title ?? btn.closest('figure')?.querySelector('.tile-title')?.textContent ?? '';
       dialog.showModal();
       video.play().catch(() => {});
     }),

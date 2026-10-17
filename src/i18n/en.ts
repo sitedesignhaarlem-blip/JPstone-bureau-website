@@ -104,6 +104,50 @@ const en = {
     // Shown on translated legal pages: which version counts if they differ. Empty for Dutch.
     translationNote: 'This is a translation of the Dutch text. If the two differ, the Dutch version applies.',
   },
+  compare: {
+    eyebrow: 'Photo and video',
+    title: 'Same photo. Now it moves.',
+    lead: 'Left is the photo from the listing. Right is the video we made from it. Drag the line.',
+    photo: 'Listing photo',
+    video: 'Our video',
+    slider: 'Compare listing photo and video',
+    play: 'Watch the full clip',
+    choose: 'Choose an example',
+    pairs: { 'southern-cross-varen-zij': 'At sea', 'southern-cross-drone-anker': 'At anchor', 'southern-cross-kombuis': 'Galley' },
+  },
+  caseStudy: {
+    eyebrow: 'Case study',
+    figureLabel: 'yachts',
+    lead: 'Walkthrough videos for a charter fleet, made from the listing photos that were already online.',
+    delivered: 'Delivered',
+    deliveredValue: '[TODO: number of videos and formats]',
+    time: 'Delivery time',
+    timeValue: '[TODO: days from photos to delivery]',
+    quote: '[TODO: quote, after approval from the client]',
+  },
+  packages: {
+    title: 'Packages.',
+    lead: 'Every project gets a fixed quote before we start. Prices exclude VAT.',
+    from: 'from',
+    items: [
+      { name: 'Single', for: 'One yacht or one room type.', includes: 'One video in 16:9 and 9:16, [TODO: length] seconds.' },
+      { name: 'Fleet', for: 'Several yachts, or a whole hotel.', includes: 'Up to [TODO: number] videos in one consistent style, both formats.' },
+      { name: 'Ongoing', for: 'New listings every season.', includes: '[TODO: number] videos a month, both formats, cancel any month.' },
+    ],
+    note: 'Not sure which fits? Start with the free sample video.',
+  },
+  faq: {
+    title: 'Questions.',
+    items: [
+      { q: 'Who owns the video?', a: 'Once paid, you can use it without limits for your own marketing: your website, listings, social media and ads. You just can’t resell it as a standalone video.' },
+      { q: 'How fast do I get it?', a: 'The delivery time is in your quote. [TODO: typical delivery time in days]. The free sample usually comes first, so you can judge before you commit.' },
+      { q: 'How many revisions are included?', a: '[TODO: number] rounds per video. A revision is a change with the same photos and the same concept. New photos or a new concept count as a new video.' },
+      { q: 'Which formats do I get?', a: '16:9 for your website and listing platforms, and 9:16 for Instagram, TikTok and Reels. You get MP4 files, ready to upload.' },
+      { q: 'Is this made with AI?', a: 'Yes. Software turns your photos into camera movement. We check every video before delivery, so it shows what is in your photos and nothing that isn’t.' },
+      { q: 'What does the free sample include?', a: 'One short clip made from your own listing photos. No obligation and no invoice. A link to your listing is all we need.' },
+    ],
+  },
+  photoAlt: 'Original listing photo',
   shots: {
     'southern-cross-varen-zij': {
       title: 'On open water',

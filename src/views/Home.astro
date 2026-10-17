@@ -6,6 +6,10 @@ import VideoTile from '../components/VideoTile.astro';
 import ShotDialog from '../components/ShotDialog.astro';
 import Steps from '../components/Steps.astro';
 import ContactSection from '../components/ContactSection.astro';
+import BeforeAfter from '../components/BeforeAfter.astro';
+import CaseStudy from '../components/CaseStudy.astro';
+import Packages from '../components/Packages.astro';
+import Faq from '../components/Faq.astro';
 import { southernCross } from '../data/library';
 import { pagePath, useTranslations, type Locale } from '../i18n';
 
@@ -18,15 +22,18 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
   (f) => southernCross.find((s) => s.file === f)!,
 );
 ---
-<Base title={t.meta.homeTitle} description={t.meta.homeDesc} lang={lang} page="home">
+<Base title={t.meta.homeTitle} preloadImage="/media/hero.jpg" description={t.meta.homeDesc} lang={lang} page="home" videos={['southern-cross-varen-zij', 'southern-cross-drone-anker', 'southern-cross-kombuis', 'southern-cross-hut']}>
   <SiteNav lang={lang} page="home" />
 
   <main id="main">
     <section class="hero" data-hero-section>
       <div class="hero-media" data-hero-fade="0.8">
-        <video autoplay muted playsinline loop preload="auto" poster="/media/southern-cross-varen-zij.jpg" aria-label={t.hero.videoAlt} data-hero>
-          <source src="/media/southern-cross-varen-zij.webm" type="video/webm" />
-          <source src="/media/southern-cross-varen-zij.mp4" type="video/mp4" />
+        <img class="hero-still" src="/media/hero.jpg" alt="" width="720" height="534" fetchpriority="high" decoding="async" />
+        <video muted playsinline loop preload="none" aria-label={t.hero.videoAlt} data-hero>
+          <source src="/media/southern-cross-varen-zij.mp4" type="video/mp4" media="(min-width: 50rem)" />
+          <source src="/media/southern-cross-varen-zij.webm" type="video/webm" media="(min-width: 50rem)" />
+          <source src="/media/hero.mp4" type="video/mp4" />
+          <source src="/media/hero.webm" type="video/webm" />
         </video>
       </div>
       <div class="wrap hero-inner" data-hero-fade="0.4">
@@ -40,6 +47,8 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
       </div>
     </section>
 
+    <BeforeAfter lang={lang} />
+
     <section class="section section--alt">
       <div class="wrap-wide">
         <div class="section-head">
@@ -52,7 +61,13 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
       </div>
     </section>
 
+    <CaseStudy lang={lang} />
+
     <Steps lang={lang} />
+
+    <Packages lang={lang} />
+
+    <Faq lang={lang} />
 
     <ContactSection lang={lang} />
   </main>
@@ -68,10 +83,18 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
   const section = document.querySelector<HTMLElement>('[data-hero-section]');
   const fading = document.querySelectorAll<HTMLElement>('[data-hero-fade]');
 
-  // The hero loop stops for people who prefer less motion; the poster stays.
-  if (hero && reduce) {
-    hero.removeAttribute('autoplay');
-    hero.pause();
+  // The hero loop starts once the page has loaded, so the still image shows first and fast.
+  // People who prefer less motion keep the still image.
+  let heroStarted = false;
+  if (hero && !reduce) {
+    const start = () => {
+      heroStarted = true;
+      // The still image stays underneath until the video actually plays, so there is never a gap.
+      hero.addEventListener('playing', () => hero.classList.add('is-playing'), { once: true });
+      hero.play().catch(() => {});
+    };
+    if (document.readyState === 'complete') start();
+    else addEventListener('load', start, { once: true });
   }
 
   // Fade the hero out as it scrolls away. Skipped when motion is reduced.
@@ -88,7 +111,7 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
       });
       if (hero) {
         if (progress >= 1) hero.pause();
-        else if (hero.paused) hero.play().catch(() => {});
+        else if (heroStarted && hero.paused) hero.play().catch(() => {});
       }
     };
     window.addEventListener('scroll', () => {
@@ -108,7 +131,9 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
     background: var(--bg); color: var(--on-dark);
   }
   .hero-media { position: absolute; inset: 0; background: var(--dark); }
-  .hero-media video { width: 100%; height: 100%; object-fit: cover; }
+  .hero-still, .hero-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero-media video { opacity: 0; transition: opacity 600ms var(--ease); }
+  .hero-media video.is-playing { opacity: 1; }
   /* Darken the lower part so the white text stays readable on any frame */
   .hero-media::after {
     content: ''; position: absolute; inset: 0;

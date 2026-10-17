@@ -1,0 +1,46 @@
+---
+// Case study: Virgin Charter Yachts. Missing figures stay visible as TODO until the client confirms them.
+import Text from './Text.astro';
+import { useTranslations, type Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+const t = useTranslations(Astro.props.lang);
+const c = t.caseStudy;
+---
+<section class="section section--dark case" aria-labelledby="case-title">
+  <div class="wrap case-inner">
+    <div class="case-figure">
+      <p class="case-number">18</p>
+      <p class="case-unit">{c.figureLabel}</p>
+    </div>
+    <div class="case-body">
+      <p class="eyebrow">{c.eyebrow}</p>
+      <h2 id="case-title">Virgin Charter Yachts</h2>
+      <p class="lead muted">{c.lead}</p>
+      <dl class="case-facts">
+        <div><dt>{c.delivered}</dt><dd><Text text={c.deliveredValue} /></dd></div>
+        <div><dt>{c.time}</dt><dd><Text text={c.timeValue} /></dd></div>
+      </dl>
+      <blockquote class="case-quote"><Text text={c.quote} /></blockquote>
+    </div>
+  </div>
+</section>
+
+<style>
+  .case-inner { display: grid; gap: var(--space-7); align-items: center; }
+  .case-figure { display: flex; align-items: baseline; gap: var(--space-3); }
+  .case-number { font-size: clamp(7rem, 4rem + 14vw, 13rem); font-weight: 600; line-height: 0.85; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
+  .case-unit { font-size: var(--step-h3); color: var(--on-dark-muted); }
+  .case-body { display: grid; gap: var(--space-4); }
+  .case-facts { display: grid; gap: var(--space-3); margin: var(--space-3) 0 0; }
+  .case-facts div { display: grid; grid-template-columns: 9rem 1fr; gap: var(--space-3); padding-top: var(--space-3); border-top: 1px solid rgb(255 255 255 / 0.18); }
+  .case-facts dt { color: var(--on-dark-muted); }
+  .case-facts dd { margin: 0; }
+  .case-quote { margin: var(--space-4) 0 0; font-size: var(--step-lead); line-height: 1.4; }
+  .case :global(.todo) { color: #fbbf24; }
+  @media (min-width: 48rem) {
+    .case-inner { grid-template-columns: 1fr 1.3fr; gap: var(--space-8); }
+  }
+</style>
