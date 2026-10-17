@@ -19,7 +19,12 @@ const { title, description, lang = 'nl', noindex = false } = Astro.props;
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content="#ffffff" />
-    <script is:inline>document.documentElement.classList.add('js');</script>
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      // A new page always opens at the top, unless the link points to a section (#…).
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      addEventListener('pageshow', () => { if (!location.hash) scrollTo(0, 0); });
+    </script>
     <slot name="head" />
   </head>
   <body>
