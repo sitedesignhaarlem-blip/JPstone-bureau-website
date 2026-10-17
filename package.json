@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
-    "@sakun/system.css": "^0.1.11",
     "astro": "^7.4.0"
   },
   "devDependencies": {
