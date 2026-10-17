@@ -134,9 +134,9 @@ const en = {
     perVideo: 'per video',
     from: 'from',
     items: [
-      { name: 'Single', for: 'One yacht or one room type.', includes: 'One video in 16:9 and 9:16, [TODO: length] seconds.' },
-      { name: 'Fleet', for: 'Several yachts, or a whole hotel.', includes: 'Up to [TODO: number] videos in one consistent style, both formats.' },
-      { name: 'Ongoing', for: 'New listings every season.', includes: '[TODO: number] videos a month, both formats, cancel any month.' },
+      { name: 'Single', for: 'One yacht or one room type.', includes: 'One video in 16:9 and 9:16, 30 seconds.' },
+      { name: 'Fleet', for: 'Several yachts, or a whole hotel.', includes: 'As many videos as you need, in one consistent style, both formats.' },
+      { name: 'Ongoing', for: 'New listings every season.', includes: 'Up to 100 videos a month, both formats, cancel any month.' },
     ],
     note: 'Not sure which fits? Start with the free sample video.',
   },
@@ -145,7 +145,7 @@ const en = {
     items: [
       { q: 'Who owns the video?', a: 'Once paid, you can use it without limits for your own marketing: your website, listings, social media and ads. You just can’t resell it as a standalone video.' },
       { q: 'How fast do I get it?', a: 'The delivery time is in your quote. [TODO: typical delivery time in days]. The free sample usually comes first, so you can judge before you commit.' },
-      { q: 'How many revisions are included?', a: '[TODO: number] rounds per video. A revision is a change with the same photos and the same concept. New photos or a new concept count as a new video.' },
+      { q: 'How many revisions are included?', a: '2 rounds per video. A revision is a change with the same photos and the same concept. New photos or a new concept count as a new video.' },
       { q: 'Which formats do I get?', a: '16:9 for your website and listing platforms, and 9:16 for Instagram, TikTok and Reels. You get MP4 files, ready to upload.' },
       { q: 'Is this made with AI?', a: 'Yes. Software turns your photos into camera movement. We check every video before delivery, so it shows what is in your photos and nothing that isn’t.' },
       { q: 'What does the free sample include?', a: 'One short clip made from your own listing photos. No obligation and no invoice. A link to your listing is all we need.' },

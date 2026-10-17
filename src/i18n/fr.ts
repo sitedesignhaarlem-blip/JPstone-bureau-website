@@ -132,9 +132,9 @@ const fr: UI = {
     perVideo: 'par vidéo',
     from: 'à partir de',
     items: [
-      { name: 'Unique', for: 'Un yacht ou un type de chambre.', includes: 'Une vidéo en 16:9 et 9:16, [TODO : durée] secondes.' },
-      { name: 'Flotte', for: 'Plusieurs yachts, ou tout un hôtel.', includes: 'Jusqu’à [TODO : nombre] vidéos dans un style cohérent, deux formats.' },
-      { name: 'Continu', for: 'De nouvelles annonces chaque saison.', includes: '[TODO : nombre] vidéos par mois, deux formats, résiliable chaque mois.' },
+      { name: 'Unique', for: 'Un yacht ou un type de chambre.', includes: 'Une vidéo en 16:9 et 9:16, 30 secondes.' },
+      { name: 'Flotte', for: 'Plusieurs yachts, ou tout un hôtel.', includes: 'Autant de vidéos que nécessaire, dans un style cohérent, deux formats.' },
+      { name: 'Continu', for: 'De nouvelles annonces chaque saison.', includes: 'Jusqu’à 100 vidéos par mois, deux formats, résiliable chaque mois.' },
     ],
     note: 'Vous hésitez ? Commencez par la vidéo d’essai gratuite.',
   },
@@ -143,7 +143,7 @@ const fr: UI = {
     items: [
       { q: 'À qui appartient la vidéo ?', a: 'Après paiement, vous pouvez l’utiliser sans limite pour votre propre marketing : site web, annonces, réseaux sociaux et publicité. Seule la revente en tant que vidéo indépendante est exclue.' },
       { q: 'En combien de temps est-elle livrée ?', a: 'Le délai figure dans votre devis. [TODO : délai habituel en jours]. La vidéo d’essai gratuite arrive en général d’abord, pour que vous puissiez juger avant de vous engager.' },
-      { q: 'Combien de révisions sont incluses ?', a: '[TODO : nombre] séries par vidéo. Une révision est une modification avec les mêmes photos et le même concept. De nouvelles photos ou un nouveau concept comptent comme une nouvelle vidéo.' },
+      { q: 'Combien de révisions sont incluses ?', a: '2 séries par vidéo. Une révision est une modification avec les mêmes photos et le même concept. De nouvelles photos ou un nouveau concept comptent comme une nouvelle vidéo.' },
       { q: 'Quels formats vais-je recevoir ?', a: '16:9 pour votre site et les plateformes d’annonces, 9:16 pour Instagram, TikTok et Reels. Vous recevez des fichiers MP4, prêts à être publiés.' },
       { q: 'Est-ce réalisé avec l’IA ?', a: 'Oui. Un logiciel transforme vos photos en mouvements de caméra. Nous vérifions chaque vidéo avant livraison : elle montre ce qui figure sur vos photos, et rien d’autre.' },
       { q: 'Que comprend la vidéo d’essai gratuite ?', a: 'Un court clip réalisé à partir de vos propres photos d’annonce. Sans engagement et sans facture. Le lien de votre annonce suffit.' },

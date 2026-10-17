@@ -132,9 +132,9 @@ const de: UI = {
     perVideo: 'pro Video',
     from: 'ab',
     items: [
-      { name: 'Einzeln', for: 'Eine Yacht oder ein Zimmertyp.', includes: 'Ein Video in 16:9 und 9:16, [TODO: Länge] Sekunden.' },
-      { name: 'Flotte', for: 'Mehrere Yachten oder ein ganzes Hotel.', includes: 'Bis zu [TODO: Anzahl] Videos in einheitlichem Stil, beide Formate.' },
-      { name: 'Laufend', for: 'Jede Saison neue Inserate.', includes: '[TODO: Anzahl] Videos pro Monat, beide Formate, monatlich kündbar.' },
+      { name: 'Einzeln', for: 'Eine Yacht oder ein Zimmertyp.', includes: 'Ein Video in 16:9 und 9:16, 30 Sekunden.' },
+      { name: 'Flotte', for: 'Mehrere Yachten oder ein ganzes Hotel.', includes: 'So viele Videos, wie Sie brauchen, in einheitlichem Stil, beide Formate.' },
+      { name: 'Laufend', for: 'Jede Saison neue Inserate.', includes: 'Bis zu 100 Videos pro Monat, beide Formate, monatlich kündbar.' },
     ],
     note: 'Unsicher, was passt? Beginnen Sie mit dem kostenlosen Probevideo.',
   },
@@ -143,7 +143,7 @@ const de: UI = {
     items: [
       { q: 'Wem gehört das Video?', a: 'Nach Zahlung dürfen Sie es unbegrenzt für Ihr eigenes Marketing nutzen: Website, Inserate, Social Media und Werbung. Nur ein Weiterverkauf als eigenständiges Video ist nicht erlaubt.' },
       { q: 'Wie schnell bekomme ich es?', a: 'Die Lieferzeit steht in Ihrem Angebot. [TODO: übliche Lieferzeit in Tagen]. Das kostenlose Probevideo kommt meist zuerst, damit Sie urteilen können, bevor Sie sich festlegen.' },
-      { q: 'Wie viele Korrekturen sind enthalten?', a: '[TODO: Anzahl] Runden pro Video. Eine Korrektur ist eine Änderung mit denselben Fotos und demselben Konzept. Neue Fotos oder ein neues Konzept gelten als neues Video.' },
+      { q: 'Wie viele Korrekturen sind enthalten?', a: '2 Runden pro Video. Eine Korrektur ist eine Änderung mit denselben Fotos und demselben Konzept. Neue Fotos oder ein neues Konzept gelten als neues Video.' },
       { q: 'Welche Formate bekomme ich?', a: '16:9 für Ihre Website und Inseratsplattformen, 9:16 für Instagram, TikTok und Reels. Sie erhalten MP4-Dateien, fertig zum Hochladen.' },
       { q: 'Wird das mit KI gemacht?', a: 'Ja. Software macht aus Ihren Fotos Kamerabewegungen. Wir prüfen jedes Video vor der Lieferung, damit es zeigt, was auf Ihren Fotos ist, und nichts, was es nicht gibt.' },
       { q: 'Was enthält das kostenlose Probevideo?', a: 'Einen kurzen Clip aus Ihren eigenen Inseratsfotos. Unverbindlich und ohne Rechnung. Ein Link zu Ihrem Inserat genügt.' },

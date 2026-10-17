@@ -132,9 +132,9 @@ const es: UI = {
     perVideo: 'por vídeo',
     from: 'desde',
     items: [
-      { name: 'Individual', for: 'Un yate o un tipo de habitación.', includes: 'Un vídeo en 16:9 y 9:16, de [TODO: duración] segundos.' },
-      { name: 'Flota', for: 'Varios yates, o un hotel entero.', includes: 'Hasta [TODO: número] vídeos con un mismo estilo, en ambos formatos.' },
-      { name: 'Continuo', for: 'Anuncios nuevos cada temporada.', includes: '[TODO: número] vídeos al mes, ambos formatos, cancelable cada mes.' },
+      { name: 'Individual', for: 'Un yate o un tipo de habitación.', includes: 'Un vídeo en 16:9 y 9:16, de 30 segundos.' },
+      { name: 'Flota', for: 'Varios yates, o un hotel entero.', includes: 'Tantos vídeos como necesites, con un mismo estilo, en ambos formatos.' },
+      { name: 'Continuo', for: 'Anuncios nuevos cada temporada.', includes: 'Hasta 100 vídeos al mes, ambos formatos, cancelable cada mes.' },
     ],
     note: '¿No sabes cuál encaja? Empieza con el vídeo de prueba gratis.',
   },
@@ -143,7 +143,7 @@ const es: UI = {
     items: [
       { q: '¿De quién es el vídeo?', a: 'Una vez pagado, puedes usarlo sin límites para tu propio marketing: web, anuncios, redes sociales y publicidad. Solo no puedes revenderlo como vídeo independiente.' },
       { q: '¿Cuándo lo recibo?', a: 'El plazo de entrega figura en tu presupuesto. [TODO: plazo habitual en días]. El vídeo de prueba gratis suele llegar antes, para que puedas valorarlo sin compromiso.' },
-      { q: '¿Cuántas revisiones incluye?', a: '[TODO: número] rondas por vídeo. Una revisión es un cambio con las mismas fotos y el mismo planteamiento. Fotos nuevas o un planteamiento nuevo cuentan como un vídeo nuevo.' },
+      { q: '¿Cuántas revisiones incluye?', a: '2 rondas por vídeo. Una revisión es un cambio con las mismas fotos y el mismo planteamiento. Fotos nuevas o un planteamiento nuevo cuentan como un vídeo nuevo.' },
       { q: '¿Qué formatos recibo?', a: '16:9 para tu web y las plataformas de anuncios, y 9:16 para Instagram, TikTok y Reels. Recibes archivos MP4, listos para subir.' },
       { q: '¿Está hecho con IA?', a: 'Sí. Un software convierte tus fotos en movimientos de cámara. Revisamos cada vídeo antes de entregarlo, para que muestre lo que hay en tus fotos y nada que no exista.' },
       { q: '¿Qué incluye el vídeo de prueba gratis?', a: 'Un clip corto hecho con las fotos de tu propio anuncio. Sin compromiso y sin factura. Basta con el enlace de tu anuncio.' },
