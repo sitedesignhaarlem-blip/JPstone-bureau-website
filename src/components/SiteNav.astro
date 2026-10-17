@@ -1,0 +1,27 @@
+---
+const links = [
+  { href: '/bibliotheek/', label: 'Bibliotheek' },
+  { href: '/#werkwijze', label: 'Werkwijze' },
+  { href: '/#contact', label: 'Contact' },
+];
+const path = Astro.url.pathname;
+---
+<header class="nav">
+  <nav class="wrap nav-inner" aria-label="Hoofdmenu">
+    <a class="nav-brand" href="/">JPstone Bureau</a>
+    <ul role="list">
+      {links.map((l) => (
+        <li><a href={l.href} aria-current={path === l.href ? 'page' : undefined}>{l.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .nav { position: sticky; top: 0; z-index: 10; background: rgb(255 255 255 / 0.96); border-bottom: 1px solid var(--line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; min-height: 3rem; font-size: 0.75rem; letter-spacing: -0.01em; }
+  ul { display: flex; gap: var(--space-5); padding: 0; margin: 0; list-style: none; }
+  a { color: var(--fg); opacity: 0.8; }
+  a:hover, a[aria-current='page'] { opacity: 1; text-decoration: none; }
+  .nav-brand { font-weight: 600; font-size: 0.875rem; opacity: 1; }
+</style>
