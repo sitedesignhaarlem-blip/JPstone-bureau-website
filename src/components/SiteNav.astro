@@ -1,30 +1,104 @@
 ---
-const links = [
-  { href: '/', label: 'Home' },
-  { href: '/bibliotheek/', label: 'Bibliotheek' },
-  { href: '/werkwijze/', label: 'Werkwijze' },
-  { href: '/contact/', label: 'Contact' },
+import { locales, localeNames, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
+
+interface Props {
+  lang: Locale;
+  page: PageId;
+}
+const { lang, page } = Astro.props;
+const t = useTranslations(lang);
+const links: { id: PageId; label: string }[] = [
+  { id: 'home', label: t.nav.home },
+  { id: 'library', label: t.nav.library },
+  { id: 'how', label: t.nav.how },
+  { id: 'contact', label: t.nav.contact },
 ];
-const path = Astro.url.pathname;
 ---
 <header class="nav">
-  <nav class="wrap nav-inner" aria-label="Hoofdmenu">
-    <a class="nav-brand" href="/">JPstone Bureau</a>
-    <ul role="list">
-      {links.map((l) => (
-        <li class:list={{ 'nav-home': l.href === '/' }}><a href={l.href} aria-current={path === l.href ? 'page' : undefined}>{l.label}</a></li>
-      ))}
-    </ul>
+  <nav class="wrap nav-inner" aria-label={t.nav.label}>
+    <a class="nav-brand" href={pagePath(lang, 'home')}>JPstone Bureau</a>
+    <div class="nav-right">
+      <ul class="nav-links" role="list">
+        {links.map((l) => (
+          <li class:list={{ 'nav-home': l.id === 'home' }}>
+            <a href={pagePath(lang, l.id)} aria-current={page === l.id ? 'page' : undefined}>{l.label}</a>
+          </li>
+        ))}
+      </ul>
+      <details class="lang" data-lang-menu>
+        <summary>{lang.toUpperCase()}<span class="visually-hidden"> · {t.nav.language}: {localeNames[lang]}</span></summary>
+        <ul class="lang-list" role="list">
+          {locales.map((l) => (
+            <li>
+              <a href={pagePath(l, page)} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>
+                <span class="lang-code">{l.toUpperCase()}</span> {localeNames[l]}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </div>
   </nav>
 </header>
 
+<script>
+  // Close the language menu on Escape or a click outside it.
+  const menu = document.querySelector<HTMLDetailsElement>('[data-lang-menu]');
+  if (menu) {
+    document.addEventListener('click', (e) => {
+      if (menu.open && !menu.contains(e.target as Node)) menu.open = false;
+    });
+    menu.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.open) {
+        menu.open = false;
+        menu.querySelector('summary')?.focus();
+      }
+    });
+  }
+</script>
+
 <style>
   .nav { position: sticky; top: 0; z-index: 10; background: rgb(255 255 255 / 0.96); border-bottom: 1px solid var(--line); }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; min-height: 3rem; font-size: 0.75rem; letter-spacing: -0.01em; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 3rem; font-size: 0.75rem; letter-spacing: -0.01em; }
+  .nav-right { display: flex; align-items: center; gap: var(--space-5); }
   ul { display: flex; gap: var(--space-5); padding: 0; margin: 0; list-style: none; }
   a { color: var(--fg); opacity: 0.8; text-decoration: none; }
   a:hover, a[aria-current='page'] { opacity: 1; text-decoration: none; }
   a[aria-current='page'] { font-weight: 600; }
   .nav-brand { font-weight: 600; font-size: 0.875rem; opacity: 1; white-space: nowrap; }
-  @media (max-width: 30rem) { .nav-home { display: none; } ul { gap: var(--space-4); } }
+  .nav-links a { white-space: nowrap; }
+
+  .lang { position: relative; }
+  .lang summary {
+    list-style: none; cursor: pointer; padding: var(--space-1) var(--space-2);
+    border: 1px solid var(--line); border-radius: var(--radius-pill); font-weight: 600; opacity: 0.85;
+  }
+  .lang summary::-webkit-details-marker { display: none; }
+  .lang summary:hover, .lang[open] summary { opacity: 1; border-color: var(--fg-muted); }
+  .lang-list {
+    position: absolute; right: 0; top: calc(100% + var(--space-2)); display: grid; gap: 0; min-width: 11rem;
+    padding: var(--space-2); background: var(--bg); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.08); font-size: var(--step-small);
+  }
+  .lang-list a { display: block; padding: var(--space-2) var(--space-3); border-radius: 8px; opacity: 1; }
+  .lang-list a:hover { background: var(--bg-alt); }
+  .lang-list a[aria-current='true'] { font-weight: 600; }
+  .lang-code { display: inline-block; width: 1.75rem; color: var(--fg-muted); font-size: 0.75rem; font-weight: 600; }
+
+  /* Phones: name and language on the first row, the page links on a second row. */
+  @media (max-width: 48rem) {
+    .nav-inner {
+      display: grid; grid-template-columns: 1fr auto; grid-template-areas: 'brand lang' 'links links';
+      row-gap: 0; padding-top: var(--space-2);
+    }
+    .nav-brand { grid-area: brand; }
+    .nav-right { display: contents; }
+    .lang { grid-area: lang; }
+    .nav-links {
+      grid-area: links; gap: var(--space-5); overflow-x: auto; scrollbar-width: none;
+      padding-block: var(--space-2); margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter);
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a { display: inline-block; padding-block: var(--space-1); }
+  }
 </style>

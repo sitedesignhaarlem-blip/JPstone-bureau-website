@@ -1,0 +1,133 @@
+// Spanish. Same keys as en.ts. Informal "tú", as is common in modern Spanish marketing.
+import type { UI } from './en';
+
+const es: UI = {
+  meta: {
+    homeTitle: 'JPstone Bureau · Vídeos de recorrido a partir de las fotos de tu anuncio',
+    homeDesc: 'Con IA convertimos las fotos de tu anuncio en un vídeo de recorrido tranquilo. Para chárteres de yates y hoteles boutique. Sin día de rodaje, sin equipo a bordo.',
+    libraryTitle: 'Biblioteca · JPstone Bureau',
+    libraryDesc: 'Southern Cross: seis clips de un catamarán a motor, hechos con IA a partir de las fotos de su anuncio.',
+    howTitle: 'Cómo funciona · JPstone Bureau',
+    howDesc: 'Cómo funciona: nos envías las fotos de tu anuncio, las convertimos con IA en un vídeo de recorrido y tú lo publicas.',
+    contactTitle: 'Contacto · JPstone Bureau',
+    contactDesc: 'Pide un vídeo de prueba gratis. Envíanos el enlace de tu anuncio, o llama o escribe por WhatsApp al +31 6 57 24 96 07.',
+  },
+  skip: 'Ir al contenido',
+  nav: {
+    label: 'Menú principal',
+    home: 'Inicio',
+    library: 'Biblioteca',
+    how: 'Cómo funciona',
+    contact: 'Contacto',
+    language: 'Idioma',
+  },
+  hero: {
+    eyebrow: 'Para chárteres de yates y hoteles boutique',
+    title: 'Las fotos de tu anuncio se convierten en una película. Sin rodaje.',
+    lead: 'Nos envías las fotos que ya tienes en tu anuncio. Con IA las convertimos en un recorrido en vídeo, tranquilo y fluido.',
+    cta: 'Pide un vídeo de prueba gratis',
+    more: 'Ver la biblioteca',
+    videoAlt: 'El catamarán a motor Southern Cross navegando en mar abierto, hecho a partir de fotos del anuncio.',
+  },
+  fromLibrary: {
+    title: 'De la biblioteca.',
+    more: 'Todos los clips de Southern Cross',
+  },
+  steps: {
+    title: 'Cómo funciona.',
+    s1Title: 'Nos envías fotos',
+    s1Text: 'Basta con el enlace de tu anuncio.',
+    s2Title: 'Hacemos la película',
+    s2Text: 'Con IA, a partir de tus fotos. En 16:9 para tu web y 9:16 para redes sociales.',
+    s3Title: 'Tú publicas',
+    s3Text: 'Recibes archivos MP4, listos para publicar.',
+  },
+  how: {
+    nextTitle: '¿Quieres probarlo?',
+  },
+  contact: {
+    title: '¿Cómo podría verse tu anuncio?',
+    lead: 'Envíanos el enlace de tu anuncio. Te hacemos un vídeo de prueba gratis.',
+    whatsapp: 'WhatsApp',
+    call: 'Llamar',
+    email: 'Correo',
+    name: 'Nombre',
+    company: 'Empresa',
+    url: 'Web o anuncio',
+    message: 'Mensaje',
+    optional: '(opcional)',
+    submit: 'Pide un vídeo de prueba gratis',
+    noteBefore: 'Solo usamos tus datos para responder a tu solicitud y hacer el vídeo de prueba. Más información en nuestra',
+    noteLink: 'política de privacidad',
+    noteAfter: '. El vídeo de prueba es gratis y sin compromiso.',
+    sending: 'Enviando…',
+    sent: 'Enviado. Te respondemos lo antes posible.',
+    failed: 'No se ha podido enviar. Escríbenos a {email} o mándanos un WhatsApp.',
+    mailSubject: 'Solicitud de vídeo de prueba',
+  },
+  library: {
+    eyebrow: 'Biblioteca',
+    title: 'Cada plano empezó siendo una foto.',
+    lead: 'Sin equipo a bordo, sin dron en el aire. Estos clips se hicieron con IA, a partir de las fotos que ya estaban en el anuncio.',
+    featured: 'Destacado',
+    projectLead: 'Catamarán a motor, por fuera y por dentro. Seis clips: en el mar, fondeado, la cubierta de popa y un recorrido por la cocina, el salón y el camarote.',
+  },
+  tile: {
+    open: 'Ver en grande',
+    exterior: 'Exterior',
+    interior: 'Interior',
+  },
+  dialog: {
+    label: 'Ver clip',
+    close: 'Cerrar',
+  },
+  footer: {
+    location: 'Con sede en los Países Bajos',
+    legalNav: 'Legal',
+    privacy: 'Privacidad',
+    terms: 'Condiciones',
+    refund: 'Cancelación y reembolso',
+    cookies: 'Cookies',
+    vat: 'IVA',
+    ai: 'Vídeos hechos con IA a partir de fotos reales de anuncios.',
+    font: 'Tipografía Hanken Grotesk,',
+  },
+  legal: {
+    updated: 'Última actualización',
+    privacyTitle: 'Política de privacidad',
+    privacyDesc: 'Qué datos trata JPstone Bureau, por qué, durante cuánto tiempo y cómo consultarlos o eliminarlos.',
+    termsTitle: 'Condiciones generales',
+    termsDesc: 'Las condiciones de los vídeos de prueba y encargos de JPstone Bureau: precios, entrega, revisiones, derechos de uso, cancelación y reembolso.',
+    cookiesTitle: 'Política de cookies',
+    cookiesDesc: 'JPstone Bureau no usa cookies ni rastreadores. Por eso no ves ningún banner de cookies.',
+    translationNote: 'Esta es una traducción del texto neerlandés. En caso de diferencias, prevalece la versión neerlandesa.',
+  },
+  shots: {
+    'southern-cross-varen-zij': {
+      title: 'En mar abierto',
+      alt: 'El catamarán a motor Southern Cross navega de izquierda a derecha en mar abierto, con una ola blanca en la proa.',
+    },
+    'southern-cross-drone-anker': {
+      title: 'Fondeado, desde arriba',
+      alt: 'Vista de dron de Southern Cross fondeado en agua turquesa y cristalina.',
+    },
+    'southern-cross-achterdek': {
+      title: 'Cubierta de popa',
+      alt: 'La cámara se desliza por la cubierta de popa blanca de Southern Cross, junto a la mesa, hacia las puertas del salón.',
+    },
+    'southern-cross-kombuis': {
+      title: 'De la cocina al salón',
+      alt: 'La cámara pasa de la cocina de Southern Cross al salón luminoso con sofá en U y mesa de comedor.',
+    },
+    'southern-cross-salon': {
+      title: 'Por el salón',
+      alt: 'La cámara pasa junto a la isla de cocina y recorre el salón de Southern Cross hasta la zona de estar delantera.',
+    },
+    'southern-cross-hut': {
+      title: 'Camarote de invitados',
+      alt: 'Giro lento por un camarote de invitados con roble claro, una cama hecha y la puerta al baño.',
+    },
+  },
+};
+
+export default es;

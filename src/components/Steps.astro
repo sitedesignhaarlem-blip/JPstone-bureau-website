@@ -1,21 +1,27 @@
 ---
-// "Zo werkt het": the three steps. Used on the homepage and on /werkwijze/.
+// "How it works": the three steps. Used on the home page and on the how-it-works page.
+import { useTranslations, type Locale } from '../i18n';
+
 interface Props {
+  lang: Locale;
   heading?: 'h1' | 'h2';
 }
-const { heading = 'h2' } = Astro.props;
+const { lang, heading = 'h2' } = Astro.props;
+const t = useTranslations(lang);
 const Heading = heading;
+// Step titles sit one level below the section heading.
+const Item = heading === 'h1' ? 'h2' : 'h3';
 ---
-    <section class="section steps-section">
-      <div class="wrap">
-        <Heading class="steps-title">Zo werkt het.</Heading>
-        <ol class="steps" role="list">
-          <li><span class="numeral">1</span><h3>Je stuurt foto's</h3><p class="muted">Een link naar je listing is genoeg.</p></li>
-          <li><span class="numeral">2</span><h3>Wij maken de film</h3><p class="muted">Met AI, op basis van jouw foto's. In 16:9 voor je site en 9:16 voor social.</p></li>
-          <li><span class="numeral">3</span><h3>Jij publiceert</h3><p class="muted">Je krijgt mp4-bestanden, klaar om te plaatsen.</p></li>
-        </ol>
-      </div>
-    </section>
+<section class="section steps-section">
+  <div class="wrap">
+    <Heading class="steps-title">{t.steps.title}</Heading>
+    <ol class="steps" role="list">
+      <li><span class="numeral">1</span><Item class="step-title">{t.steps.s1Title}</Item><p class="muted">{t.steps.s1Text}</p></li>
+      <li><span class="numeral">2</span><Item class="step-title">{t.steps.s2Title}</Item><p class="muted">{t.steps.s2Text}</p></li>
+      <li><span class="numeral">3</span><Item class="step-title">{t.steps.s3Title}</Item><p class="muted">{t.steps.s3Text}</p></li>
+    </ol>
+  </div>
+</section>
 
 <style>
   .steps-title { margin-bottom: var(--space-7); }

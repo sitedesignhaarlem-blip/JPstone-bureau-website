@@ -1,7 +1,7 @@
 ---
-import Legal from '../layouts/Legal.astro';
+import { site } from '../../data/site';
+import { pagePath } from '../../i18n';
 ---
-<Legal title="Cookieverklaring" description="JPstone Bureau plaatst geen cookies en gebruikt geen trackers. Daarom zie je ook geen cookiebanner.">
   <p>Deze website plaatst geen cookies. Ook geen analytische of functionele.</p>
 
   <h2>Wat we niet gebruiken</h2>
@@ -19,5 +19,4 @@ import Legal from '../layouts/Legal.astro';
   <h2>Als dit verandert</h2>
   <p>Voegen we ooit iets toe dat cookies plaatst, dan vragen we eerst je toestemming, met een knop om te weigeren die net zo duidelijk is als de knop om te accepteren. Deze pagina passen we dan ook aan.</p>
 
-  <p>Meer over hoe we met gegevens omgaan, staat in de <a href="/privacy/">privacyverklaring</a>.</p>
-</Legal>
+  <p>Meer over hoe we met gegevens omgaan, staat in de <a href={pagePath('nl', 'privacy')}>privacyverklaring</a>.</p>

@@ -1,0 +1,44 @@
+---
+import { site } from '../../data/site';
+---
+  <p>Ces conditions s’appliquent à chaque devis, vidéo d’essai et commande de {site.name}. Elles s’adressent aux clients professionnels. Lorsque le devis prévoit autre chose, c’est le devis qui s’applique.</p>
+
+  <h2>1. Vidéo d’essai gratuite</h2>
+  <p>La vidéo d’essai est gratuite et sans engagement. Vous n’êtes tenu à rien et nous n’envoyons pas de facture. Vous pouvez la regarder et la partager en interne. La publier vaut commande.</p>
+
+  <h2>2. Devis et prix</h2>
+  <p>Vous recevez à l’avance un devis avec le prix total. Il indique ce que vous recevez : nombre de vidéos, durée, formats et révisions. Les prix s’entendent hors TVA, et c’est toujours précisé. Aucun coût ne s’ajoute en dehors du devis. Si vous souhaitez davantage par la suite, vous recevez d’abord un prix et c’est vous qui décidez.</p>
+  <p>Un devis est valable 30 jours.</p>
+
+  <h2>3. Vos photos</h2>
+  <p>Vous fournissez les photos, ou le lien de votre annonce. Vous confirmez avoir le droit d’utiliser ces photos pour une vidéo, et que les personnes reconnaissables y ont consenti. Si nous recevons une réclamation parce que ce n’est pas le cas, vous en êtes responsable.</p>
+
+  <h2>4. Réalisé avec l’IA</h2>
+  <p>Nous réalisons les vidéos avec un logiciel d’IA, à partir de vos photos. La vidéo montre votre yacht ou votre hôtel tel qu’il apparaît sur les photos, mais les mouvements de caméra et les images intermédiaires sont générés par le logiciel. De légers écarts sont possibles ; nous les corrigeons dans le cadre des révisions. Si vous publiez la vidéo, nous vous recommandons d’indiquer qu’elle a été réalisée avec l’IA.</p>
+
+  <h2>5. Livraison et révisions</h2>
+  <p>Le délai de livraison figure dans le devis. Vous recevez la vidéo en MP4, en 16:9 et/ou 9:16, comme convenu.</p>
+  <p><span class="todo">[nombre]</span> séries de révisions sont incluses par vidéo. Une révision est une modification dans le même concept et avec les mêmes photos. De nouvelles photos ou un autre concept constituent une nouvelle commande.</p>
+
+  <h2>6. Paiement</h2>
+  <p>Nous facturons après la livraison. Le délai de paiement est de <span class="todo">[14]</span> jours. Pour les commandes importantes, nous pouvons demander un acompte ; le devis le précise alors.</p>
+
+  <h2 id="cancellation">7. Annulation et remboursement</h2>
+  <ul>
+    <li><strong>Avant que nous ayons commencé :</strong> vous annulez sans frais.</li>
+    <li><strong>Une fois le travail commencé :</strong> vous payez la partie déjà réalisée, au prorata du devis. Nous vous indiquons le montant à l’avance.</li>
+    <li><strong>Après la livraison :</strong> si la vidéo ne correspond pas au devis et que nous ne pouvons pas y remédier dans le cadre des révisions, nous remboursons ce que vous avez payé pour cette vidéo.</li>
+    <li>Un éventuel acompte est remboursé, déduction faite de la partie déjà réalisée.</li>
+  </ul>
+  <p>Les remboursements sont effectués sous 14 jours sur le compte depuis lequel vous avez payé. Pour annuler ou demander un remboursement, écrivez à <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+
+  <h2>8. Droits d’utilisation</h2>
+  <p>Après paiement, vous pouvez utiliser la vidéo sans limite pour votre propre marketing : site web, annonces, réseaux sociaux et publicité. Vous ne pouvez pas la revendre en tant que vidéo indépendante. Nous ne montrons la vidéo dans notre portfolio ou sur ce site qu’avec votre accord.</p>
+
+  <h2>9. Responsabilité</h2>
+  <p>Notre responsabilité est limitée au montant de la commande concernée. Nous ne sommes pas responsables des dommages indirects, comme des réservations manquées. Cela ne s’applique pas en cas de faute intentionnelle ou de négligence grave.</p>
+
+  <h2>10. Droit applicable et litiges</h2>
+  <p>Ces conditions sont régies par le droit néerlandais. Si nous ne parvenons pas à un accord, le tribunal compétent aux Pays-Bas tranche.</p>
+
+  <p class="note">Informations sur l’entreprise : {site.name} · <span class="todo">{site.address}</span> · KvK <span class="todo">{site.kvk}</span> · TVA <span class="todo">{site.vat}</span></p>

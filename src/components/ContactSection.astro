@@ -1,53 +1,71 @@
 ---
-// Contact block with form, WhatsApp, phone and e-mail. Used on the homepage and on /contact/.
+// Contact block with form, WhatsApp, phone and email. Used on the home page and on the contact page.
 import { site } from '../data/site';
+import { pagePath, useTranslations, type Locale } from '../i18n';
 
 interface Props {
+  lang: Locale;
   heading?: 'h1' | 'h2';
 }
-const { heading = 'h2' } = Astro.props;
+const { lang, heading = 'h2' } = Astro.props;
+const t = useTranslations(lang);
+const c = t.contact;
 const Heading = heading;
-const formAction = site.formEndpoint || `mailto:${site.email}?subject=Proefvideo%20aanvraag`;
+const formAction = site.formEndpoint || `mailto:${site.email}?subject=${encodeURIComponent(c.mailSubject)}`;
 ---
-    <section class="section section--alt contact-section">
-      <div class="wrap contact">
-        <div class="contact-intro">
-          <Heading class="contact-title">Benieuwd hoe jouw listing eruitziet?</Heading>
-          <p class="lead muted">Stuur een link naar je listing. Dan maken we een gratis proefvideo.</p>
-          <ul class="contact-direct" role="list">
-            <li><span class="muted">WhatsApp</span><a href={site.whatsapp} rel="noopener">{site.phoneDisplay}</a></li>
-            <li><span class="muted">Bellen</span><a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a></li>
-            <li><span class="muted">E-mail</span><a href={`mailto:${site.email}`}>{site.email}</a></li>
-          </ul>
-        </div>
+<section class="section section--alt contact-section">
+  <div class="wrap contact">
+    <div class="contact-intro">
+      <Heading class="contact-title">{c.title}</Heading>
+      <p class="lead muted">{c.lead}</p>
+      <ul class="contact-direct" role="list">
+        <li><span class="muted">{c.whatsapp}</span><a href={site.whatsapp} rel="noopener">{site.phoneDisplay}</a></li>
+        <li><span class="muted">{c.call}</span><a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a></li>
+        <li><span class="muted">{c.email}</span><a href={`mailto:${site.email}`}>{site.email}</a></li>
+      </ul>
+    </div>
 
-        <form class="contact-form" action={formAction} method="post" enctype={site.formEndpoint ? undefined : 'text/plain'} data-contact data-endpoint={site.formEndpoint} data-email={site.email}>
-          <div class="field">
-            <label for="cf-name">Naam</label>
-            <input id="cf-name" name="naam" type="text" autocomplete="name" required />
-          </div>
-          <div class="field">
-            <label for="cf-company">Bedrijf <span class="optional">(optioneel)</span></label>
-            <input id="cf-company" name="bedrijf" type="text" autocomplete="organization" />
-          </div>
-          <div class="field">
-            <label for="cf-url">Website of listing</label>
-            <input id="cf-url" name="listing" type="url" inputmode="url" placeholder="https://" required />
-          </div>
-          <div class="field">
-            <label for="cf-msg">Bericht <span class="optional">(optioneel)</span></label>
-            <textarea id="cf-msg" name="bericht" rows="4"></textarea>
-          </div>
-          <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <button class="button" type="submit">Vraag een gratis proefvideo aan</button>
-          <p class="form-note muted">We gebruiken je gegevens alleen om je aanvraag te beantwoorden en de proefvideo te maken. Meer in de <a href="/privacy/">privacyverklaring</a>. De proefvideo is gratis en vrijblijvend.</p>
-          <p class="form-status muted" data-status aria-live="polite"></p>
-        </form>
+    <form
+      class="contact-form"
+      action={formAction}
+      method="post"
+      enctype={site.formEndpoint ? undefined : 'text/plain'}
+      data-contact
+      data-endpoint={site.formEndpoint}
+      data-email={site.email}
+      data-subject={c.mailSubject}
+      data-sending={c.sending}
+      data-sent={c.sent}
+      data-failed={c.failed.replace('{email}', site.email)}
+    >
+      <input type="hidden" name="language" value={lang} />
+      <div class="field">
+        <label for="cf-name">{c.name}</label>
+        <input id="cf-name" name="name" type="text" autocomplete="name" required />
       </div>
-    </section>
+      <div class="field">
+        <label for="cf-company">{c.company} <span class="optional">{c.optional}</span></label>
+        <input id="cf-company" name="company" type="text" autocomplete="organization" />
+      </div>
+      <div class="field">
+        <label for="cf-url">{c.url}</label>
+        <input id="cf-url" name="listing" type="url" inputmode="url" placeholder="https://" required />
+      </div>
+      <div class="field">
+        <label for="cf-msg">{c.message} <span class="optional">{c.optional}</span></label>
+        <textarea id="cf-msg" name="message" rows="4"></textarea>
+      </div>
+      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <button class="button" type="submit">{c.submit}</button>
+      <p class="form-note muted">{c.noteBefore} <a href={pagePath(lang, 'privacy')}>{c.noteLink}</a>{c.noteAfter}</p>
+      <p class="form-status muted" data-status aria-live="polite"></p>
+    </form>
+  </div>
+</section>
 
 <script>
   // Contact form: post to the form service when one is set, otherwise open the mail app.
+  // Messages come from data attributes, so they are in the page's language.
   const form = document.querySelector<HTMLFormElement>('[data-contact]');
   const status = form?.querySelector<HTMLElement>('[data-status]');
   form?.addEventListener('submit', async (e) => {
@@ -55,20 +73,20 @@ const formAction = site.formEndpoint || `mailto:${site.email}?subject=Proefvideo
     if (!form.reportValidity()) return;
     const data = new FormData(form);
     if (data.get('_gotcha')) return;
-    const endpoint = form.dataset.endpoint;
-    if (!endpoint) {
+    const d = form.dataset;
+    if (!d.endpoint) {
       const body = [...data.entries()].filter(([k]) => k !== '_gotcha').map(([k, v]) => `${k}: ${v}`).join('\n');
-      window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent('Proefvideo aanvraag')}&body=${encodeURIComponent(body)}`;
+      window.location.href = `mailto:${d.email}?subject=${encodeURIComponent(d.subject ?? '')}&body=${encodeURIComponent(body)}`;
       return;
     }
-    if (status) status.textContent = 'Versturen…';
+    if (status) status.textContent = d.sending ?? '';
     try {
-      const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+      const res = await fetch(d.endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
       if (!res.ok) throw new Error();
       form.reset();
-      if (status) status.textContent = 'Verstuurd. We nemen zo snel mogelijk contact met je op.';
+      if (status) status.textContent = d.sent ?? '';
     } catch {
-      if (status) status.textContent = `Dat lukte niet. Mail ons op ${form.dataset.email} of stuur een WhatsApp.`;
+      if (status) status.textContent = d.failed ?? '';
     }
   });
 </script>

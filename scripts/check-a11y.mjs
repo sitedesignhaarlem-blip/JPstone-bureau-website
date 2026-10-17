@@ -5,7 +5,11 @@ import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 const axe = readFileSync(createRequire(import.meta.url).resolve('axe-core/axe.min.js'), 'utf8');
 const base = process.env.BASE || 'http://localhost:4321';
-const pages = ['/', '/bibliotheek/', '/privacy/', '/voorwaarden/', '/cookies/'];
+// Every page in every language, read from the sitemap of the build.
+import { readdirSync, statSync } from 'node:fs';
+import { join } from 'node:path';
+const walk = (dir) => readdirSync(dir).flatMap((f) => { const p = join(dir, f); return statSync(p).isDirectory() ? walk(p) : f === 'index.html' ? [p] : []; });
+const pages = walk('dist').map((p) => '/' + p.replace(/^dist\/?/, '').replace(/index\.html$/, '')).sort();
 const browser = await chromium.launch({ executablePath: process.env.CHROME || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
 let failed = 0;
 for (const w of [390, 1280]) {

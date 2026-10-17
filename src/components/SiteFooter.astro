@@ -1,12 +1,19 @@
 ---
 import { site } from '../data/site';
+import { pagePath, useTranslations, type Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 const year = new Date().getFullYear();
 ---
 <footer class="footer">
   <div class="wrap footer-inner">
     <div class="footer-brand">
       <p class="footer-name">{site.name}</p>
-      <p class="muted">{site.location}</p>
+      <p class="muted">{t.footer.location}</p>
       <p class="muted"><span class="todo">{site.address}</span></p>
     </div>
     <ul class="footer-list" role="list">
@@ -14,17 +21,17 @@ const year = new Date().getFullYear();
       <li><a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a></li>
       <li><a href={site.whatsapp} rel="noopener">WhatsApp</a></li>
     </ul>
-    <nav class="footer-links" aria-label="Juridisch">
+    <nav class="footer-links" aria-label={t.footer.legalNav}>
       <ul role="list">
-        <li><a href="/privacy/">Privacy</a></li>
-        <li><a href="/voorwaarden/">Voorwaarden</a></li>
-        <li><a href="/voorwaarden/#annulering">Annulering en terugbetaling</a></li>
-        <li><a href="/cookies/">Cookies</a></li>
+        <li><a href={pagePath(lang, 'privacy')}>{t.footer.privacy}</a></li>
+        <li><a href={pagePath(lang, 'terms')}>{t.footer.terms}</a></li>
+        <li><a href={pagePath(lang, 'terms', '#cancellation')}>{t.footer.refund}</a></li>
+        <li><a href={pagePath(lang, 'cookies')}>{t.footer.cookies}</a></li>
       </ul>
     </nav>
     <p class="footer-legal muted">
-      © {year} {site.name} · KvK <span class="todo">{site.kvk}</span> · btw <span class="todo">{site.vat}</span><br />
-      Video's gemaakt met AI op basis van echte listingfoto's. Lettertype Hanken Grotesk, <a href="/fonts/OFL.txt">SIL Open Font License</a>.
+      © {year} {site.name} · KvK <span class="todo">{site.kvk}</span> · {t.footer.vat} <span class="todo">{site.vat}</span><br />
+      {t.footer.ai} {t.footer.font} <a href="/fonts/OFL.txt">SIL Open Font License</a>.
     </p>
   </div>
 </footer>

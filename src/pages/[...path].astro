@@ -1,0 +1,46 @@
+---
+// Builds every page in every language from the templates in src/views and src/legal.
+// Addresses come from src/i18n/config.ts (English at /, the others under /nl/, /de/, /fr/, /es/).
+import type { GetStaticPaths } from 'astro';
+import { locales, pageIds, slugs, defaultLocale, useTranslations, type Locale, type PageId } from '../i18n';
+import Home from '../views/Home.astro';
+import Library from '../views/Library.astro';
+import How from '../views/How.astro';
+import Contact from '../views/Contact.astro';
+import Legal from '../layouts/Legal.astro';
+import * as nl from '../legal/nl';
+import * as en from '../legal/en';
+import * as de from '../legal/de';
+import * as fr from '../legal/fr';
+import * as es from '../legal/es';
+
+export const getStaticPaths = (() =>
+  locales.flatMap((lang) =>
+    pageIds.map((page) => {
+      const parts = [lang === defaultLocale ? '' : lang, slugs[lang][page]].filter(Boolean);
+      return { params: { path: parts.length ? parts.join('/') : undefined }, props: { lang, page } };
+    }),
+  )) satisfies GetStaticPaths;
+
+interface Props {
+  lang: Locale;
+  page: PageId;
+}
+const { lang, page } = Astro.props;
+const t = useTranslations(lang);
+const legalTexts = { nl, en, de, fr, es }[lang];
+const legal = {
+  privacy: { Body: legalTexts.Privacy, title: t.legal.privacyTitle, description: t.legal.privacyDesc },
+  terms: { Body: legalTexts.Terms, title: t.legal.termsTitle, description: t.legal.termsDesc },
+  cookies: { Body: legalTexts.Cookies, title: t.legal.cookiesTitle, description: t.legal.cookiesDesc },
+}[page as 'privacy' | 'terms' | 'cookies'];
+---
+{page === 'home' && <Home lang={lang} />}
+{page === 'library' && <Library lang={lang} />}
+{page === 'how' && <How lang={lang} />}
+{page === 'contact' && <Contact lang={lang} />}
+{legal && (
+  <Legal lang={lang} page={page} title={legal.title} description={legal.description}>
+    <legal.Body />
+  </Legal>
+)}

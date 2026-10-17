@@ -1,0 +1,61 @@
+---
+import { site } from '../../data/site';
+import { pagePath } from '../../i18n';
+const deleteMail = `mailto:${site.email}?subject=${encodeURIComponent('Solicitud: eliminar mis datos')}&body=${encodeURIComponent('Por favor, eliminad todos los datos que JPstone Bureau tiene sobre mí.\n\nNombre:\nCorreo o teléfono desde el que contacté:\n')}`;
+const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Solicitud: acceso a mis datos')}`;
+---
+  <p>JPstone Bureau hace vídeos de recorrido a partir de fotos de anuncios, para empresas. Para ello necesitamos los mínimos datos posibles. Aquí explicamos exactamente cuáles, por qué y cómo puedes pedir que los borremos.</p>
+
+  <h2>Quiénes somos</h2>
+  <p>
+    {site.name}, con sede en los Países Bajos.<br />
+    Dirección: <span class="todo">{site.address}</span><br />
+    Registro mercantil (KvK): <span class="todo">{site.kvk}</span><br />
+    Correo: <a href={`mailto:${site.email}`}>{site.email}</a> · Teléfono: <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>
+  </p>
+
+  <h2>Qué datos y por qué</h2>
+  <div class="table-wrap" role="region" aria-label="Resumen de datos, finalidades y plazos de conservación" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Datos</th><th scope="col">Finalidad</th><th scope="col">Base legal</th><th scope="col">Conservación</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Datos">Nombre, web o enlace del anuncio y, si los indicas, empresa y mensaje (formulario de contacto)</td><td data-label="Finalidad">Responder a tu solicitud y hacer un vídeo de prueba</td><td data-label="Base legal">A petición tuya, antes de un contrato</td><td data-label="Conservación">Máximo 12 meses si no hay encargo</td></tr>
+        <tr><td data-label="Datos">Correo, mensajes de WhatsApp y teléfono si nos contactas así</td><td data-label="Finalidad">Contacto sobre tu solicitud o encargo</td><td data-label="Base legal">A petición tuya, o ejecución del contrato</td><td data-label="Conservación">Mientras dure el contacto, después máximo 12 meses</td></tr>
+        <tr><td data-label="Datos">Fotos que nos envías</td><td data-label="Finalidad">Hacer el vídeo</td><td data-label="Base legal">Ejecución del contrato</td><td data-label="Conservación">Hasta 3 meses después de la entrega, luego se borran</td></tr>
+        <tr><td data-label="Datos">Nombre, datos de la empresa y facturas</td><td data-label="Finalidad">Contabilidad</td><td data-label="Base legal">Obligación legal</td><td data-label="Conservación">7 años (obligación fiscal neerlandesa)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>No pedimos más de lo necesario. La empresa y el mensaje son opcionales en el formulario. No creamos perfiles ni usamos tus datos para publicidad.</p>
+
+  <h2>Quién más trata tus datos</h2>
+  <p>No vendemos nada a terceros. Para nuestro trabajo usamos estos servicios:</p>
+  <ul>
+    <li><strong>Vercel</strong> (alojamiento de esta web). En cada visita, el servidor recibe datos técnicos como tu dirección IP, para mostrar y proteger la web.</li>
+    <li><strong>Google (Gmail)</strong> para el correo.</li>
+    <li><strong>WhatsApp (Meta)</strong>, solo si tú nos contactas por WhatsApp.</li>
+    <li><strong>Higgsfield</strong>, el servicio de IA con el que convertimos tus fotos en vídeo. Para ello se suben tus fotos.</li>
+    <li><span class="todo">[Servicio de formularios, por ejemplo Formspree: completar cuando esté conectado]</span></li>
+  </ul>
+  <p>Algunos de estos proveedores están fuera del Espacio Económico Europeo. En ese caso, la transferencia se basa en las garantías que exige el RGPD, como el EU-US Data Privacy Framework o las cláusulas contractuales tipo.</p>
+
+  <h2>Cookies y seguimiento</h2>
+  <p>Esta web no usa cookies ni herramientas de analítica, píxeles publicitarios u otros rastreadores. La tipografía y los vídeos están en nuestro propio servidor. Consulta la <a href={pagePath('es', 'cookies')}>política de cookies</a>.</p>
+
+  <h2>Newsletter</h2>
+  <p>No enviamos newsletter ni correos de marketing. Si eso cambia algún día, será solo si tú te suscribes, con un enlace para darte de baja en cada correo.</p>
+
+  <h2>Menores</h2>
+  <p>Nuestros servicios son para empresas y no están dirigidos a menores de 16 años. No recogemos datos de menores a sabiendas. Si crees que ha ocurrido, escríbenos y los borraremos.</p>
+
+  <h2>Tus derechos</h2>
+  <p>Puedes acceder a tus datos, corregirlos o pedir que los borremos. También puedes oponerte al tratamiento, pedir que se limite o recibir tus datos en un formato habitual.</p>
+  <ul>
+    <li><a href={deleteMail}>Pedir que borremos tus datos</a> (abre un correo ya redactado)</li>
+    <li><a href={accessMail}>Pedir acceso</a></li>
+  </ul>
+  <p>También puedes escribir directamente a <a href={`mailto:${site.email}`}>{site.email}</a>. Respondemos en el plazo de un mes, como exige el RGPD. Los datos que debemos conservar por ley, como las facturas, solo se borran después de ese plazo.</p>
+  <p>¿No estás conforme con cómo tratamos tus datos? Puedes presentar una reclamación ante la autoridad neerlandesa de protección de datos, la <a href="https://autoriteitpersoonsgegevens.nl/en" rel="noopener">Autoriteit Persoonsgegevens</a>, o ante la de tu país, como la AEPD.</p>
+
+  <h2>Cambios</h2>
+  <p>Si cambia algo en cómo tratamos los datos, actualizamos esta política. Arriba aparece la fecha del último cambio.</p>

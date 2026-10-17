@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ContactSection from '../components/ContactSection.astro';
+import { useTranslations, type Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+<Base title={t.meta.contactTitle} description={t.meta.contactDesc} lang={lang} page="contact">
+  <SiteNav lang={lang} page="contact" />
+  <main id="main">
+    <ContactSection lang={lang} heading="h1" />
+  </main>
+  <SiteFooter lang={lang} />
+</Base>

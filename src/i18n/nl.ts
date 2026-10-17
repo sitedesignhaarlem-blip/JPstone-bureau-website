@@ -1,0 +1,133 @@
+// Dutch. Same keys as en.ts. Informal "je", short sentences.
+import type { UI } from './en';
+
+const nl: UI = {
+  meta: {
+    homeTitle: "JPstone Bureau · Walkthrough-video's van je listingfoto's",
+    homeDesc: "Wij maken met AI van de foto's op je listing een rustige walkthrough-video. Voor jachtcharters en boutique hotels. Geen draaidag, geen crew aan boord.",
+    libraryTitle: 'Bibliotheek · JPstone Bureau',
+    libraryDesc: "Southern Cross: zes clips van een motorcatamaran, met AI gemaakt van de bestaande listingfoto's.",
+    howTitle: 'Werkwijze · JPstone Bureau',
+    howDesc: "Zo werkt het: je stuurt je listingfoto's, wij maken er met AI een walkthrough-video van, jij publiceert.",
+    contactTitle: 'Contact · JPstone Bureau',
+    contactDesc: 'Vraag een gratis proefvideo aan. Stuur een link naar je listing, of bel of WhatsApp 06 57 24 96 07.',
+  },
+  skip: 'Naar de inhoud',
+  nav: {
+    label: 'Hoofdmenu',
+    home: 'Home',
+    library: 'Bibliotheek',
+    how: 'Werkwijze',
+    contact: 'Contact',
+    language: 'Taal',
+  },
+  hero: {
+    eyebrow: 'Voor jachtcharters en boutique hotels',
+    title: "Je listingfoto's worden een film. Zonder draaidag.",
+    lead: "Je stuurt de foto's die al op je listing staan. Wij maken er met AI een rustige rondleiding op video van.",
+    cta: 'Vraag een gratis proefvideo aan',
+    more: 'Bekijk de bibliotheek',
+    videoAlt: "Motorcatamaran Southern Cross vaart over open zee, gemaakt van listingfoto's.",
+  },
+  fromLibrary: {
+    title: 'Uit de bibliotheek.',
+    more: 'Alle clips van Southern Cross',
+  },
+  steps: {
+    title: 'Zo werkt het.',
+    s1Title: "Je stuurt foto's",
+    s1Text: 'Een link naar je listing is genoeg.',
+    s2Title: 'Wij maken de film',
+    s2Text: "Met AI, op basis van jouw foto's. In 16:9 voor je site en 9:16 voor social.",
+    s3Title: 'Jij publiceert',
+    s3Text: 'Je krijgt mp4-bestanden, klaar om te plaatsen.',
+  },
+  how: {
+    nextTitle: 'Zelf proberen?',
+  },
+  contact: {
+    title: 'Benieuwd hoe jouw listing eruitziet?',
+    lead: 'Stuur een link naar je listing. Dan maken we een gratis proefvideo.',
+    whatsapp: 'WhatsApp',
+    call: 'Bellen',
+    email: 'E-mail',
+    name: 'Naam',
+    company: 'Bedrijf',
+    url: 'Website of listing',
+    message: 'Bericht',
+    optional: '(optioneel)',
+    submit: 'Vraag een gratis proefvideo aan',
+    noteBefore: 'We gebruiken je gegevens alleen om je aanvraag te beantwoorden en de proefvideo te maken. Meer in de',
+    noteLink: 'privacyverklaring',
+    noteAfter: '. De proefvideo is gratis en vrijblijvend.',
+    sending: 'Versturen…',
+    sent: 'Verstuurd. We nemen zo snel mogelijk contact met je op.',
+    failed: 'Dat lukte niet. Mail ons op {email} of stuur een WhatsApp.',
+    mailSubject: 'Proefvideo aanvraag',
+  },
+  library: {
+    eyebrow: 'Bibliotheek',
+    title: 'Elk shot begon als een foto.',
+    lead: "Geen crew aan boord, geen drone in de lucht. Deze clips zijn met AI gemaakt, op basis van de foto's die al op de listing stonden.",
+    featured: 'Uitgelicht',
+    projectLead: 'Motorcatamaran, buiten en binnen. Zes clips: op zee, voor anker, het achterdek en een rondgang door kombuis, salon en hut.',
+  },
+  tile: {
+    open: 'Bekijk groter',
+    exterior: 'Exterieur',
+    interior: 'Interieur',
+  },
+  dialog: {
+    label: 'Clip bekijken',
+    close: 'Sluiten',
+  },
+  footer: {
+    location: 'Gevestigd in Nederland',
+    legalNav: 'Juridisch',
+    privacy: 'Privacy',
+    terms: 'Voorwaarden',
+    refund: 'Annulering en terugbetaling',
+    cookies: 'Cookies',
+    vat: 'btw',
+    ai: "Video's gemaakt met AI op basis van echte listingfoto's.",
+    font: 'Lettertype Hanken Grotesk,',
+  },
+  legal: {
+    updated: 'Laatst bijgewerkt',
+    privacyTitle: 'Privacyverklaring',
+    privacyDesc: 'Welke gegevens JPstone Bureau verwerkt, waarom, hoe lang, en hoe je ze laat inzien of verwijderen.',
+    termsTitle: 'Algemene voorwaarden',
+    termsDesc: "De afspraken voor proefvideo's en opdrachten van JPstone Bureau: prijzen, levering, revisies, gebruiksrecht, annulering en terugbetaling.",
+    cookiesTitle: 'Cookieverklaring',
+    cookiesDesc: 'JPstone Bureau plaatst geen cookies en gebruikt geen trackers. Daarom zie je ook geen cookiebanner.',
+    translationNote: '',
+  },
+  shots: {
+    'southern-cross-varen-zij': {
+      title: 'Op open zee',
+      alt: 'Motorcatamaran Southern Cross vaart van links naar rechts over open zee met een witte boeggolf.',
+    },
+    'southern-cross-drone-anker': {
+      title: 'Voor anker, van bovenaf',
+      alt: 'Drone kijkt neer op Southern Cross, voor anker in helder turquoise water.',
+    },
+    'southern-cross-achterdek': {
+      title: 'Achterdek',
+      alt: 'Camera schuift over het witte achterdek van Southern Cross, langs de tafel richting de salondeuren.',
+    },
+    'southern-cross-kombuis': {
+      title: 'Van kombuis naar salon',
+      alt: 'Camera beweegt vanaf de kombuis van Southern Cross de lichte salon met U-bank en eettafel in.',
+    },
+    'southern-cross-salon': {
+      title: 'Door de salon',
+      alt: 'Camera loopt langs het kookeiland door de salon van Southern Cross naar de lounge voorin.',
+    },
+    'southern-cross-hut': {
+      title: 'Gastenhut',
+      alt: 'Langzame draai door een gastenhut met licht eikenhout, een opgemaakt bed en de deur naar de badkamer.',
+    },
+  },
+};
+
+export default nl;

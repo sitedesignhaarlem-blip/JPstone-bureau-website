@@ -1,0 +1,44 @@
+---
+import { site } from '../../data/site';
+---
+  <p>Estas condiciones se aplican a cada presupuesto, vídeo de prueba y encargo de {site.name}. Están pensadas para clientes profesionales. Si el presupuesto dice otra cosa, prevalece el presupuesto.</p>
+
+  <h2>1. Vídeo de prueba gratis</h2>
+  <p>El vídeo de prueba es gratis y sin compromiso. No te obliga a nada y no enviamos factura. Puedes verlo y compartirlo dentro de tu empresa. Publicarlo cuenta como encargo.</p>
+
+  <h2>2. Presupuesto y precios</h2>
+  <p>Recibes antes un presupuesto con el precio total. En él consta lo que recibes: número de vídeos, duración, formatos y revisiones. Los precios no incluyen IVA, y siempre se indica. No se añaden costes que no estén en el presupuesto. Si después quieres algo más, primero te damos un precio y tú decides.</p>
+  <p>Un presupuesto es válido durante 30 días.</p>
+
+  <h2>3. Tus fotos</h2>
+  <p>Tú aportas las fotos, o el enlace de tu anuncio. Confirmas que puedes usar esas fotos para un vídeo y que las personas reconocibles en ellas han dado su consentimiento. Si recibimos una reclamación porque no es así, la responsabilidad es tuya.</p>
+
+  <h2>4. Hecho con IA</h2>
+  <p>Hacemos los vídeos con software de IA, a partir de tus fotos. El vídeo muestra tu yate o tu hotel como en las fotos, pero los movimientos de cámara y las imágenes intermedias los genera el software. Puede haber pequeñas diferencias; las corregimos dentro de las revisiones. Si publicas el vídeo, te recomendamos indicar que está hecho con IA.</p>
+
+  <h2>5. Entrega y revisiones</h2>
+  <p>El plazo de entrega figura en el presupuesto. Recibes el vídeo en MP4, en 16:9 y/o 9:16, según lo acordado.</p>
+  <p>Cada vídeo incluye <span class="todo">[número]</span> rondas de revisión. Una revisión es un cambio dentro del mismo planteamiento y con las mismas fotos. Fotos nuevas o un planteamiento distinto son un nuevo encargo.</p>
+
+  <h2>6. Pago</h2>
+  <p>Facturamos tras la entrega. El plazo de pago es de <span class="todo">[14]</span> días. En encargos grandes podemos pedir un anticipo; en ese caso lo indica el presupuesto.</p>
+
+  <h2 id="cancellation">7. Cancelación y reembolso</h2>
+  <ul>
+    <li><strong>Antes de que empecemos:</strong> cancelas sin coste.</li>
+    <li><strong>Si ya estamos trabajando:</strong> pagas la parte ya hecha, en proporción al presupuesto. Te indicamos el importe antes.</li>
+    <li><strong>Después de la entrega:</strong> si el vídeo no se corresponde con el presupuesto y no podemos solucionarlo dentro de las revisiones, te devolvemos lo que pagaste por ese vídeo.</li>
+    <li>Si hubo anticipo, lo devolvemos descontando la parte ya hecha.</li>
+  </ul>
+  <p>Hacemos los reembolsos en un plazo de 14 días a la cuenta desde la que pagaste. Para cancelar o pedir un reembolso, escribe a <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+
+  <h2>8. Derechos de uso</h2>
+  <p>Una vez pagado, puedes usar el vídeo sin límites para tu propio marketing: web, anuncios, redes sociales y publicidad. No puedes revenderlo como vídeo independiente. Solo mostramos el vídeo en nuestro portafolio o en esta web si tú lo permites.</p>
+
+  <h2>9. Responsabilidad</h2>
+  <p>Nuestra responsabilidad se limita al importe del encargo en cuestión. No respondemos de daños indirectos, como reservas perdidas. Esto no se aplica en caso de dolo o negligencia grave.</p>
+
+  <h2>10. Ley aplicable y conflictos</h2>
+  <p>Estas condiciones se rigen por el derecho neerlandés. Si no llegamos a un acuerdo, decide el tribunal competente de los Países Bajos.</p>
+
+  <p class="note">Datos de la empresa: {site.name} · <span class="todo">{site.address}</span> · KvK <span class="todo">{site.kvk}</span> · IVA <span class="todo">{site.vat}</span></p>

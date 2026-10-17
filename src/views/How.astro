@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Steps from '../components/Steps.astro';
+import { pagePath, useTranslations, type Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+<Base title={t.meta.howTitle} description={t.meta.howDesc} lang={lang} page="how">
+  <SiteNav lang={lang} page="how" />
+  <main id="main">
+    <Steps lang={lang} heading="h1" />
+    <section class="section section--alt next">
+      <div class="wrap next-inner">
+        <h2>{t.how.nextTitle}</h2>
+        <p class="lead muted">{t.contact.lead}</p>
+        <a class="button" href={pagePath(lang, 'contact')}>{t.hero.cta}</a>
+      </div>
+    </section>
+  </main>
+  <SiteFooter lang={lang} />
+</Base>
+
+<style>
+  .next-inner { display: grid; justify-items: center; text-align: center; gap: var(--space-4); }
+  .next .button { margin-top: var(--space-3); }
+</style>

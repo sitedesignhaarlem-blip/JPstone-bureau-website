@@ -1,8 +1,7 @@
 ---
-import Legal from '../layouts/Legal.astro';
-import { site } from '../data/site';
+import { site } from '../../data/site';
+import { pagePath } from '../../i18n';
 ---
-<Legal title="Algemene voorwaarden" description="De afspraken voor proefvideo's en opdrachten van JPstone Bureau: prijzen, levering, revisies, gebruiksrecht, annulering en terugbetaling.">
   <p>Deze voorwaarden gelden voor elke offerte, proefvideo en opdracht van {site.name}. Ze zijn bedoeld voor zakelijke klanten. Waar de offerte iets anders zegt, gaat de offerte voor.</p>
 
   <h2>1. Gratis proefvideo</h2>
@@ -25,7 +24,7 @@ import { site } from '../data/site';
   <h2>6. Betaling</h2>
   <p>We factureren na oplevering. De betaaltermijn is <span class="todo">[14]</span> dagen. Bij grotere opdrachten kunnen we een aanbetaling vragen; dat staat dan in de offerte.</p>
 
-  <h2 id="annulering">7. Annulering en terugbetaling</h2>
+  <h2 id="cancellation">7. Annulering en terugbetaling</h2>
   <ul>
     <li><strong>Voordat we begonnen zijn:</strong> je annuleert kosteloos.</li>
     <li><strong>Als we al bezig zijn:</strong> je betaalt het deel dat al gemaakt is, naar rato van de offerte. We laten je vooraf weten om welk bedrag het gaat.</li>
@@ -44,4 +43,3 @@ import { site } from '../data/site';
   <p>Op deze voorwaarden geldt Nederlands recht. Komen we er samen niet uit, dan beslist de bevoegde rechter in Nederland.</p>
 
   <p class="note">Bedrijfsgegevens: {site.name} · <span class="todo">{site.address}</span> · KvK <span class="todo">{site.kvk}</span> · btw <span class="todo">{site.vat}</span></p>
-</Legal>

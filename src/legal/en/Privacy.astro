@@ -1,0 +1,61 @@
+---
+import { site } from '../../data/site';
+import { pagePath } from '../../i18n';
+const deleteMail = `mailto:${site.email}?subject=${encodeURIComponent('Request: delete my data')}&body=${encodeURIComponent('Please delete all data JPstone Bureau holds about me.\n\nName:\nEmail address or phone number I contacted you from:\n')}`;
+const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Request: access to my data')}`;
+---
+  <p>JPstone Bureau makes walkthrough videos from listing photos for businesses. For that we need as little data as possible. Below is exactly which data, why, and how to have it deleted.</p>
+
+  <h2>Who we are</h2>
+  <p>
+    {site.name}, based in the Netherlands.<br />
+    Address: <span class="todo">{site.address}</span><br />
+    Chamber of Commerce (KvK): <span class="todo">{site.kvk}</span><br />
+    Email: <a href={`mailto:${site.email}`}>{site.email}</a> · Phone: <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>
+  </p>
+
+  <h2>What data and why</h2>
+  <div class="table-wrap" role="region" aria-label="Overview of data, purposes and retention periods" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Data</th><th scope="col">Purpose</th><th scope="col">Legal basis</th><th scope="col">Kept for</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Data">Name, website or listing link, and if you fill them in, company and message (contact form)</td><td data-label="Purpose">Replying to your request and making a sample video</td><td data-label="Legal basis">At your request, before a contract</td><td data-label="Kept for">Up to 12 months if no project follows</td></tr>
+        <tr><td data-label="Data">Email, WhatsApp messages and phone number if you contact us that way</td><td data-label="Purpose">Contact about your request or project</td><td data-label="Legal basis">At your request, or performance of the contract</td><td data-label="Kept for">While contact continues, then up to 12 months</td></tr>
+        <tr><td data-label="Data">Photos you send us</td><td data-label="Purpose">Making the video</td><td data-label="Legal basis">Performance of the contract</td><td data-label="Kept for">Up to 3 months after delivery, then deleted</td></tr>
+        <tr><td data-label="Data">Name, business details and invoices</td><td data-label="Purpose">Accounting</td><td data-label="Legal basis">Legal obligation</td><td data-label="Kept for">7 years (Dutch tax retention period)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>We ask for no more than we need. Company and message are optional in the form. We do not build profiles and do not use your data for advertising.</p>
+
+  <h2>Who else processes your data</h2>
+  <p>We sell nothing on. For our work we use these services:</p>
+  <ul>
+    <li><strong>Vercel</strong> (hosting of this website). On every visit the server receives technical data such as your IP address, to show and secure the site.</li>
+    <li><strong>Google (Gmail)</strong> for email.</li>
+    <li><strong>WhatsApp (Meta)</strong>, only if you contact us via WhatsApp yourself.</li>
+    <li><strong>Higgsfield</strong>, the AI service we use to turn your photos into a video. Your photos are uploaded to it for that purpose.</li>
+    <li><span class="todo">[Form service, for example Formspree: fill in once connected]</span></li>
+  </ul>
+  <p>Some of these companies are based outside the European Economic Area. Transfers then rely on the safeguards the GDPR requires, such as the EU-US Data Privacy Framework or standard contractual clauses.</p>
+
+  <h2>Cookies and tracking</h2>
+  <p>This site sets no cookies and uses no analytics, advertising pixels or other trackers. Fonts and videos are served from our own server. See the <a href={pagePath('en', 'cookies')}>cookie policy</a>.</p>
+
+  <h2>Newsletter</h2>
+  <p>We send no newsletter and no marketing email. If that ever changes, it will only be if you sign up yourself, with an unsubscribe link in every email.</p>
+
+  <h2>Children</h2>
+  <p>Our services are for businesses and not intended for children under 16. We do not knowingly collect data from children. If you think we have, email us and we will delete it.</p>
+
+  <h2>Your rights</h2>
+  <p>You can access, correct or delete your data. You can also object, restrict the processing, or ask for your data in a common file format.</p>
+  <ul>
+    <li><a href={deleteMail}>Request deletion</a> (opens a ready-made email)</li>
+    <li><a href={accessMail}>Request access</a></li>
+  </ul>
+  <p>You can also simply email <a href={`mailto:${site.email}`}>{site.email}</a>. We reply within one month, as the GDPR requires. Data we must keep by law, such as invoices, is only deleted after that period.</p>
+  <p>Not happy with how we handle your data? You can file a complaint with the Dutch Data Protection Authority, the <a href="https://autoriteitpersoonsgegevens.nl/en" rel="noopener">Autoriteit Persoonsgegevens</a>, or with the authority in your own country.</p>
+
+  <h2>Changes</h2>
+  <p>If anything changes in how we handle data, we update this policy. The date of the last change is shown at the top.</p>

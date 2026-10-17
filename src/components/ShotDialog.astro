@@ -1,0 +1,35 @@
+---
+// Larger view of a clip, opened from a VideoTile. Also loads the tile playback script.
+import { useTranslations, type Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+const t = useTranslations(Astro.props.lang);
+---
+<dialog id="shot-dialog" aria-label={t.dialog.label}>
+  <div class="dialog-inner">
+    <video muted playsinline loop controls></video>
+    <div class="dialog-bar">
+      <p data-caption></p>
+      <form method="dialog"><button class="close" type="submit">{t.dialog.close}</button></form>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  import '../scripts/library.ts';
+</script>
+
+<style>
+  dialog {
+    width: min(100% - 2rem, 72rem); max-height: calc(100svh - 2rem); padding: 0; border: 0;
+    border-radius: var(--radius); background: #000; color: var(--on-dark); overflow: hidden;
+  }
+  dialog::backdrop { background: rgb(0 0 0 / 0.8); }
+  .dialog-inner video { width: 100%; max-height: calc(100svh - 7rem); object-fit: contain; background: #000; }
+  .dialog-bar { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) var(--space-4); }
+  .dialog-bar p { font-weight: 600; }
+  .close { min-height: 2.75rem; padding: 0 var(--space-5); border-radius: var(--radius-pill); border: 0; background: #333336; color: var(--on-dark); cursor: pointer; }
+  .close:hover { background: #48484a; }
+</style>

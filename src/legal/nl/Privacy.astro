@@ -1,16 +1,14 @@
 ---
-import Legal from '../layouts/Legal.astro';
-import { site } from '../data/site';
-
+import { site } from '../../data/site';
+import { pagePath } from '../../i18n';
 const deleteMail = `mailto:${site.email}?subject=${encodeURIComponent('Verzoek: mijn gegevens verwijderen')}&body=${encodeURIComponent('Graag verwijder ik alle gegevens die JPstone Bureau van mij heeft.\n\nNaam:\nE-mailadres of telefoonnummer waarmee ik contact had:\n')}`;
 const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Verzoek: inzage in mijn gegevens')}`;
 ---
-<Legal title="Privacyverklaring" description="Welke gegevens JPstone Bureau verwerkt, waarom, hoe lang, en hoe je ze laat inzien of verwijderen.">
   <p>JPstone Bureau maakt walkthrough-video's van listingfoto's voor bedrijven. Daarvoor hebben we zo min mogelijk gegevens nodig. Hieronder staat precies welke, waarom en hoe je ze laat verwijderen.</p>
 
   <h2>Wie we zijn</h2>
   <p>
-    {site.name}, {site.location}.<br />
+    {site.name}, gevestigd in Nederland.<br />
     Adres: <span class="todo">{site.address}</span><br />
     KvK: <span class="todo">{site.kvk}</span><br />
     E-mail: <a href={`mailto:${site.email}`}>{site.email}</a> · Telefoon: <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>
@@ -42,7 +40,7 @@ const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Verzoek: 
   <p>Sommige van deze partijen zitten buiten de Europese Economische Ruimte. Doorgifte gebeurt dan op basis van de afspraken die de AVG daarvoor eist, zoals het EU-VS Data Privacy Framework of standaardcontractbepalingen.</p>
 
   <h2>Cookies en tracking</h2>
-  <p>Deze site plaatst geen cookies en gebruikt geen analytics, advertentiepixels of andere trackers. Lettertypes en video's staan op onze eigen server. Zie de <a href="/cookies/">cookieverklaring</a>.</p>
+  <p>Deze site plaatst geen cookies en gebruikt geen analytics, advertentiepixels of andere trackers. Lettertypes en video's staan op onze eigen server. Zie de <a href={pagePath('nl', 'cookies')}>cookieverklaring</a>.</p>
 
   <h2>Nieuwsbrief</h2>
   <p>We sturen geen nieuwsbrief en geen marketingmail. Komt dat er ooit, dan alleen als je daar zelf voor kiest, met een afmeldlink in elke mail.</p>
@@ -61,4 +59,3 @@ const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Verzoek: 
 
   <h2>Wijzigingen</h2>
   <p>Verandert er iets in hoe we met gegevens werken, dan passen we deze verklaring aan. Bovenaan staat de datum van de laatste wijziging.</p>
-</Legal>

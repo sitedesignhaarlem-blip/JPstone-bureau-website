@@ -1,23 +1,37 @@
 ---
 import '../styles/tokens.css';
 import '../styles/base.css';
+import { SITE_URL } from '../data/site';
+import { locales, defaultLocale, htmlLang, ogLocale, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
 
 interface Props {
   title: string;
   description: string;
-  lang?: 'nl' | 'en';
+  lang: Locale;
+  page: PageId;
   noindex?: boolean;
 }
-const { title, description, lang = 'nl', noindex = false } = Astro.props;
+const { title, description, lang, page, noindex = false } = Astro.props;
+const t = useTranslations(lang);
+const canonical = new URL(pagePath(lang, page), SITE_URL).href;
 ---
 <!doctype html>
-<html lang={lang}>
+<html lang={htmlLang[lang]}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    {locales.map((l) => <link rel="alternate" hreflang={htmlLang[l]} href={new URL(pagePath(l, page), SITE_URL).href} />)}
+    <link rel="alternate" hreflang="x-default" href={new URL(pagePath(defaultLocale, page), SITE_URL).href} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={ogLocale[lang]} />
+    {locales.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={ogLocale[l]} />)}
     <meta name="theme-color" content="#ffffff" />
     <script is:inline>
       document.documentElement.classList.add('js');
@@ -28,7 +42,7 @@ const { title, description, lang = 'nl', noindex = false } = Astro.props;
     <slot name="head" />
   </head>
   <body>
-    <a class="skip-link" href="#inhoud">Naar de inhoud</a>
+    <a class="skip-link" href="#main">{t.skip}</a>
     <slot />
   </body>
 </html>

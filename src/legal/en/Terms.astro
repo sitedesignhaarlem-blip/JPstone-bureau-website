@@ -1,0 +1,44 @@
+---
+import { site } from '../../data/site';
+---
+  <p>These terms apply to every quote, sample video and project from {site.name}. They are meant for business customers. Where a quote says something different, the quote applies.</p>
+
+  <h2>1. Free sample video</h2>
+  <p>The sample video is free and without obligation. You are not committed to anything and we send no invoice. You may watch the sample video and share it within your company. Publishing it counts as a project.</p>
+
+  <h2>2. Quote and prices</h2>
+  <p>You get a quote with the total price in advance. It states what you get: number of videos, length, formats and revisions. Prices exclude VAT, and the quote always says so. No costs are added that are not in the quote. If you want more later, you get a price first and you decide.</p>
+  <p>A quote is valid for 30 days.</p>
+
+  <h2>3. Your photos</h2>
+  <p>You supply the photos, or a link to your listing. You confirm that you may use those photos for a video, and that any recognisable people in them have agreed to that. If we receive a claim because that is not the case, you are responsible for it.</p>
+
+  <h2>4. Made with AI</h2>
+  <p>We make the videos with AI software, based on your photos. The video shows your yacht or hotel as in the photos, but camera movements and in-between frames are created by the software. Small differences are possible; we fix them within the revisions. If you publish the video, we recommend mentioning that it was made with AI.</p>
+
+  <h2>5. Delivery and revisions</h2>
+  <p>The delivery time is stated in the quote. You receive the video as an mp4, in 16:9 and/or 9:16, as agreed.</p>
+  <p><span class="todo">[number]</span> rounds of revisions are included per video. A revision is a change within the same concept and the same photos. New photos or a different concept is a new project.</p>
+
+  <h2>6. Payment</h2>
+  <p>We invoice after delivery. The payment term is <span class="todo">[14]</span> days. For larger projects we may ask for a deposit; the quote will say so.</p>
+
+  <h2 id="cancellation">7. Cancellation and refunds</h2>
+  <ul>
+    <li><strong>Before we have started:</strong> you cancel free of charge.</li>
+    <li><strong>Once we are working on it:</strong> you pay for the part already made, pro rata to the quote. We tell you the amount beforehand.</li>
+    <li><strong>After delivery:</strong> if the video does not match the quote and we cannot fix that within the revisions, we refund what you paid for that video.</li>
+    <li>Any deposit is refunded minus the part already made.</li>
+  </ul>
+  <p>We pay refunds within 14 days to the account you paid from. To cancel or ask for a refund, email <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+
+  <h2>8. Usage rights</h2>
+  <p>Once paid, you may use the video without limits for your own marketing: your website, listings, social media and advertising. You may not resell it as a standalone video. We only show the video in our portfolio or on this site if you allow it.</p>
+
+  <h2>9. Liability</h2>
+  <p>Our liability is limited to the amount of the project concerned. We are not liable for indirect damage, such as missed bookings. This does not apply in case of intent or gross negligence.</p>
+
+  <h2>10. Law and disputes</h2>
+  <p>Dutch law applies to these terms. If we cannot work it out together, the competent court in the Netherlands decides.</p>
+
+  <p class="note">Business details: {site.name} · <span class="todo">{site.address}</span> · KvK <span class="todo">{site.kvk}</span> · VAT <span class="todo">{site.vat}</span></p>

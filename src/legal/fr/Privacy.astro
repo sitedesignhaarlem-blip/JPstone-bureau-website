@@ -1,0 +1,61 @@
+---
+import { site } from '../../data/site';
+import { pagePath } from '../../i18n';
+const deleteMail = `mailto:${site.email}?subject=${encodeURIComponent('Demande : supprimer mes données')}&body=${encodeURIComponent('Merci de supprimer toutes les données que JPstone Bureau détient à mon sujet.\n\nNom :\nAdresse e-mail ou numéro de téléphone utilisé pour le contact :\n')}`;
+const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Demande : accès à mes données')}`;
+---
+  <p>JPstone Bureau réalise des vidéos de visite à partir de photos d’annonce, pour les entreprises. Pour cela, nous avons besoin du moins de données possible. Voici précisément lesquelles, pourquoi, et comment les faire supprimer.</p>
+
+  <h2>Qui nous sommes</h2>
+  <p>
+    {site.name}, basé aux Pays-Bas.<br />
+    Adresse : <span class="todo">{site.address}</span><br />
+    Registre du commerce (KvK) : <span class="todo">{site.kvk}</span><br />
+    E-mail : <a href={`mailto:${site.email}`}>{site.email}</a> · Téléphone : <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>
+  </p>
+
+  <h2>Quelles données et pourquoi</h2>
+  <div class="table-wrap" role="region" aria-label="Aperçu des données, des finalités et des durées de conservation" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Données</th><th scope="col">Finalité</th><th scope="col">Base légale</th><th scope="col">Conservation</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Données">Nom, site web ou lien de l’annonce et, si vous les indiquez, entreprise et message (formulaire de contact)</td><td data-label="Finalité">Répondre à votre demande et réaliser une vidéo d’essai</td><td data-label="Base légale">À votre demande, avant un contrat</td><td data-label="Conservation">12 mois maximum si aucune commande ne suit</td></tr>
+        <tr><td data-label="Données">E-mail, messages WhatsApp et numéro de téléphone si vous nous contactez ainsi</td><td data-label="Finalité">Échanger sur votre demande ou votre commande</td><td data-label="Base légale">À votre demande, ou exécution du contrat</td><td data-label="Conservation">Pendant l’échange, puis 12 mois maximum</td></tr>
+        <tr><td data-label="Données">Photos que vous nous envoyez</td><td data-label="Finalité">Réaliser la vidéo</td><td data-label="Base légale">Exécution du contrat</td><td data-label="Conservation">Jusqu’à 3 mois après la livraison, puis supprimées</td></tr>
+        <tr><td data-label="Données">Nom, données de l’entreprise et factures</td><td data-label="Finalité">Comptabilité</td><td data-label="Base légale">Obligation légale</td><td data-label="Conservation">7 ans (obligation fiscale néerlandaise)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Nous ne demandons pas plus que nécessaire. L’entreprise et le message sont facultatifs dans le formulaire. Nous ne créons pas de profils et n’utilisons pas vos données à des fins publicitaires.</p>
+
+  <h2>Qui d’autre traite vos données</h2>
+  <p>Nous ne revendons rien. Pour notre travail, nous utilisons ces services :</p>
+  <ul>
+    <li><strong>Vercel</strong> (hébergement de ce site). À chaque visite, le serveur reçoit des données techniques comme votre adresse IP, pour afficher et sécuriser le site.</li>
+    <li><strong>Google (Gmail)</strong> pour les e-mails.</li>
+    <li><strong>WhatsApp (Meta)</strong>, uniquement si vous nous contactez vous-même par WhatsApp.</li>
+    <li><strong>Higgsfield</strong>, le service d’IA avec lequel nous transformons vos photos en vidéo. Vos photos y sont téléversées à cette fin.</li>
+    <li><span class="todo">[Service de formulaire, par exemple Formspree : à compléter une fois connecté]</span></li>
+  </ul>
+  <p>Certains de ces prestataires sont établis hors de l’Espace économique européen. Le transfert repose alors sur les garanties exigées par le RGPD, comme le EU-US Data Privacy Framework ou les clauses contractuelles types.</p>
+
+  <h2>Cookies et suivi</h2>
+  <p>Ce site ne dépose aucun cookie et n’utilise ni outil d’analyse, ni pixel publicitaire, ni autre traceur. La police et les vidéos sont hébergées sur notre propre serveur. Voir la <a href={pagePath('fr', 'cookies')}>politique relative aux cookies</a>.</p>
+
+  <h2>Newsletter</h2>
+  <p>Nous n’envoyons ni newsletter ni e-mail marketing. Si cela change un jour, ce sera uniquement si vous vous inscrivez vous-même, avec un lien de désinscription dans chaque e-mail.</p>
+
+  <h2>Enfants</h2>
+  <p>Nos services s’adressent aux entreprises et non aux enfants de moins de 16 ans. Nous ne collectons pas sciemment de données concernant des enfants. Si vous pensez que c’est le cas, écrivez-nous et nous les supprimerons.</p>
+
+  <h2>Vos droits</h2>
+  <p>Vous pouvez accéder à vos données, les faire rectifier ou supprimer. Vous pouvez aussi vous opposer au traitement, le faire limiter, ou recevoir vos données dans un format courant.</p>
+  <ul>
+    <li><a href={deleteMail}>Demander la suppression</a> (ouvre un e-mail prêt à envoyer)</li>
+    <li><a href={accessMail}>Demander l’accès</a></li>
+  </ul>
+  <p>Vous pouvez aussi simplement écrire à <a href={`mailto:${site.email}`}>{site.email}</a>. Nous répondons dans un délai d’un mois, comme le prévoit le RGPD. Les données que nous devons conserver légalement, comme les factures, ne sont supprimées qu’à l’issue de ce délai.</p>
+  <p>Vous n’êtes pas satisfait de la façon dont nous traitons vos données ? Vous pouvez déposer une plainte auprès de l’autorité néerlandaise de protection des données, l’<a href="https://autoriteitpersoonsgegevens.nl/en" rel="noopener">Autoriteit Persoonsgegevens</a>, ou auprès de l’autorité de votre pays, comme la CNIL.</p>
+
+  <h2>Modifications</h2>
+  <p>Si notre façon de traiter les données change, nous mettons cette politique à jour. La date de la dernière modification figure en haut de la page.</p>

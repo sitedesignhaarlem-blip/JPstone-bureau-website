@@ -1,34 +1,39 @@
 ---
-// Shared layout for the legal pages (privacy, voorwaarden, cookies).
+// Shared layout for the legal pages (privacy, terms, cookies) in every language.
 import Base from './Base.astro';
 import SiteNav from '../components/SiteNav.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import { legalUpdated } from '../data/site';
+import { legalDate, useTranslations, type Locale, type PageId } from '../i18n';
 
 interface Props {
+  lang: Locale;
+  page: PageId;
   title: string;
   description: string;
 }
-const { title, description } = Astro.props;
+const { lang, page, title, description } = Astro.props;
+const t = useTranslations(lang);
 ---
-<Base title={`${title} · JPstone Bureau`} description={description}>
-  <SiteNav />
-  <main id="inhoud" class="section legal">
+<Base title={`${title} · JPstone Bureau`} description={description} lang={lang} page={page}>
+  <SiteNav lang={lang} page={page} />
+  <main id="main" class="section legal">
     <article class="wrap legal-inner">
       <header class="legal-head">
         <h1>{title}</h1>
-        <p class="muted">Laatst bijgewerkt: {legalUpdated}</p>
+        <p class="muted">{t.legal.updated}: {legalDate(lang)}</p>
+        {t.legal.translationNote && <p class="muted translation-note">{t.legal.translationNote}</p>}
       </header>
       <slot />
     </article>
   </main>
-  <SiteFooter />
+  <SiteFooter lang={lang} />
 </Base>
 
 <style>
   .legal-inner { max-width: calc(44rem + 2 * var(--gutter)); }
   .legal-head { display: grid; gap: var(--space-2); margin-bottom: var(--space-7); }
-  .legal-head h1 { font-size: var(--step-h2); }
+  .legal-head h1 { font-size: var(--step-h2); line-height: 1.07; }
+  .translation-note { font-size: var(--step-small); }
   .legal :global(h2) { font-size: var(--step-h3); margin: var(--space-7) 0 var(--space-3); }
   .legal :global(p), .legal :global(li) { color: var(--fg); }
   .legal :global(p + p) { margin-top: var(--space-3); }

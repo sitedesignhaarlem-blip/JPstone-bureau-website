@@ -1,0 +1,44 @@
+---
+import { site } from '../../data/site';
+---
+  <p>Diese Bedingungen gelten für jedes Angebot, jedes Probevideo und jeden Auftrag von {site.name}. Sie richten sich an Geschäftskunden. Wo das Angebot etwas anderes sagt, gilt das Angebot.</p>
+
+  <h2>1. Kostenloses Probevideo</h2>
+  <p>Das Probevideo ist kostenlos und unverbindlich. Sie verpflichten sich zu nichts und erhalten keine Rechnung. Sie dürfen das Probevideo ansehen und intern teilen. Eine Veröffentlichung gilt als Auftrag.</p>
+
+  <h2>2. Angebot und Preise</h2>
+  <p>Sie erhalten vorab ein Angebot mit dem Gesamtpreis. Darin steht, was Sie bekommen: Anzahl der Videos, Länge, Formate und Korrekturen. Die Preise verstehen sich zuzüglich Umsatzsteuer, und das steht immer dabei. Es kommen keine Kosten hinzu, die nicht im Angebot stehen. Möchten Sie später mehr, nennen wir Ihnen zuerst einen Preis und Sie entscheiden.</p>
+  <p>Ein Angebot ist 30 Tage gültig.</p>
+
+  <h2>3. Ihre Fotos</h2>
+  <p>Sie liefern die Fotos oder einen Link zu Ihrem Inserat. Sie bestätigen, dass Sie diese Fotos für ein Video verwenden dürfen und dass erkennbare Personen darauf zugestimmt haben. Erhalten wir eine Forderung, weil das nicht zutrifft, tragen Sie dafür die Verantwortung.</p>
+
+  <h2>4. Mit KI erstellt</h2>
+  <p>Wir erstellen die Videos mit KI-Software auf Basis Ihrer Fotos. Das Video zeigt Ihre Yacht oder Ihr Hotel wie auf den Fotos, aber Kamerabewegungen und Zwischenbilder werden von der Software erzeugt. Kleine Abweichungen sind möglich; diese beheben wir im Rahmen der Korrekturen. Wenn Sie das Video veröffentlichen, empfehlen wir den Hinweis, dass es mit KI erstellt wurde.</p>
+
+  <h2>5. Lieferung und Korrekturen</h2>
+  <p>Die Lieferzeit steht im Angebot. Sie erhalten das Video als MP4 in 16:9 und/oder 9:16, wie vereinbart.</p>
+  <p>Pro Video sind <span class="todo">[Anzahl]</span> Korrekturrunden enthalten. Eine Korrektur ist eine Änderung im Rahmen desselben Konzepts und derselben Fotos. Neue Fotos oder ein anderes Konzept sind ein neuer Auftrag.</p>
+
+  <h2>6. Zahlung</h2>
+  <p>Wir stellen nach der Lieferung eine Rechnung. Das Zahlungsziel beträgt <span class="todo">[14]</span> Tage. Bei größeren Aufträgen können wir eine Anzahlung verlangen; das steht dann im Angebot.</p>
+
+  <h2 id="cancellation">7. Stornierung und Erstattung</h2>
+  <ul>
+    <li><strong>Bevor wir begonnen haben:</strong> Sie stornieren kostenlos.</li>
+    <li><strong>Wenn wir schon daran arbeiten:</strong> Sie zahlen den bereits erstellten Teil, anteilig zum Angebot. Den Betrag nennen wir Ihnen vorher.</li>
+    <li><strong>Nach der Lieferung:</strong> Entspricht das Video nicht dem Angebot und können wir das im Rahmen der Korrekturen nicht beheben, erstatten wir den für dieses Video gezahlten Betrag.</li>
+    <li>Eine Anzahlung erstatten wir abzüglich des bereits erstellten Teils.</li>
+  </ul>
+  <p>Erstattungen erfolgen innerhalb von 14 Tagen auf das Konto, von dem Sie gezahlt haben. Stornieren oder eine Erstattung verlangen Sie per E-Mail an <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+
+  <h2>8. Nutzungsrecht</h2>
+  <p>Nach Zahlung dürfen Sie das Video unbegrenzt für Ihr eigenes Marketing nutzen: Website, Inserate, Social Media und Werbung. Ein Weiterverkauf als eigenständiges Video ist nicht erlaubt. Wir zeigen das Video nur mit Ihrer Zustimmung in unserem Portfolio oder auf dieser Website.</p>
+
+  <h2>9. Haftung</h2>
+  <p>Unsere Haftung ist auf den Betrag des betreffenden Auftrags begrenzt. Für indirekte Schäden, etwa entgangene Buchungen, haften wir nicht. Dies gilt nicht bei Vorsatz oder grober Fahrlässigkeit.</p>
+
+  <h2>10. Recht und Streitigkeiten</h2>
+  <p>Für diese Bedingungen gilt niederländisches Recht. Können wir uns nicht einigen, entscheidet das zuständige Gericht in den Niederlanden.</p>
+
+  <p class="note">Firmendaten: {site.name} · <span class="todo">{site.address}</span> · KvK <span class="todo">{site.kvk}</span> · USt-IdNr. <span class="todo">{site.vat}</span></p>
