@@ -15,21 +15,21 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
   <SiteNav />
 
   <main>
-    <section class="hero">
-      <div class="wrap hero-inner">
-        <p class="eyebrow">Voor jachtcharters en boutique hotels</p>
-        <h1 class="hero-title">Je listingfoto's worden een film. Zonder draaidag.</h1>
-        <p class="lead muted">Je stuurt de foto's die al op je listing staan. Wij maken er een rustige rondleiding op video van.</p>
-        <div class="actions">
-          <a class="button" href="#contact">Vraag een gratis proefvideo aan</a>
-          <a class="link-more" href="/bibliotheek/">Bekijk de bibliotheek</a>
-        </div>
-      </div>
-      <div class="hero-media">
+    <section class="hero" data-hero-section>
+      <div class="hero-media" data-hero-fade="0.8">
         <video autoplay muted playsinline loop preload="auto" poster="/media/southern-cross-varen-zij.jpg" aria-label="Motorcatamaran Southern Cross vaart over open zee, gemaakt van listingfoto's." data-hero>
           <source src="/media/southern-cross-varen-zij.webm" type="video/webm" />
           <source src="/media/southern-cross-varen-zij.mp4" type="video/mp4" />
         </video>
+      </div>
+      <div class="wrap hero-inner" data-hero-fade="0.4">
+        <p class="eyebrow">Voor jachtcharters en boutique hotels</p>
+        <h1 class="hero-title">Je listingfoto's worden een film. Zonder draaidag.</h1>
+        <p class="lead">Je stuurt de foto's die al op je listing staan. Wij maken er een rustige rondleiding op video van.</p>
+        <div class="actions">
+          <a class="button" href="#contact">Vraag een gratis proefvideo aan</a>
+          <a class="link-more" href="/bibliotheek/">Bekijk de bibliotheek</a>
+        </div>
       </div>
     </section>
 
@@ -79,22 +79,68 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
 <script>
   import '../scripts/library.ts';
 
-  // The hero loop stops for people who prefer less motion; the poster stays.
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hero = document.querySelector<HTMLVideoElement>('[data-hero]');
-  if (hero && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const section = document.querySelector<HTMLElement>('[data-hero-section]');
+  const fading = document.querySelectorAll<HTMLElement>('[data-hero-fade]');
+
+  // The hero loop stops for people who prefer less motion; the poster stays.
+  if (hero && reduce) {
     hero.removeAttribute('autoplay');
     hero.pause();
+  }
+
+  // Fade the hero out as it scrolls away. Skipped when motion is reduced.
+  if (section && !reduce) {
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const h = section.offsetHeight;
+      const progress = Math.min(Math.max(window.scrollY / (h * 0.8), 0), 1);
+      // Each layer fades over its own share of the hero height: the text first, then the video.
+      fading.forEach((el) => {
+        const share = Number(el.dataset.heroFade) || 0.8;
+        el.style.opacity = String(1 - Math.min(window.scrollY / (h * share), 1));
+      });
+      if (hero) {
+        if (progress >= 1) hero.pause();
+        else if (hero.paused) hero.play().catch(() => {});
+      }
+    };
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }, { passive: true });
+    update();
   }
 </script>
 
 <style>
-  .hero { padding-top: var(--section); }
-  .hero-inner { display: grid; justify-items: center; text-align: center; gap: var(--space-4); }
+  .hero {
+    position: relative; display: grid; align-items: end;
+    min-height: calc(100svh - 3rem); overflow: hidden;
+    background: var(--bg); color: var(--on-dark);
+  }
+  .hero-media { position: absolute; inset: 0; background: var(--dark); }
+  .hero-media video { width: 100%; height: 100%; object-fit: cover; }
+  /* Darken the lower part so the white text stays readable on any frame */
+  .hero-media::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, rgb(0 0 0 / 0.45) 0%, rgb(0 0 0 / 0.2) 45%, rgb(0 0 0 / 0) 70%),
+      linear-gradient(to top, rgb(0 0 0 / 0.8) 0%, rgb(0 0 0 / 0.55) 40%, rgb(0 0 0 / 0.15) 70%, rgb(0 0 0 / 0) 85%);
+  }
+  .hero-inner {
+    position: relative; display: grid; justify-items: start; gap: var(--space-4);
+    padding-block: var(--space-9) var(--space-8);
+  }
+  .hero .eyebrow { color: var(--on-dark); }
   .hero-title { max-width: 14ch; }
-  .hero .lead { max-width: 34ch; margin-top: var(--space-2); }
-  .actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--space-4) var(--space-6); margin-top: var(--space-4); }
-  .hero-media { max-width: calc(var(--max-wide) + 2 * var(--gutter)); margin: var(--space-8) auto 0; padding-inline: var(--gutter); }
-  .hero-media video { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius); background: var(--bg-alt); }
+  .hero .lead { max-width: 34ch; color: var(--on-dark); }
+  .hero .link-more { color: var(--accent-on-dark); }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-6); margin-top: var(--space-3); }
 
   .wrap-wide { max-width: calc(var(--max-wide) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
   .section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-3) var(--space-6); margin-bottom: var(--space-7); }

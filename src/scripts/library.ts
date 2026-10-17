@@ -2,7 +2,8 @@
 // while it is in view) and opens larger on click.
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+// Devices without any hover (phones, tablets) play what is on screen instead.
+const noHover = window.matchMedia('(any-hover: none)');
 
 function play(v: HTMLVideoElement) {
   if (v.preload !== 'auto') v.preload = 'auto';
@@ -18,18 +19,16 @@ function setupPlayback() {
   const tiles = document.querySelectorAll<HTMLElement>('.tile-media');
   if (reduceMotion.matches) return;
 
-  if (canHover.matches) {
-    tiles.forEach((tile) => {
-      const v = tile.querySelector('video')!;
-      tile.addEventListener('pointerenter', () => play(v));
-      tile.addEventListener('pointerleave', () => stop(v));
-      tile.addEventListener('focus', () => play(v));
-      tile.addEventListener('blur', () => stop(v));
-    });
-    return;
-  }
+  // Hover (mouse or trackpad) and keyboard focus always work, like on Higgsfield.
+  tiles.forEach((tile) => {
+    const v = tile.querySelector('video')!;
+    tile.addEventListener('mouseenter', () => play(v));
+    tile.addEventListener('mouseleave', () => stop(v));
+    tile.addEventListener('focus', () => play(v));
+    tile.addEventListener('blur', () => stop(v));
+  });
 
-  // Touch screens have no hover: play what is on screen.
+  if (!noHover.matches) return;
   const io = new IntersectionObserver(
     (entries) => {
       for (const { target, isIntersecting } of entries) {
