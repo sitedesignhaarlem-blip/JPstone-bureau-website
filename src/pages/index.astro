@@ -2,6 +2,10 @@
 import Base from '../layouts/Base.astro';
 import SiteNav from '../components/SiteNav.astro';
 import VideoTile from '../components/VideoTile.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { site } from '../data/site';
+
+const formAction = site.formEndpoint || `mailto:${site.email}?subject=Proefvideo%20aanvraag`;
 import { southernCross } from '../data/library';
 
 const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southern-cross-hut'].map(
@@ -57,13 +61,43 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
     </section>
 
     <section class="section section--alt" id="contact">
-      <div class="wrap contact-inner">
-        <h2>Benieuwd hoe jouw listing eruitziet?</h2>
-        <p class="lead muted">Stuur een link naar je listing. Dan maken we een gratis proefvideo.</p>
-        <p class="todo">[TODO: contactformulier, WhatsApp en boekingslink]</p>
+      <div class="wrap contact">
+        <div class="contact-intro">
+          <h2>Benieuwd hoe jouw listing eruitziet?</h2>
+          <p class="lead muted">Stuur een link naar je listing. Dan maken we een gratis proefvideo.</p>
+          <ul class="contact-direct" role="list">
+            <li><span class="muted">WhatsApp</span><a href={site.whatsapp} rel="noopener">{site.phoneDisplay}</a></li>
+            <li><span class="muted">Bellen</span><a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a></li>
+            <li><span class="muted">E-mail</span><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          </ul>
+        </div>
+
+        <form class="contact-form" action={formAction} method="post" enctype={site.formEndpoint ? undefined : 'text/plain'} data-contact data-endpoint={site.formEndpoint} data-email={site.email}>
+          <div class="field">
+            <label for="cf-name">Naam</label>
+            <input id="cf-name" name="naam" type="text" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="cf-company">Bedrijf</label>
+            <input id="cf-company" name="bedrijf" type="text" autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label for="cf-url">Website of listing</label>
+            <input id="cf-url" name="listing" type="url" inputmode="url" placeholder="https://" required />
+          </div>
+          <div class="field">
+            <label for="cf-msg">Bericht</label>
+            <textarea id="cf-msg" name="bericht" rows="4"></textarea>
+          </div>
+          <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <button class="button" type="submit">Vraag een gratis proefvideo aan</button>
+          <p class="form-status muted" data-status aria-live="polite"></p>
+        </form>
       </div>
     </section>
   </main>
+
+  <SiteFooter />
 
   <dialog id="shot-dialog" aria-label="Clip bekijken">
     <div class="dialog-inner">
@@ -78,6 +112,31 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
 
 <script>
   import '../scripts/library.ts';
+
+  // Contact form: post to the form service when one is set, otherwise open the mail app.
+  const form = document.querySelector<HTMLFormElement>('[data-contact]');
+  const status = form?.querySelector<HTMLElement>('[data-status]');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    const data = new FormData(form);
+    if (data.get('_gotcha')) return;
+    const endpoint = form.dataset.endpoint;
+    if (!endpoint) {
+      const body = [...data.entries()].filter(([k]) => k !== '_gotcha').map(([k, v]) => `${k}: ${v}`).join('\n');
+      window.location.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent('Proefvideo aanvraag')}&body=${encodeURIComponent(body)}`;
+      return;
+    }
+    if (status) status.textContent = 'Versturen…';
+    try {
+      const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error();
+      form.reset();
+      if (status) status.textContent = 'Verstuurd. Je hoort binnen een werkdag van ons.';
+    } catch {
+      if (status) status.textContent = `Dat lukte niet. Mail ons op ${form.dataset.email} of stuur een WhatsApp.`;
+    }
+  });
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hero = document.querySelector<HTMLVideoElement>('[data-hero]');
@@ -151,7 +210,22 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
   .steps li { display: grid; align-content: start; gap: var(--space-2); padding-top: var(--space-5); border-top: 1px solid var(--line); }
   .steps .numeral { margin-bottom: var(--space-3); }
 
-  .contact-inner { display: grid; justify-items: center; text-align: center; gap: var(--space-4); }
+  .contact { display: grid; gap: var(--space-8); }
+  .contact-intro { display: grid; gap: var(--space-4); align-content: start; }
+  .contact-direct { display: grid; gap: var(--space-3); padding: 0; margin: var(--space-4) 0 0; list-style: none; }
+  .contact-direct li { display: grid; grid-template-columns: 6rem 1fr; gap: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--line); }
+  .contact-form { display: grid; gap: var(--space-5); padding: var(--space-5); background: var(--bg); border-radius: var(--radius); }
+  .field { display: grid; gap: var(--space-2); }
+  .field label { font-size: var(--step-small); font-weight: 600; }
+  .field input, .field textarea {
+    width: 100%; padding: 0.75rem 0.875rem; font-size: var(--step-body);
+    border: 1px solid var(--line); border-radius: 12px; background: var(--bg); color: var(--fg);
+  }
+  .field input:focus-visible, .field textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  .field textarea { resize: vertical; }
+  .contact-form .button { justify-content: center; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; }
+  .form-status:empty { display: none; }
 
   dialog { width: min(100% - 2rem, 72rem); max-height: calc(100svh - 2rem); padding: 0; border: 0; border-radius: var(--radius); background: #000; color: var(--on-dark); overflow: hidden; }
   dialog::backdrop { background: rgb(0 0 0 / 0.8); }
@@ -163,5 +237,8 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
   @media (min-width: 48rem) {
     .preview-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
     .steps { grid-template-columns: repeat(3, 1fr); gap: var(--space-7); }
+    .contact { grid-template-columns: 1fr 1.1fr; gap: var(--space-8); }
+    .contact-form { padding: var(--space-6); }
+    .contact-form .button { justify-self: start; }
   }
 </style>

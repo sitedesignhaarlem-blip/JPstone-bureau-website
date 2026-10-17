@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import SiteNav from '../components/SiteNav.astro';
 import VideoTile from '../components/VideoTile.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import { southernCross } from '../data/library';
 
 ---
@@ -42,6 +43,8 @@ import { southernCross } from '../data/library';
       </div>
     </section>
   </main>
+
+  <SiteFooter />
 
   <dialog id="shot-dialog" aria-label="Shot bekijken">
     <div class="dialog-inner">
