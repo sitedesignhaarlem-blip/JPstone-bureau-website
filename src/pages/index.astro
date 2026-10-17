@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteNav from '../components/SiteNav.astro';
+import VideoTile from '../components/VideoTile.astro';
+import { southernCross } from '../data/library';
+
+const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southern-cross-hut'].map(
+  (f) => southernCross.find((s) => s.file === f)!,
+);
+---
+<Base
+  title="JPstone Bureau · Walkthrough-video's van je listingfoto's"
+  description="Wij maken van de foto's op je listing een rustige walkthrough-video. Voor jachtcharters en boutique hotels. Geen draaidag, geen crew aan boord."
+>
+  <SiteNav />
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Voor jachtcharters en boutique hotels</p>
+        <h1 class="hero-title">Je listingfoto's worden een film. Zonder draaidag.</h1>
+        <p class="lead muted">Je stuurt de foto's die al op je listing staan. Wij maken er een rustige rondleiding op video van.</p>
+        <div class="actions">
+          <a class="button" href="#contact">Vraag een gratis proefvideo aan</a>
+          <a class="link-more" href="/bibliotheek/">Bekijk de bibliotheek</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <video autoplay muted playsinline loop preload="auto" poster="/media/southern-cross-varen-zij.jpg" aria-label="Motorcatamaran Southern Cross vaart over open zee, gemaakt van listingfoto's." data-hero>
+          <source src="/media/southern-cross-varen-zij.webm" type="video/webm" />
+          <source src="/media/southern-cross-varen-zij.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="wrap-wide">
+        <div class="section-head">
+          <h2>Uit de bibliotheek.</h2>
+          <a class="link-more" href="/bibliotheek/">Alle clips van Southern Cross</a>
+        </div>
+        <div class="preview-grid">
+          {preview.map((s) => <VideoTile shot={s} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="werkwijze">
+      <div class="wrap">
+        <h2 class="steps-title">Zo werkt het.</h2>
+        <ol class="steps" role="list">
+          <li><span class="numeral">1</span><h3>Je stuurt foto's</h3><p class="muted">Een link naar je listing is genoeg.</p></li>
+          <li><span class="numeral">2</span><h3>Wij maken de film</h3><p class="muted">16:9 voor je site, 9:16 voor social.</p></li>
+          <li><span class="numeral">3</span><h3>Jij publiceert</h3><p class="muted">Je krijgt mp4-bestanden, klaar om te plaatsen.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="contact">
+      <div class="wrap contact-inner">
+        <h2>Benieuwd hoe jouw listing eruitziet?</h2>
+        <p class="lead muted">Stuur een link naar je listing. Dan maken we een gratis proefvideo.</p>
+        <p class="todo">[TODO: contactformulier, WhatsApp en boekingslink]</p>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="shot-dialog" aria-label="Clip bekijken">
+    <div class="dialog-inner">
+      <video muted playsinline loop controls></video>
+      <div class="dialog-bar">
+        <p data-caption></p>
+        <form method="dialog"><button class="close" type="submit">Sluiten</button></form>
+      </div>
+    </div>
+  </dialog>
+</Base>
+
+<script>
+  import '../scripts/library.ts';
+
+  // The hero loop stops for people who prefer less motion; the poster stays.
+  const hero = document.querySelector<HTMLVideoElement>('[data-hero]');
+  if (hero && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    hero.removeAttribute('autoplay');
+    hero.pause();
+  }
+</script>
+
+<style>
+  .hero { padding-top: var(--section); }
+  .hero-inner { display: grid; justify-items: center; text-align: center; gap: var(--space-4); }
+  .hero-title { max-width: 14ch; }
+  .hero .lead { max-width: 34ch; margin-top: var(--space-2); }
+  .actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--space-4) var(--space-6); margin-top: var(--space-4); }
+  .hero-media { max-width: calc(var(--max-wide) + 2 * var(--gutter)); margin: var(--space-8) auto 0; padding-inline: var(--gutter); }
+  .hero-media video { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius); background: var(--bg-alt); }
+
+  .wrap-wide { max-width: calc(var(--max-wide) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
+  .section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-3) var(--space-6); margin-bottom: var(--space-7); }
+  .preview-grid { display: grid; gap: var(--space-6); }
+
+  .steps-title { margin-bottom: var(--space-7); }
+  .steps { display: grid; gap: var(--space-6); padding: 0; list-style: none; }
+  .steps li { display: grid; align-content: start; gap: var(--space-2); padding-top: var(--space-5); border-top: 1px solid var(--line); }
+  .steps .numeral { margin-bottom: var(--space-3); }
+
+  .contact-inner { display: grid; justify-items: center; text-align: center; gap: var(--space-4); }
+
+  dialog { width: min(100% - 2rem, 72rem); max-height: calc(100svh - 2rem); padding: 0; border: 0; border-radius: var(--radius); background: #000; color: var(--on-dark); overflow: hidden; }
+  dialog::backdrop { background: rgb(0 0 0 / 0.8); }
+  .dialog-inner video { width: 100%; max-height: calc(100svh - 7rem); object-fit: contain; background: #000; }
+  .dialog-bar { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) var(--space-4); }
+  .dialog-bar p { font-weight: 600; }
+  .close { min-height: 2.75rem; padding: 0 var(--space-5); border-radius: var(--radius-pill); border: 0; background: #333336; color: var(--on-dark); cursor: pointer; }
+
+  @media (min-width: 48rem) {
+    .preview-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+    .steps { grid-template-columns: repeat(3, 1fr); gap: var(--space-7); }
+  }
+</style>

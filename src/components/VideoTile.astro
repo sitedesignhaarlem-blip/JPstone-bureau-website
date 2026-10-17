@@ -12,7 +12,7 @@ const src = `/media/${shot.file}`;
 ---
 <figure class:list={['tile', `tile--${size}`]} data-category={shot.category}>
   <button class="tile-media" type="button" data-open={shot.file} aria-label={`Bekijk groter: ${shot.title}`}>
-    <video muted playsinline loop preload="none" poster={`${src}.jpg`} aria-label={shot.alt} data-autoplay>
+    <video muted playsinline loop preload="metadata" poster={`${src}.jpg`} aria-label={shot.alt}>
       <source src={`${src}.webm`} type="video/webm" />
       <source src={`${src}.mp4`} type="video/mp4" />
     </video>

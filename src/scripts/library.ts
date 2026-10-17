@@ -1,40 +1,46 @@
-// Library behaviour: play shots while visible, filter by category, open a shot larger.
+// Library behaviour: a shot plays while the pointer is on it (or, on touch screens,
+// while it is in view) and opens larger on click.
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
 
-function setupAutoplay() {
-  const videos = document.querySelectorAll<HTMLVideoElement>('video[data-autoplay]');
-  if (reduceMotion.matches || !('IntersectionObserver' in window)) return;
+function play(v: HTMLVideoElement) {
+  if (v.preload !== 'auto') v.preload = 'auto';
+  v.play().catch(() => {});
+}
+
+function stop(v: HTMLVideoElement) {
+  v.pause();
+  v.currentTime = 0;
+}
+
+function setupPlayback() {
+  const tiles = document.querySelectorAll<HTMLElement>('.tile-media');
+  if (reduceMotion.matches) return;
+
+  if (canHover.matches) {
+    tiles.forEach((tile) => {
+      const v = tile.querySelector('video')!;
+      tile.addEventListener('pointerenter', () => play(v));
+      tile.addEventListener('pointerleave', () => stop(v));
+      tile.addEventListener('focus', () => play(v));
+      tile.addEventListener('blur', () => stop(v));
+    });
+    return;
+  }
+
+  // Touch screens have no hover: play what is on screen.
   const io = new IntersectionObserver(
     (entries) => {
       for (const { target, isIntersecting } of entries) {
         const v = target as HTMLVideoElement;
-        if (isIntersecting) v.play().catch(() => {});
+        if (isIntersecting) play(v);
         else v.pause();
       }
     },
-    { threshold: 0.5 },
+    { threshold: 0.6 },
   );
-  videos.forEach((v) => io.observe(v));
-}
-
-function setupFilter() {
-  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
-  const tiles = document.querySelectorAll<HTMLElement>('#library-grid .tile');
-  const count = document.querySelector<HTMLElement>('[data-count]');
-  buttons.forEach((btn) =>
-    btn.addEventListener('click', () => {
-      const f = btn.dataset.filter;
-      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
-      let shown = 0;
-      tiles.forEach((t) => {
-        const match = f === 'all' || t.dataset.category === f;
-        t.hidden = !match;
-        if (match) shown++;
-      });
-      if (count) count.textContent = `${shown} shots`;
-    }),
-  );
+  tiles.forEach((tile) => io.observe(tile.querySelector('video')!));
 }
 
 function setupDialog() {
@@ -51,8 +57,7 @@ function setupDialog() {
       video.innerHTML = `<source src="/media/${file}.webm" type="video/webm"><source src="/media/${file}.mp4" type="video/mp4">`;
       video.poster = `/media/${file}.jpg`;
       video.load();
-      const fig = btn.closest('figure');
-      caption.textContent = fig?.querySelector('.tile-title')?.textContent ?? '';
+      caption.textContent = btn.closest('figure')?.querySelector('.tile-title')?.textContent ?? '';
       dialog.showModal();
       video.play().catch(() => {});
     }),
@@ -66,6 +71,5 @@ function setupDialog() {
   });
 }
 
-setupAutoplay();
-setupFilter();
+setupPlayback();
 setupDialog();

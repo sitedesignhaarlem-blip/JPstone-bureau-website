@@ -2,12 +2,8 @@
 import Base from '../layouts/Base.astro';
 import SiteNav from '../components/SiteNav.astro';
 import VideoTile from '../components/VideoTile.astro';
-import { shots, southernCross, categories } from '../data/library';
+import { southernCross } from '../data/library';
 
-const all = [...shots];
-const counts = Object.fromEntries(
-  categories.map((c) => [c.id, c.id === 'all' ? all.length : all.filter((s) => s.category === c.id).length]),
-);
 ---
 <Base
   title="Bibliotheek · JPstone Bureau"
@@ -37,24 +33,6 @@ const counts = Object.fromEntries(
       </div>
     </section>
 
-    <section class="section" aria-labelledby="all-title">
-      <div class="wrap-wide">
-        <div class="all-head">
-          <h2 id="all-title">Alle shots.</h2>
-          <div class="filters" role="group" aria-label="Filter op soort shot">
-            {categories.map((c, i) => (
-              <button type="button" class="chip" data-filter={c.id} aria-pressed={i === 0 ? 'true' : 'false'}>
-                {c.label} <span class="chip-count">{counts[c.id]}</span>
-              </button>
-            ))}
-          </div>
-          <p class="muted small" data-count aria-live="polite">{all.length} shots</p>
-        </div>
-        <div class="grid" id="library-grid">
-          {all.map((s) => <VideoTile shot={s} />)}
-        </div>
-      </div>
-    </section>
 
     <section class="section section--alt cta">
       <div class="wrap cta-inner">
@@ -91,19 +69,7 @@ const counts = Object.fromEntries(
   .project-head { display: grid; gap: var(--space-3); margin-bottom: var(--space-7); max-width: 40rem; }
   .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6) var(--space-3); }
 
-  .all-head { display: grid; gap: var(--space-4); margin-bottom: var(--space-7); }
-  .filters { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-  .chip {
-    min-height: 2.75rem; padding: 0 var(--space-5); border-radius: var(--radius-pill);
-    border: 1px solid var(--line); background: var(--bg); color: var(--fg);
-    font-size: 0.9375rem; cursor: pointer; transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
-  }
-  .chip:hover { border-color: var(--fg-muted); }
-  .chip[aria-pressed='true'] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
-  .chip-count { opacity: 0.6; margin-left: 2px; font-variant-numeric: tabular-nums; }
-  .small { font-size: var(--step-small); }
 
-  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6) var(--space-3); }
 
   .cta-inner { display: grid; justify-items: center; text-align: center; gap: var(--space-4); }
   .cta .button { margin-top: var(--space-3); }
@@ -120,12 +86,6 @@ const counts = Object.fromEntries(
   .close:hover { background: #48484a; }
 
   @media (min-width: 40rem) {
-    .grid { gap: var(--space-7) var(--space-5); }
     .project-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-7) var(--space-5); }
-  }
-  @media (min-width: 64rem) {
-    .grid { grid-template-columns: repeat(3, 1fr); }
-    .all-head { grid-template-columns: 1fr auto; align-items: end; }
-    .all-head [data-count] { grid-column: 1 / -1; }
   }
 </style>
