@@ -2,8 +2,8 @@
 const links = [
   { href: '/', label: 'Home' },
   { href: '/bibliotheek/', label: 'Bibliotheek' },
-  { href: '/#werkwijze', label: 'Werkwijze' },
-  { href: '/#contact', label: 'Contact' },
+  { href: '/werkwijze/', label: 'Werkwijze' },
+  { href: '/contact/', label: 'Contact' },
 ];
 const path = Astro.url.pathname;
 ---
@@ -22,8 +22,9 @@ const path = Astro.url.pathname;
   .nav { position: sticky; top: 0; z-index: 10; background: rgb(255 255 255 / 0.96); border-bottom: 1px solid var(--line); }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; min-height: 3rem; font-size: 0.75rem; letter-spacing: -0.01em; }
   ul { display: flex; gap: var(--space-5); padding: 0; margin: 0; list-style: none; }
-  a { color: var(--fg); opacity: 0.8; }
+  a { color: var(--fg); opacity: 0.8; text-decoration: none; }
   a:hover, a[aria-current='page'] { opacity: 1; text-decoration: none; }
+  a[aria-current='page'] { font-weight: 600; }
   .nav-brand { font-weight: 600; font-size: 0.875rem; opacity: 1; white-space: nowrap; }
   @media (max-width: 30rem) { .nav-home { display: none; } ul { gap: var(--space-4); } }
 </style>

@@ -50,8 +50,9 @@ a:hover {
   text-decoration: underline;
 }
 /* Links inside running text are underlined, so they don't rely on colour alone */
-p a,
-li a:not([class]) {
+main p a,
+main li a:not([class]),
+footer p a {
   text-decoration: underline;
   text-decoration-thickness: 1px;
 }
