@@ -1,0 +1,92 @@
+/* Design tokens. Change values here, not in components. */
+
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/instrument-serif-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/instrument-serif-latin-400-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hanken Grotesk';
+  src: url('/fonts/hanken-grotesk-latin-wght-normal.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+/* Fallbacks sized close to the web fonts, so the swap barely shifts layout. */
+@font-face {
+  font-family: 'Serif Fallback';
+  src: local('Times New Roman'), local('Liberation Serif'), local('DejaVu Serif');
+  size-adjust: 92%;
+  ascent-override: 96%;
+}
+@font-face {
+  font-family: 'Grotesk Fallback';
+  src: local('Arial'), local('Liberation Sans'), local('DejaVu Sans');
+  size-adjust: 99%;
+  ascent-override: 98%;
+}
+
+:root {
+  /* Color: ink base, warm paper text, one brass accent. */
+  --ink: #0b1017;
+  --ink-raised: #111824;
+  --ink-deep: #070a0f;
+  --paper: #f3eee5;
+  --paper-muted: #a8a196;
+  --line: rgb(243 238 229 / 0.14);
+  --line-strong: rgb(243 238 229 / 0.32);
+  --accent: #c9a66b;
+  --on-accent: var(--ink);
+  --focus: var(--accent);
+
+  /* Type */
+  --font-display: 'Instrument Serif', 'Serif Fallback', serif;
+  --font-body: 'Hanken Grotesk', 'Grotesk Fallback', sans-serif;
+
+  --step-display: clamp(3.25rem, 1.6rem + 8.2vw, 9rem);
+  --step-h2: clamp(2.5rem, 1.6rem + 4.4vw, 5.5rem);
+  --step-h3: clamp(1.5rem, 1.25rem + 1.1vw, 2.25rem);
+  --step-numeral: clamp(5rem, 2.6rem + 10.5vw, 12rem);
+  --step-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
+  --step-body: clamp(1rem, 0.98rem + 0.1vw, 1.0625rem);
+  --step-small: 0.875rem;
+  --step-label: 0.75rem;
+
+  --lh-display: 0.92;
+  --lh-heading: 1.02;
+  --lh-body: 1.65;
+  --track-label: 0.14em;
+
+  /* Space: 4px base */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+  --space-10: 10.5rem;
+
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --section: clamp(5rem, 14vw, 11rem);
+  --measure: 34rem;
+  --max: 90rem;
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --dur: 400ms;
+  --dur-slow: 900ms;
+
+  --radius: 2px;
+}

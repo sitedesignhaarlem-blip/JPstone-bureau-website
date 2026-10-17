@@ -1,0 +1,123 @@
+---
+// Internal review page for tokens and typography. Not linked, not indexed, excluded from the sitemap.
+import Base from '../layouts/Base.astro';
+
+const colors = [
+  ['--ink', '#0B1017', 'Base'],
+  ['--ink-raised', '#111824', 'Raised surface'],
+  ['--paper', '#F3EEE5', 'Text · 16.4:1'],
+  ['--paper-muted', '#A8A196', 'Secondary · 7.4:1'],
+  ['--accent', '#C9A66B', 'Brass · 8.3:1'],
+];
+const space = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+---
+<Base title="Specimen · JPstone Bureau" description="Typography and token specimen" noindex>
+  <main class="spec">
+    <header class="wrap spec-head">
+      <p class="label">JPstone Bureau · Specimen 01 · Tokens &amp; type</p>
+    </header>
+
+    <section class="wrap spec-hero">
+      <p class="label">Voor jachtcharters en boutique hotels</p>
+      <h1 class="display">Je listingfoto's worden een film. <em>Zonder draaidag.</em></h1>
+      <div class="spec-hero-foot">
+        <a class="button" href="#">Vraag een gratis proefvideo aan <span class="arrow" aria-hidden="true">→</span></a>
+        <p class="small muted">Instrument Serif 400 · var(--step-display) · 52 → 144px</p>
+      </div>
+    </section>
+
+    <hr class="rule wrap-rule" />
+
+    <section class="wrap spec-grid">
+      <div class="spec-col-a">
+        <p class="label">02 · Kop</p>
+        <h2>Achttien jachten. Eén map met foto's.</h2>
+        <p class="small muted">var(--step-h2) · 40 → 88px</p>
+      </div>
+      <div class="spec-col-b">
+        <p class="lead">Je stuurt de foto's die al op je listing staan. Wij maken er een rustige, filmische rondleiding van. Geen crew aan boord, geen reisdag, geen gedoe met planning.</p>
+        <p class="muted">Body in Hanken Grotesk, 16–17px, regelafstand 1,65 en maximaal 62 tekens per regel. Zo leest een tekst op je telefoon net zo rustig als op een groot scherm. Secundaire tekst staat in een warm grijs dat ruim boven AA blijft.</p>
+        <p class="small muted">Lead · var(--step-lead) · Body · var(--step-body)</p>
+      </div>
+    </section>
+
+    <section class="wrap spec-steps" aria-label="Numerals">
+      <div class="step"><span class="numeral">01</span><div><h3>Je stuurt foto's</h3><p class="muted">Een link naar je listing is genoeg.</p></div></div>
+      <div class="step"><span class="numeral">02</span><div><h3>Wij maken de film</h3><p class="muted">Kop: var(--step-h3) · Cijfer: var(--step-numeral)</p></div></div>
+    </section>
+
+    <hr class="rule wrap-rule" />
+
+    <section class="wrap spec-tokens">
+      <div>
+        <p class="label">Kleur</p>
+        <ul class="swatches" role="list">
+          {colors.map(([name, hex, note]) => (
+            <li>
+              <span class="chip" style={`background: var(${name})`}></span>
+              <span class="mono">{name}</span>
+              <span class="muted">{hex}</span>
+              <span class="muted">{note}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <p class="label">Ruimte · 4px basis</p>
+        <ul class="space" role="list">
+          {space.map((n) => (
+            <li><span class="bar" style={`width: var(--space-${n})`}></span><span class="mono muted">--space-{n}</span></li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <p class="label">Elementen</p>
+        <p><a href="#">Tekstlink met hover in messing</a></p>
+        <p class="muted">Focus: 2px messing, 3px afstand. Probeer Tab.</p>
+        <p><span class="todo">[TODO: citaat na akkoord klant]</span></p>
+      </div>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .spec { padding-bottom: var(--section); }
+  .spec-head { padding-block: var(--space-6); }
+  .spec-hero { padding-block: var(--space-9) var(--section); }
+  .spec-hero .label { margin-bottom: var(--space-6); }
+  .spec-hero h1 { max-width: 13ch; }
+  .spec-hero h1 em { color: var(--paper-muted); }
+  .spec-hero-foot { margin-top: var(--space-8); display: flex; flex-wrap: wrap; gap: var(--space-5) var(--space-7); align-items: center; }
+  .small { font-size: var(--step-small); }
+  .mono { font-variant-numeric: tabular-nums; font-size: var(--step-small); }
+  .wrap-rule { max-width: calc(var(--max) - 2 * var(--gutter)); margin-inline: auto; width: calc(100% - 2 * var(--gutter)); }
+
+  .spec-grid { display: grid; gap: var(--space-7); padding-block: var(--section); }
+  .spec-col-a h2 { margin-block: var(--space-5) var(--space-4); max-width: 12ch; }
+  .spec-col-b { display: grid; gap: var(--space-5); align-content: end; }
+
+  .spec-steps { display: grid; padding-bottom: var(--section); }
+  .step { display: grid; grid-template-columns: 6.5rem 1fr; gap: var(--space-5); align-items: end; padding-block: var(--space-6); border-top: 1px solid var(--line); }
+  .step h3 { margin-bottom: var(--space-2); }
+
+  .spec-tokens { display: grid; gap: var(--space-8); padding-top: var(--space-8); }
+  .spec-tokens .label { margin-bottom: var(--space-5); }
+  .spec-tokens p + p { margin-top: var(--space-3); }
+  .swatches, .space { padding: 0; list-style: none; display: grid; gap: var(--space-3); }
+  .swatches li { display: grid; grid-template-columns: 2.5rem 8.5rem 5rem 1fr; gap: var(--space-3); align-items: center; font-size: var(--step-small); }
+  .chip { width: 2.5rem; height: 2.5rem; border: 1px solid var(--line-strong); }
+  .space li { display: flex; gap: var(--space-4); align-items: center; }
+  .bar { height: 0.5rem; background: var(--accent); }
+
+  @media (min-width: 48rem) {
+    .spec-grid { grid-template-columns: repeat(12, 1fr); }
+    .spec-col-a { grid-column: 1 / span 7; }
+    .spec-col-b { grid-column: 8 / span 5; }
+    .step { grid-template-columns: 14rem 1fr; }
+    .spec-tokens { grid-template-columns: 1.4fr 1fr 1fr; }
+  }
+  @media (max-width: 30rem) {
+    .swatches li { grid-template-columns: 2.5rem 1fr; }
+    .swatches li span:nth-child(n + 3) { grid-column: 2; }
+  }
+</style>
