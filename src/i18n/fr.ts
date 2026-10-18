@@ -150,10 +150,9 @@ const fr: UI = {
     ],
   },
   vertical: {
-    eyebrow: 'Pour les réseaux sociaux',
-    title: 'Aussi en 9:16.',
-    lead: 'Le même film en vertical, pour Instagram Reels, TikTok et les Stories. Inclus dans chaque formule, avec la version 16:9.',
-    videoAlt: 'Le salon de Southern Cross en format vertical, tel qu’il apparaît sur un téléphone.',
+    eyebrow: "Deux formats",
+    title: "Paysage et portrait.",
+    lead: "Chaque vidéo vous est livrée en deux formats : 16:9 pour votre site et vos annonces, 9:16 pour les Reels, TikTok et les Stories. Inclus dans chaque formule.",
   },
   calc: {
     title: 'Combien ça coûte ?',

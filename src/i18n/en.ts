@@ -152,10 +152,9 @@ const en = {
     ],
   },
   vertical: {
-    eyebrow: 'For social',
-    title: 'Also in 9:16.',
-    lead: 'The same film in portrait, for Instagram Reels, TikTok and Stories. Included in every package, next to the 16:9 version.',
-    videoAlt: 'The saloon of Southern Cross in portrait format, the way it looks on a phone.',
+    eyebrow: "Two formats",
+    title: "Landscape and portrait.",
+    lead: "Every video comes in both formats: 16:9 for your website and listings, 9:16 for Reels, TikTok and Stories. Included in every package.",
   },
   calc: {
     title: 'What does it cost?',

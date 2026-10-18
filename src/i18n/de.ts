@@ -150,10 +150,9 @@ const de: UI = {
     ],
   },
   vertical: {
-    eyebrow: 'Für Social Media',
-    title: 'Auch in 9:16.',
-    lead: 'Derselbe Film im Hochformat, für Instagram Reels, TikTok und Stories. In jedem Paket enthalten, neben der 16:9-Version.',
-    videoAlt: 'Der Salon der Southern Cross im Hochformat, so wie er auf einem Smartphone aussieht.',
+    eyebrow: "Zwei Formate",
+    title: "Quer und hoch.",
+    lead: "Jedes Video erhalten Sie in zwei Formaten: 16:9 für Ihre Website und Inserate, 9:16 für Reels, TikTok und Stories. In jedem Paket enthalten.",
   },
   calc: {
     title: 'Was kostet es?',

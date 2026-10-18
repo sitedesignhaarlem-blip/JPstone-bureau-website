@@ -150,10 +150,9 @@ const nl: UI = {
     ],
   },
   vertical: {
-    eyebrow: 'Voor social',
-    title: 'Ook in 9:16.',
-    lead: 'Dezelfde film staand, voor Instagram Reels, TikTok en Stories. Zit in elk pakket, naast de 16:9-versie.',
-    videoAlt: 'De salon van Southern Cross in staand formaat, zoals hij er op een telefoon uitziet.',
+    eyebrow: "Twee formaten",
+    title: "Liggend en staand.",
+    lead: "Elke video krijg je in twee formaten: 16:9 voor je website en listings, 9:16 voor Reels, TikTok en Stories. Zit in elk pakket.",
   },
   calc: {
     title: 'Wat kost het?',
