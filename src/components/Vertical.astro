@@ -1,0 +1,50 @@
+---
+// The 9:16 deliverable, shown in a phone frame. Plays while in view.
+import { useTranslations, type Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+const t = useTranslations(Astro.props.lang);
+const v = t.vertical;
+---
+<section class="section vertical" aria-labelledby="vertical-title">
+  <div class="wrap vertical-inner">
+    <div class="vertical-text">
+      <p class="eyebrow">{v.eyebrow}</p>
+      <h2 id="vertical-title">{v.title}</h2>
+      <p class="lead muted">{v.lead}</p>
+    </div>
+    <div class="phone" aria-hidden="false">
+      <video muted playsinline loop preload="none" poster="/media/southern-cross-salon-916.jpg" aria-label={v.videoAlt} width="450" height="800" data-vertical>
+        <source src="/media/southern-cross-salon-916.mp4" type="video/mp4" />
+        <source src="/media/southern-cross-salon-916.webm" type="video/webm" />
+      </video>
+    </div>
+  </div>
+</section>
+
+<script>
+  const v = document.querySelector<HTMLVideoElement>('[data-vertical]');
+  if (v && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        v.preload = 'auto';
+        v.play().catch(() => {});
+      } else v.pause();
+    }, { threshold: 0.4 }).observe(v);
+  }
+</script>
+
+<style>
+  .vertical-inner { display: grid; gap: var(--space-7); align-items: center; justify-items: center; }
+  .vertical-text { display: grid; gap: var(--space-3); max-width: 30rem; justify-self: start; }
+  .phone {
+    width: min(17rem, 70vw); aspect-ratio: 9 / 19.5; padding: 0.6rem; border-radius: 2.6rem;
+    background: #1d1d1f; box-shadow: 0 20px 50px rgb(0 0 0 / 0.18), inset 0 0 0 1px #3a3a3c;
+  }
+  .phone video { width: 100%; height: 100%; object-fit: cover; border-radius: 2rem; background: #000; }
+  @media (min-width: 48rem) {
+    .vertical-inner { grid-template-columns: 1.2fr 1fr; gap: var(--space-8); }
+  }
+</style>

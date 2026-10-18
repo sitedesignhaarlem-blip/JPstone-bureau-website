@@ -149,6 +149,34 @@ const es: UI = {
       { q: '¿Qué incluye el vídeo de prueba gratis?', a: 'Un clip corto hecho con las fotos de tu propio anuncio. Sin compromiso y sin factura. Basta con el enlace de tu anuncio.' },
     ],
   },
+  vertical: {
+    eyebrow: 'Para redes sociales',
+    title: 'También en 9:16.',
+    lead: 'La misma película en vertical, para Instagram Reels, TikTok y Stories. Incluida en cada paquete, junto a la versión 16:9.',
+    videoAlt: 'El salón de Southern Cross en formato vertical, tal como se ve en un móvil.',
+  },
+  calc: {
+    title: '¿Cuánto cuesta?',
+    label: 'Número de vídeos',
+    total: 'Total',
+    note: 'IVA no incluido. 100 € por vídeo, ambos formatos y 2 revisiones incluidas.',
+    more: '¿Más de 100 vídeos? Te preparamos un presupuesto.',
+  },
+  booking: {
+    title: '¿Prefieres hablar primero?',
+    text: 'Reserva una llamada de 15 minutos. Pregunta lo que quieras saber.',
+    cta: 'Reservar una llamada',
+  },
+  prospect: {
+    eyebrow: 'Hecho para {company}',
+    title: 'Esto es {listing}, en película.',
+    lead: 'Lo hicimos con las fotos que ya tienes en tu anuncio. Sin rodaje, sin visita. Gratis y sin compromiso.',
+    cta: 'Sí, lo quiero para toda mi flota',
+    whatsapp: 'Pregunta por WhatsApp',
+    price: 'Desde 100 € por vídeo. Ambos formatos y 2 revisiones incluidas.',
+    waMessage: 'Hola, he visto el vídeo de prueba para {company}. Me gustaría saber más.',
+    mailSubject: 'Vídeo de prueba para {company}',
+  },
   photoAlt: 'Foto original del anuncio',
   shots: {
     'southern-cross-varen-zij': {

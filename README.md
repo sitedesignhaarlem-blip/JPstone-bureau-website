@@ -54,7 +54,19 @@ De adressen staan in `src/i18n/config.ts`. Alle pagina's worden gemaakt door `sr
 
 De video bovenaan de homepage staat in `src/views/Home.astro`. Houd hem klein (onder ~1,5 MB), want hij laadt meteen.
 
+## Persoonlijke pagina voor een prospect
+
+Maak een proefvideo van de listing van een prospect en stuur een eigen link mee, bijvoorbeeld `/p/voorbeeld/`.
+
+1. Encodeer de clip en zet de startfoto in `public/media/` (zie hierboven).
+2. Voeg een regel toe in `src/data/prospects.ts`: `slug`, bedrijfsnaam, naam van de listing, taal, clip en foto.
+3. Bouw en publiceer. De pagina toont de video, de voor/na-slider en knoppen voor e-mail en WhatsApp, met de naam al ingevuld.
+
+Deze pagina's staan niet in de sitemap en worden niet geïndexeerd (`noindex`). Haal de voorbeelden `voorbeeld` en `example` weg voor de livegang.
+
 ## Wat nog moet gebeuren voor de livegang
+
+- [ ] **Belafspraak:** je Calendly-link invullen bij `booking` in `src/data/site.ts`.
 
 - [ ] **Domein:** invullen in `src/data/site.ts` (`SITE_URL`) en in `public/robots.txt`.
 - [ ] **Bedrijfsgegevens:** KvK-nummer, btw-id en vestigingsadres in `src/data/site.ts`.

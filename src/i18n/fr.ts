@@ -149,6 +149,34 @@ const fr: UI = {
       { q: 'Que comprend la vidéo d’essai gratuite ?', a: 'Un court clip réalisé à partir de vos propres photos d’annonce. Sans engagement et sans facture. Le lien de votre annonce suffit.' },
     ],
   },
+  vertical: {
+    eyebrow: 'Pour les réseaux sociaux',
+    title: 'Aussi en 9:16.',
+    lead: 'Le même film en vertical, pour Instagram Reels, TikTok et les Stories. Inclus dans chaque formule, avec la version 16:9.',
+    videoAlt: 'Le salon de Southern Cross en format vertical, tel qu’il apparaît sur un téléphone.',
+  },
+  calc: {
+    title: 'Combien ça coûte ?',
+    label: 'Nombre de vidéos',
+    total: 'Total',
+    note: 'Hors TVA. 100 € par vidéo, deux formats et 2 révisions inclus.',
+    more: 'Plus de 100 vidéos ? Nous vous faisons un devis.',
+  },
+  booking: {
+    title: 'Vous préférez en parler d’abord ?',
+    text: 'Réservez un appel de 15 minutes. Posez toutes vos questions.',
+    cta: 'Réserver un appel',
+  },
+  prospect: {
+    eyebrow: 'Réalisé pour {company}',
+    title: 'Voici {listing}, en film.',
+    lead: 'Nous l’avons réalisé à partir des photos déjà présentes sur votre annonce. Pas de tournage, pas de visite. Gratuit et sans engagement.',
+    cta: 'Oui, je veux ça pour toute ma flotte',
+    whatsapp: 'Poser une question sur WhatsApp',
+    price: 'À partir de 100 € par vidéo. Deux formats et 2 révisions inclus.',
+    waMessage: 'Bonjour, j’ai vu la vidéo d’essai pour {company}. J’aimerais en savoir plus.',
+    mailSubject: 'Vidéo d’essai pour {company}',
+  },
   photoAlt: 'Photo d’annonce originale',
   shots: {
     'southern-cross-varen-zij': {

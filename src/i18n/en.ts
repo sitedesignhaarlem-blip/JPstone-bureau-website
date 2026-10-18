@@ -151,6 +151,34 @@ const en = {
       { q: 'What does the free sample include?', a: 'One short clip made from your own listing photos. No obligation and no invoice. A link to your listing is all we need.' },
     ],
   },
+  vertical: {
+    eyebrow: 'For social',
+    title: 'Also in 9:16.',
+    lead: 'The same film in portrait, for Instagram Reels, TikTok and Stories. Included in every package, next to the 16:9 version.',
+    videoAlt: 'The saloon of Southern Cross in portrait format, the way it looks on a phone.',
+  },
+  calc: {
+    title: 'What does it cost?',
+    label: 'Number of videos',
+    total: 'Total',
+    note: 'Excl. VAT. €100 per video, both formats and 2 revisions included.',
+    more: 'More than 100 videos? We’ll make you a quote.',
+  },
+  booking: {
+    title: 'Rather talk first?',
+    text: 'Book a 15-minute call. Ask what you want to know.',
+    cta: 'Book a call',
+  },
+  prospect: {
+    eyebrow: 'Made for {company}',
+    title: 'This is {listing}, as a film.',
+    lead: 'We made this from the photos already on your listing. No shoot, no visit. Free, with no obligation.',
+    cta: 'Yes, I want this for my whole fleet',
+    whatsapp: 'Ask a question on WhatsApp',
+    price: 'From €100 per video. Both formats and 2 revisions included.',
+    waMessage: 'Hi, I saw the sample video for {company}. I’d like to know more.',
+    mailSubject: 'Sample video for {company}',
+  },
   photoAlt: 'Original listing photo',
   shots: {
     'southern-cross-varen-zij': {

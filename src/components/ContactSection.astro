@@ -11,6 +11,8 @@ const { lang, heading = 'h2' } = Astro.props;
 const t = useTranslations(lang);
 const c = t.contact;
 const Heading = heading;
+const hasBooking = site.booking.startsWith('http');
+const Sub = heading === 'h1' ? 'h2' : 'h3';
 const formAction = site.formEndpoint || `mailto:${site.email}?subject=${encodeURIComponent(c.mailSubject)}`;
 ---
 <section class="section section--alt contact-section">
@@ -23,6 +25,13 @@ const formAction = site.formEndpoint || `mailto:${site.email}?subject=${encodeUR
         <li><span class="muted">{c.call}</span><a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a></li>
         <li><span class="muted">{c.email}</span><a href={`mailto:${site.email}`}>{site.email}</a></li>
       </ul>
+      <div class="booking">
+        <Sub class="booking-title">{t.booking.title}</Sub>
+        <p class="muted">{t.booking.text}</p>
+        {hasBooking
+          ? <a class="button button--secondary" href={site.booking} rel="noopener">{t.booking.cta}</a>
+          : <p><span class="todo">{t.booking.cta}: {site.booking}</span></p>}
+      </div>
     </div>
 
     <form
@@ -92,6 +101,9 @@ const formAction = site.formEndpoint || `mailto:${site.email}?subject=${encodeUR
 </script>
 
 <style>
+  .booking { display: grid; gap: var(--space-2); justify-items: start; margin-top: var(--space-6); padding: var(--space-5); border-radius: var(--radius); background: var(--bg); }
+  .booking :global(.booking-title) { font-size: var(--step-h3); line-height: 1.14; }
+  .booking .button { margin-top: var(--space-2); }
   .contact { display: grid; gap: var(--space-8); }
   .contact-intro { display: grid; gap: var(--space-4); align-content: start; }
   .contact-direct { display: grid; gap: var(--space-3); padding: 0; margin: var(--space-4) 0 0; list-style: none; }

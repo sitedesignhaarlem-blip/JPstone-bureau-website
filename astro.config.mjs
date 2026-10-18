@@ -9,5 +9,6 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'always',
   build: { format: 'directory', inlineStylesheets: 'always' },
-  integrations: [sitemap()],
+  // Prospect pages (/p/…) are private links and stay out of the sitemap.
+  integrations: [sitemap({ filter: (page) => !page.includes('/p/') })],
 });

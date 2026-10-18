@@ -149,6 +149,34 @@ const de: UI = {
       { q: 'Was enthält das kostenlose Probevideo?', a: 'Einen kurzen Clip aus Ihren eigenen Inseratsfotos. Unverbindlich und ohne Rechnung. Ein Link zu Ihrem Inserat genügt.' },
     ],
   },
+  vertical: {
+    eyebrow: 'Für Social Media',
+    title: 'Auch in 9:16.',
+    lead: 'Derselbe Film im Hochformat, für Instagram Reels, TikTok und Stories. In jedem Paket enthalten, neben der 16:9-Version.',
+    videoAlt: 'Der Salon der Southern Cross im Hochformat, so wie er auf einem Smartphone aussieht.',
+  },
+  calc: {
+    title: 'Was kostet es?',
+    label: 'Anzahl Videos',
+    total: 'Gesamt',
+    note: 'Zzgl. USt. 100 € pro Video, beide Formate und 2 Korrekturen inklusive.',
+    more: 'Mehr als 100 Videos? Wir erstellen Ihnen ein Angebot.',
+  },
+  booking: {
+    title: 'Lieber erst sprechen?',
+    text: 'Buchen Sie ein Gespräch von 15 Minuten. Fragen Sie, was Sie wissen möchten.',
+    cta: 'Gespräch buchen',
+  },
+  prospect: {
+    eyebrow: 'Erstellt für {company}',
+    title: 'Das ist {listing}, als Film.',
+    lead: 'Wir haben das aus den Fotos gemacht, die schon in Ihrem Inserat stehen. Kein Dreh, kein Besuch. Kostenlos und unverbindlich.',
+    cta: 'Ja, das möchte ich für meine ganze Flotte',
+    whatsapp: 'Frage per WhatsApp stellen',
+    price: 'Ab 100 € pro Video. Beide Formate und 2 Korrekturen inklusive.',
+    waMessage: 'Hallo, ich habe das Probevideo für {company} gesehen. Ich möchte gern mehr erfahren.',
+    mailSubject: 'Probevideo für {company}',
+  },
   photoAlt: 'Originales Inseratsfoto',
   shots: {
     'southern-cross-varen-zij': {

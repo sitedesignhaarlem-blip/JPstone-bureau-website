@@ -4,52 +4,71 @@
 // A native range input drives it, so mouse, touch and keyboard all work.
 import { useTranslations, type Locale } from '../i18n';
 
+export interface Pair {
+  file: string; // clip in public/media/<file>.{mp4,webm}
+  photo: string; // the listing photo the clip starts from
+  thumb?: string; // small version for the example tabs
+  label: string;
+  alt: string; // description of the clip
+}
+
 interface Props {
   lang: Locale;
+  /** Defaults to the three Southern Cross examples. One pair hides the tabs. */
+  pairs?: Pair[];
+  /** Hide the section heading, e.g. when the page already introduces the comparison. */
+  showHead?: boolean;
 }
-const { lang } = Astro.props;
+const { lang, showHead = true } = Astro.props;
 const t = useTranslations(lang);
 const c = t.compare;
-const pairs = ['southern-cross-varen-zij', 'southern-cross-drone-anker', 'southern-cross-kombuis'] as const;
-const photo = (file: string) => `/media/photo-${file.replace('southern-cross-', '')}.jpg`;
+const defaults = ['southern-cross-varen-zij', 'southern-cross-drone-anker', 'southern-cross-kombuis'] as const;
+const pairs: Pair[] =
+  Astro.props.pairs ??
+  defaults.map((file) => {
+    const short = file.replace('southern-cross-', '');
+    return { file, photo: `/media/photo-${short}.jpg`, thumb: `/media/thumb-${short}.jpg`, label: c.pairs[file], alt: t.shots[file].alt };
+  });
 ---
-<section class="section compare" aria-labelledby="compare-title">
+<section class="section compare" aria-labelledby={showHead ? 'compare-title' : undefined} aria-label={showHead ? undefined : c.slider}>
   <div class="wrap">
-    <div class="compare-head">
+    {showHead && <div class="compare-head">
       <p class="eyebrow">{c.eyebrow}</p>
       <h2 id="compare-title">{c.title}</h2>
       <p class="lead muted">{c.lead}</p>
-    </div>
+    </div>}
 
     <div class="ba" data-ba style="--pos: 50%">
-      {pairs.map((file, i) => (
+      {pairs.map((pair, i) => (
         // Only the first example has its images set; the others get them when chosen (see script).
-        <div class="ba-pair" data-pair={file} hidden={i !== 0}>
-          <video class="ba-video" muted playsinline loop preload="none" poster={i === 0 ? photo(file) : undefined} data-poster={photo(file)} aria-label={t.shots[file].alt}>
-            <source src={`/media/${file}.mp4`} type="video/mp4" />
-            <source src={`/media/${file}.webm`} type="video/webm" />
+        <div class="ba-pair" data-pair={pair.file} hidden={i !== 0}>
+          <video class="ba-video" muted playsinline loop preload="none" poster={i === 0 ? pair.photo : undefined} data-poster={pair.photo} aria-label={pair.alt}>
+            <source src={`/media/${pair.file}.mp4`} type="video/mp4" />
+            <source src={`/media/${pair.file}.webm`} type="video/webm" />
           </video>
-          <img class="ba-photo" src={i === 0 ? photo(file) : undefined} data-src={photo(file)} alt={`${t.photoAlt}: ${t.shots[file].title}`} width="960" height="712" loading="lazy" decoding="async" />
+          <img class="ba-photo" src={i === 0 ? pair.photo : undefined} data-src={pair.photo} alt={`${t.photoAlt}: ${pair.label}`} width="960" height="712" loading="lazy" decoding="async" />
         </div>
       ))}
       <span class="ba-tag ba-tag--photo" aria-hidden="true">{c.photo}</span>
       <span class="ba-tag ba-tag--video" aria-hidden="true">{c.video}</span>
       <div class="ba-handle" aria-hidden="true"><span class="ba-grip"></span></div>
       <input class="ba-range" type="range" min="0" max="100" value="50" step="1" aria-label={c.slider} aria-valuetext="50%" data-ba-range />
-      <button class="ba-play" type="button" data-open={pairs[0]} data-title={c.pairs[pairs[0]]} data-ba-play>
+      <button class="ba-play" type="button" data-open={pairs[0].file} data-title={pairs[0].label} data-ba-play>
         <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" fill="currentColor" /></svg>
         {c.play}
       </button>
     </div>
 
-    <div class="ba-tabs" role="group" aria-label={c.choose}>
-      {pairs.map((file, i) => (
-        <button type="button" class="ba-tab" data-ba-tab={file} aria-pressed={i === 0 ? 'true' : 'false'}>
-          <img src={`/media/thumb-${file.replace('southern-cross-', '')}.jpg`} alt="" width="96" height="71" loading="lazy" decoding="async" />
-          <span>{c.pairs[file]}</span>
-        </button>
-      ))}
-    </div>
+    {pairs.length > 1 && (
+      <div class="ba-tabs" role="group" aria-label={c.choose}>
+        {pairs.map((pair, i) => (
+          <button type="button" class="ba-tab" data-ba-tab={pair.file} aria-pressed={i === 0 ? 'true' : 'false'}>
+            <img src={pair.thumb ?? pair.photo} alt="" width="96" height="71" loading="lazy" decoding="async" />
+            <span>{pair.label}</span>
+          </button>
+        ))}
+      </div>
+    )}
   </div>
 </section>
 

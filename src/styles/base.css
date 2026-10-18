@@ -161,6 +161,15 @@ p {
   background: var(--accent-hover);
   text-decoration: none;
 }
+.button--secondary {
+  background: transparent;
+  color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+.button--secondary:hover {
+  background: var(--accent);
+  color: var(--on-accent);
+}
 .link-more::after {
   content: '\00a0›';
 }

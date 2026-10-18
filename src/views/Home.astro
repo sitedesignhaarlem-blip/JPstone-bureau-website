@@ -10,6 +10,7 @@ import BeforeAfter from '../components/BeforeAfter.astro';
 import CaseStudy from '../components/CaseStudy.astro';
 import Packages from '../components/Packages.astro';
 import Faq from '../components/Faq.astro';
+import Vertical from '../components/Vertical.astro';
 import { southernCross } from '../data/library';
 import { pagePath, useTranslations, type Locale } from '../i18n';
 
@@ -60,6 +61,8 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
         </div>
       </div>
     </section>
+
+    <Vertical lang={lang} />
 
     <CaseStudy lang={lang} />
 

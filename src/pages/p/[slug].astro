@@ -1,0 +1,88 @@
+---
+// A personal page for one prospect: their own sample video, the before/after with their photo,
+// and one clear next step. Entries live in src/data/prospects.ts.
+import Base from '../../layouts/Base.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import BeforeAfter from '../../components/BeforeAfter.astro';
+import { prospects, type Prospect } from '../../data/prospects';
+import { site } from '../../data/site';
+import { pagePath, useTranslations } from '../../i18n';
+
+export function getStaticPaths() {
+  return prospects.map((p) => ({ params: { slug: p.slug }, props: { prospect: p } }));
+}
+
+interface Props {
+  prospect: Prospect;
+}
+const { prospect: p } = Astro.props;
+const t = useTranslations(p.lang);
+const fill = (s: string) => s.replaceAll('{company}', p.company).replaceAll('{listing}', p.listing);
+const mail = `mailto:${site.email}?subject=${encodeURIComponent(fill(t.prospect.mailSubject))}`;
+const whatsapp = `${site.whatsapp}?text=${encodeURIComponent(fill(t.prospect.waMessage))}`;
+const title = `${fill(t.prospect.eyebrow)} · ${site.name}`;
+---
+<Base title={title} description={fill(t.prospect.lead)} lang={p.lang} page="home" path={`/p/${p.slug}/`} noindex preloadImage={`/media/${p.video}.jpg`}>
+  <header class="p-head">
+    <div class="wrap p-head-inner">
+      <a class="p-brand" href={pagePath(p.lang, 'home')}>{site.name}</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section p-intro">
+      <div class="wrap p-intro-inner">
+        <p class="eyebrow">{fill(t.prospect.eyebrow)}</p>
+        <h1 class="hero-title">{fill(t.prospect.title)}</h1>
+        <p class="lead muted">{fill(t.prospect.lead)}</p>
+      </div>
+      <div class="wrap p-video">
+        <video controls muted playsinline loop preload="metadata" poster={`/media/${p.video}.jpg`} aria-label={`${p.listing}, ${t.compare.video}`} data-p-video>
+          <source src={`/media/${p.video}.mp4`} type="video/mp4" />
+          <source src={`/media/${p.video}.webm`} type="video/webm" />
+        </video>
+      </div>
+    </section>
+
+    <BeforeAfter
+      lang={p.lang}
+      showHead={false}
+      pairs={[{ file: p.video, photo: p.photo, label: p.listing, alt: `${p.listing}, ${t.compare.video}` }]}
+    />
+
+    <section class="section section--alt p-cta">
+      <div class="wrap p-cta-inner">
+        <p class="lead">{t.prospect.price}</p>
+        <div class="p-actions">
+          <a class="button" href={mail}>{t.prospect.cta}</a>
+          <a class="button button--secondary" href={whatsapp} rel="noopener">{t.prospect.whatsapp}</a>
+        </div>
+        <p class="muted p-contact">{site.email} · {site.phoneDisplay}</p>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter lang={p.lang} />
+</Base>
+
+<script>
+  // The sample starts playing by itself (muted), unless the visitor prefers less motion.
+  const v = document.querySelector<HTMLVideoElement>('[data-p-video]');
+  if (v && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    addEventListener('load', () => v.play().catch(() => {}), { once: true });
+  }
+</script>
+
+<style>
+  .p-head { border-bottom: 1px solid var(--line); background: var(--bg); }
+  .p-head-inner { display: flex; align-items: center; min-height: 3rem; }
+  .p-brand { color: var(--fg); font-weight: 600; font-size: 0.875rem; text-decoration: none; }
+  .p-intro { padding-bottom: var(--space-6); }
+  .p-intro-inner { display: grid; gap: var(--space-4); }
+  .p-intro .hero-title { max-width: 16ch; }
+  .p-video { margin-top: var(--space-7); }
+  .p-video video { width: 100%; aspect-ratio: 960 / 712; object-fit: cover; border-radius: var(--radius); background: #000; }
+  .p-cta-inner { display: grid; justify-items: center; text-align: center; gap: var(--space-5); }
+  .p-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); }
+  .p-contact { font-size: var(--step-small); }
+</style>

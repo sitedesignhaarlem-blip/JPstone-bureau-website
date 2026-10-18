@@ -149,6 +149,34 @@ const nl: UI = {
       { q: 'Wat zit er in de gratis proefvideo?', a: 'Eén korte clip van je eigen listingfoto’s. Vrijblijvend en zonder factuur. Een link naar je listing is genoeg.' },
     ],
   },
+  vertical: {
+    eyebrow: 'Voor social',
+    title: 'Ook in 9:16.',
+    lead: 'Dezelfde film staand, voor Instagram Reels, TikTok en Stories. Zit in elk pakket, naast de 16:9-versie.',
+    videoAlt: 'De salon van Southern Cross in staand formaat, zoals hij er op een telefoon uitziet.',
+  },
+  calc: {
+    title: 'Wat kost het?',
+    label: "Aantal video's",
+    total: 'Totaal',
+    note: 'Exclusief btw. €100 per video, beide formaten en 2 revisies inbegrepen.',
+    more: "Meer dan 100 video's? Dan maken we een offerte.",
+  },
+  booking: {
+    title: 'Liever eerst even praten?',
+    text: 'Plan een gesprek van 15 minuten. Vraag wat je wilt weten.',
+    cta: 'Plan een gesprek',
+  },
+  prospect: {
+    eyebrow: 'Gemaakt voor {company}',
+    title: 'Dit is {listing}, als film.',
+    lead: "We maakten dit van de foto's die al op je listing staan. Geen draaidag, geen bezoek. Gratis en vrijblijvend.",
+    cta: 'Ja, dit wil ik voor mijn hele vloot',
+    whatsapp: 'Stel een vraag via WhatsApp',
+    price: 'Vanaf €100 per video. Beide formaten en 2 revisies inbegrepen.',
+    waMessage: 'Hoi, ik zag de proefvideo voor {company}. Ik wil graag meer weten.',
+    mailSubject: 'Proefvideo voor {company}',
+  },
   photoAlt: 'Originele listingfoto',
   shots: {
     'southern-cross-varen-zij': {

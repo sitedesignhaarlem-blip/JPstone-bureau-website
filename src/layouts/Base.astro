@@ -14,10 +14,12 @@ interface Props {
   videos?: string[];
   /** The first large image on the page; loaded with priority. */
   preloadImage?: string;
+  /** Address of a page outside the normal page list (e.g. a prospect page). Turns off language alternates. */
+  path?: string;
 }
-const { title, description, lang, page, noindex = false, videos = [], preloadImage } = Astro.props;
+const { title, description, lang, page, noindex = false, videos = [], preloadImage, path } = Astro.props;
 const t = useTranslations(lang);
-const canonical = new URL(pagePath(lang, page), SITE_URL).href;
+const canonical = new URL(path ?? pagePath(lang, page), SITE_URL).href;
 const abs = (path: string) => new URL(path, SITE_URL).href;
 
 // Structured data: the business on every page, plus the clips on pages that show them.
@@ -54,8 +56,8 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [business, ...video
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
-    {locales.map((l) => <link rel="alternate" hreflang={htmlLang[l]} href={new URL(pagePath(l, page), SITE_URL).href} />)}
-    <link rel="alternate" hreflang="x-default" href={new URL(pagePath(defaultLocale, page), SITE_URL).href} />
+    {!path && locales.map((l) => <link rel="alternate" hreflang={htmlLang[l]} href={new URL(pagePath(l, page), SITE_URL).href} />)}
+    {!path && <link rel="alternate" hreflang="x-default" href={new URL(pagePath(defaultLocale, page), SITE_URL).href} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
