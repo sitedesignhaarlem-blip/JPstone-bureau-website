@@ -29,10 +29,6 @@ const de: UI = {
     more: 'Zur Bibliothek',
     videoAlt: 'Motorkatamaran Southern Cross auf offener See, erstellt aus Inseratsfotos.',
   },
-  fromLibrary: {
-    title: 'Aus der Bibliothek.',
-    more: 'Alle Clips von Southern Cross',
-  },
   steps: {
     title: 'So funktioniert’s.',
     s1Title: 'Sie senden Fotos',

@@ -30,10 +30,6 @@ const en = {
     more: 'See the library',
     videoAlt: 'Motor catamaran Southern Cross cruising on open water, made from listing photos.',
   },
-  fromLibrary: {
-    title: 'From the library.',
-    more: 'All Southern Cross clips',
-  },
   steps: {
     title: 'How it works.',
     s1Title: 'You send photos',

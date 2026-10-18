@@ -29,10 +29,6 @@ const nl: UI = {
     more: 'Bekijk de bibliotheek',
     videoAlt: "Motorcatamaran Southern Cross vaart over open zee, gemaakt van listingfoto's.",
   },
-  fromLibrary: {
-    title: 'Uit de bibliotheek.',
-    more: 'Alle clips van Southern Cross',
-  },
   steps: {
     title: 'Zo werkt het.',
     s1Title: "Je stuurt foto's",

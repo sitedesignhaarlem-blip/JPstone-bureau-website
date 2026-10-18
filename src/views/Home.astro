@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import SiteNav from '../components/SiteNav.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import VideoTile from '../components/VideoTile.astro';
 import ShotDialog from '../components/ShotDialog.astro';
 import Steps from '../components/Steps.astro';
 import ContactSection from '../components/ContactSection.astro';
@@ -11,7 +10,6 @@ import CaseStudy from '../components/CaseStudy.astro';
 import Packages from '../components/Packages.astro';
 import Faq from '../components/Faq.astro';
 import Vertical from '../components/Vertical.astro';
-import { southernCross } from '../data/library';
 import { pagePath, useTranslations, type Locale } from '../i18n';
 
 interface Props {
@@ -19,11 +17,8 @@ interface Props {
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southern-cross-hut'].map(
-  (f) => southernCross.find((s) => s.file === f)!,
-);
 ---
-<Base title={t.meta.homeTitle} preloadImage="/media/hero.jpg" description={t.meta.homeDesc} lang={lang} page="home" videos={['southern-cross-varen-zij', 'southern-cross-drone-anker', 'southern-cross-kombuis', 'southern-cross-hut']}>
+<Base title={t.meta.homeTitle} preloadImage="/media/hero.jpg" description={t.meta.homeDesc} lang={lang} page="home" videos={['southern-cross-varen-zij', 'southern-cross-drone-anker', 'southern-cross-kombuis']}>
   <SiteNav lang={lang} page="home" />
 
   <main id="main">
@@ -50,18 +45,6 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
 
     <BeforeAfter lang={lang} />
 
-    <section class="section section--alt">
-      <div class="wrap-wide">
-        <div class="section-head">
-          <h2>{t.fromLibrary.title}</h2>
-          <a class="link-more" href={pagePath(lang, 'library')}>{t.fromLibrary.more}</a>
-        </div>
-        <div class="preview-grid">
-          {preview.map((s) => <VideoTile shot={s} lang={lang} />)}
-        </div>
-      </div>
-    </section>
-
     <Vertical lang={lang} />
 
     <CaseStudy lang={lang} />
@@ -80,7 +63,6 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
 </Base>
 
 <script>
-
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hero = document.querySelector<HTMLVideoElement>('[data-hero]');
   const section = document.querySelector<HTMLElement>('[data-hero-section]');
@@ -153,13 +135,4 @@ const preview = ['southern-cross-drone-anker', 'southern-cross-kombuis', 'southe
   .hero .lead { max-width: 34ch; color: var(--on-dark); }
   .hero .link-more { color: var(--accent-on-dark); }
   .actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-6); margin-top: var(--space-3); }
-
-  .wrap-wide { max-width: calc(var(--max-wide) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
-  .section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-3) var(--space-6); margin-bottom: var(--space-7); }
-  .preview-grid { display: grid; gap: var(--space-6); }
-
-
-  @media (min-width: 48rem) {
-    .preview-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
-  }
 </style>

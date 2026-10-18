@@ -29,10 +29,6 @@ const es: UI = {
     more: 'Ver la biblioteca',
     videoAlt: 'El catamarán a motor Southern Cross navegando en mar abierto, hecho a partir de fotos del anuncio.',
   },
-  fromLibrary: {
-    title: 'De la biblioteca.',
-    more: 'Todos los clips de Southern Cross',
-  },
   steps: {
     title: 'Cómo funciona.',
     s1Title: 'Nos envías fotos',

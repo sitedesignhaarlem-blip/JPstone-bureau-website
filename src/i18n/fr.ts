@@ -29,10 +29,6 @@ const fr: UI = {
     more: 'Voir la bibliothèque',
     videoAlt: 'Le catamaran à moteur Southern Cross navigue en pleine mer, réalisé à partir de photos d’annonce.',
   },
-  fromLibrary: {
-    title: 'Extraits de la bibliothèque.',
-    more: 'Tous les clips de Southern Cross',
-  },
   steps: {
     title: 'Comment ça marche.',
     s1Title: 'Vous envoyez des photos',
