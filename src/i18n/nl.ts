@@ -159,7 +159,8 @@ const nl: UI = {
     title: 'Wat kost het?',
     label: "Aantal video's",
     total: 'Totaal',
-    note: 'Exclusief btw. €100 per video, beide formaten en 2 revisies inbegrepen.',
+    perVideo: 'Prijs per video',
+    note: "Exclusief btw. Beide formaten en 2 revisies inbegrepen. Per 5 video's gaat de prijs per video €5 omlaag, tot minimaal €50.",
     more: "Meer dan 100 video's? Dan maken we een offerte.",
   },
   booking: {

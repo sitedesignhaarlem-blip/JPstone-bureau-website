@@ -159,7 +159,8 @@ const de: UI = {
     title: 'Was kostet es?',
     label: 'Anzahl Videos',
     total: 'Gesamt',
-    note: 'Zzgl. USt. 100 € pro Video, beide Formate und 2 Korrekturen inklusive.',
+    perVideo: 'Preis pro Video',
+    note: "Zzgl. USt. Beide Formate und 2 Korrekturen inklusive. Alle 5 Videos sinkt der Preis pro Video um 5 €, bis auf 50 €.",
     more: 'Mehr als 100 Videos? Wir erstellen Ihnen ein Angebot.',
   },
   booking: {

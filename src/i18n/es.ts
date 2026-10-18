@@ -159,7 +159,8 @@ const es: UI = {
     title: '¿Cuánto cuesta?',
     label: 'Número de vídeos',
     total: 'Total',
-    note: 'IVA no incluido. 100 € por vídeo, ambos formatos y 2 revisiones incluidas.',
+    perVideo: 'Precio por vídeo',
+    note: "IVA no incluido. Ambos formatos y 2 revisiones incluidas. Cada 5 vídeos, el precio por vídeo baja 5 €, hasta un mínimo de 50 €.",
     more: '¿Más de 100 vídeos? Te preparamos un presupuesto.',
   },
   booking: {

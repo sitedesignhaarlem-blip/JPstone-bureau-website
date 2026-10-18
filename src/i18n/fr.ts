@@ -159,7 +159,8 @@ const fr: UI = {
     title: 'Combien ça coûte ?',
     label: 'Nombre de vidéos',
     total: 'Total',
-    note: 'Hors TVA. 100 € par vidéo, deux formats et 2 révisions inclus.',
+    perVideo: 'Prix par vidéo',
+    note: "Hors TVA. Deux formats et 2 révisions inclus. Tous les 5 vidéos, le prix par vidéo baisse de 5 €, jusqu’à 50 €.",
     more: 'Plus de 100 vidéos ? Nous vous faisons un devis.',
   },
   booking: {

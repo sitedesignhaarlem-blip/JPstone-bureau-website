@@ -161,7 +161,8 @@ const en = {
     title: 'What does it cost?',
     label: 'Number of videos',
     total: 'Total',
-    note: 'Excl. VAT. €100 per video, both formats and 2 revisions included.',
+    perVideo: 'Price per video',
+    note: "Excl. VAT. Both formats and 2 revisions included. Every 5 videos, the price per video drops by €5, down to €50.",
     more: 'More than 100 videos? We’ll make you a quote.',
   },
   booking: {
