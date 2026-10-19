@@ -11,7 +11,7 @@ export const site = {
   kvk: '', // KvK number
   vat: '', // btw-identificatienummer (NL…B01)
   address: '', // street, postcode and city as registered with the KvK
-  email: 'sitedesign@gmail.com', // TODO: swap for an address on the own domain once it exists
+  email: 'sitedesignhaarlem@gmail.com',
   phoneDisplay: '+31 6 57 24 96 07',
   phoneE164: '+31657249607',
   whatsapp: 'https://wa.me/31657249607',
