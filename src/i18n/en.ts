@@ -162,7 +162,7 @@ const en = {
   },
   booking: {
     title: 'Rather talk first?',
-    text: 'Book a 30-minute call. Ask what you want to know.',
+    text: 'Book a 15-minute call. Ask what you want to know.',
     cta: 'Book a call',
   },
   prospect: {

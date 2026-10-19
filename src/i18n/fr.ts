@@ -160,7 +160,7 @@ const fr: UI = {
   },
   booking: {
     title: 'Vous préférez en parler d’abord ?',
-    text: 'Réservez un appel de 30 minutes. Posez toutes vos questions.',
+    text: 'Réservez un appel de 15 minutes. Posez toutes vos questions.',
     cta: 'Réserver un appel',
   },
   prospect: {
