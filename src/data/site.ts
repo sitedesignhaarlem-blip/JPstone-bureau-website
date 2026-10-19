@@ -1,7 +1,7 @@
 // Business details. Everything in [brackets] is a placeholder: replace before launch.
 
 // Production domain. stilltofilm.nl redirects here.
-export const SITE_URL = 'https://www.stilltofilm.com';
+export const SITE_URL = 'https://stilltofilm.com';
 
 export const site = {
   name: 'Still to Film',
