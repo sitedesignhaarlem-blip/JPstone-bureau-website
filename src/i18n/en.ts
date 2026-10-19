@@ -98,7 +98,7 @@ const en = {
     termsTitle: 'Terms and conditions',
     termsDesc: 'The terms for sample videos and projects from Still to Film: prices, delivery, revisions, usage rights, cancellation and refunds.',
     cookiesTitle: 'Cookie policy',
-    cookiesDesc: 'Still to Film sets no cookies and uses no trackers. That is why you see no cookie banner.',
+    cookiesDesc: 'Still to Film sets no cookies and uses no advertising trackers; visitor statistics are anonymous. That is why you see no cookie banner.',
     // Shown on translated legal pages: which version counts if they differ. Empty for Dutch.
     translationNote: 'This is a translation of the Dutch text. If the two differ, the Dutch version applies.',
   },

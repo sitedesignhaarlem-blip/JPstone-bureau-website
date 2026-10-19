@@ -77,7 +77,7 @@ Deze pagina's staan niet in de sitemap en worden niet geïndexeerd (`noindex`).
 
 - **Content Security Policy:** Astro zet bij elke build een CSP-tag in elke pagina met een hash van elk eigen script en elke eigen style (`security.csp` in `astro.config.mjs`). Alleen die scripts mogen draaien; alles van andere websites wordt geblokkeerd. Voeg je een externe dienst toe (bijvoorbeeld een andere formulierdienst), zet het domein dan bij de juiste regel in `astro.config.mjs`.
 - **Headers** (in `vercel.json`): HSTS, geen inbedden in andere sites (`frame-ancestors 'none'`), `nosniff`, een strikte `Referrer-Policy` en `Permissions-Policy` (geen camera, microfoon, locatie en dergelijke), en `Cross-Origin-Opener-Policy`/`-Resource-Policy`. Prospectpagina's (`/p/`) krijgen ook `X-Robots-Tag: noindex`.
-- **Geen cookies, geen trackers, geen externe scripts of lettertypen.** Alles komt van het eigen domein.
+- **Geen cookies, geen advertentietrackers, geen externe scripts of lettertypen.** Alles komt van het eigen domein. Bezoekersstatistieken via Vercel Web Analytics (`<Analytics />` in `src/layouts/Base.astro`): zonder cookies, het script en de metingen lopen via `/_vercel/insights/` op het eigen domein. Zet het aan in Vercel onder **Analytics → Enable**.
 - **`/.well-known/security.txt`:** zo weten onderzoekers waar ze een lek kunnen melden. Verloopt op 19-10-2027; zet dan de datum vooruit.
 - **Controleren:** `npm audit` (afhankelijkheden) en na livegang https://securityheaders.com en https://observatory.mozilla.org.
 

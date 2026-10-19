@@ -31,7 +31,7 @@ const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Verzoek: 
   <h2>Wie je gegevens nog meer verwerkt</h2>
   <p>We verkopen niets door. Voor het werk gebruiken we deze diensten:</p>
   <ul>
-    <li><strong>Vercel</strong> (hosting van deze website). Bij elk bezoek ontvangt de server technische gegevens zoals je IP-adres, om de site te tonen en te beveiligen.</li>
+    <li><strong>Vercel</strong> (hosting van deze website). Bij elk bezoek ontvangt de server technische gegevens zoals je IP-adres, om de site te tonen en te beveiligen, en om bezoeken anoniem te tellen (zie hieronder).</li>
     <li><strong>Google (Gmail)</strong> voor e-mail.</li>
     <li><strong>WhatsApp (Meta)</strong>, alleen als je ons zelf via WhatsApp benadert.</li>
     <li><strong>Higgsfield</strong>, de AI-dienst waarmee we van je foto's een video maken. Je foto's worden daarvoor geüpload.</li>
@@ -40,7 +40,7 @@ const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Verzoek: 
   <p>Sommige van deze partijen zitten buiten de Europese Economische Ruimte. Doorgifte gebeurt dan op basis van de afspraken die de AVG daarvoor eist, zoals het EU-VS Data Privacy Framework of standaardcontractbepalingen.</p>
 
   <h2>Cookies en tracking</h2>
-  <p>Deze site plaatst geen cookies en gebruikt geen analytics, advertentiepixels of andere trackers. Lettertypes en video's staan op onze eigen server. Zie de <a href={pagePath('nl', 'cookies')}>cookieverklaring</a>.</p>
+  <p>Deze site plaatst geen cookies en gebruikt geen advertentiepixels of andere trackers. We tellen bezoeken met Vercel Web Analytics, zonder cookies: dat legt de pagina vast, de site waar je vandaan kwam, het land, de browser, het besturingssysteem en het type apparaat. Je IP-adres wordt niet opgeslagen en je kunt niet herkend worden op andere sites of op een latere dag. Lettertypes en video's staan op onze eigen server. Zie de <a href={pagePath('nl', 'cookies')}>cookieverklaring</a>.</p>
 
   <h2>Nieuwsbrief</h2>
   <p>We sturen geen nieuwsbrief en geen marketingmail. Komt dat er ooit, dan alleen als je daar zelf voor kiest, met een afmeldlink in elke mail.</p>

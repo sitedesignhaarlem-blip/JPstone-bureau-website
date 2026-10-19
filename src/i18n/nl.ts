@@ -97,7 +97,7 @@ const nl: UI = {
     termsTitle: 'Algemene voorwaarden',
     termsDesc: "De afspraken voor proefvideo's en opdrachten van Still to Film: prijzen, levering, revisies, gebruiksrecht, annulering en terugbetaling.",
     cookiesTitle: 'Cookieverklaring',
-    cookiesDesc: 'Still to Film plaatst geen cookies en gebruikt geen trackers. Daarom zie je ook geen cookiebanner.',
+    cookiesDesc: 'Still to Film plaatst geen cookies en gebruikt geen advertentietrackers; bezoekersstatistieken zijn anoniem. Daarom zie je ook geen cookiebanner.',
     translationNote: '',
   },
   compare: {

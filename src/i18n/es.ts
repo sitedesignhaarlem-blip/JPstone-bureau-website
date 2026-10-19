@@ -97,7 +97,7 @@ const es: UI = {
     termsTitle: 'Condiciones generales',
     termsDesc: 'Las condiciones de los vídeos de prueba y encargos de Still to Film: precios, entrega, revisiones, derechos de uso, cancelación y reembolso.',
     cookiesTitle: 'Política de cookies',
-    cookiesDesc: 'Still to Film no usa cookies ni rastreadores. Por eso no ves ningún banner de cookies.',
+    cookiesDesc: 'Still to Film no usa cookies ni rastreadores publicitarios; las estadísticas de visitas son anónimas. Por eso no ves ningún banner de cookies.',
     translationNote: 'Esta es una traducción del texto neerlandés. En caso de diferencias, prevalece la versión neerlandesa.',
   },
   compare: {

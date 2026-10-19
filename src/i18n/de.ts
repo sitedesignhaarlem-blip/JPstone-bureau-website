@@ -97,7 +97,7 @@ const de: UI = {
     termsTitle: 'Allgemeine Geschäftsbedingungen',
     termsDesc: 'Die Bedingungen für Probevideos und Aufträge von Still to Film: Preise, Lieferung, Korrekturen, Nutzungsrecht, Stornierung und Erstattung.',
     cookiesTitle: 'Cookie-Richtlinie',
-    cookiesDesc: 'Still to Film setzt keine Cookies und keine Tracker ein. Deshalb sehen Sie auch kein Cookie-Banner.',
+    cookiesDesc: 'Still to Film setzt keine Cookies und keine Werbe-Tracker ein; die Besucherstatistik ist anonym. Deshalb sehen Sie auch kein Cookie-Banner.',
     translationNote: 'Dies ist eine Übersetzung des niederländischen Textes. Bei Abweichungen gilt die niederländische Fassung.',
   },
   compare: {

@@ -1,4 +1,5 @@
 ---
+import Analytics from '@vercel/analytics/astro';
 import '../styles/tokens.css';
 import '../styles/base.css';
 import { SITE_URL, site } from '../data/site';
@@ -77,5 +78,6 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
   <body>
     <a class="skip-link" href="#main">{t.skip}</a>
     <slot />
+    <Analytics />
   </body>
 </html>
