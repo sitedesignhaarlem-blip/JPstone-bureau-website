@@ -1,0 +1,61 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pricePerVideo } from '../../data/pricing';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'es';
+const faq = [q.volume, q.vat, q.payment, q.revisions, q.sample];
+const money = new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pricePerVideo(n)), total: money.format(n * pricePerVideo(n)) }));
+---
+<Landing
+  lang={lang}
+  page="pricing"
+  title="Precios: de 100 € a 50 € por vídeo · Still to Film"
+  description="Un vídeo cuesta 100 €; a partir de 5 vídeos, 95 € por vídeo, y 5 € menos cada 5 vídeos hasta 50 €. Ambos formatos y 2 revisiones incluidos. Precios sin IVA."
+  eyebrow="Precios"
+  h1="Precios: de 100 € a 50 € por vídeo"
+  summary="Un vídeo de Still to Film cuesta 100 € si encargas uno, y 95 € por vídeo a partir de 5 vídeos. Después, el precio por vídeo baja 5 € cada 5 vídeos, hasta un mínimo de 50 €; los precios son sin IVA e incluyen los dos formatos y dos rondas de revisión."
+  faqTitle="Preguntas sobre precios"
+  faqItems={faq}
+  service
+  related={['yacht', 'hotel', 'faq']}
+>
+  <h2>La escala de precios</h2>
+  <p>El precio por vídeo depende del número de vídeos del encargo. El mismo precio se aplica a todos los vídeos de ese encargo.</p>
+  <PriceTable lang={lang} />
+  <p>También puedes probar las cifras con la <a href={pagePath(lang, 'home', '#packages-title')}>calculadora de la página de inicio</a>.</p>
+
+  <h2>¿Qué incluye cada vídeo?</h2>
+  <ul>
+    <li>Un vídeo de recorrido de 60 a 90 segundos hecho con tus fotos.</li>
+    <li>Los dos formatos: 16:9 para webs y plataformas de anuncios, 9:16 para Reels, TikTok y Stories, en archivos MP4.</li>
+    <li>Una revisión por parte de una persona antes de la entrega, para que el vídeo muestre solo lo que hay en tus fotos.</li>
+    <li>Dos rondas de revisión.</li>
+    <li>Uso ilimitado para tu propio marketing: web, anuncios, redes sociales y publicidad.</li>
+  </ul>
+
+  <h2>¿Qué cuenta como revisión y qué es un vídeo nuevo?</h2>
+  <p>Una revisión es un cambio con las mismas fotos y el mismo planteamiento: otro orden de planos, un movimiento más lento, un clip menos, otro inicio u otro final. Cada vídeo incluye dos rondas de revisión.</p>
+  <p>Las fotos nuevas, o un planteamiento distinto para el vídeo, cuentan como un vídeo nuevo. También es así cuando reformas una habitación o cambias las fotos de un yate y quieres una película actualizada.</p>
+
+  <h2>Ejemplos de totales</h2>
+  <div class="table-wrap" role="region" aria-label="Ejemplos de totales" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Vídeos</th><th scope="col">Precio por vídeo</th><th scope="col">Total, sin IVA</th></tr></thead>
+      <tbody>
+        {examples.map((e) => (
+          <tr><td data-label="Vídeos">{e.n}</td><td data-label="Precio por vídeo">{e.per}</td><td data-label="Total">{e.total}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2>¿Más de 100 vídeos?</h2>
+  <p>Para encargos de más de 100 vídeos te preparamos un presupuesto. Lo mismo vale para el trabajo continuo: hasta 100 vídeos al mes, ambos formatos, cancelable cada mes.</p>
+
+  <h2>Empieza con un vídeo de prueba gratis</h2>
+  <p>Antes de encargar, hacemos un vídeo de prueba gratis con las fotos de tu propio anuncio. Sin compromiso y sin factura. Solo necesitamos el enlace de tu anuncio.</p>
+</Landing>

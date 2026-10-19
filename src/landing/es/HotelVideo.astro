@@ -1,0 +1,58 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'es';
+const faq = [q.roomTypes, q.access, q.update, q.photos, q.sample];
+---
+<Landing
+  lang={lang}
+  page="hotel"
+  title="Vídeo de hotel a partir de fotos, sin rodaje · Still to Film"
+  description="Convertimos las fotos de tu hotel boutique en un vídeo de recorrido de 60 a 90 segundos. Sin rodaje, en 16:9 y 9:16. De 50 € a 100 € por vídeo."
+  eyebrow="Para hoteles boutique"
+  h1="Vídeo para hoteles boutique, a partir de las fotos de tus habitaciones"
+  summary="Still to Film convierte las fotos que ya tienes de tus habitaciones y tu establecimiento en un vídeo de recorrido de 60 a 90 segundos, sin equipo de rodaje y sin cerrar ninguna habitación un día. Recibes cada vídeo en 16:9 y 9:16, una persona lo revisa antes de la entrega y cuesta de 50 € a 100 € según el volumen."
+  faqTitle="Preguntas de hoteles"
+  faqItems={faq}
+  service
+  related={['yacht', 'aiVideo', 'pricing']}
+>
+  <h2>¿Por qué no grabar el hotel sin más?</h2>
+  <p>Grabar un hotel obliga a planificar en torno a los huéspedes. Las habitaciones tienen que estar vacías y preparadas, las zonas comunes tranquilas y la luz adecuada, a menudo durante varios días. Cuando reformas una habitación o cambias la decoración de temporada, el vídeo queda desfasado y hay que empezar de nuevo.</p>
+  <p>La mayoría de los hoteles boutique ya tienen fotos profesionales de cada tipo de habitación, el vestíbulo, el restaurante, la terraza o la piscina. Hacemos el vídeo a partir de esas fotos, así que no hay que cambiar nada en el hotel.</p>
+
+  <h2>¿Cómo funciona?</h2>
+  <ol>
+    <li><strong>Nos envías las fotos</strong>, o un enlace a tu web o a tu página de reservas.</li>
+    <li><strong>Hacemos la película.</strong> Elegimos las fotos, el orden y los movimientos de cámara, y usamos IA para convertir las imágenes fijas en un movimiento tranquilo por la habitación o el establecimiento.</li>
+    <li><strong>Una persona la revisa.</strong> Vemos cada vídeo completo antes de que lo veas tú. Si algo no coincide con tus fotos, lo corregimos o lo quitamos.</li>
+    <li><strong>Nos das tu opinión.</strong> Incluye dos rondas de revisión.</li>
+    <li><strong>Tú publicas.</strong> Recibes archivos MP4 en 16:9 y 9:16.</li>
+  </ol>
+  <p>No necesitas software, prompts ni cuenta. Más detalles en la página <a href={pagePath(lang, 'how')}>cómo funciona</a>.</p>
+
+  <h2>¿Habitación por habitación o todo el establecimiento?</h2>
+  <p>Las dos opciones funcionan. Un vídeo de todo el establecimiento encaja en tu página de inicio y en redes sociales. Un vídeo por tipo de habitación encaja en las páginas de reserva, donde el huésped compara habitaciones. Cada vídeo se cobra como un vídeo, así que un hotel con cinco tipos de habitación y un vídeo del establecimiento encarga seis vídeos.</p>
+  <p>Cuando reformas o haces fotos nuevas, hacemos un vídeo nuevo con las fotos nuevas. Eso cuenta como un vídeo nuevo, no como una revisión.</p>
+
+  <h2>¿Qué recibes?</h2>
+  <ul>
+    <li>Un vídeo de recorrido de 60 a 90 segundos por tipo de habitación o por establecimiento.</li>
+    <li>16:9 para tu web y las plataformas de reserva, y 9:16 para Instagram Reels, TikTok y Stories. Los dos formatos están incluidos.</li>
+    <li>Dos rondas de revisión por vídeo.</li>
+    <li>Un estilo tranquilo y coherente en todos tus vídeos.</li>
+    <li>Uso ilimitado para tu propio marketing: web, páginas de reserva, redes sociales y publicidad.</li>
+  </ul>
+
+  <h2>¿Qué puede mostrar el vídeo y qué no?</h2>
+  <p>El vídeo solo puede mostrar lo que hay en tus fotos. Un baño, una vista o una terraza que nunca se fotografió no aparecerá en la película, y no añadimos huéspedes, muebles ni vistas. La calidad de las fotos marca la calidad de la película: las fotos nítidas, bien iluminadas y en alta resolución funcionan mejor.</p>
+  <p>Los ejemplos de esta web son de un yate, porque todavía no tenemos clientes hoteleros que mostrar. El vídeo de prueba gratis se hace con tus propias fotos, así que ves el resultado con tu propio hotel antes de decidir.</p>
+
+  <h2>¿Cuánto cuesta?</h2>
+  <p>El precio por vídeo depende de cuántos vídeos encargues a la vez. Un solo vídeo cuesta 100 €. A partir de 5 vídeos son 95 € por vídeo, y el precio baja 5 € cada 5 vídeos, hasta un mínimo de 50 € por vídeo.</p>
+  <PriceTable lang={lang} />
+  <p>Por ejemplo, cinco tipos de habitación y un vídeo del establecimiento son 6 vídeos: 6 × 95 € = 570 €, sin IVA.</p>
+</Landing>

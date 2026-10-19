@@ -29,13 +29,7 @@ export const pageIds: PageId[] = [
 
 // Pages that exist in only some languages (the rest exist in all). A page is added to a
 // language once its text is written in src/landing/<lang>/.
-const pageLocales: Partial<Record<PageId, readonly Locale[]>> = {
-  yacht: ['en'],
-  hotel: ['en'],
-  aiVideo: ['en'],
-  pricing: ['en'],
-  faq: ['en'],
-};
+const pageLocales: Partial<Record<PageId, readonly Locale[]>> = {};
 
 /** Whether a page exists in a language. */
 export function hasPage(locale: Locale, page: PageId): boolean {

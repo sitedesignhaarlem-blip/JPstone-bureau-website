@@ -44,7 +44,7 @@ export const q = {
   },
   volume: {
     q: 'Comment fonctionne le prix dégressif ?',
-    a: 'Une seule vidéo coûte 100 €. À partir de 5 vidéos, le prix est de 95 € par vidéo, puis il baisse de 5 € tous les 5 vidéos, jusqu’à 50 € par vidéo. Plus de 100 vidéos : nous établissons un devis.',
+    a: 'Une seule vidéo coûte 100 €. À partir de 5 vidéos, le prix est de 95 € par vidéo, puis il baisse de 5 € toutes les 5 vidéos, jusqu’à 50 € par vidéo. Plus de 100 vidéos : nous établissons un devis.',
   },
 } satisfies Record<string, FaqItem>;
 

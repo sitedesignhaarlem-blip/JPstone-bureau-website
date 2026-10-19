@@ -1,0 +1,67 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'es';
+const faq = [q.ai, q.limits, q.skills, q.photos];
+---
+<Landing
+  lang={lang}
+  page="aiVideo"
+  title="Vídeo con IA a partir de fotos: proceso y precio · Still to Film"
+  description="Cómo la IA convierte las fotos de un anuncio en un vídeo de recorrido, cuánto cuesta, qué puede mostrar y cómo una persona lo revisa para que sea fiel a ellas."
+  eyebrow="Explicado"
+  h1="Vídeo con IA a partir de fotos del anuncio: cómo funciona, cuánto cuesta y qué esperar"
+  summary="El vídeo con IA a partir de fotos usa software para añadir movimiento de cámara y fotogramas intermedios a imágenes fijas, de modo que las fotos de un anuncio se convierten en una película corta de recorrido. Still to Film lo hace todo por ti: nos envías las fotos, hacemos un vídeo de 60 a 90 segundos y una persona revisa cada vídeo antes de la entrega."
+  faqTitle="Preguntas sobre el vídeo con IA"
+  faqItems={faq}
+  service
+  related={['yacht', 'hotel', 'pricing']}
+>
+  <h2>¿Qué es el vídeo con IA a partir de fotos?</h2>
+  <p>Una foto es un momento visto desde un solo punto. El software de vídeo con IA toma esa foto y genera los fotogramas a su alrededor: un avance lento hacia una habitación, un barrido por una cubierta, un giro hacia una ventana. Una tras otra, las fotos se convierten en una película corta que da la sensación de recorrer el espacio.</p>
+  <p>El software no graba nada. Cada fotograma sale de lo que hay en las fotos, y esa es a la vez su fuerza y su límite.</p>
+
+  <h2>¿Cómo funciona, paso a paso?</h2>
+  <ol>
+    <li><strong>Elegir las fotos.</strong> No todas las fotos funcionan en movimiento. Elegimos las que son nítidas y muestran bien el espacio, y decidimos el orden del recorrido.</li>
+    <li><strong>Elegir los movimientos.</strong> Para cada foto elegimos un movimiento de cámara que le encaje: lento y estable, nunca rápido ni mareante.</li>
+    <li><strong>Generar los clips.</strong> La IA convierte cada foto en un clip corto. Algunos intentos salen mal; los descartamos y los hacemos de nuevo.</li>
+    <li><strong>Montaje.</strong> Unimos los clips en una película de 60 a 90 segundos, en 16:9 y 9:16.</li>
+    <li><strong>Revisión.</strong> Una persona ve el vídeo completo antes de que lo veas tú (más abajo te lo explicamos).</li>
+  </ol>
+
+  <h2>¿Lo hacemos por ti o lo haces tú?</h2>
+  <p>Hay herramientas que te permiten subir fotos y generar el vídeo tú mismo. Pueden salir más baratas si tienes tiempo y quieres aprender a usarlas. La diferencia está en quién hace el trabajo y quién lo revisa.</p>
+  <div class="table-wrap" role="region" aria-label="Comparación: herramienta de vídeo con IA por tu cuenta y Still to Film" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Tema</th><th scope="col">Herramienta de vídeo con IA por tu cuenta</th><th scope="col">Still to Film</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Tema">Conocimientos necesarios</td><td data-label="Herramienta por tu cuenta">Aprendes la herramienta y escribes los prompts</td><td data-label="Still to Film">Ninguno: nos envías un enlace o las fotos</td></tr>
+        <tr><td data-label="Tema">Elegir fotos y movimientos</td><td data-label="Herramienta por tu cuenta">Tú</td><td data-label="Still to Film">Nosotros</td></tr>
+        <tr><td data-label="Tema">Intentos fallidos</td><td data-label="Herramienta por tu cuenta">Los detectas y vuelves a intentarlo</td><td data-label="Still to Film">Los descartamos antes de que veas nada</td></tr>
+        <tr><td data-label="Tema">Control de calidad</td><td data-label="Herramienta por tu cuenta">Depende de ti</td><td data-label="Still to Film">Una persona ve cada vídeo completo</td></tr>
+        <tr><td data-label="Tema">Formatos</td><td data-label="Herramienta por tu cuenta">Depende de la herramienta</td><td data-label="Still to Film">16:9 y 9:16, ambos incluidos</td></tr>
+        <tr><td data-label="Tema">Cambios</td><td data-label="Herramienta por tu cuenta">Lo rehaces tú</td><td data-label="Still to Film">Dos rondas de revisión incluidas</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>¿Cuáles son los límites?</h2>
+  <ul>
+    <li><strong>Solo muestra lo que hay en las fotos.</strong> Una habitación, una vista o un detalle que nunca se fotografió no puede aparecer en la película.</li>
+    <li><strong>Los movimientos tranquilos funcionan mejor.</strong> Los movimientos de cámara rápidos o los grandes cambios de ángulo obligan a la IA a adivinar, y lo que adivina puede salir mal. Por eso mantenemos el movimiento lento a propósito.</li>
+    <li><strong>Sin personas ni sonido ambiente.</strong> La película muestra los espacios, no a huéspedes ni tripulación, y no lleva sonido grabado.</li>
+    <li><strong>La calidad de las fotos importa.</strong> Las fotos borrosas, oscuras o de baja resolución dan una película más pobre. Los archivos originales de tu fotógrafo funcionan mejor.</li>
+  </ul>
+
+  <h2>¿Cómo funciona la revisión de calidad?</h2>
+  <p>Antes de la entrega, una persona ve cada vídeo de principio a fin y lo compara con las fotos. Buscamos todo lo que no coincida: detalles que cambian de forma, líneas que se curvan, objetos que aparecen o desaparecen, movimientos que no parecen naturales. Si algo falla, volvemos a hacer ese clip o lo quitamos. Solo entonces ves el vídeo, y aún tienes dos rondas de revisión.</p>
+
+  <h2>¿Cuándo es mejor un día de rodaje?</h2>
+  <p>El vídeo con IA a partir de fotos no sirve para todo. Un día de rodaje es mejor opción si quieres personas en la imagen, sonido real, una entrevista, tomas de dron de lugares de los que no tienes fotos, o espacios que nunca se han fotografiado. Si ya tienes buenas fotos y quieres recorridos tranquilos para cada anuncio, el vídeo con IA cumple sin pasar un día en el lugar.</p>
+
+  <h2>¿Cuánto cuesta?</h2>
+  <p>Un solo vídeo cuesta 100 €, sin IVA. A partir de 5 vídeos, el precio por vídeo baja 5 € cada 5 vídeos, hasta un mínimo de 50 €. Consulta la <a href={pagePath(lang, 'pricing')}>escala de precios</a> completa, o empieza con un vídeo de prueba gratis hecho con tus propias fotos.</p>
+</Landing>
