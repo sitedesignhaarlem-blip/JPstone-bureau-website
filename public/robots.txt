@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# TODO: replace example.com with the real domain once it is connected (see src/data/site.ts).
-Sitemap: https://www.example.com/sitemap-index.xml
+Sitemap: https://stilltofilm.com/sitemap-index.xml

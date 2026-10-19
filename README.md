@@ -68,7 +68,7 @@ Deze pagina's staan niet in de sitemap en worden niet geïndexeerd (`noindex`). 
 
 - [x] **Belafspraak:** loopt via WhatsApp, met een vooraf ingevuld bericht (`booking.waMessage` in `src/i18n/`).
 
-- [ ] **Domein:** invullen in `src/data/site.ts` (`SITE_URL`) en in `public/robots.txt`.
+- [x] **Domein:** stilltofilm.com (staat in `src/data/site.ts` en `public/robots.txt`). Koppel het domein in Vercel en laat stilltofilm.nl doorsturen naar stilltofilm.com.
 - [ ] **Bedrijfsgegevens (na inschrijving):** KvK-nummer, btw-id en vestigingsadres invullen in `src/data/site.ts`. Zolang ze leeg zijn, worden ze nergens getoond. Zodra ze er staan, verschijnen ze vanzelf in de footer, de privacyverklaring en de voorwaarden.
 - [ ] **Formulier:** Formspree (of vergelijkbaar) koppelen via `formEndpoint` in `src/data/site.ts`, en de dienst noemen in de privacyverklaringen.
 - [x] **Pakketten:** €100 per video, 30 seconden, 2 revisies, Vloot onbeperkt, Doorlopend tot 100 per maand (`packages` en `faq` in `src/i18n/`, artikel 5 in `src/legal/*/Terms.astro`).

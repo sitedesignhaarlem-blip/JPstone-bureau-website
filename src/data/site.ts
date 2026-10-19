@@ -1,7 +1,7 @@
 // Business details. Everything in [brackets] is a placeholder: replace before launch.
 
-// TODO: replace with the real production domain once it is connected in Vercel.
-export const SITE_URL = 'https://www.example.com';
+// Production domain. stilltofilm.nl redirects here.
+export const SITE_URL = 'https://stilltofilm.com';
 
 export const site = {
   name: 'JPstone Bureau',
