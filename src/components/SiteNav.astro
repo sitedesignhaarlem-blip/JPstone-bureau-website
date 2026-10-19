@@ -1,4 +1,5 @@
 ---
+import LogoMark from './LogoMark.astro';
 import { locales, localeNames, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
 
 interface Props {
@@ -16,7 +17,7 @@ const links: { id: PageId; label: string }[] = [
 ---
 <header class="nav">
   <nav class="wrap nav-inner" aria-label={t.nav.label}>
-    <a class="nav-brand" href={pagePath(lang, 'home')}>Still to Film</a>
+    <a class="nav-brand" href={pagePath(lang, 'home')}><LogoMark />Still to Film</a>
     <div class="nav-right">
       <ul class="nav-links" role="list">
         {links.map((l) => (
@@ -65,7 +66,7 @@ const links: { id: PageId; label: string }[] = [
   a { color: var(--fg); opacity: 0.8; text-decoration: none; }
   a:hover, a[aria-current='page'] { opacity: 1; text-decoration: none; }
   a[aria-current='page'] { font-weight: 600; }
-  .nav-brand { font-weight: 600; font-size: 0.875rem; opacity: 1; white-space: nowrap; }
+  .nav-brand { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.875rem; opacity: 1; white-space: nowrap; }
   .nav-links a { white-space: nowrap; }
 
   .lang { position: relative; }

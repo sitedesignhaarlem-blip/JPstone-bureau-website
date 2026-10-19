@@ -1,4 +1,5 @@
 ---
+import LogoMark from '../../components/LogoMark.astro';
 // A personal page for one prospect: their own sample video, the before/after with their photo,
 // and one clear next step. Entries live in src/data/prospects.ts.
 import Base from '../../layouts/Base.astro';
@@ -25,7 +26,7 @@ const title = `${fill(t.prospect.eyebrow)} · ${site.name}`;
 <Base title={title} description={fill(t.prospect.lead)} lang={p.lang} page="home" path={`/p/${p.slug}/`} noindex preloadImage={`/media/${p.video}.jpg`}>
   <header class="p-head">
     <div class="wrap p-head-inner">
-      <a class="p-brand" href={pagePath(p.lang, 'home')}>{site.name}</a>
+      <a class="p-brand" href={pagePath(p.lang, 'home')}><LogoMark />{site.name}</a>
     </div>
   </header>
 
@@ -76,7 +77,7 @@ const title = `${fill(t.prospect.eyebrow)} · ${site.name}`;
 <style>
   .p-head { border-bottom: 1px solid var(--line); background: var(--bg); }
   .p-head-inner { display: flex; align-items: center; min-height: 3rem; }
-  .p-brand { color: var(--fg); font-weight: 600; font-size: 0.875rem; text-decoration: none; }
+  .p-brand { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--fg); font-weight: 600; font-size: 0.875rem; text-decoration: none; }
   .p-intro { padding-bottom: var(--space-6); }
   .p-intro-inner { display: grid; gap: var(--space-4); }
   .p-intro .hero-title { max-width: 16ch; }
