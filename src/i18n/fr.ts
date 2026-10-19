@@ -160,8 +160,9 @@ const fr: UI = {
   },
   booking: {
     title: 'Vous préférez en parler d’abord ?',
-    text: 'Réservez un appel de 15 minutes. Posez toutes vos questions.',
-    cta: 'Réserver un appel',
+    text: 'Envoyez-nous un message WhatsApp et nous planifions un appel de 15 minutes. Posez toutes vos questions.',
+    cta: 'Planifier un appel via WhatsApp',
+    waMessage: 'Bonjour ! J’aimerais planifier un appel de 15 minutes au sujet d’une vidéo pour mon annonce.',
   },
   prospect: {
     eyebrow: 'Réalisé pour {company}',

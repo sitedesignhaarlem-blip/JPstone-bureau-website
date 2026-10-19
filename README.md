@@ -66,7 +66,7 @@ Deze pagina's staan niet in de sitemap en worden niet geïndexeerd (`noindex`). 
 
 ## Wat nog moet gebeuren voor de livegang
 
-- [x] **Belafspraak:** meetergo-link staat bij `booking` in `src/data/site.ts`.
+- [x] **Belafspraak:** loopt via WhatsApp, met een vooraf ingevuld bericht (`booking.waMessage` in `src/i18n/`).
 
 - [ ] **Domein:** invullen in `src/data/site.ts` (`SITE_URL`) en in `public/robots.txt`.
 - [ ] **Bedrijfsgegevens (na inschrijving):** KvK-nummer, btw-id en vestigingsadres invullen in `src/data/site.ts`. Zolang ze leeg zijn, worden ze nergens getoond. Zodra ze er staan, verschijnen ze vanzelf in de footer, de privacyverklaring en de voorwaarden.

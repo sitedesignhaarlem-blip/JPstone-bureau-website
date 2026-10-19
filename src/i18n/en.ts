@@ -162,8 +162,9 @@ const en = {
   },
   booking: {
     title: 'Rather talk first?',
-    text: 'Book a 15-minute call. Ask what you want to know.',
-    cta: 'Book a call',
+    text: 'Send a WhatsApp message and we’ll plan a 15-minute call. Ask what you want to know.',
+    cta: 'Plan a call via WhatsApp',
+    waMessage: 'Hi! I’d like to plan a 15-minute call about a video for my listing.',
   },
   prospect: {
     eyebrow: 'Made for {company}',

@@ -1,5 +1,5 @@
 ---
-// Contact block with form, WhatsApp, phone and email. Used on the home page and on the contact page.
+// Contact block with form, WhatsApp, phone, email and a WhatsApp button to plan a call. Used on the home page and on the contact page.
 import { site } from '../data/site';
 import { pagePath, useTranslations, type Locale } from '../i18n';
 
@@ -11,7 +11,7 @@ const { lang, heading = 'h2' } = Astro.props;
 const t = useTranslations(lang);
 const c = t.contact;
 const Heading = heading;
-const hasBooking = site.booking.startsWith('http');
+const bookingHref = `${site.whatsapp}?text=${encodeURIComponent(t.booking.waMessage)}`;
 const Sub = heading === 'h1' ? 'h2' : 'h3';
 const formAction = site.formEndpoint || `mailto:${site.email}?subject=${encodeURIComponent(c.mailSubject)}`;
 ---
@@ -28,9 +28,7 @@ const formAction = site.formEndpoint || `mailto:${site.email}?subject=${encodeUR
       <div class="booking">
         <Sub class="booking-title">{t.booking.title}</Sub>
         <p class="muted">{t.booking.text}</p>
-        {hasBooking
-          ? <a class="button button--secondary" href={site.booking} rel="noopener">{t.booking.cta}</a>
-          : <p><span class="todo">{t.booking.cta}: {site.booking}</span></p>}
+        <a class="button button--secondary" href={bookingHref} rel="noopener">{t.booking.cta}</a>
       </div>
     </div>
 

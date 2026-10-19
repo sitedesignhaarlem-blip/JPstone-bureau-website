@@ -160,8 +160,9 @@ const nl: UI = {
   },
   booking: {
     title: 'Liever eerst even praten?',
-    text: 'Plan een gesprek van 15 minuten. Vraag wat je wilt weten.',
-    cta: 'Plan een gesprek',
+    text: 'Stuur een WhatsApp-bericht, dan plannen we een belletje van 15 minuten. Vraag wat je wilt weten.',
+    cta: 'Plan een belletje via WhatsApp',
+    waMessage: 'Hoi! Ik wil graag een belletje van 15 minuten plannen over een video voor mijn listing.',
   },
   prospect: {
     eyebrow: 'Gemaakt voor {company}',

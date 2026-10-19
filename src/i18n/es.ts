@@ -160,8 +160,9 @@ const es: UI = {
   },
   booking: {
     title: '¿Prefieres hablar primero?',
-    text: 'Reserva una llamada de 15 minutos. Pregunta lo que quieras saber.',
-    cta: 'Reservar una llamada',
+    text: 'Envíanos un WhatsApp y planificamos una llamada de 15 minutos. Pregunta lo que quieras saber.',
+    cta: 'Planificar una llamada por WhatsApp',
+    waMessage: '¡Hola! Me gustaría planificar una llamada de 15 minutos sobre un vídeo para mi anuncio.',
   },
   prospect: {
     eyebrow: 'Hecho para {company}',

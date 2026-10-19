@@ -160,8 +160,9 @@ const de: UI = {
   },
   booking: {
     title: 'Lieber erst sprechen?',
-    text: 'Buchen Sie ein Gespräch von 15 Minuten. Fragen Sie, was Sie wissen möchten.',
-    cta: 'Gespräch buchen',
+    text: 'Schreiben Sie uns auf WhatsApp, dann vereinbaren wir ein Gespräch von 15 Minuten. Fragen Sie, was Sie wissen möchten.',
+    cta: 'Gespräch per WhatsApp vereinbaren',
+    waMessage: 'Hallo! Ich möchte gern ein 15-minütiges Gespräch über ein Video für mein Inserat vereinbaren.',
   },
   prospect: {
     eyebrow: 'Erstellt für {company}',
