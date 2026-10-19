@@ -46,7 +46,7 @@ const en = {
   },
   contact: {
     title: 'Curious what your listing could look like?',
-    lead: "Send us a link to your listing. We'll make a free sample video.",
+    lead: "Send us a link to your listing. We'll make a free sample video: a short preview of 15 to 25 seconds, with a few shots.",
     whatsapp: 'WhatsApp',
     call: 'Call',
     email: 'Email',
@@ -58,7 +58,7 @@ const en = {
     submit: 'Request a free sample video',
     noteBefore: 'We only use your details to reply to your request and make the sample video. More in our',
     noteLink: 'privacy policy',
-    noteAfter: '. The sample video is free, with no obligation.',
+    noteAfter: '. The sample video is a short preview of 15 to 25 seconds, free and with no obligation.',
     sending: 'Sending…',
     sent: "Sent. We'll get back to you as soon as we can.",
     failed: "That didn't work. Email us at {email} or send a WhatsApp.",
@@ -134,7 +134,7 @@ const en = {
       { name: 'Fleet', for: 'Several yachts, or a whole hotel.', includes: 'As many videos as you need, in one consistent style, both formats.' },
       { name: 'Ongoing', for: 'New listings every season.', includes: 'Up to 100 videos a month, both formats, cancel any month.' },
     ],
-    note: 'Not sure which fits? Start with the free sample video.',
+    note: 'Not sure which fits? Start with the free sample: a short preview of 15 to 25 seconds.',
   },
   faq: {
     title: 'Questions.',
@@ -146,7 +146,7 @@ const en = {
       { q: "Which photos do you need?", a: "The photos from your listing are enough. The higher the quality of the photos, the higher the quality of the film: sharp, well lit and in high resolution works best. If you have the original files from your photographer, send those." },
       { q: "Is this made with AI?", a: "Yes. Software turns your photos into camera movement. Then a person watches every video in full before delivery, so it shows what is in your photos and nothing that isn’t." },
       { q: "Do I need any skills or software?", a: "No. You send a link to your listing or the photos, and we do the rest. There is no tool to learn, no prompts to write and no account to set up." },
-      { q: 'What does the free sample include?', a: 'One short clip made from your own listing photos. No obligation and no invoice. A link to your listing is all we need.' },
+      { q: 'What does the free sample include?', a: 'A short preview of 15 to 25 seconds, with a few shots made from your own listing photos. It shows what your photos can become; the full video is 60 to 90 seconds. No obligation and no invoice. A link to your listing is all we need.' },
     ],
   },
   promise: {
@@ -169,7 +169,7 @@ const en = {
   landing: {
     services: "Services",
     ctaTitle: "See it with your own listing.",
-    ctaText: "Send us the link to your listing. We make a free sample video from your own photos, with no obligation.",
+    ctaText: "Send us the link to your listing. We make a free sample from your own photos: a short preview of 15 to 25 seconds, with no obligation.",
     related: "Read next",
     fullPricing: "See full pricing",
     allQuestions: "All questions",
@@ -202,7 +202,7 @@ const en = {
   prospect: {
     eyebrow: 'Made for {company}',
     title: 'This is {listing}, as a film.',
-    lead: 'We made this from the photos already on your listing. No shoot, no visit. Free, with no obligation.',
+    lead: 'We made this short preview from the photos already on your listing. No shoot, no visit. Free, with no obligation. A full video is 60 to 90 seconds.',
     cta: 'Yes, I want this for my whole fleet',
     whatsapp: 'Ask a question on WhatsApp',
     price: 'From €100 per video. Both formats and 2 revisions included.',

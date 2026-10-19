@@ -16,7 +16,7 @@ export function useTranslations(locale: Locale): UI {
 }
 
 // Date the legal pages were last checked. Update when the legal text changes.
-const LEGAL_UPDATED = new Date('2026-10-17T12:00:00Z');
+const LEGAL_UPDATED = new Date('2026-10-19T12:00:00Z');
 
 /** The legal "last updated" date, written the way each language writes dates. */
 export function legalDate(locale: Locale): string {

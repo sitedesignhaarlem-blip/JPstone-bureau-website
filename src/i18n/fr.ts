@@ -45,7 +45,7 @@ const fr: UI = {
   },
   contact: {
     title: 'À quoi pourrait ressembler votre annonce ?',
-    lead: 'Envoyez-nous le lien de votre annonce. Nous réalisons une vidéo d’essai gratuite.',
+    lead: 'Envoyez-nous le lien de votre annonce. Nous réalisons une vidéo d’essai gratuite : un court aperçu de 15 à 25 secondes, avec quelques plans.',
     whatsapp: 'WhatsApp',
     call: 'Appeler',
     email: 'E-mail',
@@ -57,7 +57,7 @@ const fr: UI = {
     submit: 'Demander une vidéo d’essai gratuite',
     noteBefore: 'Nous utilisons vos données uniquement pour répondre à votre demande et réaliser la vidéo d’essai. Plus d’informations dans notre',
     noteLink: 'politique de confidentialité',
-    noteAfter: '. La vidéo d’essai est gratuite et sans engagement.',
+    noteAfter: '. La vidéo d’essai est un court aperçu de 15 à 25 secondes, gratuit et sans engagement.',
     sending: 'Envoi…',
     sent: 'Envoyé. Nous vous répondons dès que possible.',
     failed: 'L’envoi a échoué. Écrivez-nous à {email} ou envoyez un WhatsApp.',
@@ -132,7 +132,7 @@ const fr: UI = {
       { name: 'Flotte', for: 'Plusieurs yachts, ou tout un hôtel.', includes: 'Autant de vidéos que nécessaire, dans un style cohérent, deux formats.' },
       { name: 'Continu', for: 'De nouvelles annonces chaque saison.', includes: 'Jusqu’à 100 vidéos par mois, deux formats, résiliable chaque mois.' },
     ],
-    note: 'Vous hésitez ? Commencez par la vidéo d’essai gratuite.',
+    note: 'Vous hésitez ? Commencez par la vidéo d’essai gratuite : un court aperçu de 15 à 25 secondes.',
   },
   faq: {
     title: 'Questions.',
@@ -144,7 +144,7 @@ const fr: UI = {
       { q: "De quelles photos avez-vous besoin ?", a: "Les photos de votre annonce suffisent. Plus la qualité des photos est élevée, plus la qualité du film l’est aussi : des photos nettes, bien éclairées et en haute résolution donnent le meilleur résultat. Si vous avez les fichiers originaux de votre photographe, envoyez-les." },
       { q: "Est-ce réalisé avec l’IA ?", a: "Oui. Un logiciel transforme vos photos en mouvements de caméra. Ensuite, une personne regarde chaque vidéo en entier avant la livraison, pour qu’elle montre ce qui est sur vos photos et rien d’autre." },
       { q: "Ai-je besoin de compétences ou d’un logiciel ?", a: "Non. Vous envoyez le lien de votre annonce ou les photos, et nous faisons le reste. Aucun outil à apprendre, aucun prompt à écrire, aucun compte à créer." },
-      { q: 'Que comprend la vidéo d’essai gratuite ?', a: 'Un court clip réalisé à partir de vos propres photos d’annonce. Sans engagement et sans facture. Le lien de votre annonce suffit.' },
+      { q: 'Que comprend la vidéo d’essai gratuite ?', a: 'Un court aperçu de 15 à 25 secondes, avec quelques plans réalisés à partir de vos propres photos d’annonce. Vous voyez ce que vos photos peuvent devenir ; la vidéo complète dure de 60 à 90 secondes. Sans engagement et sans facture. Le lien de votre annonce suffit.' },
     ],
   },
   promise: {
@@ -167,7 +167,7 @@ const fr: UI = {
   landing: {
     services: "Services",
     ctaTitle: "Voyez le résultat avec votre propre annonce.",
-    ctaText: "Envoyez-nous le lien de votre annonce. Nous réalisons une vidéo d’essai gratuite à partir de vos propres photos, sans engagement.",
+    ctaText: "Envoyez-nous le lien de votre annonce. Nous réalisons une vidéo d’essai gratuite à partir de vos propres photos : un court aperçu de 15 à 25 secondes, sans engagement.",
     related: "À lire aussi",
     fullPricing: "Tous les tarifs",
     allQuestions: "Toutes les questions",
@@ -200,7 +200,7 @@ const fr: UI = {
   prospect: {
     eyebrow: 'Réalisé pour {company}',
     title: 'Voici {listing}, en film.',
-    lead: 'Nous l’avons réalisé à partir des photos déjà présentes sur votre annonce. Pas de tournage, pas de visite. Gratuit et sans engagement.',
+    lead: 'Nous avons réalisé ce court aperçu à partir des photos déjà présentes sur votre annonce. Pas de tournage, pas de visite. Gratuit et sans engagement. Une vidéo complète dure de 60 à 90 secondes.',
     cta: 'Oui, je veux ça pour toute ma flotte',
     whatsapp: 'Poser une question sur WhatsApp',
     price: 'À partir de 100 € par vidéo. Deux formats et 2 révisions inclus.',

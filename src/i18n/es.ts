@@ -45,7 +45,7 @@ const es: UI = {
   },
   contact: {
     title: '¿Cómo podría verse tu anuncio?',
-    lead: 'Envíanos el enlace de tu anuncio. Te hacemos un vídeo de prueba gratis.',
+    lead: 'Envíanos el enlace de tu anuncio. Te hacemos un vídeo de prueba gratis: un avance corto de 15 a 25 segundos, con algunas tomas.',
     whatsapp: 'WhatsApp',
     call: 'Llamar',
     email: 'Correo',
@@ -57,7 +57,7 @@ const es: UI = {
     submit: 'Pide un vídeo de prueba gratis',
     noteBefore: 'Solo usamos tus datos para responder a tu solicitud y hacer el vídeo de prueba. Más información en nuestra',
     noteLink: 'política de privacidad',
-    noteAfter: '. El vídeo de prueba es gratis y sin compromiso.',
+    noteAfter: '. El vídeo de prueba es un avance corto de 15 a 25 segundos, gratis y sin compromiso.',
     sending: 'Enviando…',
     sent: 'Enviado. Te respondemos lo antes posible.',
     failed: 'No se ha podido enviar. Escríbenos a {email} o mándanos un WhatsApp.',
@@ -132,7 +132,7 @@ const es: UI = {
       { name: 'Flota', for: 'Varios yates, o un hotel entero.', includes: 'Tantos vídeos como necesites, con un mismo estilo, en ambos formatos.' },
       { name: 'Continuo', for: 'Anuncios nuevos cada temporada.', includes: 'Hasta 100 vídeos al mes, ambos formatos, cancelable cada mes.' },
     ],
-    note: '¿No sabes cuál encaja? Empieza con el vídeo de prueba gratis.',
+    note: '¿No sabes cuál encaja? Empieza con el vídeo de prueba gratis: un avance corto de 15 a 25 segundos.',
   },
   faq: {
     title: 'Preguntas.',
@@ -144,7 +144,7 @@ const es: UI = {
       { q: "¿Qué fotos necesitáis?", a: "Bastan las fotos de tu anuncio. Cuanta más calidad tengan las fotos, más calidad tendrá la película: nítidas, bien iluminadas y en alta resolución funcionan mejor. Si tienes los archivos originales de tu fotógrafo, envíalos." },
       { q: "¿Está hecho con IA?", a: "Sí. Un software convierte tus fotos en movimientos de cámara. Después, una persona ve cada vídeo completo antes de la entrega, para que muestre lo que hay en tus fotos y nada que no esté." },
       { q: "¿Necesito conocimientos o software?", a: "No. Nos envías el enlace de tu anuncio o las fotos, y nosotros hacemos el resto. No hay herramienta que aprender, ni prompts que escribir, ni cuenta que crear." },
-      { q: '¿Qué incluye el vídeo de prueba gratis?', a: 'Un clip corto hecho con las fotos de tu propio anuncio. Sin compromiso y sin factura. Basta con el enlace de tu anuncio.' },
+      { q: '¿Qué incluye el vídeo de prueba gratis?', a: 'Un avance corto de 15 a 25 segundos, con algunas tomas hechas con las fotos de tu propio anuncio. Así ves en qué pueden convertirse tus fotos; el vídeo completo dura de 60 a 90 segundos. Sin compromiso y sin factura. Basta con el enlace de tu anuncio.' },
     ],
   },
   promise: {
@@ -167,7 +167,7 @@ const es: UI = {
   landing: {
     services: "Servicios",
     ctaTitle: "Míralo con tu propio anuncio.",
-    ctaText: "Envíanos el enlace de tu anuncio. Hacemos un vídeo de prueba gratis con tus propias fotos, sin compromiso.",
+    ctaText: "Envíanos el enlace de tu anuncio. Hacemos un vídeo de prueba gratis con tus propias fotos: un avance corto de 15 a 25 segundos, sin compromiso.",
     related: "Sigue leyendo",
     fullPricing: "Todos los precios",
     allQuestions: "Todas las preguntas",
@@ -200,7 +200,7 @@ const es: UI = {
   prospect: {
     eyebrow: 'Hecho para {company}',
     title: 'Esto es {listing}, en película.',
-    lead: 'Lo hicimos con las fotos que ya tienes en tu anuncio. Sin rodaje, sin visita. Gratis y sin compromiso.',
+    lead: 'Hicimos este avance corto con las fotos que ya tienes en tu anuncio. Sin rodaje, sin visita. Gratis y sin compromiso. Un vídeo completo dura de 60 a 90 segundos.',
     cta: 'Sí, lo quiero para toda mi flota',
     whatsapp: 'Pregunta por WhatsApp',
     price: 'Desde 100 € por vídeo. Ambos formatos y 2 revisiones incluidas.',

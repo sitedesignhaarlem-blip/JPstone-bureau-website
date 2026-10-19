@@ -45,7 +45,7 @@ const de: UI = {
   },
   contact: {
     title: 'Wie könnte Ihr Inserat aussehen?',
-    lead: 'Senden Sie uns einen Link zu Ihrem Inserat. Wir erstellen ein kostenloses Probevideo.',
+    lead: 'Senden Sie uns einen Link zu Ihrem Inserat. Wir erstellen ein kostenloses Probevideo: eine kurze Vorschau von 15 bis 25 Sekunden mit einigen Einstellungen.',
     whatsapp: 'WhatsApp',
     call: 'Anrufen',
     email: 'E-Mail',
@@ -57,7 +57,7 @@ const de: UI = {
     submit: 'Kostenloses Probevideo anfordern',
     noteBefore: 'Wir verwenden Ihre Angaben nur, um Ihre Anfrage zu beantworten und das Probevideo zu erstellen. Mehr in unserer',
     noteLink: 'Datenschutzerklärung',
-    noteAfter: '. Das Probevideo ist kostenlos und unverbindlich.',
+    noteAfter: '. Das Probevideo ist eine kurze Vorschau von 15 bis 25 Sekunden, kostenlos und unverbindlich.',
     sending: 'Wird gesendet…',
     sent: 'Gesendet. Wir melden uns so bald wie möglich bei Ihnen.',
     failed: 'Das hat nicht geklappt. Schreiben Sie uns an {email} oder per WhatsApp.',
@@ -132,7 +132,7 @@ const de: UI = {
       { name: 'Flotte', for: 'Mehrere Yachten oder ein ganzes Hotel.', includes: 'So viele Videos, wie Sie brauchen, in einheitlichem Stil, beide Formate.' },
       { name: 'Laufend', for: 'Jede Saison neue Inserate.', includes: 'Bis zu 100 Videos pro Monat, beide Formate, monatlich kündbar.' },
     ],
-    note: 'Unsicher, was passt? Beginnen Sie mit dem kostenlosen Probevideo.',
+    note: 'Unsicher, was passt? Beginnen Sie mit dem kostenlosen Probevideo: eine kurze Vorschau von 15 bis 25 Sekunden.',
   },
   faq: {
     title: 'Fragen.',
@@ -144,7 +144,7 @@ const de: UI = {
       { q: "Welche Fotos brauchen Sie?", a: "Die Fotos Ihres Inserats genügen. Je höher die Qualität der Fotos, desto höher die Qualität des Films: scharf, gut belichtet und in hoher Auflösung funktioniert am besten. Haben Sie die Originaldateien Ihres Fotografen, senden Sie diese mit." },
       { q: "Wird das mit KI gemacht?", a: "Ja. Software macht aus Ihren Fotos Kamerabewegungen. Danach sieht sich ein Mensch jedes Video vor der Lieferung vollständig an, damit es zeigt, was auf Ihren Fotos ist, und nichts, was nicht da ist." },
       { q: "Brauche ich Vorkenntnisse oder Software?", a: "Nein. Sie senden einen Link zu Ihrem Inserat oder die Fotos, den Rest machen wir. Sie müssen kein Tool lernen, keine Prompts schreiben und kein Konto anlegen." },
-      { q: 'Was enthält das kostenlose Probevideo?', a: 'Einen kurzen Clip aus Ihren eigenen Inseratsfotos. Unverbindlich und ohne Rechnung. Ein Link zu Ihrem Inserat genügt.' },
+      { q: 'Was enthält das kostenlose Probevideo?', a: 'Eine kurze Vorschau von 15 bis 25 Sekunden mit einigen Einstellungen aus Ihren eigenen Inseratsfotos. So sehen Sie, was aus Ihren Fotos werden kann; das vollständige Video dauert 60 bis 90 Sekunden. Unverbindlich und ohne Rechnung. Ein Link zu Ihrem Inserat genügt.' },
     ],
   },
   promise: {
@@ -167,7 +167,7 @@ const de: UI = {
   landing: {
     services: "Leistungen",
     ctaTitle: "Sehen Sie es mit Ihrem eigenen Inserat.",
-    ctaText: "Senden Sie uns den Link zu Ihrem Inserat. Wir erstellen ein kostenloses Probevideo aus Ihren eigenen Fotos, unverbindlich.",
+    ctaText: "Senden Sie uns den Link zu Ihrem Inserat. Wir erstellen ein kostenloses Probevideo aus Ihren eigenen Fotos: eine kurze Vorschau von 15 bis 25 Sekunden, unverbindlich.",
     related: "Weiterlesen",
     fullPricing: "Alle Preise",
     allQuestions: "Alle Fragen",
@@ -200,7 +200,7 @@ const de: UI = {
   prospect: {
     eyebrow: 'Erstellt für {company}',
     title: 'Das ist {listing}, als Film.',
-    lead: 'Wir haben das aus den Fotos gemacht, die schon in Ihrem Inserat stehen. Kein Dreh, kein Besuch. Kostenlos und unverbindlich.',
+    lead: 'Wir haben diese kurze Vorschau aus den Fotos gemacht, die schon in Ihrem Inserat stehen. Kein Dreh, kein Besuch. Kostenlos und unverbindlich. Ein vollständiges Video dauert 60 bis 90 Sekunden.',
     cta: 'Ja, das möchte ich für meine ganze Flotte',
     whatsapp: 'Frage per WhatsApp stellen',
     price: 'Ab 100 € pro Video. Beide Formate und 2 Korrekturen inklusive.',

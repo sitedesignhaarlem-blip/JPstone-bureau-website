@@ -45,7 +45,7 @@ const nl: UI = {
   },
   contact: {
     title: 'Benieuwd hoe jouw listing eruitziet?',
-    lead: 'Stuur een link naar je listing. Dan maken we een gratis proefvideo.',
+    lead: "Stuur een link naar je listing. Dan maken we een gratis proefvideo: een korte preview van 15 tot 25 seconden, met een paar shots.",
     whatsapp: 'WhatsApp',
     call: 'Bellen',
     email: 'E-mail',
@@ -57,7 +57,7 @@ const nl: UI = {
     submit: 'Vraag een gratis proefvideo aan',
     noteBefore: 'We gebruiken je gegevens alleen om je aanvraag te beantwoorden en de proefvideo te maken. Meer in de',
     noteLink: 'privacyverklaring',
-    noteAfter: '. De proefvideo is gratis en vrijblijvend.',
+    noteAfter: '. De proefvideo is een korte preview van 15 tot 25 seconden, gratis en vrijblijvend.',
     sending: 'Versturen…',
     sent: 'Verstuurd. We nemen zo snel mogelijk contact met je op.',
     failed: 'Dat lukte niet. Mail ons op {email} of stuur een WhatsApp.',
@@ -132,7 +132,7 @@ const nl: UI = {
       { name: 'Vloot', for: 'Meerdere jachten, of een heel hotel.', includes: "Zoveel video's als je nodig hebt, in één vaste stijl, beide formaten." },
       { name: 'Doorlopend', for: 'Elk seizoen nieuwe listings.', includes: "Tot 100 video's per maand, beide formaten, per maand opzegbaar." },
     ],
-    note: 'Twijfel je welke past? Begin met de gratis proefvideo.',
+    note: 'Twijfel je welke past? Begin met de gratis proefvideo: een korte preview van 15 tot 25 seconden.',
   },
   faq: {
     title: 'Vragen.',
@@ -144,7 +144,7 @@ const nl: UI = {
       { q: "Welke foto's hebben jullie nodig?", a: "De foto's van je listing zijn genoeg. Hoe hoger de kwaliteit van de foto's, hoe hoger de kwaliteit van de film: scherp, goed belicht en in hoge resolutie werkt het best. Heb je de originele bestanden van je fotograaf, stuur die dan mee." },
       { q: "Is dit gemaakt met AI?", a: "Ja. Software maakt van je foto’s camerabewegingen. Daarna bekijkt een mens elke video helemaal voor oplevering, zodat hij laat zien wat op je foto’s staat en niets wat er niet is." },
       { q: "Heb ik zelf kennis of software nodig?", a: "Nee. Je stuurt een link naar je listing of de foto’s, en wij doen de rest. Je hoeft geen tool te leren, geen prompts te schrijven en geen account aan te maken." },
-      { q: 'Wat zit er in de gratis proefvideo?', a: 'Eén korte clip van je eigen listingfoto’s. Vrijblijvend en zonder factuur. Een link naar je listing is genoeg.' },
+      { q: 'Wat zit er in de gratis proefvideo?', a: 'Een korte preview van 15 tot 25 seconden, met een paar shots van je eigen listingfoto’s. Zo zie je wat je foto’s kunnen worden; de volledige video duurt 60 tot 90 seconden. Vrijblijvend en zonder factuur. Een link naar je listing is genoeg.' },
     ],
   },
   promise: {
@@ -167,7 +167,7 @@ const nl: UI = {
   landing: {
     services: "Diensten",
     ctaTitle: "Zie het met je eigen listing.",
-    ctaText: "Stuur ons de link naar je listing. We maken een gratis proefvideo van je eigen foto's, vrijblijvend.",
+    ctaText: "Stuur ons de link naar je listing. We maken een gratis proefvideo van je eigen foto's: een korte preview van 15 tot 25 seconden, vrijblijvend.",
     related: "Lees verder",
     fullPricing: "Alle prijzen",
     allQuestions: "Alle vragen",
@@ -200,7 +200,7 @@ const nl: UI = {
   prospect: {
     eyebrow: 'Gemaakt voor {company}',
     title: 'Dit is {listing}, als film.',
-    lead: "We maakten dit van de foto's die al op je listing staan. Geen draaidag, geen bezoek. Gratis en vrijblijvend.",
+    lead: "We maakten deze korte preview van de foto's die al op je listing staan. Geen draaidag, geen bezoek. Gratis en vrijblijvend. Een volledige video duurt 60 tot 90 seconden.",
     cta: 'Ja, dit wil ik voor mijn hele vloot',
     whatsapp: 'Stel een vraag via WhatsApp',
     price: 'Vanaf €100 per video. Beide formaten en 2 revisies inbegrepen.',
