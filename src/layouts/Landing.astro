@@ -1,0 +1,111 @@
+---
+// Layout for the landing pages (yacht charters, hotels, AI video, pricing, FAQ): a header with a
+// short summary that can be quoted as is, the page text, optional questions, related pages and a
+// call to action. Uses the same type, sections and buttons as the rest of the site.
+import Base from './Base.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Faq from '../components/Faq.astro';
+import type { FaqItem } from '../data/schema';
+import { hasPage, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
+
+interface Props {
+  lang: Locale;
+  page: PageId;
+  /** <title> and meta description. */
+  title: string;
+  description: string;
+  eyebrow: string;
+  h1: string;
+  /** Two sentences that answer the question of the page on their own. */
+  summary: string;
+  faqTitle?: string;
+  faqItems?: FaqItem[];
+  /** Show faqItems as a FAQ section. Off when the page body already shows the questions itself. */
+  showFaq?: boolean;
+  /** Adds Service structured data. */
+  service?: boolean;
+  related?: PageId[];
+}
+const { lang, page, title, description, eyebrow, h1, summary, faqTitle, faqItems = [], showFaq = true, service = false, related = [] } = Astro.props;
+const t = useTranslations(lang);
+const relatedLinks = related.filter((p) => hasPage(lang, p));
+---
+<Base title={title} description={description} lang={lang} page={page} service={service} faqItems={faqItems}>
+  <SiteNav lang={lang} page={page} />
+  <main id="main">
+    <header class="section landing-head">
+      <div class="wrap landing-inner">
+        <p class="eyebrow">{eyebrow}</p>
+        <h1>{h1}</h1>
+        <p class="lead summary">{summary}</p>
+        <div class="actions">
+          <a class="button" href={pagePath(lang, 'contact')}>{t.hero.cta}</a>
+          {page !== 'pricing' && hasPage(lang, 'pricing') && <a class="link-more" href={pagePath(lang, 'pricing')}>{t.landing.fullPricing}</a>}
+        </div>
+      </div>
+    </header>
+
+    <article class="section section--alt landing-body">
+      <div class="wrap landing-inner prose">
+        <slot />
+      </div>
+    </article>
+
+    {showFaq && faqItems.length > 0 && <Faq lang={lang} items={faqItems} title={faqTitle} more={page !== 'faq' && hasPage(lang, 'faq') ? { href: pagePath(lang, 'faq'), label: t.landing.allQuestions } : undefined} />}
+
+    {relatedLinks.length > 0 && (
+      <nav class="section section--alt related" aria-labelledby="related-title">
+        <div class="wrap landing-inner">
+          <h2 id="related-title">{t.landing.related}</h2>
+          <ul class="related-list" role="list">
+            {relatedLinks.map((p) => (
+              <li><a class="link-more" href={pagePath(lang, p)}>{t.pages[p as keyof typeof t.pages]}</a></li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+    )}
+
+    <section class="section cta" aria-labelledby="cta-title">
+      <div class="wrap landing-inner cta-inner">
+        <h2 id="cta-title">{t.landing.ctaTitle}</h2>
+        <p class="lead muted">{t.landing.ctaText}</p>
+        <p><a class="button" href={pagePath(lang, 'contact')}>{t.hero.cta}</a></p>
+      </div>
+    </section>
+  </main>
+  <SiteFooter lang={lang} />
+</Base>
+
+<style>
+  .landing-inner { max-width: calc(44rem + 2 * var(--gutter)); }
+  .landing-head .landing-inner { display: grid; gap: var(--space-4); }
+  .landing-head h1 { font-size: var(--step-h2); line-height: 1.07; }
+  .summary { color: var(--fg); }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-6); margin-top: var(--space-2); }
+
+  .prose :global(h2) { font-size: var(--step-h3); line-height: 1.15; margin: var(--space-8) 0 var(--space-3); }
+  .prose :global(h2:first-child) { margin-top: 0; }
+  .prose :global(h3) { font-size: 1.125rem; margin: var(--space-5) 0 var(--space-2); }
+  .prose :global(p + p) { margin-top: var(--space-3); }
+  .prose :global(ul), .prose :global(ol) { padding-left: 1.25rem; margin: var(--space-3) 0; display: grid; gap: var(--space-2); }
+  .prose :global(table) { width: 100%; border-collapse: collapse; margin: var(--space-4) 0; font-size: var(--step-small); }
+  .prose :global(th), .prose :global(td) { text-align: left; vertical-align: top; padding: var(--space-3) var(--space-3) var(--space-3) 0; border-bottom: 1px solid var(--line); }
+  .prose :global(th) { font-weight: 600; }
+  .prose :global(.table-wrap) { overflow-x: auto; }
+  .prose :global(.callout) { margin: var(--space-5) 0; padding: var(--space-5); background: var(--bg); border-radius: var(--radius); }
+  @media (max-width: 40rem) {
+    .prose :global(thead) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    .prose :global(tr) { display: grid; gap: var(--space-1); padding: var(--space-3) 0; border-bottom: 1px solid var(--line); }
+    .prose :global(td) { display: grid; grid-template-columns: 8.5rem 1fr; gap: var(--space-3); padding: 0; border: 0; }
+    .prose :global(td::before) { content: attr(data-label); font-weight: 600; color: var(--fg-muted); }
+  }
+
+  .prose :global(details) { border-top: 1px solid var(--line); }
+  .prose :global(details:last-of-type) { border-bottom: 1px solid var(--line); }
+  .prose :global(summary) { cursor: pointer; padding: var(--space-4) 0; font-weight: 600; list-style-position: outside; }
+  .prose :global(details p) { padding-bottom: var(--space-4); color: var(--fg-muted); }
+  .related-list { display: grid; gap: var(--space-3); padding: 0; margin: var(--space-4) 0 0; list-style: none; }
+  .cta-inner { display: grid; gap: var(--space-3); }
+</style>

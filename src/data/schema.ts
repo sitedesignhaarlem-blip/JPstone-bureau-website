@@ -52,14 +52,20 @@ export function website() {
   };
 }
 
-export function service(lang: Locale) {
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
+/** Service, described with the page's own title and description when given. */
+export function service(lang: Locale, page?: { name: string; description: string; url: string }) {
   const t = useTranslations(lang);
   return {
     '@type': 'Service',
-    '@id': ids.service,
+    '@id': page ? `${page.url}#service` : ids.service,
     serviceType: 'Photo-to-video walkthrough production',
-    name: t.meta.homeTitle,
-    description: t.meta.homeDesc,
+    name: page?.name ?? t.meta.homeTitle,
+    description: page?.description ?? t.meta.homeDesc,
     provider: { '@id': ids.organization },
     areaServed: 'Worldwide',
     audience: { '@type': 'BusinessAudience', audienceType: 'Yacht charter companies and boutique hotels' },
@@ -80,14 +86,13 @@ export function service(lang: Locale) {
   };
 }
 
-/** FAQPage from the same texts the FAQ section shows, so both always match. */
-export function faqPage(lang: Locale, url: string) {
-  const t = useTranslations(lang);
+/** FAQPage from the same items the page shows, so both always match. */
+export function faqPage(lang: Locale, url: string, items: FaqItem[]) {
   return {
     '@type': 'FAQPage',
     '@id': `${url}#faq`,
     inLanguage: hreflang[lang],
-    mainEntity: t.faq.items.map((item) => ({
+    mainEntity: items.map((item) => ({
       '@type': 'Question',
       name: item.q,
       acceptedAnswer: { '@type': 'Answer', text: item.a },
@@ -120,8 +125,12 @@ export function pageName(lang: Locale, page: PageId): string {
     case 'how':
     case 'contact':
       return t.nav[page];
-    default:
+    case 'privacy':
+    case 'terms':
+    case 'cookies':
       return t.footer[page];
+    default:
+      return t.pages[page];
   }
 }
 

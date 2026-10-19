@@ -1,0 +1,58 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'en';
+const faq = [q.roomTypes, q.access, q.update, q.photos, q.sample];
+---
+<Landing
+  lang={lang}
+  page="hotel"
+  title="Hotel video from your room and property photos · Still to Film"
+  description="Turn your boutique hotel's room and property photos into a 60–90 second walkthrough video. No film crew, no closed rooms, 16:9 and 9:16 included. €50 to €100 per video."
+  eyebrow="For boutique hotels"
+  h1="Video for boutique hotels, made from your room and property photos"
+  summary="Still to Film turns the photos you already have of your rooms and property into a 60–90 second walkthrough video, without a film crew and without closing a room for a day. Videos come in 16:9 and 9:16, a person checks every one before delivery, and they cost €50 to €100 each depending on volume."
+  faqTitle="Questions from hotels"
+  faqItems={faq}
+  service
+  related={['yacht', 'aiVideo', 'pricing']}
+>
+  <h2>Why not just film the hotel?</h2>
+  <p>Filming a hotel means planning around guests. Rooms have to be empty and made up, public areas quiet, and the light right, often across several days. When you renovate a room or change the season's look, the video is out of date and the whole job starts again.</p>
+  <p>Most boutique hotels already have professional photos of every room type, the lobby, the restaurant, the terrace or the pool. We make the video from those photos, so nothing in the hotel has to change for it.</p>
+
+  <h2>How does it work?</h2>
+  <ol>
+    <li><strong>You send the photos</strong>, or a link to your website or booking page.</li>
+    <li><strong>We make the film.</strong> We choose the photos, the order and the camera moves, and use AI to turn the stills into calm movement through the room or the property.</li>
+    <li><strong>A person checks it.</strong> We watch every video in full before you see it. If something does not match your photos, we fix it or cut it.</li>
+    <li><strong>You give feedback.</strong> Two rounds of revisions are included.</li>
+    <li><strong>You publish.</strong> You get MP4 files in 16:9 and 9:16.</li>
+  </ol>
+  <p>You do not need any software, prompts or an account. More detail on the <a href={pagePath(lang, 'how')}>how it works</a> page.</p>
+
+  <h2>Room by room, or the whole property?</h2>
+  <p>Both work. One video of the whole property suits your home page and social media. One video per room type suits booking pages, where a guest compares rooms. Each video is priced as one video, so a hotel with five room types and one property video orders six videos.</p>
+  <p>When you renovate or take new photos, we make a new video from the new photos. That counts as a new video, not as a revision.</p>
+
+  <h2>What do you get?</h2>
+  <ul>
+    <li>A 60 to 90 second walkthrough video per room type or per property.</li>
+    <li>16:9 for your website and booking platforms, and 9:16 for Instagram Reels, TikTok and Stories. Both formats are included.</li>
+    <li>Two rounds of revisions per video.</li>
+    <li>One calm, consistent style across all your videos.</li>
+    <li>Unlimited use for your own marketing: website, booking pages, social media and ads.</li>
+  </ul>
+
+  <h2>What can the video show, and what not?</h2>
+  <p>The video can only show what is in your photos. A bathroom, a view or a terrace that was never photographed will not be in the film, and we do not add guests, furniture or views. The quality of the photos sets the quality of the film: sharp, well-lit, high-resolution photos work best.</p>
+  <p>The examples on this site are from a yacht, because we have no hotel clients to show yet. The free sample is made from your own photos, so you see the result for your own hotel before you decide.</p>
+
+  <h2>What does it cost?</h2>
+  <p>The price per video depends on how many videos you order at once. A single video costs €100. From 5 videos it is €95 per video, and the price drops by €5 for every 5 videos, down to €50 per video.</p>
+  <PriceTable lang={lang} />
+  <p>For example, five room types and one property video are 6 videos: 6 × €95 = €570, excluding VAT.</p>
+</Landing>

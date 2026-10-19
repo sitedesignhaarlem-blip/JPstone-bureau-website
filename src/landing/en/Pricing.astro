@@ -1,0 +1,61 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pricePerVideo } from '../../data/pricing';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'en';
+const faq = [q.volume, q.vat, q.payment, q.revisions, q.sample];
+const money = new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pricePerVideo(n)), total: money.format(n * pricePerVideo(n)) }));
+---
+<Landing
+  lang={lang}
+  page="pricing"
+  title="Pricing: €100 to €50 per video · Still to Film"
+  description="Still to Film costs €100 for a single video, €95 per video from 5 videos, and €5 less for every 5 videos down to €50. Both formats and 2 revisions included. Prices exclude VAT."
+  eyebrow="Pricing"
+  h1="Pricing: from €100 down to €50 per video"
+  summary="A Still to Film video costs €100 when you order one, and €95 per video from 5 videos. The price per video then drops by €5 for every 5 videos, down to €50; prices exclude VAT and include both formats and two revision rounds."
+  faqTitle="Questions about pricing"
+  faqItems={faq}
+  service
+  related={['yacht', 'hotel', 'faq']}
+>
+  <h2>The price ladder</h2>
+  <p>The price per video is set by the number of videos in the order. The same price applies to every video in that order.</p>
+  <PriceTable lang={lang} />
+  <p>You can also try the numbers with the <a href={pagePath(lang, 'home', '#packages-title')}>calculator on the home page</a>.</p>
+
+  <h2>What is included in every video?</h2>
+  <ul>
+    <li>A 60 to 90 second walkthrough video made from your photos.</li>
+    <li>Both formats: 16:9 for websites and listing platforms, 9:16 for Reels, TikTok and Stories, as MP4 files.</li>
+    <li>A check by a person before delivery, so the video shows only what is in your photos.</li>
+    <li>Two rounds of revisions.</li>
+    <li>Unlimited use for your own marketing: website, listings, social media and ads.</li>
+  </ul>
+
+  <h2>What counts as a revision, and what is a new video?</h2>
+  <p>A revision is a change within the same photos and the same concept: a different order of shots, a slower move, a clip left out, a different start or end. Each video includes two rounds of revisions.</p>
+  <p>New photos, or a different concept for the video, count as a new video. That is also the case when you renovate a room or replace the photos of a yacht and want an updated film.</p>
+
+  <h2>Example totals</h2>
+  <div class="table-wrap" role="region" aria-label="Example totals" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Videos</th><th scope="col">Price per video</th><th scope="col">Total, excluding VAT</th></tr></thead>
+      <tbody>
+        {examples.map((e) => (
+          <tr><td data-label="Videos">{e.n}</td><td data-label="Price per video">{e.per}</td><td data-label="Total">{e.total}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2>More than 100 videos?</h2>
+  <p>For orders of more than 100 videos we make a quote. The same applies to ongoing work: up to 100 videos a month, both formats, cancel any month.</p>
+
+  <h2>Start with a free sample</h2>
+  <p>Before you order, we make a free sample from your own listing photos. There is no obligation and no invoice. A link to your listing is all we need.</p>
+</Landing>

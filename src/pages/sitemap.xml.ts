@@ -3,14 +3,14 @@
 // Prospect pages (/p/…) are private links and are left out on purpose.
 import type { APIRoute } from 'astro';
 import { SITE_URL } from '../data/site';
-import { defaultLocale, hreflang, locales, pageIds, pagePath } from '../i18n';
+import { defaultLocale, hreflang, localesFor, pageIds, pagePath } from '../i18n';
 
 const abs = (path: string) => new URL(path, SITE_URL).href;
 
 export const GET: APIRoute = () => {
   const urls = pageIds.flatMap((page) =>
-    locales.map((lang) => {
-      const alternates = locales
+    localesFor(page).map((lang) => {
+      const alternates = localesFor(page)
         .map((l) => `    <xhtml:link rel="alternate" hreflang="${hreflang[l]}" href="${abs(pagePath(l, page))}"/>`)
         .concat(`    <xhtml:link rel="alternate" hreflang="x-default" href="${abs(pagePath(defaultLocale, page))}"/>`)
         .join('\n');

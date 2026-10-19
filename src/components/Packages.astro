@@ -1,7 +1,7 @@
 ---
 // Packages as a calm list: name, who it's for, what's included, starting price per video.
 import Text from './Text.astro';
-import { pagePath, useTranslations, type Locale } from '../i18n';
+import { hasPage, pagePath, useTranslations, type Locale } from '../i18n';
 import { pricePerVideo } from '../data/pricing';
 
 interface Props {
@@ -46,6 +46,7 @@ const startTotal = money.format(pricePerVideo(start) * start);
       <p class="calc-note muted">{t.calc.note} {t.calc.more}</p>
     </div>
     <p class="packages-note">{p.note} <a class="link-more" href={pagePath(lang, 'contact')}>{t.hero.cta}</a></p>
+    {hasPage(lang, 'pricing') && <p class="packages-note"><a class="link-more" href={pagePath(lang, 'pricing')}>{t.landing.fullPricing}</a></p>}
   </div>
 </section>
 

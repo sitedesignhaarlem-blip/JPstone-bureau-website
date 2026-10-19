@@ -43,7 +43,10 @@ for (const file of pages) {
       seen[k].set(v, url);
     }
     const alts = Object.fromEntries([...html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)"/g)].map((m) => [m[1], m[2]]));
-    for (const l of LANGS) if (!alts[l]) err(`hreflang ${l} missing`);
+    if (!alts['x-default']) err('hreflang x-default missing');
+    // Pages that exist in every language need all five; English-only pages need only en.
+    const required = Object.keys(alts).length > 2 ? LANGS : ['en', 'x-default'];
+    for (const l of required) if (!alts[l]) err(`hreflang ${l} missing`);
     if (!Object.values(alts).includes(url)) err('hreflang does not reference itself');
     alternates.set(url, alts);
   }

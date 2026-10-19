@@ -32,6 +32,11 @@ Still to Film is a small studio based in the Netherlands. We work for yacht char
 ## Key pages
 
 - [Home](https://stilltofilm.com/): what we do, before/after examples, packages, price calculator and FAQ
+- [Video for yacht charters](https://stilltofilm.com/yacht-charter-video/): walkthrough videos from yacht listing photos, no filming day
+- [Video for boutique hotels](https://stilltofilm.com/hotel-video/): videos per room type or for the whole property, from existing photos
+- [AI video from photos](https://stilltofilm.com/ai-video-from-photos/): how it works, limits, the human quality check, done-for-you vs self-serve tools
+- [Pricing](https://stilltofilm.com/pricing/): the full price ladder, what is included, revisions vs new videos, example totals
+- [FAQ](https://stilltofilm.com/faq/): all questions, grouped by topic
 - [How it works](https://stilltofilm.com/how-it-works/): the four steps from photos to delivered video
 - [Library](https://stilltofilm.com/library/): example clips made from the listing photos of a motor catamaran
 - [Contact](https://stilltofilm.com/contact/): request a free sample video

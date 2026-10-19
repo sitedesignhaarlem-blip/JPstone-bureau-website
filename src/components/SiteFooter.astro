@@ -1,7 +1,7 @@
 ---
 import LogoMark from './LogoMark.astro';
 import { site } from '../data/site';
-import { pagePath, useTranslations, type Locale } from '../i18n';
+import { hasPage, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
 
 interface Props {
   lang: Locale;
@@ -9,6 +9,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const year = new Date().getFullYear();
+const services = (['yacht', 'hotel', 'aiVideo', 'pricing', 'faq'] as PageId[]).filter((p) => hasPage(lang, p));
 ---
 <footer class="footer">
   <div class="wrap footer-inner">
@@ -22,6 +23,13 @@ const year = new Date().getFullYear();
       <li><a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a></li>
       <li><a href={site.whatsapp} rel="noopener">WhatsApp</a></li>
     </ul>
+    {services.length > 0 && (
+      <nav class="footer-links" aria-label={t.landing.services}>
+        <ul role="list">
+          {services.map((p) => <li><a href={pagePath(lang, p)}>{t.pages[p as keyof typeof t.pages]}</a></li>)}
+        </ul>
+      </nav>
+    )}
     <nav class="footer-links" aria-label={t.footer.legalNav}>
       <ul role="list">
         <li><a href={pagePath(lang, 'privacy')}>{t.footer.privacy}</a></li>

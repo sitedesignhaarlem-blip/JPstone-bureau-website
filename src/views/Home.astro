@@ -10,7 +10,7 @@ import Packages from '../components/Packages.astro';
 import Faq from '../components/Faq.astro';
 import Vertical from '../components/Vertical.astro';
 import DoneForYou from '../components/DoneForYou.astro';
-import { pagePath, useTranslations, type Locale } from '../i18n';
+import { hasPage, pagePath, useTranslations, type Locale } from '../i18n';
 
 interface Props {
   lang: Locale;
@@ -18,7 +18,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
-<Base title={t.meta.homeTitle} preloadImage="/media/hero.jpg" description={t.meta.homeDesc} lang={lang} page="home" service faq videos={['southern-cross-varen-zij', 'southern-cross-drone-anker', 'southern-cross-kombuis']}>
+<Base title={t.meta.homeTitle} preloadImage="/media/hero.jpg" description={t.meta.homeDesc} lang={lang} page="home" service faqItems={t.faq.items} videos={['southern-cross-varen-zij', 'southern-cross-drone-anker', 'southern-cross-kombuis']}>
   <SiteNav lang={lang} page="home" />
 
   <main id="main">
@@ -53,7 +53,7 @@ const t = useTranslations(lang);
 
     <Packages lang={lang} />
 
-    <Faq lang={lang} />
+    <Faq lang={lang} more={hasPage(lang, 'faq') ? { href: pagePath(lang, 'faq'), label: t.landing.allQuestions } : undefined} />
 
     <ContactSection lang={lang} />
   </main>

@@ -1,24 +1,32 @@
 ---
 // Frequently asked questions as native <details>, so they work without JavaScript and with the keyboard.
+// Without items it shows the general FAQ; landing pages pass their own questions.
 import Text from './Text.astro';
 import { useTranslations, type Locale } from '../i18n';
+import type { FaqItem } from '../data/schema';
 
 interface Props {
   lang: Locale;
+  items?: FaqItem[];
+  title?: string;
+  /** Optional link under the list, e.g. to the full FAQ page. */
+  more?: { href: string; label: string };
 }
 const t = useTranslations(Astro.props.lang);
+const { items = t.faq.items, title = t.faq.title, more } = Astro.props;
 ---
 <section class="section faq" aria-labelledby="faq-title">
   <div class="wrap faq-inner">
-    <h2 id="faq-title">{t.faq.title}</h2>
+    <h2 id="faq-title">{title}</h2>
     <div class="faq-list">
-      {t.faq.items.map((item) => (
+      {items.map((item) => (
         <details>
           <summary>{item.q}</summary>
           <p class="muted"><Text text={item.a} /></p>
         </details>
       ))}
     </div>
+    {more && <p><a class="link-more" href={more.href}>{more.label}</a></p>}
   </div>
 </section>
 

@@ -1,0 +1,43 @@
+---
+// The full price ladder, built from the same function as the calculator on the home page.
+import { MIN_PRICE, STEP, pricePerVideo } from '../data/pricing';
+import { useTranslations, type Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang).landing;
+const money = new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+// One row per price step: 1–4, 5–9, … until the minimum price, which runs to 100 videos.
+const rows: { from: number; to: number }[] = [];
+for (let from = 1; from <= 100; ) {
+  const price = pricePerVideo(from);
+  const to = price === MIN_PRICE ? 100 : Math.ceil((from + 1) / STEP) * STEP - 1;
+  rows.push({ from, to });
+  from = to + 1;
+}
+---
+<div class="table-wrap" role="region" aria-label={t.colPrice} tabindex="0">
+  <table class="price-table">
+    <thead>
+      <tr><th scope="col">{t.colVideos}</th><th scope="col">{t.colPrice}</th><th scope="col">{t.colExample}</th></tr>
+    </thead>
+    <tbody>
+      {rows.map(({ from, to }) => (
+        <tr>
+          <td data-label={t.colVideos}>{from === to ? from : `${from}–${to}`}</td>
+          <td data-label={t.colPrice}>{money.format(pricePerVideo(from))}</td>
+          <td data-label={t.colExample}>{from} × {money.format(pricePerVideo(from))} = {money.format(from * pricePerVideo(from))}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+<p class="muted price-note">{t.priceNote}</p>
+
+<style>
+  .price-table td:nth-child(2) { font-weight: 600; }
+  .price-table td { font-variant-numeric: tabular-nums; }
+  .price-note { font-size: var(--step-small); }
+</style>

@@ -2,8 +2,8 @@
 import '../styles/tokens.css';
 import '../styles/base.css';
 import { SITE_URL, site } from '../data/site';
-import { breadcrumbs, faqPage, organization, service, videoObject, website } from '../data/schema';
-import { locales, defaultLocale, htmlLang, hreflang, ogLocale, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
+import { breadcrumbs, faqPage, organization, service, videoObject, website, type FaqItem } from '../data/schema';
+import { localesFor, defaultLocale, htmlLang, hreflang, ogLocale, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
 
 interface Props {
   title: string;
@@ -13,8 +13,8 @@ interface Props {
   noindex?: boolean;
   /** Clips shown on this page, added as VideoObject structured data. */
   videos?: string[];
-  /** The page shows the FAQ section: adds FAQPage structured data with the same texts. */
-  faq?: boolean;
+  /** Questions shown on the page: adds FAQPage structured data with the same texts. */
+  faqItems?: FaqItem[];
   /** The page describes the service: adds Service structured data. */
   service?: boolean;
   /** The first large image on the page; loaded with priority. */
@@ -22,15 +22,17 @@ interface Props {
   /** Address of a page outside the normal page list (e.g. a prospect page). Turns off language alternates. */
   path?: string;
 }
-const { title, description, lang, page, noindex = false, videos = [], faq = false, service: isService = false, preloadImage, path } = Astro.props;
+const { title, description, lang, page, noindex = false, videos = [], faqItems = [], service: isService = false, preloadImage, path } = Astro.props;
 const t = useTranslations(lang);
 const canonical = new URL(path ?? pagePath(lang, page), SITE_URL).href;
 const abs = (path: string) => new URL(path, SITE_URL).href;
 
 // Structured data: organisation and website on every page, plus what this page shows.
 const graph: object[] = [organization(), website()];
-if (isService) graph.push(service(lang));
-if (faq) graph.push(faqPage(lang, canonical));
+if (isService) graph.push(page === 'home' ? service(lang) : service(lang, { name: title, description, url: canonical }));
+if (faqItems.length) graph.push(faqPage(lang, canonical, faqItems));
+// Only languages this page exists in get an hreflang alternate.
+const alternateLocales = localesFor(page);
 graph.push(...videos.map((file) => videoObject(lang, file)));
 if (page !== 'home' && !path) graph.push(breadcrumbs(lang, page));
 const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
@@ -44,7 +46,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
-    {!path && locales.map((l) => <link rel="alternate" hreflang={hreflang[l]} href={new URL(pagePath(l, page), SITE_URL).href} />)}
+    {!path && alternateLocales.map((l) => <link rel="alternate" hreflang={hreflang[l]} href={new URL(pagePath(l, page), SITE_URL).href} />)}
     {!path && <link rel="alternate" hreflang="x-default" href={new URL(pagePath(defaultLocale, page), SITE_URL).href} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -57,7 +59,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
     <meta property="og:site_name" content={site.name} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:locale" content={ogLocale[lang]} />
-    {locales.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={ogLocale[l]} />)}
+    {alternateLocales.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={ogLocale[l]} />)}
     <meta name="theme-color" content="#ffffff" />
     <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png?v=2" type="image/png" sizes="32x32" />

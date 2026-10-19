@@ -1,0 +1,67 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'en';
+const faq = [q.ai, q.limits, q.skills, q.photos];
+---
+<Landing
+  lang={lang}
+  page="aiVideo"
+  title="AI video from listing photos: how it works and what it costs · Still to Film"
+  description="How AI turns listing photos into a walkthrough video, what it costs, what it can and cannot show, and how a human check keeps the result true to your photos."
+  eyebrow="Explained"
+  h1="AI video from listing photos: how it works, what it costs, what to expect"
+  summary="AI video from photos uses software to add camera movement and in-between frames to still images, so a set of listing photos becomes a short walkthrough film. Still to Film does this as a done-for-you service: you send the photos, we make a 60–90 second video, and a person checks every video before delivery."
+  faqTitle="Questions about AI video"
+  faqItems={faq}
+  service
+  related={['yacht', 'hotel', 'pricing']}
+>
+  <h2>What is AI video from photos?</h2>
+  <p>A photo is one moment from one point of view. AI video software takes that photo and generates the frames around it: a slow push into a room, a pan along a deck, a turn towards a window. Strung together, a set of photos becomes a short film that feels like walking through the space.</p>
+  <p>The software does not film anything. Every frame is made from what is in the photos, which is both its strength and its limit.</p>
+
+  <h2>How does it work, step by step?</h2>
+  <ol>
+    <li><strong>Choosing photos.</strong> Not every photo works in motion. We pick the ones that are sharp and show the space well, and decide the order of the walk-through.</li>
+    <li><strong>Choosing the moves.</strong> For each photo we choose a camera move that suits it: slow and steady, never fast or dizzy.</li>
+    <li><strong>Generating the clips.</strong> The AI turns each photo into a short clip. Some attempts look wrong; those are discarded and made again.</li>
+    <li><strong>Editing.</strong> We put the clips together into one 60 to 90 second film, in 16:9 and 9:16.</li>
+    <li><strong>Checking.</strong> A person watches the whole video before you see it (see below).</li>
+  </ol>
+
+  <h2>Done for you, or doing it yourself?</h2>
+  <p>There are tools that let you upload photos and generate video yourself. They can be cheaper if you have the time and want to learn them. The difference is in who does the work and who checks it.</p>
+  <div class="table-wrap" role="region" aria-label="Comparison: self-serve AI video tool and Still to Film" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Topic</th><th scope="col">Self-serve AI video tool</th><th scope="col">Still to Film</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Topic">Skills needed</td><td data-label="Self-serve tool">You learn the tool and write the prompts</td><td data-label="Still to Film">None: you send a link or the photos</td></tr>
+        <tr><td data-label="Topic">Choosing photos and moves</td><td data-label="Self-serve tool">You</td><td data-label="Still to Film">We do it</td></tr>
+        <tr><td data-label="Topic">Failed attempts</td><td data-label="Self-serve tool">You spot them and try again</td><td data-label="Still to Film">We discard them before you see anything</td></tr>
+        <tr><td data-label="Topic">Quality check</td><td data-label="Self-serve tool">Up to you</td><td data-label="Still to Film">A person watches every video in full</td></tr>
+        <tr><td data-label="Topic">Formats</td><td data-label="Self-serve tool">Depends on the tool</td><td data-label="Still to Film">16:9 and 9:16, both included</td></tr>
+        <tr><td data-label="Topic">Changes</td><td data-label="Self-serve tool">You redo it yourself</td><td data-label="Still to Film">Two revision rounds included</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>What are the limits?</h2>
+  <ul>
+    <li><strong>It only shows what is in the photos.</strong> A room, a view or a detail that was never photographed cannot appear in the film.</li>
+    <li><strong>Calm moves work best.</strong> Fast camera moves or large changes of angle make the AI guess, and guesses can look wrong. We keep the movement slow on purpose.</li>
+    <li><strong>No people, no sound from the scene.</strong> The film shows the spaces, not guests or crew, and has no recorded sound.</li>
+    <li><strong>Photo quality matters.</strong> Blurry, dark or low-resolution photos give a weaker film. Original files from your photographer work best.</li>
+  </ul>
+
+  <h2>How does the quality check work?</h2>
+  <p>Before delivery, a person watches every video from start to finish and compares it with the photos. We look for anything that does not match: details that change shape, lines that bend, objects that appear or disappear, movement that feels unnatural. If something is wrong, we make that clip again or cut it. Only then do you see the video, and you still have two revision rounds.</p>
+
+  <h2>When is a filming day the better choice?</h2>
+  <p>AI video from photos is not right for everything. A filming day is the better choice if you want people in the shot, real sound, an interview, drone footage of places you have no photos of, or rooms that have never been photographed. If you already have good photos and want calm walkthroughs for every listing, AI video does the job without a day on location.</p>
+
+  <h2>What does it cost?</h2>
+  <p>A single video costs €100, excluding VAT. From 5 videos the price per video drops by €5 for every 5 videos, down to €50. See the full <a href={pagePath(lang, 'pricing')}>price ladder</a>, or start with a free sample made from your own photos.</p>
+</Landing>

@@ -1,6 +1,6 @@
 ---
 import LogoMark from './LogoMark.astro';
-import { locales, localeNames, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
+import { hasPage, locales, localeNames, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
 
 interface Props {
   lang: Locale;
@@ -12,8 +12,11 @@ const links: { id: PageId; label: string }[] = [
   { id: 'home', label: t.nav.home },
   { id: 'library', label: t.nav.library },
   { id: 'how', label: t.nav.how },
+  { id: 'pricing', label: t.pages.pricing },
   { id: 'contact', label: t.nav.contact },
-];
+].filter((l) => hasPage(lang, l.id as PageId)) as { id: PageId; label: string }[];
+// A page that is not translated yet links to the home page of the other language.
+const langHref = (l: Locale) => pagePath(l, hasPage(l, page) ? page : 'home');
 ---
 <header class="nav">
   <nav class="wrap nav-inner" aria-label={t.nav.label}>
@@ -31,7 +34,7 @@ const links: { id: PageId; label: string }[] = [
         <ul class="lang-list" role="list">
           {locales.map((l) => (
             <li>
-              <a href={pagePath(l, page)} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>
+              <a href={langHref(l)} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>
                 <span class="lang-code">{l.toUpperCase()}</span> {localeNames[l]}
               </a>
             </li>
