@@ -89,7 +89,7 @@ Deze pagina's staan niet in de sitemap en worden niet geïndexeerd (`noindex`). 
 - [ ] **Formulier:** Formspree (of vergelijkbaar) koppelen via `formEndpoint` in `src/data/site.ts`, en de dienst noemen in de privacyverklaringen.
 - [x] **Pakketten:** €100 per video, 30 seconden, 2 revisies, Vloot onbeperkt, Doorlopend tot 100 per maand (`packages` en `faq` in `src/i18n/`, artikel 5 in `src/legal/*/Terms.astro`).
 - [x] **Levertijd en betaaltermijn:** tot 2 video's per dag, leverdatum altijd vooraf afgesproken (FAQ); betaaltermijn 14 dagen (artikel 6 van de voorwaarden).
-- [ ] **Case Virgin Charter Yachts:** levering, levertijd en citaat, pas na akkoord van de klant.
+- [ ] **Case Virgin Charter Yachts** (op de bibliotheekpagina): levering, levertijd en citaat invullen in `caseStudy` in `src/i18n/`, pas na akkoord van de klant. Zolang ze op `[TODO` beginnen, worden ze niet getoond.
 - [ ] **Toestemming:** schriftelijke toestemming van de eigenaar om Southern Cross bij naam te tonen.
 - [ ] **Vertalingen:** Duits, Frans en Spaans laten nalezen door iemand met die moedertaal, vooral de voorwaarden.
 - [ ] **Juridische check:** voorwaarden en privacyverklaring laten controleren door een jurist.

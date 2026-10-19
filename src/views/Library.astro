@@ -4,6 +4,7 @@ import SiteNav from '../components/SiteNav.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import VideoTile from '../components/VideoTile.astro';
 import ShotDialog from '../components/ShotDialog.astro';
+import CaseStudy from '../components/CaseStudy.astro';
 import { southernCross } from '../data/library';
 import { pagePath, useTranslations, type Locale } from '../i18n';
 
@@ -37,6 +38,8 @@ const t = useTranslations(lang);
         </div>
       </div>
     </section>
+
+    <CaseStudy lang={lang} />
 
     <section class="section section--alt cta">
       <div class="wrap cta-inner">

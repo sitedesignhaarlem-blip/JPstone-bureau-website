@@ -1,6 +1,6 @@
 ---
-// Case study: Virgin Charter Yachts. Missing figures stay visible as TODO until the client confirms them.
-import Text from './Text.astro';
+// Case study: Virgin Charter Yachts, on the library page. Facts and the quote that are still
+// a [TODO] placeholder are left out, so they only appear once the client has confirmed them.
 import { useTranslations, type Locale } from '../i18n';
 
 interface Props {
@@ -8,8 +8,13 @@ interface Props {
 }
 const t = useTranslations(Astro.props.lang);
 const c = t.caseStudy;
+const filled = (v: string) => !v.startsWith('[TODO');
+const facts = [
+  [c.delivered, c.deliveredValue],
+  [c.time, c.timeValue],
+].filter(([, v]) => filled(v));
 ---
-<section class="section section--dark case" aria-labelledby="case-title">
+<section class="section case" aria-labelledby="case-title">
   <div class="wrap case-inner">
     <div class="case-figure">
       <p class="case-number">18</p>
@@ -19,11 +24,12 @@ const c = t.caseStudy;
       <p class="eyebrow">{c.eyebrow}</p>
       <h2 id="case-title">Virgin Charter Yachts</h2>
       <p class="lead muted">{c.lead}</p>
-      <dl class="case-facts">
-        <div><dt>{c.delivered}</dt><dd><Text text={c.deliveredValue} /></dd></div>
-        <div><dt>{c.time}</dt><dd><Text text={c.timeValue} /></dd></div>
-      </dl>
-      <blockquote class="case-quote"><Text text={c.quote} /></blockquote>
+      {facts.length > 0 && (
+        <dl class="case-facts">
+          {facts.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}
+        </dl>
+      )}
+      {filled(c.quote) && <blockquote class="case-quote">{c.quote}</blockquote>}
     </div>
   </div>
 </section>
@@ -32,14 +38,13 @@ const c = t.caseStudy;
   .case-inner { display: grid; gap: var(--space-7); align-items: center; }
   .case-figure { display: flex; align-items: baseline; gap: var(--space-3); }
   .case-number { font-size: clamp(7rem, 4rem + 14vw, 13rem); font-weight: 600; line-height: 0.85; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
-  .case-unit { font-size: var(--step-h3); color: var(--on-dark-muted); }
+  .case-unit { font-size: var(--step-h3); color: var(--fg-muted); }
   .case-body { display: grid; gap: var(--space-4); }
   .case-facts { display: grid; gap: var(--space-3); margin: var(--space-3) 0 0; }
-  .case-facts div { display: grid; grid-template-columns: 9rem 1fr; gap: var(--space-3); padding-top: var(--space-3); border-top: 1px solid rgb(255 255 255 / 0.18); }
-  .case-facts dt { color: var(--on-dark-muted); }
+  .case-facts div { display: grid; grid-template-columns: 9rem 1fr; gap: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--line); }
+  .case-facts dt { color: var(--fg-muted); }
   .case-facts dd { margin: 0; }
   .case-quote { margin: var(--space-4) 0 0; font-size: var(--step-lead); line-height: 1.4; }
-  .case :global(.todo) { color: #fbbf24; }
   @media (min-width: 48rem) {
     .case-inner { grid-template-columns: 1fr 1.3fr; gap: var(--space-8); }
   }
