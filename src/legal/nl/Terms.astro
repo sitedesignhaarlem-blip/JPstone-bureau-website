@@ -42,4 +42,4 @@ import { pagePath } from '../../i18n';
   <h2>10. Recht en geschillen</h2>
   <p>Op deze voorwaarden geldt Nederlands recht. Komen we er samen niet uit, dan beslist de bevoegde rechter in Nederland.</p>
 
-  <p class="note">Bedrijfsgegevens: {site.name} · <span class="todo">{site.address}</span> · KvK <span class="todo">{site.kvk}</span> · btw <span class="todo">{site.vat}</span></p>
+  <p class="note">Bedrijfsgegevens: {site.name}{site.address && ` · ${site.address}`}{site.kvk && ` · KvK ${site.kvk}`}{site.vat && ` · btw ${site.vat}`}</p>

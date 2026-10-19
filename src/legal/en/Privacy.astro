@@ -9,8 +9,8 @@ const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Request: 
   <h2>Who we are</h2>
   <p>
     {site.name}, based in the Netherlands.<br />
-    Address: <span class="todo">{site.address}</span><br />
-    Chamber of Commerce (KvK): <span class="todo">{site.kvk}</span><br />
+    {site.address && <>Address: {site.address}<br /></>}
+    {site.kvk && <>Chamber of Commerce (KvK): {site.kvk}<br /></>}
     Email: <a href={`mailto:${site.email}`}>{site.email}</a> · Phone: <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>
   </p>
 

@@ -160,7 +160,7 @@ const de: UI = {
   },
   booking: {
     title: 'Lieber erst sprechen?',
-    text: 'Buchen Sie ein Gespräch von 15 Minuten. Fragen Sie, was Sie wissen möchten.',
+    text: 'Buchen Sie ein Gespräch von 30 Minuten. Fragen Sie, was Sie wissen möchten.',
     cta: 'Gespräch buchen',
   },
   prospect: {

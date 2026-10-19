@@ -9,8 +9,8 @@ const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Solicitud
   <h2>Quiénes somos</h2>
   <p>
     {site.name}, con sede en los Países Bajos.<br />
-    Dirección: <span class="todo">{site.address}</span><br />
-    Registro mercantil (KvK): <span class="todo">{site.kvk}</span><br />
+    {site.address && <>Dirección: {site.address}<br /></>}
+    {site.kvk && <>Registro mercantil (KvK): {site.kvk}<br /></>}
     Correo: <a href={`mailto:${site.email}`}>{site.email}</a> · Teléfono: <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>
   </p>
 

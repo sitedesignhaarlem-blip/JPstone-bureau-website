@@ -41,4 +41,4 @@ import { site } from '../../data/site';
   <h2>10. Droit applicable et litiges</h2>
   <p>Ces conditions sont régies par le droit néerlandais. Si nous ne parvenons pas à un accord, le tribunal compétent aux Pays-Bas tranche.</p>
 
-  <p class="note">Informations sur l’entreprise : {site.name} · <span class="todo">{site.address}</span> · KvK <span class="todo">{site.kvk}</span> · TVA <span class="todo">{site.vat}</span></p>
+  <p class="note">Informations sur l’entreprise : {site.name}{site.address && ` · ${site.address}`}{site.kvk && ` · KvK ${site.kvk}`}{site.vat && ` · TVA ${site.vat}`}</p>

@@ -7,14 +7,15 @@ export const site = {
   name: 'JPstone Bureau',
   city: 'Haarlem',
   country: 'NL',
-  kvk: '[KvK-nummer]', // TODO
-  vat: '[btw-id]', // TODO: btw-identificatienummer (NL…B01), verplicht op de site bij zakelijke dienstverlening
-  address: '[vestigingsadres]', // TODO: straat, postcode en plaats zoals ingeschreven bij de KvK
+  // Left empty for now: an empty value is simply not shown. Fill in once registered with the KvK.
+  kvk: '', // KvK number
+  vat: '', // btw-identificatienummer (NL…B01)
+  address: '', // street, postcode and city as registered with the KvK
   email: 'sitedesign@gmail.com', // TODO: swap for an address on the own domain once it exists
   phoneDisplay: '+31 6 57 24 96 07',
   phoneE164: '+31657249607',
   whatsapp: 'https://wa.me/31657249607',
-  booking: '[Calendly-url]', // TODO
+  booking: 'https://cal.meetergo.com/valentijn-slootjes/30-min-meeting-or-valentijn-slootjes',
   // TODO: e.g. https://formspree.io/f/xxxxxxx. Until set, the form opens the visitor's mail app instead.
   formEndpoint: '',
 };

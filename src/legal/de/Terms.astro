@@ -41,4 +41,4 @@ import { site } from '../../data/site';
   <h2>10. Recht und Streitigkeiten</h2>
   <p>Für diese Bedingungen gilt niederländisches Recht. Können wir uns nicht einigen, entscheidet das zuständige Gericht in den Niederlanden.</p>
 
-  <p class="note">Firmendaten: {site.name} · <span class="todo">{site.address}</span> · KvK <span class="todo">{site.kvk}</span> · USt-IdNr. <span class="todo">{site.vat}</span></p>
+  <p class="note">Firmendaten: {site.name}{site.address && ` · ${site.address}`}{site.kvk && ` · KvK ${site.kvk}`}{site.vat && ` · USt-IdNr. ${site.vat}`}</p>

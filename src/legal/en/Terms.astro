@@ -41,4 +41,4 @@ import { site } from '../../data/site';
   <h2>10. Law and disputes</h2>
   <p>Dutch law applies to these terms. If we cannot work it out together, the competent court in the Netherlands decides.</p>
 
-  <p class="note">Business details: {site.name} · <span class="todo">{site.address}</span> · KvK <span class="todo">{site.kvk}</span> · VAT <span class="todo">{site.vat}</span></p>
+  <p class="note">Business details: {site.name}{site.address && ` · ${site.address}`}{site.kvk && ` · KvK ${site.kvk}`}{site.vat && ` · VAT ${site.vat}`}</p>

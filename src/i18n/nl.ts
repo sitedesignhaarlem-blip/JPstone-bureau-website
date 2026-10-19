@@ -160,7 +160,7 @@ const nl: UI = {
   },
   booking: {
     title: 'Liever eerst even praten?',
-    text: 'Plan een gesprek van 15 minuten. Vraag wat je wilt weten.',
+    text: 'Plan een gesprek van 30 minuten. Vraag wat je wilt weten.',
     cta: 'Plan een gesprek',
   },
   prospect: {

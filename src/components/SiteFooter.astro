@@ -14,7 +14,7 @@ const year = new Date().getFullYear();
     <div class="footer-brand">
       <p class="footer-name">{site.name}</p>
       <p class="muted">{t.footer.location}</p>
-      <p class="muted"><span class="todo">{site.address}</span></p>
+      {site.address && <p class="muted">{site.address}</p>}
     </div>
     <ul class="footer-list" role="list">
       <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
@@ -30,7 +30,7 @@ const year = new Date().getFullYear();
       </ul>
     </nav>
     <p class="footer-legal muted">
-      © {year} {site.name} · KvK <span class="todo">{site.kvk}</span> · {t.footer.vat} <span class="todo">{site.vat}</span><br />
+      © {year} {site.name}{site.kvk && ` · KvK ${site.kvk}`}{site.vat && ` · ${t.footer.vat} ${site.vat}`}<br />
       {t.footer.ai} {t.footer.font} <a href="/fonts/OFL.txt">SIL Open Font License</a>.
     </p>
   </div>
