@@ -9,7 +9,7 @@ const nl: UI = {
     libraryDesc: "Southern Cross: zes clips van een motorcatamaran, met AI gemaakt van de bestaande listingfoto's.",
     howTitle: 'Werkwijze · Still to Film',
     howDesc: 'Zo werkt het: je stuurt je listingfoto\'s, wij maken er met AI een walkthrough-video van, jij zegt wat er anders moet, jij publiceert.',
-    contactTitle: 'Contact · Still to Film',
+    contactTitle: 'Contact opnemen · Still to Film',
     contactDesc: 'Vraag een gratis proefvideo aan. Stuur een link naar je listing, of bel of WhatsApp 06 57 24 96 07.',
   },
   skip: 'Naar de inhoud',

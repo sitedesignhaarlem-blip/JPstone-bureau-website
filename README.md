@@ -11,6 +11,7 @@ npm run dev        # lokaal ontwikkelen op http://localhost:4321
 npm run build      # bouwt de site in dist/
 npm run preview    # bekijk de gebouwde site
 npm run check:a11y # toegankelijkheidscheck (axe, WCAG 2.1 AA) op alle pagina's; eerst build + preview
+npm run check:seo  # titels, beschrijvingen, H1, canonical, hreflang, JSON-LD en interne links; eerst build
 ```
 
 ## Talen en adressen
@@ -63,6 +64,14 @@ Maak een proefvideo van de listing van een prospect en stuur een eigen link mee,
 3. Bouw en publiceer. De pagina toont de video, de voor/na-slider en knoppen voor e-mail en WhatsApp, met de naam al ingevuld.
 
 Deze pagina's staan niet in de sitemap en worden niet geïndexeerd (`noindex`). Haal de voorbeelden `voorbeeld` en `example` weg voor de livegang.
+
+## SEO en AI-zoekmachines
+
+- **Sitemap:** `/sitemap.xml` wordt bij elke build gemaakt uit de paginalijst in `src/i18n/config.ts`, met alle taalversies (hreflang). Een nieuwe pagina komt er vanzelf in.
+- **robots.txt:** laat alle zoekmachines en AI-crawlers toe (GPTBot, ClaudeBot, PerplexityBot, Google-Extended en andere).
+- **llms.txt:** een korte, feitelijke samenvatting voor AI-assistenten in `public/llms.txt`. Houd die gelijk met de site als prijzen of diensten veranderen.
+- **Structured data:** `src/data/schema.ts` (Organization, WebSite, Service, FAQPage, VideoObject, BreadcrumbList). De FAQ-data komt uit dezelfde teksten als de zichtbare FAQ.
+- **Hoofdadres:** `https://stilltofilm.com` (zonder www). `vercel.json` stuurt www door met een 301.
 
 ## Beveiliging
 

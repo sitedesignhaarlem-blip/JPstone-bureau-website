@@ -17,7 +17,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
-<Base title={t.meta.homeTitle} preloadImage="/media/hero.jpg" description={t.meta.homeDesc} lang={lang} page="home" videos={['southern-cross-varen-zij', 'southern-cross-drone-anker', 'southern-cross-kombuis']}>
+<Base title={t.meta.homeTitle} preloadImage="/media/hero.jpg" description={t.meta.homeDesc} lang={lang} page="home" service faq videos={['southern-cross-varen-zij', 'southern-cross-drone-anker', 'southern-cross-kombuis']}>
   <SiteNav lang={lang} page="home" />
 
   <main id="main">

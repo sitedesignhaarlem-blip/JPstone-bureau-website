@@ -13,8 +13,10 @@ export const localeNames: Record<Locale, string> = {
   es: 'Español',
 };
 
-// Used for <html lang>, hreflang and Open Graph.
-export const htmlLang: Record<Locale, string> = { nl: 'nl', en: 'en', de: 'de', fr: 'fr', es: 'es' };
+// <html lang> per language; English is written for a British audience.
+export const htmlLang: Record<Locale, string> = { nl: 'nl', en: 'en-GB', de: 'de', fr: 'fr', es: 'es' };
+// hreflang targets the language as a whole, so every English-speaking country gets the English pages.
+export const hreflang: Record<Locale, string> = { nl: 'nl', en: 'en', de: 'de', fr: 'fr', es: 'es' };
 export const ogLocale: Record<Locale, string> = { nl: 'nl_NL', en: 'en_GB', de: 'de_DE', fr: 'fr_FR', es: 'es_ES' };
 
 export type PageId = 'home' | 'library' | 'how' | 'contact' | 'privacy' | 'terms' | 'cookies';

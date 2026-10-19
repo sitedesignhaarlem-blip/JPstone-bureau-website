@@ -11,7 +11,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
-<Base title={t.meta.howTitle} description={t.meta.howDesc} lang={lang} page="how">
+<Base title={t.meta.howTitle} description={t.meta.howDesc} lang={lang} page="how" service>
   <SiteNav lang={lang} page="how" />
   <main id="main">
     <Steps lang={lang} heading="h1" />

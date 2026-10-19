@@ -10,7 +10,7 @@ const en = {
     libraryDesc: 'Southern Cross: six clips of a motor catamaran, made with AI from its existing listing photos.',
     howTitle: 'How it works · Still to Film',
     howDesc: 'How it works: you send your listing photos, we use AI to turn them into a walkthrough video, you tell us what to change, you publish.',
-    contactTitle: 'Contact · Still to Film',
+    contactTitle: 'Contact us · Still to Film',
     contactDesc: 'Request a free sample video. Send a link to your listing, or call or WhatsApp +31 6 57 24 96 07.',
   },
   skip: 'Skip to content',

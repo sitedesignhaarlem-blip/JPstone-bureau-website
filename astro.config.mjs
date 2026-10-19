@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
 import { SITE_URL } from './src/data/site.ts';
 
 // Languages are routed by src/pages/[...path].astro (see src/i18n/config.ts).
@@ -29,6 +28,4 @@ export default defineConfig({
       ],
     },
   },
-  // Prospect pages (/p/…) are private links and stay out of the sitemap.
-  integrations: [sitemap({ filter: (page) => !page.includes('/p/') })],
 });

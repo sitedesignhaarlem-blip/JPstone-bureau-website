@@ -58,6 +58,7 @@ function setupDialog() {
       video.poster = `/media/${file}.jpg`;
       video.load();
       caption.textContent = btn.dataset.title ?? btn.closest('figure')?.querySelector('.tile-title')?.textContent ?? '';
+      if (caption.textContent) video.setAttribute('aria-label', caption.textContent);
       dialog.showModal();
       video.play().catch(() => {});
     }),

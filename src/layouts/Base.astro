@@ -2,7 +2,8 @@
 import '../styles/tokens.css';
 import '../styles/base.css';
 import { SITE_URL, site } from '../data/site';
-import { locales, defaultLocale, htmlLang, ogLocale, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
+import { breadcrumbs, faqPage, organization, service, videoObject, website } from '../data/schema';
+import { locales, defaultLocale, htmlLang, hreflang, ogLocale, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
 
 interface Props {
   title: string;
@@ -12,40 +13,27 @@ interface Props {
   noindex?: boolean;
   /** Clips shown on this page, added as VideoObject structured data. */
   videos?: string[];
+  /** The page shows the FAQ section: adds FAQPage structured data with the same texts. */
+  faq?: boolean;
+  /** The page describes the service: adds Service structured data. */
+  service?: boolean;
   /** The first large image on the page; loaded with priority. */
   preloadImage?: string;
   /** Address of a page outside the normal page list (e.g. a prospect page). Turns off language alternates. */
   path?: string;
 }
-const { title, description, lang, page, noindex = false, videos = [], preloadImage, path } = Astro.props;
+const { title, description, lang, page, noindex = false, videos = [], faq = false, service: isService = false, preloadImage, path } = Astro.props;
 const t = useTranslations(lang);
 const canonical = new URL(path ?? pagePath(lang, page), SITE_URL).href;
 const abs = (path: string) => new URL(path, SITE_URL).href;
 
-// Structured data: the business on every page, plus the clips on pages that show them.
-const business = {
-  '@type': 'ProfessionalService',
-  '@id': abs('/#business'),
-  name: site.name,
-  url: abs(pagePath(lang, 'home')),
-  email: site.email,
-  telephone: site.phoneE164,
-  image: abs('/og.jpg'),
-  address: { '@type': 'PostalAddress', addressCountry: site.country },
-  areaServed: 'Worldwide',
-  description: t.meta.homeDesc,
-};
-const videoObjects = videos.map((file) => ({
-  '@type': 'VideoObject',
-  name: `${t.shots[file as keyof typeof t.shots].title} · Southern Cross`,
-  description: t.shots[file as keyof typeof t.shots].alt,
-  thumbnailUrl: abs(`/media/${file}.jpg`),
-  contentUrl: abs(`/media/${file}.mp4`),
-  uploadDate: '2026-09-03',
-  inLanguage: htmlLang[lang],
-  creator: { '@id': abs('/#business') },
-}));
-const jsonLd = { '@context': 'https://schema.org', '@graph': [business, ...videoObjects] };
+// Structured data: organisation and website on every page, plus what this page shows.
+const graph: object[] = [organization(), website()];
+if (isService) graph.push(service(lang));
+if (faq) graph.push(faqPage(lang, canonical));
+graph.push(...videos.map((file) => videoObject(lang, file)));
+if (page !== 'home' && !path) graph.push(breadcrumbs(lang, page));
+const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
 ---
 <!doctype html>
 <html lang={htmlLang[lang]}>
@@ -56,7 +44,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [business, ...video
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
-    {!path && locales.map((l) => <link rel="alternate" hreflang={htmlLang[l]} href={new URL(pagePath(l, page), SITE_URL).href} />)}
+    {!path && locales.map((l) => <link rel="alternate" hreflang={hreflang[l]} href={new URL(pagePath(l, page), SITE_URL).href} />)}
     {!path && <link rel="alternate" hreflang="x-default" href={new URL(pagePath(defaultLocale, page), SITE_URL).href} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -65,6 +53,7 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': [business, ...video
     <meta property="og:image" content={abs('/og.jpg')} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={t.hero.videoAlt} />
     <meta property="og:site_name" content={site.name} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:locale" content={ogLocale[lang]} />

@@ -9,7 +9,7 @@ const fr: UI = {
     libraryDesc: 'Southern Cross : six clips d’un catamaran à moteur, réalisés avec l’IA à partir des photos de son annonce.',
     howTitle: 'Comment ça marche · Still to Film',
     howDesc: 'Comment ça marche : vous envoyez vos photos d’annonce, nous en faisons une vidéo de visite avec l’IA, vous nous dites quoi changer, vous publiez.',
-    contactTitle: 'Contact · Still to Film',
+    contactTitle: 'Nous contacter · Still to Film',
     contactDesc: 'Demandez une vidéo d’essai gratuite. Envoyez le lien de votre annonce, ou appelez le +31 6 57 24 96 07.',
   },
   skip: 'Aller au contenu',

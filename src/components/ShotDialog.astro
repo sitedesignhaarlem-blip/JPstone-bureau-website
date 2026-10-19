@@ -9,7 +9,7 @@ const t = useTranslations(Astro.props.lang);
 ---
 <dialog id="shot-dialog" aria-label={t.dialog.label}>
   <div class="dialog-inner">
-    <video muted playsinline loop controls></video>
+    <video muted playsinline loop controls preload="none" aria-label={t.dialog.label}></video>
     <div class="dialog-bar">
       <p data-caption></p>
       <form method="dialog"><button class="close" type="submit">{t.dialog.close}</button></form>
