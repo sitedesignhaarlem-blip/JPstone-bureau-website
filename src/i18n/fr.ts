@@ -3,13 +3,13 @@ import type { UI } from './en';
 
 const fr: UI = {
   meta: {
-    homeTitle: 'JPstone Bureau · Des vidéos de visite à partir de vos photos d’annonce',
+    homeTitle: 'Still to Film · Des vidéos de visite à partir de vos photos d’annonce',
     homeDesc: 'Avec l’IA, nous transformons les photos de votre annonce en une vidéo de visite calme. Pour les loueurs de yachts et les hôtels boutique. Pas de tournage, pas d’équipe à bord.',
-    libraryTitle: 'Bibliothèque · JPstone Bureau',
+    libraryTitle: 'Bibliothèque · Still to Film',
     libraryDesc: 'Southern Cross : six clips d’un catamaran à moteur, réalisés avec l’IA à partir des photos de son annonce.',
-    howTitle: 'Comment ça marche · JPstone Bureau',
+    howTitle: 'Comment ça marche · Still to Film',
     howDesc: 'Comment ça marche : vous envoyez vos photos d’annonce, nous en faisons une vidéo de visite avec l’IA, vous nous dites quoi changer, vous publiez.',
-    contactTitle: 'Contact · JPstone Bureau',
+    contactTitle: 'Contact · Still to Film',
     contactDesc: 'Demandez une vidéo d’essai gratuite. Envoyez le lien de votre annonce, ou appelez le +31 6 57 24 96 07.',
   },
   skip: 'Aller au contenu',
@@ -93,11 +93,11 @@ const fr: UI = {
   legal: {
     updated: 'Dernière mise à jour',
     privacyTitle: 'Politique de confidentialité',
-    privacyDesc: 'Quelles données JPstone Bureau traite, pourquoi, combien de temps, et comment les consulter ou les faire supprimer.',
+    privacyDesc: 'Quelles données Still to Film traite, pourquoi, combien de temps, et comment les consulter ou les faire supprimer.',
     termsTitle: 'Conditions générales',
-    termsDesc: 'Les conditions des vidéos d’essai et des commandes de JPstone Bureau : prix, livraison, révisions, droits d’utilisation, annulation et remboursement.',
+    termsDesc: 'Les conditions des vidéos d’essai et des commandes de Still to Film : prix, livraison, révisions, droits d’utilisation, annulation et remboursement.',
     cookiesTitle: 'Politique relative aux cookies',
-    cookiesDesc: 'JPstone Bureau ne dépose aucun cookie et n’utilise aucun traceur. C’est pourquoi vous ne voyez pas de bandeau cookies.',
+    cookiesDesc: 'Still to Film ne dépose aucun cookie et n’utilise aucun traceur. C’est pourquoi vous ne voyez pas de bandeau cookies.',
     translationNote: 'Ceci est une traduction du texte néerlandais. En cas de divergence, la version néerlandaise prévaut.',
   },
   compare: {

@@ -4,13 +4,13 @@
 
 const en = {
   meta: {
-    homeTitle: 'JPstone Bureau · Walkthrough videos from your listing photos',
+    homeTitle: 'Still to Film · Walkthrough videos from your listing photos',
     homeDesc: 'We use AI to turn the photos on your listing into a calm walkthrough video. For yacht charters and boutique hotels. No shoot day, no crew on board.',
-    libraryTitle: 'Library · JPstone Bureau',
+    libraryTitle: 'Library · Still to Film',
     libraryDesc: 'Southern Cross: six clips of a motor catamaran, made with AI from its existing listing photos.',
-    howTitle: 'How it works · JPstone Bureau',
+    howTitle: 'How it works · Still to Film',
     howDesc: 'How it works: you send your listing photos, we use AI to turn them into a walkthrough video, you tell us what to change, you publish.',
-    contactTitle: 'Contact · JPstone Bureau',
+    contactTitle: 'Contact · Still to Film',
     contactDesc: 'Request a free sample video. Send a link to your listing, or call or WhatsApp +31 6 57 24 96 07.',
   },
   skip: 'Skip to content',
@@ -94,11 +94,11 @@ const en = {
   legal: {
     updated: 'Last updated',
     privacyTitle: 'Privacy policy',
-    privacyDesc: 'What data JPstone Bureau processes, why, for how long, and how to see or delete it.',
+    privacyDesc: 'What data Still to Film processes, why, for how long, and how to see or delete it.',
     termsTitle: 'Terms and conditions',
-    termsDesc: 'The terms for sample videos and projects from JPstone Bureau: prices, delivery, revisions, usage rights, cancellation and refunds.',
+    termsDesc: 'The terms for sample videos and projects from Still to Film: prices, delivery, revisions, usage rights, cancellation and refunds.',
     cookiesTitle: 'Cookie policy',
-    cookiesDesc: 'JPstone Bureau sets no cookies and uses no trackers. That is why you see no cookie banner.',
+    cookiesDesc: 'Still to Film sets no cookies and uses no trackers. That is why you see no cookie banner.',
     // Shown on translated legal pages: which version counts if they differ. Empty for Dutch.
     translationNote: 'This is a translation of the Dutch text. If the two differ, the Dutch version applies.',
   },

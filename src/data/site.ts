@@ -4,7 +4,7 @@
 export const SITE_URL = 'https://stilltofilm.com';
 
 export const site = {
-  name: 'JPstone Bureau',
+  name: 'Still to Film',
   city: 'Haarlem',
   country: 'NL',
   // Left empty for now: an empty value is simply not shown. Fill in once registered with the KvK.

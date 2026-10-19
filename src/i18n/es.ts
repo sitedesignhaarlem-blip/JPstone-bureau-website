@@ -3,13 +3,13 @@ import type { UI } from './en';
 
 const es: UI = {
   meta: {
-    homeTitle: 'JPstone Bureau · Vídeos de recorrido a partir de las fotos de tu anuncio',
+    homeTitle: 'Still to Film · Vídeos de recorrido a partir de las fotos de tu anuncio',
     homeDesc: 'Con IA convertimos las fotos de tu anuncio en un vídeo de recorrido tranquilo. Para chárteres de yates y hoteles boutique. Sin día de rodaje, sin equipo a bordo.',
-    libraryTitle: 'Biblioteca · JPstone Bureau',
+    libraryTitle: 'Biblioteca · Still to Film',
     libraryDesc: 'Southern Cross: seis clips de un catamarán a motor, hechos con IA a partir de las fotos de su anuncio.',
-    howTitle: 'Cómo funciona · JPstone Bureau',
+    howTitle: 'Cómo funciona · Still to Film',
     howDesc: 'Cómo funciona: nos envías las fotos de tu anuncio, las convertimos con IA en un vídeo de recorrido, nos dices qué cambiar y tú lo publicas.',
-    contactTitle: 'Contacto · JPstone Bureau',
+    contactTitle: 'Contacto · Still to Film',
     contactDesc: 'Pide un vídeo de prueba gratis. Envíanos el enlace de tu anuncio, o llama o escribe por WhatsApp al +31 6 57 24 96 07.',
   },
   skip: 'Ir al contenido',
@@ -93,11 +93,11 @@ const es: UI = {
   legal: {
     updated: 'Última actualización',
     privacyTitle: 'Política de privacidad',
-    privacyDesc: 'Qué datos trata JPstone Bureau, por qué, durante cuánto tiempo y cómo consultarlos o eliminarlos.',
+    privacyDesc: 'Qué datos trata Still to Film, por qué, durante cuánto tiempo y cómo consultarlos o eliminarlos.',
     termsTitle: 'Condiciones generales',
-    termsDesc: 'Las condiciones de los vídeos de prueba y encargos de JPstone Bureau: precios, entrega, revisiones, derechos de uso, cancelación y reembolso.',
+    termsDesc: 'Las condiciones de los vídeos de prueba y encargos de Still to Film: precios, entrega, revisiones, derechos de uso, cancelación y reembolso.',
     cookiesTitle: 'Política de cookies',
-    cookiesDesc: 'JPstone Bureau no usa cookies ni rastreadores. Por eso no ves ningún banner de cookies.',
+    cookiesDesc: 'Still to Film no usa cookies ni rastreadores. Por eso no ves ningún banner de cookies.',
     translationNote: 'Esta es una traducción del texto neerlandés. En caso de diferencias, prevalece la versión neerlandesa.',
   },
   compare: {

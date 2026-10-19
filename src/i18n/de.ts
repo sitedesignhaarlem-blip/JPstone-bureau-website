@@ -3,13 +3,13 @@ import type { UI } from './en';
 
 const de: UI = {
   meta: {
-    homeTitle: 'JPstone Bureau · Walkthrough-Videos aus Ihren Inseratsfotos',
+    homeTitle: 'Still to Film · Walkthrough-Videos aus Ihren Inseratsfotos',
     homeDesc: 'Wir machen aus den Fotos Ihres Inserats mit KI ein ruhiges Walkthrough-Video. Für Yachtcharter und Boutique-Hotels. Kein Drehtag, keine Crew an Bord.',
-    libraryTitle: 'Bibliothek · JPstone Bureau',
+    libraryTitle: 'Bibliothek · Still to Film',
     libraryDesc: 'Southern Cross: sechs Clips eines Motorkatamarans, mit KI aus den vorhandenen Inseratsfotos erstellt.',
-    howTitle: 'So funktioniert’s · JPstone Bureau',
+    howTitle: 'So funktioniert’s · Still to Film',
     howDesc: 'So funktioniert’s: Sie senden Ihre Inseratsfotos, wir machen daraus mit KI ein Walkthrough-Video, Sie sagen uns, was anders sein soll, Sie veröffentlichen.',
-    contactTitle: 'Kontakt · JPstone Bureau',
+    contactTitle: 'Kontakt · Still to Film',
     contactDesc: 'Fordern Sie ein kostenloses Probevideo an. Senden Sie einen Link zu Ihrem Inserat oder rufen Sie an: +31 6 57 24 96 07.',
   },
   skip: 'Zum Inhalt',
@@ -93,11 +93,11 @@ const de: UI = {
   legal: {
     updated: 'Zuletzt aktualisiert',
     privacyTitle: 'Datenschutzerklärung',
-    privacyDesc: 'Welche Daten JPstone Bureau verarbeitet, warum, wie lange, und wie Sie sie einsehen oder löschen lassen.',
+    privacyDesc: 'Welche Daten Still to Film verarbeitet, warum, wie lange, und wie Sie sie einsehen oder löschen lassen.',
     termsTitle: 'Allgemeine Geschäftsbedingungen',
-    termsDesc: 'Die Bedingungen für Probevideos und Aufträge von JPstone Bureau: Preise, Lieferung, Korrekturen, Nutzungsrecht, Stornierung und Erstattung.',
+    termsDesc: 'Die Bedingungen für Probevideos und Aufträge von Still to Film: Preise, Lieferung, Korrekturen, Nutzungsrecht, Stornierung und Erstattung.',
     cookiesTitle: 'Cookie-Richtlinie',
-    cookiesDesc: 'JPstone Bureau setzt keine Cookies und keine Tracker ein. Deshalb sehen Sie auch kein Cookie-Banner.',
+    cookiesDesc: 'Still to Film setzt keine Cookies und keine Tracker ein. Deshalb sehen Sie auch kein Cookie-Banner.',
     translationNote: 'Dies ist eine Übersetzung des niederländischen Textes. Bei Abweichungen gilt die niederländische Fassung.',
   },
   compare: {

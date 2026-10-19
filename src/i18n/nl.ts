@@ -3,13 +3,13 @@ import type { UI } from './en';
 
 const nl: UI = {
   meta: {
-    homeTitle: "JPstone Bureau · Walkthrough-video's van je listingfoto's",
+    homeTitle: "Still to Film · Walkthrough-video's van je listingfoto's",
     homeDesc: "Wij maken met AI van de foto's op je listing een rustige walkthrough-video. Voor jachtcharters en boutique hotels. Geen draaidag, geen crew aan boord.",
-    libraryTitle: 'Bibliotheek · JPstone Bureau',
+    libraryTitle: 'Bibliotheek · Still to Film',
     libraryDesc: "Southern Cross: zes clips van een motorcatamaran, met AI gemaakt van de bestaande listingfoto's.",
-    howTitle: 'Werkwijze · JPstone Bureau',
+    howTitle: 'Werkwijze · Still to Film',
     howDesc: 'Zo werkt het: je stuurt je listingfoto\'s, wij maken er met AI een walkthrough-video van, jij zegt wat er anders moet, jij publiceert.',
-    contactTitle: 'Contact · JPstone Bureau',
+    contactTitle: 'Contact · Still to Film',
     contactDesc: 'Vraag een gratis proefvideo aan. Stuur een link naar je listing, of bel of WhatsApp 06 57 24 96 07.',
   },
   skip: 'Naar de inhoud',
@@ -93,11 +93,11 @@ const nl: UI = {
   legal: {
     updated: 'Laatst bijgewerkt',
     privacyTitle: 'Privacyverklaring',
-    privacyDesc: 'Welke gegevens JPstone Bureau verwerkt, waarom, hoe lang, en hoe je ze laat inzien of verwijderen.',
+    privacyDesc: 'Welke gegevens Still to Film verwerkt, waarom, hoe lang, en hoe je ze laat inzien of verwijderen.',
     termsTitle: 'Algemene voorwaarden',
-    termsDesc: "De afspraken voor proefvideo's en opdrachten van JPstone Bureau: prijzen, levering, revisies, gebruiksrecht, annulering en terugbetaling.",
+    termsDesc: "De afspraken voor proefvideo's en opdrachten van Still to Film: prijzen, levering, revisies, gebruiksrecht, annulering en terugbetaling.",
     cookiesTitle: 'Cookieverklaring',
-    cookiesDesc: 'JPstone Bureau plaatst geen cookies en gebruikt geen trackers. Daarom zie je ook geen cookiebanner.',
+    cookiesDesc: 'Still to Film plaatst geen cookies en gebruikt geen trackers. Daarom zie je ook geen cookiebanner.',
     translationNote: '',
   },
   compare: {

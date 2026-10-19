@@ -1,6 +1,6 @@
-# JPstone Bureau – website
+# Still to Film – website
 
-Marketingsite voor JPstone Bureau: walkthrough-video's van listingfoto's, voor jachtcharters en boutique hotels.
+Marketingsite voor Still to Film: walkthrough-video's van listingfoto's, voor jachtcharters en boutique hotels.
 Gebouwd met [Astro](https://astro.build) als statische site, met gewone CSS en een beetje JavaScript. Bedoeld voor hosting op Vercel.
 
 ## Starten
