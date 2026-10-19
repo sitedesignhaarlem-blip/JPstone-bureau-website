@@ -140,7 +140,7 @@ const en = {
     title: 'Questions.',
     items: [
       { q: 'Who owns the video?', a: 'Once paid, you can use it without limits for your own marketing: your website, listings, social media and ads. You just can’t resell it as a standalone video.' },
-      { q: 'How fast do I get it?', a: 'The delivery time is in your quote. [TODO: typical delivery time in days]. The free sample usually comes first, so you can judge before you commit.' },
+      { q: 'How fast do I get it?', a: 'The delivery time is in your quote. We make up to 2 videos a day, and we always agree the delivery date with you beforehand. The free sample usually comes first, so you can judge before you commit.' },
       { q: 'How many revisions are included?', a: '2 rounds per video. A revision is a change with the same photos and the same concept. New photos or a new concept count as a new video.' },
       { q: 'Which formats do I get?', a: '16:9 for your website and listing platforms, and 9:16 for Instagram, TikTok and Reels. You get MP4 files, ready to upload.' },
       { q: 'Is this made with AI?', a: 'Yes. Software turns your photos into camera movement. We check every video before delivery, so it shows what is in your photos and nothing that isn’t.' },

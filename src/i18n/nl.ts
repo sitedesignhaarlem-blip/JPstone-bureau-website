@@ -138,7 +138,7 @@ const nl: UI = {
     title: 'Vragen.',
     items: [
       { q: 'Van wie is de video?', a: 'Na betaling gebruik je hem onbeperkt voor je eigen marketing: je website, listings, social media en advertenties. Alleen doorverkopen als losse video mag niet.' },
-      { q: 'Hoe snel heb ik hem?', a: 'De levertijd staat in je offerte. [TODO: gebruikelijke levertijd in dagen]. De gratis proefvideo komt meestal eerst, zodat je kunt oordelen voordat je iets vastlegt.' },
+      { q: 'Hoe snel heb ik hem?', a: 'De levertijd staat in je offerte. We maken tot 2 video's per dag, en spreken de leverdatum altijd vooraf met je af. De gratis proefvideo komt meestal eerst, zodat je kunt oordelen voordat je iets vastlegt.' },
       { q: 'Hoeveel revisies zitten erin?', a: '2 rondes per video. Een revisie is een aanpassing met dezelfde foto’s en dezelfde opzet. Nieuwe foto’s of een nieuwe opzet tellen als een nieuwe video.' },
       { q: 'Welke formaten krijg ik?', a: '16:9 voor je website en listingplatforms, en 9:16 voor Instagram, TikTok en Reels. Je krijgt mp4-bestanden, klaar om te uploaden.' },
       { q: 'Is dit gemaakt met AI?', a: 'Ja. Software maakt van je foto’s camerabewegingen. We controleren elke video voor oplevering, zodat hij laat zien wat op je foto’s staat en niets wat er niet is.' },

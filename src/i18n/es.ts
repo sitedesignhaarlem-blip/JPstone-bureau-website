@@ -138,7 +138,7 @@ const es: UI = {
     title: 'Preguntas.',
     items: [
       { q: '¿De quién es el vídeo?', a: 'Una vez pagado, puedes usarlo sin límites para tu propio marketing: web, anuncios, redes sociales y publicidad. Solo no puedes revenderlo como vídeo independiente.' },
-      { q: '¿Cuándo lo recibo?', a: 'El plazo de entrega figura en tu presupuesto. [TODO: plazo habitual en días]. El vídeo de prueba gratis suele llegar antes, para que puedas valorarlo sin compromiso.' },
+      { q: '¿Cuándo lo recibo?', a: 'El plazo de entrega figura en tu presupuesto. Hacemos hasta 2 vídeos al día, y la fecha de entrega siempre la acordamos contigo de antemano. El vídeo de prueba gratis suele llegar antes, para que puedas valorarlo sin compromiso.' },
       { q: '¿Cuántas revisiones incluye?', a: '2 rondas por vídeo. Una revisión es un cambio con las mismas fotos y el mismo planteamiento. Fotos nuevas o un planteamiento nuevo cuentan como un vídeo nuevo.' },
       { q: '¿Qué formatos recibo?', a: '16:9 para tu web y las plataformas de anuncios, y 9:16 para Instagram, TikTok y Reels. Recibes archivos MP4, listos para subir.' },
       { q: '¿Está hecho con IA?', a: 'Sí. Un software convierte tus fotos en movimientos de cámara. Revisamos cada vídeo antes de entregarlo, para que muestre lo que hay en tus fotos y nada que no exista.' },

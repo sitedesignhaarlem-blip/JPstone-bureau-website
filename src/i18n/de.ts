@@ -138,7 +138,7 @@ const de: UI = {
     title: 'Fragen.',
     items: [
       { q: 'Wem gehört das Video?', a: 'Nach Zahlung dürfen Sie es unbegrenzt für Ihr eigenes Marketing nutzen: Website, Inserate, Social Media und Werbung. Nur ein Weiterverkauf als eigenständiges Video ist nicht erlaubt.' },
-      { q: 'Wie schnell bekomme ich es?', a: 'Die Lieferzeit steht in Ihrem Angebot. [TODO: übliche Lieferzeit in Tagen]. Das kostenlose Probevideo kommt meist zuerst, damit Sie urteilen können, bevor Sie sich festlegen.' },
+      { q: 'Wie schnell bekomme ich es?', a: 'Die Lieferzeit steht in Ihrem Angebot. Wir erstellen bis zu 2 Videos pro Tag, und den Liefertermin stimmen wir immer vorab mit Ihnen ab. Das kostenlose Probevideo kommt meist zuerst, damit Sie urteilen können, bevor Sie sich festlegen.' },
       { q: 'Wie viele Korrekturen sind enthalten?', a: '2 Runden pro Video. Eine Korrektur ist eine Änderung mit denselben Fotos und demselben Konzept. Neue Fotos oder ein neues Konzept gelten als neues Video.' },
       { q: 'Welche Formate bekomme ich?', a: '16:9 für Ihre Website und Inseratsplattformen, 9:16 für Instagram, TikTok und Reels. Sie erhalten MP4-Dateien, fertig zum Hochladen.' },
       { q: 'Wird das mit KI gemacht?', a: 'Ja. Software macht aus Ihren Fotos Kamerabewegungen. Wir prüfen jedes Video vor der Lieferung, damit es zeigt, was auf Ihren Fotos ist, und nichts, was es nicht gibt.' },

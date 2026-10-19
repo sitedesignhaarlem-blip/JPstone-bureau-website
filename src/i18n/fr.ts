@@ -138,7 +138,7 @@ const fr: UI = {
     title: 'Questions.',
     items: [
       { q: 'À qui appartient la vidéo ?', a: 'Après paiement, vous pouvez l’utiliser sans limite pour votre propre marketing : site web, annonces, réseaux sociaux et publicité. Seule la revente en tant que vidéo indépendante est exclue.' },
-      { q: 'En combien de temps est-elle livrée ?', a: 'Le délai figure dans votre devis. [TODO : délai habituel en jours]. La vidéo d’essai gratuite arrive en général d’abord, pour que vous puissiez juger avant de vous engager.' },
+      { q: 'En combien de temps est-elle livrée ?', a: 'Le délai figure dans votre devis. Nous réalisons jusqu’à 2 vidéos par jour, et la date de livraison est toujours convenue avec vous à l’avance. La vidéo d’essai gratuite arrive en général d’abord, pour que vous puissiez juger avant de vous engager.' },
       { q: 'Combien de révisions sont incluses ?', a: '2 séries par vidéo. Une révision est une modification avec les mêmes photos et le même concept. De nouvelles photos ou un nouveau concept comptent comme une nouvelle vidéo.' },
       { q: 'Quels formats vais-je recevoir ?', a: '16:9 pour votre site et les plateformes d’annonces, 9:16 pour Instagram, TikTok et Reels. Vous recevez des fichiers MP4, prêts à être publiés.' },
       { q: 'Est-ce réalisé avec l’IA ?', a: 'Oui. Un logiciel transforme vos photos en mouvements de caméra. Nous vérifions chaque vidéo avant livraison : elle montre ce qui figure sur vos photos, et rien d’autre.' },

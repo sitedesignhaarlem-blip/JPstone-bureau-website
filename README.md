@@ -88,7 +88,7 @@ Deze pagina's staan niet in de sitemap en worden niet geïndexeerd (`noindex`). 
 - [ ] **Bedrijfsgegevens (na inschrijving):** KvK-nummer, btw-id en vestigingsadres invullen in `src/data/site.ts`. Zolang ze leeg zijn, worden ze nergens getoond. Zodra ze er staan, verschijnen ze vanzelf in de footer, de privacyverklaring en de voorwaarden.
 - [ ] **Formulier:** Formspree (of vergelijkbaar) koppelen via `formEndpoint` in `src/data/site.ts`, en de dienst noemen in de privacyverklaringen.
 - [x] **Pakketten:** €100 per video, 30 seconden, 2 revisies, Vloot onbeperkt, Doorlopend tot 100 per maand (`packages` en `faq` in `src/i18n/`, artikel 5 in `src/legal/*/Terms.astro`).
-- [ ] **Levertijd en betaaltermijn:** nog invullen (FAQ in `src/i18n/`, artikel 6 in `src/legal/*/Terms.astro`).
+- [x] **Levertijd en betaaltermijn:** tot 2 video's per dag, leverdatum altijd vooraf afgesproken (FAQ); betaaltermijn 14 dagen (artikel 6 van de voorwaarden).
 - [ ] **Case Virgin Charter Yachts:** levering, levertijd en citaat, pas na akkoord van de klant.
 - [ ] **Toestemming:** schriftelijke toestemming van de eigenaar om Southern Cross bij naam te tonen.
 - [ ] **Vertalingen:** Duits, Frans en Spaans laten nalezen door iemand met die moedertaal, vooral de voorwaarden.
