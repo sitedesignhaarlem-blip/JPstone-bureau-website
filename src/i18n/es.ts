@@ -4,7 +4,7 @@ import type { UI } from './en';
 const es: UI = {
   meta: {
     homeTitle: 'Still to Film · Vídeos de recorrido a partir de las fotos de tu anuncio',
-    homeDesc: 'Con IA convertimos las fotos de tu anuncio en un vídeo de recorrido tranquilo. Para chárteres de yates y hoteles boutique. Sin día de rodaje, sin equipo a bordo.',
+    homeDesc: "Convertimos las fotos de tu anuncio de yate u hotel en un vídeo de recorrido tranquilo de 60 a 90 segundos. Sin día de rodaje ni software que aprender: lo hacemos nosotros, y una persona revisa cada vídeo.",
     libraryTitle: 'Biblioteca · Still to Film',
     libraryDesc: 'Southern Cross: seis clips de un catamarán a motor, hechos con IA a partir de las fotos de su anuncio.',
     howTitle: 'Cómo funciona · Still to Film',
@@ -24,7 +24,7 @@ const es: UI = {
   hero: {
     eyebrow: 'Para chárteres de yates y hoteles boutique',
     title: 'Las fotos de tu anuncio se convierten en una película. Sin rodaje.',
-    lead: 'Nos envías las fotos que ya tienes en tu anuncio. Con IA las convertimos en un recorrido en vídeo, tranquilo y fluido.',
+    lead: "Nos envías las fotos que ya tienes en tu anuncio. Con IA las convertimos en un recorrido en vídeo tranquilo, y una persona revisa cada vídeo antes de que lo veas. No necesitas conocimientos ni software.",
     cta: 'Pide un vídeo de prueba gratis',
     more: 'Ver la biblioteca',
     videoAlt: 'El catamarán a motor Southern Cross navegando en mar abierto, hecho a partir de fotos del anuncio.',
@@ -34,7 +34,7 @@ const es: UI = {
     s1Title: 'Nos envías fotos',
     s1Text: "Basta con el enlace de tu anuncio. Cuanto más nítidas tus fotos, mejor la película.",
     s2Title: 'Hacemos la película',
-    s2Text: "Con IA, a partir de tus fotos. De 60 a 90 segundos, en 16:9 para tu web y 9:16 para redes sociales.",
+    s2Text: "Con IA, a partir de tus fotos, y revisado por una persona. De 60 a 90 segundos, en 16:9 para tu web y 9:16 para redes sociales.",
     s3Title: 'Nos das tu opinión',
     s3Text: '¿Quieres cambiar algo? Dinos qué y lo ajustamos. Las revisiones están incluidas.',
     s4Title: 'Tú publicas',
@@ -142,8 +142,19 @@ const es: UI = {
       { q: '¿Cuántas revisiones incluye?', a: '2 rondas por vídeo. Una revisión es un cambio con las mismas fotos y el mismo planteamiento. Fotos nuevas o un planteamiento nuevo cuentan como un vídeo nuevo.' },
       { q: '¿Qué formatos recibo?', a: "Cada vídeo dura de 60 a 90 segundos. 16:9 para tu web y las plataformas de anuncios, y 9:16 para Instagram, TikTok y Reels. Recibes archivos MP4, listos para subir." },
       { q: "¿Qué fotos necesitáis?", a: "Bastan las fotos de tu anuncio. Cuanta más calidad tengan las fotos, más calidad tendrá la película: nítidas, bien iluminadas y en alta resolución funcionan mejor. Si tienes los archivos originales de tu fotógrafo, envíalos." },
-      { q: '¿Está hecho con IA?', a: 'Sí. Un software convierte tus fotos en movimientos de cámara. Revisamos cada vídeo antes de entregarlo, para que muestre lo que hay en tus fotos y nada que no exista.' },
+      { q: "¿Está hecho con IA?", a: "Sí. Un software convierte tus fotos en movimientos de cámara. Después, una persona ve cada vídeo completo antes de la entrega, para que muestre lo que hay en tus fotos y nada que no esté." },
+      { q: "¿Necesito conocimientos o software?", a: "No. Nos envías el enlace de tu anuncio o las fotos, y nosotros hacemos el resto. No hay herramienta que aprender, ni prompts que escribir, ni cuenta que crear." },
       { q: '¿Qué incluye el vídeo de prueba gratis?', a: 'Un clip corto hecho con las fotos de tu propio anuncio. Sin compromiso y sin factura. Basta con el enlace de tu anuncio.' },
+    ],
+  },
+  promise: {
+    eyebrow: "Lo hacemos por ti",
+    title: "Tú envías un enlace. Nosotros hacemos el resto.",
+    lead: "Muchas herramientas de vídeo con IA te dan el software y te dejan el trabajo. Nosotros hacemos la película por ti, y una persona revisa cada vídeo antes de que lo veas.",
+    items: [
+      { title: "Sin conocimientos", text: "Envía el enlace de tu anuncio o las fotos. No necesitamos nada más. Sin herramientas, sin prompts, sin cuenta." },
+      { title: "Revisado por una persona", text: "Vemos cada vídeo completo antes de la entrega. Si algo no coincide con tus fotos, lo corregimos o lo quitamos." },
+      { title: "Hecho para tu anuncio", text: "Elegimos las fotos, el orden y los movimientos de cámara para tu yate u hotel, con un estilo tranquilo y coherente para toda tu flota." },
     ],
   },
   vertical: {

@@ -6,6 +6,8 @@ Still to Film is a small studio based in the Netherlands. We work for yacht char
 
 ## What we do
 
+- Done for you: the customer needs no skills, software, prompts or account. They send a link to the listing (or the photos) and we do the rest.
+- A person checks every video in full before delivery. This is what separates the service from self-serve AI video tools.
 - We take the existing listing photos (or a link to the listing) and turn them into a walkthrough video with AI-generated camera movement.
 - Length: 60 to 90 seconds per video.
 - Formats: 16:9 for websites and listing platforms, 9:16 for Instagram Reels, TikTok and Stories. Both formats are included, as MP4 files.
@@ -16,7 +18,7 @@ Still to Film is a small studio based in the Netherlands. We work for yacht char
 ## What it can and cannot do
 
 - The AI creates camera movement and in-between frames from the photos. It can only show what is in the photos; it cannot show rooms, views or details that were never photographed.
-- Every video is checked before delivery so it shows only what is in the photos.
+- A person checks every video before delivery so it shows only what is in the photos. If something does not match, it is fixed or cut.
 - Sharper, well-lit, high-resolution photos give a better film. Original files from the photographer work best.
 
 ## Pricing (excluding VAT)

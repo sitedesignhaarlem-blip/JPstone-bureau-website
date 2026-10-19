@@ -9,6 +9,7 @@ import BeforeAfter from '../components/BeforeAfter.astro';
 import Packages from '../components/Packages.astro';
 import Faq from '../components/Faq.astro';
 import Vertical from '../components/Vertical.astro';
+import DoneForYou from '../components/DoneForYou.astro';
 import { pagePath, useTranslations, type Locale } from '../i18n';
 
 interface Props {
@@ -43,6 +44,8 @@ const t = useTranslations(lang);
     </section>
 
     <BeforeAfter lang={lang} />
+
+    <DoneForYou lang={lang} />
 
     <Vertical lang={lang} />
 

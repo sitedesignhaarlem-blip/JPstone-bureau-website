@@ -1,0 +1,39 @@
+---
+// What sets the service apart from self-serve AI video tools: nothing to learn for the client,
+// and a person checks every video before delivery.
+import { useTranslations, type Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+const p = useTranslations(Astro.props.lang).promise;
+---
+<section class="section section--dark promise" aria-labelledby="promise-title">
+  <div class="wrap">
+    <div class="promise-head">
+      <p class="eyebrow">{p.eyebrow}</p>
+      <h2 id="promise-title">{p.title}</h2>
+      <p class="lead promise-lead">{p.lead}</p>
+    </div>
+    <ul class="promise-list" role="list">
+      {p.items.map((item) => (
+        <li>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .promise-head { display: grid; gap: var(--space-3); max-width: 40rem; margin-bottom: var(--space-7); }
+  .promise-lead { color: var(--on-dark-muted); }
+  .promise-list { display: grid; gap: var(--space-6); padding: 0; margin: 0; list-style: none; }
+  .promise-list li { display: grid; gap: var(--space-2); padding-top: var(--space-4); border-top: 1px solid rgb(255 255 255 / 0.18); }
+  .promise-list h3 { font-size: var(--step-h3); line-height: 1.15; }
+  .promise-list p { color: var(--on-dark-muted); }
+  @media (min-width: 48rem) {
+    .promise-list { grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+  }
+</style>

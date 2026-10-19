@@ -4,7 +4,7 @@ import type { UI } from './en';
 const fr: UI = {
   meta: {
     homeTitle: 'Still to Film · Des vidéos de visite à partir de vos photos d’annonce',
-    homeDesc: 'Avec l’IA, nous transformons les photos de votre annonce en une vidéo de visite calme. Pour les loueurs de yachts et les hôtels boutique. Pas de tournage, pas d’équipe à bord.',
+    homeDesc: "Nous transformons les photos de votre annonce de yacht ou d’hôtel en une vidéo de visite calme de 60 à 90 secondes. Pas de tournage, aucun logiciel à apprendre : nous la réalisons, et une personne vérifie chaque vidéo.",
     libraryTitle: 'Bibliothèque · Still to Film',
     libraryDesc: 'Southern Cross : six clips d’un catamaran à moteur, réalisés avec l’IA à partir des photos de son annonce.',
     howTitle: 'Comment ça marche · Still to Film',
@@ -24,7 +24,7 @@ const fr: UI = {
   hero: {
     eyebrow: 'Pour les loueurs de yachts et les hôtels boutique',
     title: 'Vos photos d’annonce deviennent un film. Sans tournage.',
-    lead: 'Vous nous envoyez les photos déjà présentes sur votre annonce. Avec l’IA, nous en faisons une visite vidéo, calme et fluide.',
+    lead: "Vous nous envoyez les photos déjà présentes sur votre annonce. Avec l’IA, nous en faisons une visite vidéo calme, et une personne vérifie chaque vidéo avant que vous la voyiez. Aucune compétence ni aucun logiciel nécessaire de votre côté.",
     cta: 'Demander une vidéo d’essai gratuite',
     more: 'Voir la bibliothèque',
     videoAlt: 'Le catamaran à moteur Southern Cross navigue en pleine mer, réalisé à partir de photos d’annonce.',
@@ -34,7 +34,7 @@ const fr: UI = {
     s1Title: 'Vous envoyez des photos',
     s1Text: "Le lien de votre annonce suffit. Plus vos photos sont nettes, plus le film est beau.",
     s2Title: 'Nous réalisons le film',
-    s2Text: "Avec l’IA, à partir de vos photos. De 60 à 90 secondes, en 16:9 pour votre site et en 9:16 pour les réseaux sociaux.",
+    s2Text: "Avec l’IA, à partir de vos photos, et vérifiée par une personne. De 60 à 90 secondes, en 16:9 pour votre site et en 9:16 pour les réseaux sociaux.",
     s3Title: 'Vous donnez votre avis',
     s3Text: 'Vous voulez changer quelque chose ? Dites-nous quoi, et nous l’ajustons. Les révisions sont incluses.',
     s4Title: 'Vous publiez',
@@ -142,8 +142,19 @@ const fr: UI = {
       { q: 'Combien de révisions sont incluses ?', a: '2 séries par vidéo. Une révision est une modification avec les mêmes photos et le même concept. De nouvelles photos ou un nouveau concept comptent comme une nouvelle vidéo.' },
       { q: 'Quels formats vais-je recevoir ?', a: "Chaque vidéo dure de 60 à 90 secondes. 16:9 pour votre site et les plateformes d’annonces, 9:16 pour Instagram, TikTok et Reels. Vous recevez des fichiers MP4, prêts à être publiés." },
       { q: "De quelles photos avez-vous besoin ?", a: "Les photos de votre annonce suffisent. Plus la qualité des photos est élevée, plus la qualité du film l’est aussi : des photos nettes, bien éclairées et en haute résolution donnent le meilleur résultat. Si vous avez les fichiers originaux de votre photographe, envoyez-les." },
-      { q: 'Est-ce réalisé avec l’IA ?', a: 'Oui. Un logiciel transforme vos photos en mouvements de caméra. Nous vérifions chaque vidéo avant livraison : elle montre ce qui figure sur vos photos, et rien d’autre.' },
+      { q: "Est-ce réalisé avec l’IA ?", a: "Oui. Un logiciel transforme vos photos en mouvements de caméra. Ensuite, une personne regarde chaque vidéo en entier avant la livraison, pour qu’elle montre ce qui est sur vos photos et rien d’autre." },
+      { q: "Ai-je besoin de compétences ou d’un logiciel ?", a: "Non. Vous envoyez le lien de votre annonce ou les photos, et nous faisons le reste. Aucun outil à apprendre, aucun prompt à écrire, aucun compte à créer." },
       { q: 'Que comprend la vidéo d’essai gratuite ?', a: 'Un court clip réalisé à partir de vos propres photos d’annonce. Sans engagement et sans facture. Le lien de votre annonce suffit.' },
+    ],
+  },
+  promise: {
+    eyebrow: "Nous faisons le travail",
+    title: "Vous envoyez un lien. Nous faisons le reste.",
+    lead: "Beaucoup d’outils vidéo IA vous donnent le logiciel et vous laissent le travail. Nous réalisons le film pour vous, et une personne vérifie chaque vidéo avant que vous la voyiez.",
+    items: [
+      { title: "Aucune compétence requise", text: "Envoyez le lien de votre annonce ou les photos. C’est tout ce qu’il nous faut. Aucun outil, aucun prompt, aucun compte." },
+      { title: "Vérifiée par une personne", text: "Nous regardons chaque vidéo en entier avant la livraison. Si quelque chose ne correspond pas à vos photos, nous le corrigeons ou le retirons." },
+      { title: "Faite pour votre annonce", text: "Nous choisissons les photos, l’ordre et les mouvements de caméra pour votre yacht ou votre hôtel, avec un style calme et cohérent pour toute votre flotte." },
     ],
   },
   vertical: {

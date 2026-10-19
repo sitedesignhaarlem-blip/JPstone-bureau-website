@@ -4,7 +4,7 @@ import type { UI } from './en';
 const nl: UI = {
   meta: {
     homeTitle: "Still to Film · Walkthrough-video's van je listingfoto's",
-    homeDesc: "Wij maken met AI van de foto's op je listing een rustige walkthrough-video. Voor jachtcharters en boutique hotels. Geen draaidag, geen crew aan boord.",
+    homeDesc: "Wij maken van de foto's op je jacht- of hotellisting een rustige walkthrough-video van 60 tot 90 seconden. Geen draaidag en geen software om te leren: wij maken hem, en een mens controleert elke video.",
     libraryTitle: 'Bibliotheek · Still to Film',
     libraryDesc: "Southern Cross: zes clips van een motorcatamaran, met AI gemaakt van de bestaande listingfoto's.",
     howTitle: 'Werkwijze · Still to Film',
@@ -24,7 +24,7 @@ const nl: UI = {
   hero: {
     eyebrow: 'Voor jachtcharters en boutique hotels',
     title: "Je listingfoto's worden een film. Zonder draaidag.",
-    lead: "Je stuurt de foto's die al op je listing staan. Wij maken er met AI een rustige rondleiding op video van.",
+    lead: "Je stuurt de foto's die al op je listing staan. Wij maken er met AI een rustige rondleiding op video van, en een mens controleert elke video voordat jij hem ziet. Je hebt zelf geen kennis of software nodig.",
     cta: 'Vraag een gratis proefvideo aan',
     more: 'Bekijk de bibliotheek',
     videoAlt: "Motorcatamaran Southern Cross vaart over open zee, gemaakt van listingfoto's.",
@@ -34,7 +34,7 @@ const nl: UI = {
     s1Title: "Je stuurt foto's",
     s1Text: "Een link naar je listing is genoeg. Hoe scherper je foto's, hoe mooier de film.",
     s2Title: 'Wij maken de film',
-    s2Text: "Met AI, op basis van jouw foto's. 60 tot 90 seconden, in 16:9 voor je site en 9:16 voor social.",
+    s2Text: "Met AI, op basis van jouw foto's, en gecontroleerd door een mens. 60 tot 90 seconden, in 16:9 voor je site en 9:16 voor social.",
     s3Title: 'Jij geeft feedback',
     s3Text: 'Wil je iets anders? Zeg wat, dan passen we het aan. Revisies zitten erbij.',
     s4Title: 'Jij publiceert',
@@ -142,8 +142,19 @@ const nl: UI = {
       { q: 'Hoeveel revisies zitten erin?', a: '2 rondes per video. Een revisie is een aanpassing met dezelfde foto’s en dezelfde opzet. Nieuwe foto’s of een nieuwe opzet tellen als een nieuwe video.' },
       { q: 'Welke formaten krijg ik?', a: "Een video duurt 60 tot 90 seconden. 16:9 voor je website en listingplatforms, en 9:16 voor Instagram, TikTok en Reels. Je krijgt mp4-bestanden, klaar om te uploaden." },
       { q: "Welke foto's hebben jullie nodig?", a: "De foto's van je listing zijn genoeg. Hoe hoger de kwaliteit van de foto's, hoe hoger de kwaliteit van de film: scherp, goed belicht en in hoge resolutie werkt het best. Heb je de originele bestanden van je fotograaf, stuur die dan mee." },
-      { q: 'Is dit gemaakt met AI?', a: 'Ja. Software maakt van je foto’s camerabewegingen. We controleren elke video voor oplevering, zodat hij laat zien wat op je foto’s staat en niets wat er niet is.' },
+      { q: "Is dit gemaakt met AI?", a: "Ja. Software maakt van je foto’s camerabewegingen. Daarna bekijkt een mens elke video helemaal voor oplevering, zodat hij laat zien wat op je foto’s staat en niets wat er niet is." },
+      { q: "Heb ik zelf kennis of software nodig?", a: "Nee. Je stuurt een link naar je listing of de foto’s, en wij doen de rest. Je hoeft geen tool te leren, geen prompts te schrijven en geen account aan te maken." },
       { q: 'Wat zit er in de gratis proefvideo?', a: 'Eén korte clip van je eigen listingfoto’s. Vrijblijvend en zonder factuur. Een link naar je listing is genoeg.' },
+    ],
+  },
+  promise: {
+    eyebrow: "Wij doen het werk",
+    title: "Jij stuurt een link. Wij doen de rest.",
+    lead: "Veel AI-videotools geven je de software en laten het werk aan jou. Wij maken de film voor je, en een mens controleert elke video voordat jij hem ziet.",
+    items: [
+      { title: "Geen kennis nodig", text: "Stuur de link naar je listing of de foto’s. Meer hebben we niet nodig. Geen tool om te leren, geen prompts, geen account." },
+      { title: "Gecontroleerd door een mens", text: "We bekijken elke video helemaal voor oplevering. Klopt iets niet met je foto’s, dan passen we het aan of halen we het eruit." },
+      { title: "Gemaakt voor jouw listing", text: "Wij kiezen de foto’s, de volgorde en de camerabewegingen voor jouw jacht of hotel, en houden één rustige stijl voor je hele vloot." },
     ],
   },
   vertical: {

@@ -5,7 +5,7 @@
 const en = {
   meta: {
     homeTitle: 'Still to Film · Walkthrough videos from your listing photos',
-    homeDesc: 'We use AI to turn the photos on your listing into a calm walkthrough video. For yacht charters and boutique hotels. No shoot day, no crew on board.',
+    homeDesc: "We turn the photos on your yacht or hotel listing into a calm 60–90 second walkthrough video. No shoot day, no software to learn: we make it, and a person checks every video.",
     libraryTitle: 'Library · Still to Film',
     libraryDesc: 'Southern Cross: six clips of a motor catamaran, made with AI from its existing listing photos.',
     howTitle: 'How it works · Still to Film',
@@ -25,7 +25,7 @@ const en = {
   hero: {
     eyebrow: 'For yacht charters and boutique hotels',
     title: 'Your listing photos become a film. No shoot day.',
-    lead: 'Send us the photos already on your listing. We use AI to turn them into a calm video walkthrough.',
+    lead: "Send us the photos already on your listing. We turn them into a calm video walkthrough with AI, and a person checks every video before you see it. No skills or software needed on your side.",
     cta: 'Request a free sample video',
     more: 'See the library',
     videoAlt: 'Motor catamaran Southern Cross cruising on open water, made from listing photos.',
@@ -35,7 +35,7 @@ const en = {
     s1Title: 'You send photos',
     s1Text: "A link to your listing is enough. The sharper your photos, the better the film.",
     s2Title: 'We make the film',
-    s2Text: "With AI, based on your photos. 60 to 90 seconds, in 16:9 for your website and 9:16 for social.",
+    s2Text: "With AI, based on your photos, and checked by a person. 60 to 90 seconds, in 16:9 for your website and 9:16 for social.",
     s3Title: 'You give feedback',
     s3Text: 'Want something changed? Tell us what, and we adjust it. Revisions are included.',
     s4Title: 'You publish',
@@ -144,8 +144,19 @@ const en = {
       { q: 'How many revisions are included?', a: '2 rounds per video. A revision is a change with the same photos and the same concept. New photos or a new concept count as a new video.' },
       { q: 'Which formats do I get?', a: "Each video runs 60 to 90 seconds. 16:9 for your website and listing platforms, and 9:16 for Instagram, TikTok and Reels. You get MP4 files, ready to upload." },
       { q: "Which photos do you need?", a: "The photos from your listing are enough. The higher the quality of the photos, the higher the quality of the film: sharp, well lit and in high resolution works best. If you have the original files from your photographer, send those." },
-      { q: 'Is this made with AI?', a: 'Yes. Software turns your photos into camera movement. We check every video before delivery, so it shows what is in your photos and nothing that isn’t.' },
+      { q: "Is this made with AI?", a: "Yes. Software turns your photos into camera movement. Then a person watches every video in full before delivery, so it shows what is in your photos and nothing that isn’t." },
+      { q: "Do I need any skills or software?", a: "No. You send a link to your listing or the photos, and we do the rest. There is no tool to learn, no prompts to write and no account to set up." },
       { q: 'What does the free sample include?', a: 'One short clip made from your own listing photos. No obligation and no invoice. A link to your listing is all we need.' },
+    ],
+  },
+  promise: {
+    eyebrow: "Done for you",
+    title: "You send a link. We do the rest.",
+    lead: "Many AI video tools hand you the software and leave the work to you. We make the film for you, and a person checks every video before you see it.",
+    items: [
+      { title: "No skills needed", text: "Send the link to your listing or the photos. That is all we need. No tool to learn, no prompts, no account." },
+      { title: "Checked by a person", text: "We watch every video in full before delivery. If something does not match your photos, we fix it or cut it." },
+      { title: "Made for your listing", text: "We choose the photos, the order and the camera moves for your yacht or hotel, and keep one calm style across your fleet." },
     ],
   },
   vertical: {

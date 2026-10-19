@@ -4,7 +4,7 @@ import type { UI } from './en';
 const de: UI = {
   meta: {
     homeTitle: 'Still to Film · Walkthrough-Videos aus Ihren Inseratsfotos',
-    homeDesc: 'Wir machen aus den Fotos Ihres Inserats mit KI ein ruhiges Walkthrough-Video. Für Yachtcharter und Boutique-Hotels. Kein Drehtag, keine Crew an Bord.',
+    homeDesc: "Wir machen aus den Fotos Ihres Yacht- oder Hotelinserats ein ruhiges Walkthrough-Video von 60 bis 90 Sekunden. Kein Drehtag, keine Software zum Lernen: Wir erstellen es, und ein Mensch prüft jedes Video.",
     libraryTitle: 'Bibliothek · Still to Film',
     libraryDesc: 'Southern Cross: sechs Clips eines Motorkatamarans, mit KI aus den vorhandenen Inseratsfotos erstellt.',
     howTitle: 'So funktioniert’s · Still to Film',
@@ -24,7 +24,7 @@ const de: UI = {
   hero: {
     eyebrow: 'Für Yachtcharter und Boutique-Hotels',
     title: 'Aus Ihren Inseratsfotos wird ein Film. Ohne Drehtag.',
-    lead: 'Sie senden uns die Fotos, die schon in Ihrem Inserat stehen. Wir machen daraus mit KI einen ruhigen Rundgang als Video.',
+    lead: "Sie senden uns die Fotos, die schon in Ihrem Inserat stehen. Wir machen daraus mit KI einen ruhigen Rundgang als Video, und ein Mensch prüft jedes Video, bevor Sie es sehen. Sie brauchen dafür weder Vorkenntnisse noch Software.",
     cta: 'Kostenloses Probevideo anfordern',
     more: 'Zur Bibliothek',
     videoAlt: 'Motorkatamaran Southern Cross auf offener See, erstellt aus Inseratsfotos.',
@@ -34,7 +34,7 @@ const de: UI = {
     s1Title: 'Sie senden Fotos',
     s1Text: "Ein Link zu Ihrem Inserat genügt. Je schärfer Ihre Fotos, desto besser der Film.",
     s2Title: 'Wir machen den Film',
-    s2Text: "Mit KI, auf Basis Ihrer Fotos. 60 bis 90 Sekunden, in 16:9 für Ihre Website und 9:16 für Social Media.",
+    s2Text: "Mit KI, auf Basis Ihrer Fotos, und von einem Menschen geprüft. 60 bis 90 Sekunden, in 16:9 für Ihre Website und 9:16 für Social Media.",
     s3Title: 'Sie geben Feedback',
     s3Text: 'Soll etwas anders sein? Sagen Sie uns, was, und wir passen es an. Korrekturen sind inklusive.',
     s4Title: 'Sie veröffentlichen',
@@ -142,8 +142,19 @@ const de: UI = {
       { q: 'Wie viele Korrekturen sind enthalten?', a: '2 Runden pro Video. Eine Korrektur ist eine Änderung mit denselben Fotos und demselben Konzept. Neue Fotos oder ein neues Konzept gelten als neues Video.' },
       { q: 'Welche Formate bekomme ich?', a: "Ein Video dauert 60 bis 90 Sekunden. 16:9 für Ihre Website und Inseratsplattformen, 9:16 für Instagram, TikTok und Reels. Sie erhalten MP4-Dateien, fertig zum Hochladen." },
       { q: "Welche Fotos brauchen Sie?", a: "Die Fotos Ihres Inserats genügen. Je höher die Qualität der Fotos, desto höher die Qualität des Films: scharf, gut belichtet und in hoher Auflösung funktioniert am besten. Haben Sie die Originaldateien Ihres Fotografen, senden Sie diese mit." },
-      { q: 'Wird das mit KI gemacht?', a: 'Ja. Software macht aus Ihren Fotos Kamerabewegungen. Wir prüfen jedes Video vor der Lieferung, damit es zeigt, was auf Ihren Fotos ist, und nichts, was es nicht gibt.' },
+      { q: "Wird das mit KI gemacht?", a: "Ja. Software macht aus Ihren Fotos Kamerabewegungen. Danach sieht sich ein Mensch jedes Video vor der Lieferung vollständig an, damit es zeigt, was auf Ihren Fotos ist, und nichts, was nicht da ist." },
+      { q: "Brauche ich Vorkenntnisse oder Software?", a: "Nein. Sie senden einen Link zu Ihrem Inserat oder die Fotos, den Rest machen wir. Sie müssen kein Tool lernen, keine Prompts schreiben und kein Konto anlegen." },
       { q: 'Was enthält das kostenlose Probevideo?', a: 'Einen kurzen Clip aus Ihren eigenen Inseratsfotos. Unverbindlich und ohne Rechnung. Ein Link zu Ihrem Inserat genügt.' },
+    ],
+  },
+  promise: {
+    eyebrow: "Wir machen die Arbeit",
+    title: "Sie senden einen Link. Wir machen den Rest.",
+    lead: "Viele KI-Videotools geben Ihnen die Software und überlassen Ihnen die Arbeit. Wir erstellen den Film für Sie, und ein Mensch prüft jedes Video, bevor Sie es sehen.",
+    items: [
+      { title: "Keine Vorkenntnisse nötig", text: "Senden Sie den Link zu Ihrem Inserat oder die Fotos. Mehr brauchen wir nicht. Kein Tool, keine Prompts, kein Konto." },
+      { title: "Von einem Menschen geprüft", text: "Wir sehen uns jedes Video vor der Lieferung vollständig an. Passt etwas nicht zu Ihren Fotos, korrigieren wir es oder schneiden es heraus." },
+      { title: "Für Ihr Inserat gemacht", text: "Wir wählen die Fotos, die Reihenfolge und die Kamerabewegungen für Ihre Yacht oder Ihr Hotel und halten einen ruhigen Stil für Ihre ganze Flotte." },
     ],
   },
   vertical: {
