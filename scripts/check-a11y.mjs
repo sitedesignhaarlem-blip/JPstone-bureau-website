@@ -13,7 +13,8 @@ const pages = walk('dist').map((p) => '/' + p.replace(/^dist\/?/, '').replace(/i
 const browser = await chromium.launch({ executablePath: process.env.CHROME || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
 let failed = 0;
 for (const w of [390, 1280]) {
-  const page = await browser.newPage({ viewport: { width: w, height: 900 } });
+  // bypassCSP: the site's CSP would otherwise block the axe script we inject.
+  const page = await browser.newPage({ viewport: { width: w, height: 900 }, bypassCSP: true });
   for (const path of pages) {
     await page.goto(base + path, { waitUntil: 'networkidle' });
     await page.addScriptTag({ content: axe });

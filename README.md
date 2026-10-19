@@ -64,6 +64,22 @@ Maak een proefvideo van de listing van een prospect en stuur een eigen link mee,
 
 Deze pagina's staan niet in de sitemap en worden niet geïndexeerd (`noindex`). Haal de voorbeelden `voorbeeld` en `example` weg voor de livegang.
 
+## Beveiliging
+
+- **Content Security Policy:** Astro zet bij elke build een CSP-tag in elke pagina met een hash van elk eigen script en elke eigen style (`security.csp` in `astro.config.mjs`). Alleen die scripts mogen draaien; alles van andere websites wordt geblokkeerd. Voeg je een externe dienst toe (bijvoorbeeld een andere formulierdienst), zet het domein dan bij de juiste regel in `astro.config.mjs`.
+- **Headers** (in `vercel.json`): HSTS, geen inbedden in andere sites (`frame-ancestors 'none'`), `nosniff`, een strikte `Referrer-Policy` en `Permissions-Policy` (geen camera, microfoon, locatie en dergelijke), en `Cross-Origin-Opener-Policy`/`-Resource-Policy`. Prospectpagina's (`/p/`) krijgen ook `X-Robots-Tag: noindex`.
+- **Geen cookies, geen trackers, geen externe scripts of lettertypen.** Alles komt van het eigen domein.
+- **`/.well-known/security.txt`:** zo weten onderzoekers waar ze een lek kunnen melden. Verloopt op 19-10-2027; zet dan de datum vooruit.
+- **Controleren:** `npm audit` (afhankelijkheden) en na livegang https://securityheaders.com en https://observatory.mozilla.org.
+
+### Zelf doen (buiten de code)
+
+- [ ] **Tweestapsverificatie (2FA)** aan op GitHub, Vercel, je domeinregistrar en je e-mail.
+- [ ] **Domein vergrendelen** (transfer lock) en **DNSSEC** aanzetten bij de registrar.
+- [ ] **E-mailspoofing voorkomen:** zolang je geen e-mail op stilltofilm.com gebruikt, zet in de DNS een SPF-record `v=spf1 -all` en een DMARC-record `_dmarc` met `v=DMARC1; p=reject;`. Dan kan niemand mail versturen die van je domein lijkt te komen.
+- [ ] **CAA-record:** `0 issue "letsencrypt.org"`, zodat alleen de certificaatuitgever van Vercel certificaten voor je domein mag maken.
+- [ ] **HSTS preload:** na een paar weken zonder problemen het domein aanmelden op https://hstspreload.org.
+
 ## Wat nog moet gebeuren voor de livegang
 
 - [x] **Belafspraak:** loopt via WhatsApp, met een vooraf ingevuld bericht (`booking.waMessage` in `src/i18n/`).

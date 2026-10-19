@@ -38,7 +38,7 @@ const pairs: Pair[] =
       <p class="lead muted">{c.lead}</p>
     </div>}
 
-    <div class="ba" data-ba style="--pos: 50%">
+    <div class="ba" data-ba>
       {pairs.map((pair, i) => (
         // Only the first example has its images set; the others get them when chosen (see script).
         <div class="ba-pair" data-pair={pair.file} hidden={i !== 0}>
@@ -125,6 +125,7 @@ const pairs: Pair[] =
   .compare-head { display: grid; gap: var(--space-3); max-width: 40rem; margin-bottom: var(--space-7); }
 
   .ba {
+    --pos: 50%;
     position: relative; aspect-ratio: 960 / 712; overflow: hidden;
     border-radius: var(--radius); background: var(--bg-alt); touch-action: pan-y;
   }
