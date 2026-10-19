@@ -63,7 +63,7 @@ Maak een proefvideo van de listing van een prospect en stuur een eigen link mee,
 2. Voeg een regel toe in `src/data/prospects.ts`: `slug`, bedrijfsnaam, naam van de listing, taal, clip en foto.
 3. Bouw en publiceer. De pagina toont de video, de voor/na-slider en knoppen voor e-mail en WhatsApp, met de naam al ingevuld.
 
-Deze pagina's staan niet in de sitemap en worden niet geïndexeerd (`noindex`). Haal de voorbeelden `voorbeeld` en `example` weg voor de livegang.
+Deze pagina's staan niet in de sitemap en worden niet geïndexeerd (`noindex`).
 
 ## SEO en AI-zoekmachines
 

@@ -4,7 +4,7 @@
 // To add one:
 // 1. Encode their clip:   scripts/encode-media.sh pad/naar/clip.mp4 <slug>
 // 2. Save the listing photo the clip starts from as public/media/<slug>-photo.jpg (same size as the clip)
-// 3. Add an entry below and send them https://<domein>/p/<slug>/
+// 3. Add an entry below and send them https://stilltofilm.com/p/<slug>/
 import type { Locale } from '../i18n/config';
 
 export interface Prospect {
@@ -17,21 +17,13 @@ export interface Prospect {
 }
 
 export const prospects: Prospect[] = [
-  // Example page, so you can see how it looks. Remove it once you have real prospects.
-  {
-    slug: 'voorbeeld',
-    company: 'Voorbeeld Charters',
-    listing: 'Southern Cross',
-    lang: 'nl',
-    video: 'southern-cross-varen-zij',
-    photo: '/media/photo-varen-zij.jpg',
-  },
-  {
-    slug: 'example',
-    company: 'Example Charters',
-    listing: 'Southern Cross',
-    lang: 'en',
-    video: 'southern-cross-drone-anker',
-    photo: '/media/photo-drone-anker.jpg',
-  },
+  // Example of an entry (copy, uncomment and fill in):
+  // {
+  //   slug: 'sunsail-7k2',
+  //   company: 'Sunsail',
+  //   listing: 'Lagoon 46',
+  //   lang: 'en',
+  //   video: 'sunsail-7k2',
+  //   photo: '/media/sunsail-7k2-photo.jpg',
+  // },
 ];
