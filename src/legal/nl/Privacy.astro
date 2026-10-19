@@ -35,7 +35,7 @@ const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Verzoek: 
     <li><strong>Google (Gmail)</strong> voor e-mail.</li>
     <li><strong>WhatsApp (Meta)</strong>, alleen als je ons zelf via WhatsApp benadert.</li>
     <li><strong>Higgsfield</strong>, de AI-dienst waarmee we van je foto's een video maken. Je foto's worden daarvoor geüpload.</li>
-    <li><span class="todo">[Formulierdienst, bijvoorbeeld Formspree: invullen zodra die is gekoppeld]</span></li>
+    {site.formEndpoint && <li><strong>Formspree</strong>, dat het contactformulier naar onze e-mail doorstuurt.</li>}
   </ul>
   <p>Sommige van deze partijen zitten buiten de Europese Economische Ruimte. Doorgifte gebeurt dan op basis van de afspraken die de AVG daarvoor eist, zoals het EU-VS Data Privacy Framework of standaardcontractbepalingen.</p>
 

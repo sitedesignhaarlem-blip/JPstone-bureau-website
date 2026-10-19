@@ -35,7 +35,7 @@ const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Solicitud
     <li><strong>Google (Gmail)</strong> para el correo.</li>
     <li><strong>WhatsApp (Meta)</strong>, solo si tú nos contactas por WhatsApp.</li>
     <li><strong>Higgsfield</strong>, el servicio de IA con el que convertimos tus fotos en vídeo. Para ello se suben tus fotos.</li>
-    <li><span class="todo">[Servicio de formularios, por ejemplo Formspree: completar cuando esté conectado]</span></li>
+    {site.formEndpoint && <li><strong>Formspree</strong>, que reenvía el formulario de contacto a nuestro correo.</li>}
   </ul>
   <p>Algunos de estos proveedores están fuera del Espacio Económico Europeo. En ese caso, la transferencia se basa en las garantías que exige el RGPD, como el EU-US Data Privacy Framework o las cláusulas contractuales tipo.</p>
 

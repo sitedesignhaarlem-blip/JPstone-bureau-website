@@ -35,7 +35,7 @@ const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Anfrage: 
     <li><strong>Google (Gmail)</strong> für E-Mail.</li>
     <li><strong>WhatsApp (Meta)</strong>, nur wenn Sie uns selbst über WhatsApp kontaktieren.</li>
     <li><strong>Higgsfield</strong>, der KI-Dienst, mit dem wir aus Ihren Fotos ein Video machen. Ihre Fotos werden dafür hochgeladen.</li>
-    <li><span class="todo">[Formulardienst, zum Beispiel Formspree: eintragen, sobald verbunden]</span></li>
+    {site.formEndpoint && <li><strong>Formspree</strong>, das das Kontaktformular an unsere E-Mail weiterleitet.</li>}
   </ul>
   <p>Einige dieser Anbieter sitzen außerhalb des Europäischen Wirtschaftsraums. Die Übermittlung erfolgt dann auf Grundlage der von der DSGVO verlangten Garantien, etwa des EU-US Data Privacy Framework oder von Standardvertragsklauseln.</p>
 
