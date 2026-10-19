@@ -1,0 +1,61 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pricePerVideo } from '../../data/pricing';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'fr';
+const faq = [q.volume, q.vat, q.payment, q.revisions, q.sample];
+const money = new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pricePerVideo(n)), total: money.format(n * pricePerVideo(n)) }));
+---
+<Landing
+  lang={lang}
+  page="pricing"
+  title="Tarifs : de 100 € à 50 € par vidéo · Still to Film"
+  description="Une vidéo Still to Film coûte 100 €, 95 € dès 5 vidéos, puis 5 € de moins tous les 5 vidéos, jusqu’à 50 €. Deux formats et 2 révisions inclus. Hors TVA."
+  eyebrow="Tarifs"
+  h1="Tarifs : de 100 € à 50 € par vidéo"
+  summary="Une vidéo Still to Film coûte 100 € si vous en commandez une seule, et 95 € par vidéo à partir de 5 vidéos. Le prix par vidéo baisse ensuite de 5 € tous les 5 vidéos, jusqu’à 50 € ; les prix sont hors TVA et comprennent les deux formats et deux séries de révisions."
+  faqTitle="Questions sur les tarifs"
+  faqItems={faq}
+  service
+  related={['yacht', 'hotel', 'faq']}
+>
+  <h2>La grille tarifaire</h2>
+  <p>Le prix par vidéo dépend du nombre de vidéos dans la commande. Le même prix s’applique à chaque vidéo de cette commande.</p>
+  <PriceTable lang={lang} />
+  <p>Vous pouvez aussi faire le calcul avec le <a href={pagePath(lang, 'home', '#packages-title')}>calculateur de la page d’accueil</a>.</p>
+
+  <h2>Qu’est-ce qui est inclus dans chaque vidéo ?</h2>
+  <ul>
+    <li>Une vidéo de visite de 60 à 90 secondes réalisée à partir de vos photos.</li>
+    <li>Les deux formats : 16:9 pour les sites web et les plateformes d’annonces, 9:16 pour les Reels, TikTok et les Stories, en fichiers MP4.</li>
+    <li>Une vérification par une personne avant la livraison, pour que la vidéo ne montre que ce qui est sur vos photos.</li>
+    <li>Deux séries de révisions.</li>
+    <li>Une utilisation illimitée pour votre propre marketing : site web, annonces, réseaux sociaux et publicité.</li>
+  </ul>
+
+  <h2>Qu’est-ce qu’une révision, et qu’est-ce qu’une nouvelle vidéo ?</h2>
+  <p>Une révision est une modification avec les mêmes photos et le même concept : un autre ordre des plans, un mouvement plus lent, un clip retiré, un autre début ou une autre fin. Chaque vidéo comprend deux séries de révisions.</p>
+  <p>De nouvelles photos, ou un autre concept pour la vidéo, comptent comme une nouvelle vidéo. C’est aussi le cas quand vous rénovez une chambre ou remplacez les photos d’un yacht et voulez un film mis à jour.</p>
+
+  <h2>Exemples de totaux</h2>
+  <div class="table-wrap" role="region" aria-label="Exemples de totaux" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Vidéos</th><th scope="col">Prix par vidéo</th><th scope="col">Total, hors TVA</th></tr></thead>
+      <tbody>
+        {examples.map((e) => (
+          <tr><td data-label="Vidéos">{e.n}</td><td data-label="Prix par vidéo">{e.per}</td><td data-label="Total">{e.total}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Plus de 100 vidéos ?</h2>
+  <p>Pour les commandes de plus de 100 vidéos, nous établissons un devis. C’est aussi le cas pour un travail continu : jusqu’à 100 vidéos par mois, deux formats, résiliable chaque mois.</p>
+
+  <h2>Commencez par une vidéo d’essai gratuite</h2>
+  <p>Avant votre commande, nous réalisons une vidéo d’essai gratuite à partir de vos propres photos d’annonce. Sans engagement et sans facture. Le lien de votre annonce suffit.</p>
+</Landing>

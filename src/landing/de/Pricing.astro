@@ -1,0 +1,61 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pricePerVideo } from '../../data/pricing';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'de';
+const faq = [q.volume, q.vat, q.payment, q.revisions, q.sample];
+const money = new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pricePerVideo(n)), total: money.format(n * pricePerVideo(n)) }));
+---
+<Landing
+  lang={lang}
+  page="pricing"
+  title="Preise: 100 € bis 50 € pro Video · Still to Film"
+  description="Ein Video kostet 100 €, ab 5 Videos 95 € pro Video, alle 5 Videos 5 € weniger, bis auf 50 €. Beide Formate und 2 Korrekturen inklusive. Zzgl. USt."
+  eyebrow="Preise"
+  h1="Preise: von 100 € bis 50 € pro Video"
+  summary="Ein Video von Still to Film kostet 100 €, wenn Sie eins bestellen, und ab 5 Videos 95 € pro Video. Danach sinkt der Preis pro Video alle 5 Videos um 5 €, bis auf 50 €; die Preise verstehen sich zzgl. USt. und enthalten beide Formate und zwei Korrekturrunden."
+  faqTitle="Fragen zu den Preisen"
+  faqItems={faq}
+  service
+  related={['yacht', 'hotel', 'faq']}
+>
+  <h2>Die Preisstaffel</h2>
+  <p>Der Preis pro Video richtet sich nach der Anzahl der Videos im Auftrag. Derselbe Preis gilt für jedes Video in diesem Auftrag.</p>
+  <PriceTable lang={lang} />
+  <p>Sie können die Zahlen auch mit dem <a href={pagePath(lang, 'home', '#packages-title')}>Rechner auf der Startseite</a> ausprobieren.</p>
+
+  <h2>Was ist in jedem Video enthalten?</h2>
+  <ul>
+    <li>Ein Walkthrough-Video von 60 bis 90 Sekunden, erstellt aus Ihren Fotos.</li>
+    <li>Beide Formate als MP4-Dateien: 16:9 für Websites und Inseratsplattformen, 9:16 für Reels, TikTok und Stories.</li>
+    <li>Eine Prüfung durch einen Menschen vor der Lieferung, damit das Video nur zeigt, was auf Ihren Fotos ist.</li>
+    <li>Zwei Korrekturrunden.</li>
+    <li>Unbegrenzte Nutzung für Ihr eigenes Marketing: Website, Inserate, Social Media und Werbung.</li>
+  </ul>
+
+  <h2>Was ist eine Korrektur, und was ist ein neues Video?</h2>
+  <p>Eine Korrektur ist eine Änderung mit denselben Fotos und demselben Konzept: eine andere Reihenfolge der Aufnahmen, eine langsamere Bewegung, ein Clip weniger, ein anderer Anfang oder ein anderes Ende. Jedes Video enthält zwei Korrekturrunden.</p>
+  <p>Neue Fotos oder ein anderes Konzept für das Video gelten als neues Video. Das gilt auch, wenn Sie ein Zimmer renovieren oder die Fotos einer Yacht ersetzen und einen aktualisierten Film möchten.</p>
+
+  <h2>Beispielrechnungen</h2>
+  <div class="table-wrap" role="region" aria-label="Beispielrechnungen" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Videos</th><th scope="col">Preis pro Video</th><th scope="col">Gesamt, zzgl. USt.</th></tr></thead>
+      <tbody>
+        {examples.map((e) => (
+          <tr><td data-label="Videos">{e.n}</td><td data-label="Preis pro Video">{e.per}</td><td data-label="Gesamt">{e.total}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Mehr als 100 Videos?</h2>
+  <p>Für Aufträge über mehr als 100 Videos erstellen wir ein Angebot. Das gilt auch für laufende Arbeit: bis zu 100 Videos pro Monat, beide Formate, monatlich kündbar.</p>
+
+  <h2>Beginnen Sie mit einem kostenlosen Probevideo</h2>
+  <p>Bevor Sie bestellen, erstellen wir ein kostenloses Probevideo aus Ihren eigenen Inseratsfotos. Unverbindlich und ohne Rechnung. Ein Link zu Ihrem Inserat genügt.</p>
+</Landing>

@@ -1,0 +1,67 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'de';
+const faq = [q.ai, q.limits, q.skills, q.photos];
+---
+<Landing
+  lang={lang}
+  page="aiVideo"
+  title="KI-Video aus Fotos: Ablauf, Kosten, Grenzen · Still to Film"
+  description="Wie KI aus Inseratsfotos ein Walkthrough-Video macht, was es kostet, was es zeigen kann und wie ein Mensch prüft, dass es Ihren Fotos treu bleibt."
+  eyebrow="Erklärt"
+  h1="KI-Video aus Fotos: wie es funktioniert, was es kostet, was Sie erwarten können"
+  summary="Bei einem KI-Video aus Fotos fügt Software Standbildern Kamerabewegung und Zwischenbilder hinzu, sodass aus Inseratsfotos ein kurzer Rundgang als Film wird. Still to Film bietet das als Service an: Sie senden die Fotos, wir machen ein Video von 60 bis 90 Sekunden, und ein Mensch prüft jedes Video vor der Lieferung."
+  faqTitle="Fragen zu KI-Video"
+  faqItems={faq}
+  service
+  related={['yacht', 'hotel', 'pricing']}
+>
+  <h2>Was ist ein KI-Video aus Fotos?</h2>
+  <p>Ein Foto ist ein Moment aus einem Blickwinkel. KI-Videosoftware nimmt dieses Foto und erzeugt die Bilder darum herum: eine langsame Fahrt in einen Raum, ein Schwenk über ein Deck, eine Drehung zum Fenster. Hintereinander gesetzt wird aus einer Reihe von Fotos ein kurzer Film, der sich anfühlt wie ein Gang durch den Raum.</p>
+  <p>Die Software filmt nichts. Jedes Bild entsteht aus dem, was auf den Fotos ist. Das ist ihre Stärke und zugleich ihre Grenze.</p>
+
+  <h2>Wie funktioniert es, Schritt für Schritt?</h2>
+  <ol>
+    <li><strong>Fotos auswählen.</strong> Nicht jedes Foto funktioniert in Bewegung. Wir wählen die Fotos, die scharf sind und den Raum gut zeigen, und legen die Reihenfolge des Rundgangs fest.</li>
+    <li><strong>Bewegungen festlegen.</strong> Für jedes Foto wählen wir eine passende Kamerabewegung: langsam und ruhig, nie schnell oder unruhig.</li>
+    <li><strong>Clips erzeugen.</strong> Die KI macht aus jedem Foto einen kurzen Clip. Manche Versuche sehen falsch aus; die verwerfen wir und erzeugen sie neu.</li>
+    <li><strong>Schnitt.</strong> Wir fügen die Clips zu einem Film von 60 bis 90 Sekunden zusammen, in 16:9 und 9:16.</li>
+    <li><strong>Prüfung.</strong> Ein Mensch sieht sich das ganze Video an, bevor Sie es sehen (siehe unten).</li>
+  </ol>
+
+  <h2>Machen lassen oder selbst machen?</h2>
+  <p>Es gibt Tools, mit denen Sie Fotos hochladen und selbst ein Video erzeugen können. Sie können günstiger sein, wenn Sie die Zeit haben und sich einarbeiten möchten. Der Unterschied liegt darin, wer die Arbeit macht und wer sie prüft.</p>
+  <div class="table-wrap" role="region" aria-label="Vergleich: KI-Videotool zum Selbermachen und Still to Film" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Thema</th><th scope="col">KI-Videotool zum Selbermachen</th><th scope="col">Still to Film</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Thema">Nötige Kenntnisse</td><td data-label="Tool zum Selbermachen">Sie lernen das Tool und schreiben die Prompts</td><td data-label="Still to Film">Keine: Sie senden einen Link oder die Fotos</td></tr>
+        <tr><td data-label="Thema">Fotos und Bewegungen auswählen</td><td data-label="Tool zum Selbermachen">Sie</td><td data-label="Still to Film">Machen wir</td></tr>
+        <tr><td data-label="Thema">Missglückte Versuche</td><td data-label="Tool zum Selbermachen">Sie erkennen sie und versuchen es erneut</td><td data-label="Still to Film">Wir verwerfen sie, bevor Sie etwas sehen</td></tr>
+        <tr><td data-label="Thema">Qualitätsprüfung</td><td data-label="Tool zum Selbermachen">Ihre Sache</td><td data-label="Still to Film">Ein Mensch sieht sich jedes Video vollständig an</td></tr>
+        <tr><td data-label="Thema">Formate</td><td data-label="Tool zum Selbermachen">Hängt vom Tool ab</td><td data-label="Still to Film">16:9 und 9:16, beide inklusive</td></tr>
+        <tr><td data-label="Thema">Änderungen</td><td data-label="Tool zum Selbermachen">Sie machen es selbst neu</td><td data-label="Still to Film">Zwei Korrekturrunden inklusive</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Wo liegen die Grenzen?</h2>
+  <ul>
+    <li><strong>Es zeigt nur, was auf den Fotos ist.</strong> Ein Raum, ein Ausblick oder ein Detail, das nie fotografiert wurde, kann nicht im Film erscheinen.</li>
+    <li><strong>Ruhige Bewegungen funktionieren am besten.</strong> Schnelle Kamerafahrten oder große Perspektivwechsel zwingen die KI zum Raten, und das kann falsch aussehen. Wir halten die Bewegung bewusst langsam.</li>
+    <li><strong>Keine Menschen, kein Originalton.</strong> Der Film zeigt die Räume, keine Gäste oder Crew, und hat keinen aufgenommenen Ton.</li>
+    <li><strong>Die Fotoqualität zählt.</strong> Unscharfe, dunkle oder niedrig aufgelöste Fotos ergeben einen schwächeren Film. Originaldateien Ihres Fotografen funktionieren am besten.</li>
+  </ul>
+
+  <h2>Wie läuft die Qualitätsprüfung ab?</h2>
+  <p>Vor der Lieferung sieht sich ein Mensch jedes Video von Anfang bis Ende an und vergleicht es mit den Fotos. Wir achten auf alles, was nicht passt: Details, die ihre Form ändern, Linien, die sich biegen, Gegenstände, die auftauchen oder verschwinden, Bewegung, die unnatürlich wirkt. Stimmt etwas nicht, erzeugen wir den Clip neu oder schneiden ihn heraus. Erst dann sehen Sie das Video, und Sie haben weiterhin zwei Korrekturrunden.</p>
+
+  <h2>Wann ist ein Drehtag die bessere Wahl?</h2>
+  <p>Ein KI-Video aus Fotos passt nicht für alles. Ein Drehtag ist die bessere Wahl, wenn Sie Menschen im Bild möchten, echten Ton, ein Interview, Drohnenaufnahmen von Orten, von denen Sie keine Fotos haben, oder Räume, die nie fotografiert wurden. Wenn Sie schon gute Fotos haben und für jedes Inserat einen ruhigen Rundgang möchten, erledigt ein KI-Video das ohne einen Tag vor Ort.</p>
+
+  <h2>Was kostet es?</h2>
+  <p>Ein einzelnes Video kostet 100 €, zzgl. USt. Ab 5 Videos sinkt der Preis pro Video alle 5 Videos um 5 €, bis auf 50 €. Sehen Sie sich die vollständige <a href={pagePath(lang, 'pricing')}>Preisstaffel</a> an, oder beginnen Sie mit einem kostenlosen Probevideo aus Ihren eigenen Fotos.</p>
+</Landing>

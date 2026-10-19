@@ -1,0 +1,67 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'fr';
+const faq = [q.ai, q.limits, q.skills, q.photos];
+---
+<Landing
+  lang={lang}
+  page="aiVideo"
+  title="Vidéo IA à partir de photos : méthode et prix · Still to Film"
+  description="Comment l’IA transforme des photos d’annonce en vidéo de visite, son prix, ses limites, et comment une vérification humaine la garde fidèle à vos photos."
+  eyebrow="Explications"
+  h1="Vidéo IA à partir de photos d’annonce : méthode, prix et limites"
+  summary="La vidéo IA à partir de photos utilise un logiciel pour ajouter des mouvements de caméra et des images intermédiaires à des photos fixes, si bien qu’une série de photos d’annonce devient un court film de visite. Still to Film le fait pour vous : vous envoyez les photos, nous réalisons une vidéo de 60 à 90 secondes, et une personne vérifie chaque vidéo avant la livraison."
+  faqTitle="Questions sur la vidéo IA"
+  faqItems={faq}
+  service
+  related={['yacht', 'hotel', 'pricing']}
+>
+  <h2>Qu’est-ce que la vidéo IA à partir de photos ?</h2>
+  <p>Une photo, c’est un seul instant vu d’un seul point de vue. Un logiciel de vidéo IA part de cette photo et génère les images autour : une lente avancée dans une pièce, un panoramique le long d’un pont, un léger tournant vers une fenêtre. Mises bout à bout, une série de photos devient un court film qui donne l’impression de parcourir les lieux.</p>
+  <p>Le logiciel ne filme rien. Chaque image est créée à partir de ce qui se trouve sur les photos : c’est à la fois sa force et sa limite.</p>
+
+  <h2>Comment ça marche, étape par étape ?</h2>
+  <ol>
+    <li><strong>Le choix des photos.</strong> Toutes les photos ne fonctionnent pas en mouvement. Nous choisissons celles qui sont nettes et montrent bien les lieux, et nous décidons de l’ordre de la visite.</li>
+    <li><strong>Le choix des mouvements.</strong> Pour chaque photo, nous choisissons un mouvement de caméra adapté : lent et régulier, jamais rapide ni étourdissant.</li>
+    <li><strong>La génération des clips.</strong> L’IA transforme chaque photo en un court clip. Certains essais ne sont pas justes ; nous les écartons et les refaisons.</li>
+    <li><strong>Le montage.</strong> Nous assemblons les clips en un film de 60 à 90 secondes, en 16:9 et 9:16.</li>
+    <li><strong>La vérification.</strong> Une personne regarde toute la vidéo avant que vous la voyiez (voir plus bas).</li>
+  </ol>
+
+  <h2>Le faire faire, ou le faire vous-même ?</h2>
+  <p>Il existe des outils qui vous permettent d’envoyer des photos et de générer la vidéo vous-même. Ils peuvent coûter moins cher si vous avez le temps et l’envie de les apprendre. La différence tient à qui fait le travail et qui le vérifie.</p>
+  <div class="table-wrap" role="region" aria-label="Comparaison : outil de vidéo IA en libre-service et Still to Film" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Sujet</th><th scope="col">Outil de vidéo IA en libre-service</th><th scope="col">Still to Film</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Sujet">Compétences requises</td><td data-label="Outil en libre-service">Vous apprenez l’outil et écrivez les prompts</td><td data-label="Still to Film">Aucune : vous envoyez un lien ou les photos</td></tr>
+        <tr><td data-label="Sujet">Choix des photos et des mouvements</td><td data-label="Outil en libre-service">Vous</td><td data-label="Still to Film">Nous</td></tr>
+        <tr><td data-label="Sujet">Essais ratés</td><td data-label="Outil en libre-service">Vous les repérez et recommencez</td><td data-label="Still to Film">Nous les écartons avant que vous voyiez quoi que ce soit</td></tr>
+        <tr><td data-label="Sujet">Contrôle qualité</td><td data-label="Outil en libre-service">À vous de le faire</td><td data-label="Still to Film">Une personne regarde chaque vidéo en entier</td></tr>
+        <tr><td data-label="Sujet">Formats</td><td data-label="Outil en libre-service">Selon l’outil</td><td data-label="Still to Film">16:9 et 9:16, les deux inclus</td></tr>
+        <tr><td data-label="Sujet">Modifications</td><td data-label="Outil en libre-service">Vous refaites tout vous-même</td><td data-label="Still to Film">Deux séries de révisions incluses</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Quelles sont les limites ?</h2>
+  <ul>
+    <li><strong>Elle ne montre que ce qui est sur les photos.</strong> Une pièce, une vue ou un détail qui n’a jamais été photographié ne peut pas apparaître dans le film.</li>
+    <li><strong>Les mouvements calmes fonctionnent le mieux.</strong> Des mouvements de caméra rapides ou de grands changements d’angle obligent l’IA à deviner, et ce qu’elle devine peut sembler faux. Nous gardons volontairement des mouvements lents.</li>
+    <li><strong>Pas de personnes, pas de son réel.</strong> Le film montre les lieux, pas les clients ni l’équipage, et ne contient aucun son enregistré sur place.</li>
+    <li><strong>La qualité des photos compte.</strong> Des photos floues, sombres ou en basse résolution donnent un film moins bon. Les fichiers originaux de votre photographe donnent le meilleur résultat.</li>
+  </ul>
+
+  <h2>Comment se passe la vérification ?</h2>
+  <p>Avant la livraison, une personne regarde chaque vidéo du début à la fin et la compare aux photos. Nous cherchons tout ce qui ne correspond pas : des détails qui changent de forme, des lignes qui se courbent, des objets qui apparaissent ou disparaissent, un mouvement qui ne semble pas naturel. Si quelque chose ne va pas, nous refaisons le clip ou le retirons. Ce n’est qu’ensuite que vous voyez la vidéo, et vous avez toujours deux séries de révisions.</p>
+
+  <h2>Quand un jour de tournage est-il le meilleur choix ?</h2>
+  <p>La vidéo IA à partir de photos ne convient pas à tout. Un jour de tournage est le meilleur choix si vous voulez des personnes à l’image, du son réel, une interview, des images de drone d’endroits dont vous n’avez pas de photos, ou des pièces qui n’ont jamais été photographiées. Si vous avez déjà de bonnes photos et voulez une visite calme pour chaque annonce, la vidéo IA fait le travail sans journée sur place.</p>
+
+  <h2>Combien ça coûte ?</h2>
+  <p>Une seule vidéo coûte 100 €, hors TVA. À partir de 5 vidéos, le prix par vidéo baisse de 5 € tous les 5 vidéos, jusqu’à 50 €. Consultez la <a href={pagePath(lang, 'pricing')}>grille tarifaire</a> complète, ou commencez par une vidéo d’essai gratuite réalisée à partir de vos propres photos.</p>
+</Landing>

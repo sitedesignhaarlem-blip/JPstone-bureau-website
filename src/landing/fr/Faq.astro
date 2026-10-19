@@ -1,0 +1,32 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { groups } from './faq';
+
+const lang = 'fr';
+const all = groups.flatMap((g) => g.items);
+---
+<Landing
+  lang={lang}
+  page="faq"
+  title="Questions fréquentes sur les vidéos de visite IA · Still to Film"
+  description="Les réponses sur les vidéos Still to Film : droits d’utilisation, livraison, formats, photos nécessaires, IA et vérification humaine, prix et paiement."
+  eyebrow="FAQ"
+  h1="Questions fréquentes"
+  summary="Still to Film réalise des vidéos de visite de 60 à 90 secondes à partir des photos d’annonce des loueurs de yachts et des hôtels boutique, en 16:9 et 9:16, de 50 € à 100 € par vidéo. Vous trouverez ci-dessous les réponses aux questions que l’on nous pose le plus, classées par thème."
+  faqItems={all}
+  showFaq={false}
+  service
+  related={['pricing', 'yacht', 'hotel', 'aiVideo']}
+>
+  {groups.map((group) => (
+    <>
+      <h2>{group.title}</h2>
+      {group.items.map((item) => (
+        <details>
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </>
+  ))}
+</Landing>

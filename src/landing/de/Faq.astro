@@ -1,0 +1,32 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { groups } from './faq';
+
+const lang = 'de';
+const all = groups.flatMap((g) => g.items);
+---
+<Landing
+  lang={lang}
+  page="faq"
+  title="Häufige Fragen zu KI-Walkthrough-Videos · Still to Film"
+  description="Antworten zu Videos von Still to Film: Nutzungsrechte, Lieferung, Formate, nötige Fotos, KI und menschliche Prüfung, Preise und Zahlung."
+  eyebrow="FAQ"
+  h1="Häufige Fragen"
+  summary="Still to Film macht aus den Inseratsfotos von Yachtcharter-Unternehmen und Boutique-Hotels Walkthrough-Videos von 60 bis 90 Sekunden, in 16:9 und 9:16, für 50 bis 100 € pro Video. Hier finden Sie die Antworten auf die Fragen, die wir am häufigsten bekommen, nach Thema geordnet."
+  faqItems={all}
+  showFaq={false}
+  service
+  related={['pricing', 'yacht', 'hotel', 'aiVideo']}
+>
+  {groups.map((group) => (
+    <>
+      <h2>{group.title}</h2>
+      {group.items.map((item) => (
+        <details>
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </>
+  ))}
+</Landing>

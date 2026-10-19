@@ -1,0 +1,55 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'fr';
+const faq = [q.access, q.fleet, q.photos, q.owns, q.sample];
+---
+<Landing
+  lang={lang}
+  page="yacht"
+  title="Vidéo location de yacht sans tournage · Still to Film"
+  description="Vos photos d’annonce de yacht deviennent une vidéo de visite de 60 à 90 secondes. Sans tournage ni équipe à bord, 16:9 et 9:16 inclus. 50 € à 100 € par vidéo."
+  eyebrow="Pour la location de yachts"
+  h1="Vidéo pour la location de yachts, à partir de vos photos d’annonce"
+  summary="Still to Film transforme les photos déjà présentes sur votre annonce de yacht en une vidéo de visite de 60 à 90 secondes, sans jour de tournage et sans équipe à bord. Chaque vidéo est livrée en 16:9 et 9:16, vérifiée par une personne avant la livraison, et coûte de 50 € à 100 € selon le volume."
+  faqTitle="Questions des loueurs de yachts"
+  faqItems={faq}
+  service
+  related={['hotel', 'aiVideo', 'pricing']}
+>
+  <h2>Pourquoi est-il si difficile de filmer une flotte de location ?</h2>
+  <p>Un jour de tournage demande un yacht au port, propre et vide, par beau temps, avec une équipe à bord pendant une journée. En saison, la plupart des yachts sont en mer avec des clients, et une journée libre est difficile à trouver. Pour une flotte, cela fait un tournage par yacht, étalé sur plusieurs mois.</p>
+  <p>La plupart des loueurs ont déjà de bonnes photos de chaque yacht : extérieur, pont, salon, cuisine et cabines. C’est de ces photos que nous partons. Rien ne doit être organisé autour du bateau, et personne ne doit monter à bord.</p>
+
+  <h2>Comment ça marche ?</h2>
+  <ol>
+    <li><strong>Vous envoyez le lien</strong> de l’annonce, ou les photos elles-mêmes.</li>
+    <li><strong>Nous réalisons le film.</strong> Nous choisissons les photos, l’ordre et les mouvements de caméra, et l’IA transforme les images fixes en mouvements calmes.</li>
+    <li><strong>Une personne le vérifie.</strong> Nous regardons chaque vidéo en entier avant que vous la voyiez. Si quelque chose ne correspond pas à vos photos, nous le corrigeons ou le retirons.</li>
+    <li><strong>Vous donnez votre avis.</strong> Deux séries de révisions sont incluses.</li>
+    <li><strong>Vous publiez.</strong> Vous recevez des fichiers MP4 en 16:9 et 9:16.</li>
+  </ol>
+  <p>Aucun logiciel, aucun prompt, aucun compte nécessaire. Plus de détails sur la page <a href={pagePath(lang, 'how')}>Comment ça marche</a>.</p>
+
+  <h2>Que recevez-vous ?</h2>
+  <ul>
+    <li>Une vidéo de visite de 60 à 90 secondes par yacht.</li>
+    <li>Le 16:9 pour votre site et les plateformes d’annonces, et le 9:16 pour les Reels Instagram, TikTok et les Stories. Les deux formats sont inclus.</li>
+    <li>Deux séries de révisions par vidéo.</li>
+    <li>Un style calme et cohérent pour toute votre flotte.</li>
+    <li>Une utilisation illimitée pour votre propre marketing : site web, annonces, réseaux sociaux et publicité.</li>
+  </ul>
+
+  <h2>Que peut montrer la vidéo, et que ne peut-elle pas montrer ?</h2>
+  <p>La vidéo ne peut montrer que ce qui est sur vos photos. Si vous avez des photos du yacht en navigation, au mouillage, sur le pont, dans le salon, la cuisine et les cabines, tout cela peut bouger. Si le flybridge ou une cabine n’a jamais été photographié, il ne sera pas dans le film. Nous n’ajoutons ni personnes, ni vues, ni équipements qui n’existent pas.</p>
+  <p>La qualité des photos fait la qualité du film. Des photos nettes, bien éclairées et en haute résolution donnent le meilleur résultat, et les fichiers originaux de votre photographe valent mieux que des images enregistrées depuis un site web.</p>
+  <p>Vous pouvez voir des clips réalisés à partir des photos d’annonce d’un catamaran à moteur dans la <a href={pagePath(lang, 'library')}>bibliothèque</a>, et comparer la photo et la vidéo sur la <a href={pagePath(lang, 'home')}>page d’accueil</a>.</p>
+
+  <h2>Combien ça coûte ?</h2>
+  <p>Le prix par vidéo dépend du nombre de vidéos commandées en une fois. Une seule vidéo coûte 100 €. À partir de 5 vidéos, c’est 95 € par vidéo, puis le prix baisse de 5 € tous les 5 vidéos, jusqu’à 50 € par vidéo.</p>
+  <PriceTable lang={lang} />
+  <p>Par exemple, une flotte de 12 yachts coûte 12 × 90 € = 1 080 €, hors TVA. Avant de vous décider, nous réalisons une vidéo d’essai gratuite à partir de vos propres photos d’annonce.</p>
+</Landing>

@@ -1,0 +1,55 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'de';
+const faq = [q.access, q.fleet, q.photos, q.owns, q.sample];
+---
+<Landing
+  lang={lang}
+  page="yacht"
+  title="Yachtcharter-Video ohne Dreh, aus Inseratsfotos · Still to Film"
+  description="Video aus Inseratsfotos: Wir machen aus Ihren Yachtfotos einen Rundgang von 60 bis 90 Sekunden. Kein Drehtag, 16:9 und 9:16 inklusive. 50 bis 100 € pro Video."
+  eyebrow="Für Yachtcharter"
+  h1="Yachtcharter-Video ohne Dreh, aus Ihren Inseratsfotos"
+  summary="Still to Film macht aus den Fotos, die schon in Ihrem Yachtinserat stehen, ein Walkthrough-Video von 60 bis 90 Sekunden, ohne Drehtag und ohne Crew an Bord. Sie erhalten jedes Video in 16:9 und 9:16, ein Mensch prüft es vor der Lieferung, und es kostet je nach Menge 50 bis 100 €."
+  faqTitle="Fragen von Charterunternehmen"
+  faqItems={faq}
+  service
+  related={['hotel', 'aiVideo', 'pricing']}
+>
+  <h2>Warum ist ein Dreh für eine Charterflotte so schwierig?</h2>
+  <p>Für einen Drehtag muss die Yacht im Hafen liegen, sauber und leer, bei gutem Wetter, mit einer Crew an Bord für einen ganzen Tag. In der Saison sind die meisten Yachten mit Gästen unterwegs, ein freier Tag ist also schwer zu finden. Bei einer Flotte heißt das: ein Dreh pro Yacht, verteilt über Monate.</p>
+  <p>Die meisten Charterunternehmen haben schon gute Fotos von jeder Yacht: außen, Deck, Salon, Pantry und Kabinen. Mit diesen Fotos arbeiten wir. Nichts muss um das Boot herum geplant werden, und niemand muss an Bord kommen.</p>
+
+  <h2>Wie funktioniert es?</h2>
+  <ol>
+    <li><strong>Sie senden den Link</strong> zu Ihrem Inserat oder die Fotos selbst.</li>
+    <li><strong>Wir machen den Film.</strong> Wir wählen die Fotos, die Reihenfolge und die Kamerabewegungen und machen mit KI aus den Standbildern eine ruhige Bewegung.</li>
+    <li><strong>Ein Mensch prüft ihn.</strong> Wir sehen uns jedes Video vollständig an, bevor Sie es sehen. Passt etwas nicht zu Ihren Fotos, korrigieren wir es oder schneiden es heraus.</li>
+    <li><strong>Sie geben Feedback.</strong> Zwei Korrekturrunden sind inklusive.</li>
+    <li><strong>Sie veröffentlichen.</strong> Sie erhalten MP4-Dateien in 16:9 und 9:16.</li>
+  </ol>
+  <p>Sie brauchen keine Software, keine Prompts und kein Konto. Mehr dazu auf der Seite <a href={pagePath(lang, 'how')}>So funktioniert’s</a>.</p>
+
+  <h2>Was bekommen Sie?</h2>
+  <ul>
+    <li>Ein Walkthrough-Video von 60 bis 90 Sekunden pro Yacht.</li>
+    <li>16:9 für Ihre Website und Inseratsplattformen, 9:16 für Instagram Reels, TikTok und Stories. Beide Formate sind inklusive.</li>
+    <li>Zwei Korrekturrunden pro Video.</li>
+    <li>Einen ruhigen, einheitlichen Stil für Ihre ganze Flotte.</li>
+    <li>Unbegrenzte Nutzung für Ihr eigenes Marketing: Website, Inserate, Social Media und Werbung.</li>
+  </ul>
+
+  <h2>Was kann das Video zeigen, und was nicht?</h2>
+  <p>Das Video kann nur zeigen, was auf Ihren Fotos ist. Haben Sie Fotos der Yacht in Fahrt, vor Anker, an Deck, im Salon, in der Pantry und in den Kabinen, kann all das in Bewegung kommen. Wurden die Flybridge oder eine Kabine nie fotografiert, sind sie auch nicht im Film. Wir fügen keine Menschen, Ausblicke oder Ausstattung hinzu, die es nicht gibt.</p>
+  <p>Die Qualität der Fotos bestimmt die Qualität des Films. Scharfe, gut belichtete Fotos in hoher Auflösung funktionieren am besten, und Originaldateien Ihres Fotografen sind besser als Bilder, die von einer Website gespeichert wurden.</p>
+  <p>Clips aus den Inseratsfotos eines Motorkatamarans finden Sie in der <a href={pagePath(lang, 'library')}>Bibliothek</a>. Foto und Video im direkten Vergleich sehen Sie auf der <a href={pagePath(lang, 'home')}>Startseite</a>.</p>
+
+  <h2>Was kostet es?</h2>
+  <p>Der Preis pro Video hängt davon ab, wie viele Videos Sie auf einmal bestellen. Ein einzelnes Video kostet 100 €. Ab 5 Videos kostet ein Video 95 €, und alle 5 Videos sinkt der Preis um 5 €, bis auf 50 € pro Video.</p>
+  <PriceTable lang={lang} />
+  <p>Eine Flotte von 12 Yachten kostet zum Beispiel 12 × 90 € = 1.080 €, zzgl. USt. Bevor Sie sich entscheiden, erstellen wir ein kostenloses Probevideo aus Ihren eigenen Inseratsfotos.</p>
+</Landing>

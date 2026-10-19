@@ -1,0 +1,58 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'de';
+const faq = [q.roomTypes, q.access, q.update, q.photos, q.sample];
+---
+<Landing
+  lang={lang}
+  page="hotel"
+  title="Hotelvideo aus Fotos von Zimmern und Haus · Still to Film"
+  description="Hotelvideo aus Fotos: Aus Zimmer- und Hausfotos wird ein Rundgang von 60 bis 90 Sekunden. Kein Filmteam, 16:9 und 9:16 inklusive. 50 bis 100 € pro Video."
+  eyebrow="Für Boutique-Hotels"
+  h1="Video für Boutique-Hotels, erstellt aus Ihren Zimmer- und Hausfotos"
+  summary="Still to Film macht aus den Fotos, die Sie von Ihren Zimmern und Ihrem Haus schon haben, ein Walkthrough-Video von 60 bis 90 Sekunden, ohne Filmteam und ohne ein Zimmer einen Tag lang zu sperren. Sie erhalten jedes Video in 16:9 und 9:16, ein Mensch prüft es vor der Lieferung, und es kostet je nach Menge 50 bis 100 €."
+  faqTitle="Fragen von Hotels"
+  faqItems={faq}
+  service
+  related={['yacht', 'aiVideo', 'pricing']}
+>
+  <h2>Warum das Hotel nicht einfach filmen?</h2>
+  <p>Ein Dreh im Hotel muss um die Gäste herum geplant werden. Zimmer müssen leer und hergerichtet sein, die öffentlichen Bereiche ruhig und das Licht passend, oft über mehrere Tage. Wenn Sie ein Zimmer renovieren oder den Look der Saison ändern, ist das Video veraltet, und alles beginnt von vorn.</p>
+  <p>Die meisten Boutique-Hotels haben schon professionelle Fotos von jedem Zimmertyp, der Lobby, dem Restaurant, der Terrasse oder dem Pool. Aus diesen Fotos machen wir das Video, und im Hotel muss sich dafür nichts ändern.</p>
+
+  <h2>Wie funktioniert es?</h2>
+  <ol>
+    <li><strong>Sie senden die Fotos</strong> oder einen Link zu Ihrer Website oder Buchungsseite.</li>
+    <li><strong>Wir machen den Film.</strong> Wir wählen die Fotos, die Reihenfolge und die Kamerabewegungen und machen mit KI aus den Standbildern eine ruhige Bewegung durch das Zimmer oder das Haus.</li>
+    <li><strong>Ein Mensch prüft ihn.</strong> Wir sehen uns jedes Video vollständig an, bevor Sie es sehen. Passt etwas nicht zu Ihren Fotos, korrigieren wir es oder schneiden es heraus.</li>
+    <li><strong>Sie geben Feedback.</strong> Zwei Korrekturrunden sind inklusive.</li>
+    <li><strong>Sie veröffentlichen.</strong> Sie erhalten MP4-Dateien in 16:9 und 9:16.</li>
+  </ol>
+  <p>Sie brauchen keine Software, keine Prompts und kein Konto. Mehr dazu auf der Seite <a href={pagePath(lang, 'how')}>So funktioniert’s</a>.</p>
+
+  <h2>Zimmer für Zimmer oder das ganze Haus?</h2>
+  <p>Beides ist möglich. Ein Video vom ganzen Haus passt zu Ihrer Startseite und zu Social Media. Ein Video pro Zimmertyp passt zu Buchungsseiten, auf denen Gäste Zimmer vergleichen. Jedes Video wird als ein Video berechnet: Ein Hotel mit fünf Zimmertypen und einem Video vom Haus bestellt also sechs Videos.</p>
+  <p>Wenn Sie renovieren oder neue Fotos machen lassen, erstellen wir aus den neuen Fotos ein neues Video. Das gilt als neues Video, nicht als Korrektur.</p>
+
+  <h2>Was bekommen Sie?</h2>
+  <ul>
+    <li>Ein Walkthrough-Video von 60 bis 90 Sekunden pro Zimmertyp oder pro Haus.</li>
+    <li>16:9 für Ihre Website und Buchungsplattformen, 9:16 für Instagram Reels, TikTok und Stories. Beide Formate sind inklusive.</li>
+    <li>Zwei Korrekturrunden pro Video.</li>
+    <li>Einen ruhigen, einheitlichen Stil für alle Ihre Videos.</li>
+    <li>Unbegrenzte Nutzung für Ihr eigenes Marketing: Website, Buchungsseiten, Social Media und Werbung.</li>
+  </ul>
+
+  <h2>Was kann das Video zeigen, und was nicht?</h2>
+  <p>Das Video kann nur zeigen, was auf Ihren Fotos ist. Ein Bad, ein Ausblick oder eine Terrasse, die nie fotografiert wurden, sind auch nicht im Film, und wir fügen keine Gäste, Möbel oder Ausblicke hinzu. Die Qualität der Fotos bestimmt die Qualität des Films: Scharfe, gut belichtete Fotos in hoher Auflösung funktionieren am besten.</p>
+  <p>Die Beispiele auf dieser Website zeigen eine Yacht, weil wir noch keine Hotelkunden haben, die wir zeigen können. Das kostenlose Probevideo machen wir aus Ihren eigenen Fotos, so sehen Sie das Ergebnis für Ihr Hotel, bevor Sie sich entscheiden.</p>
+
+  <h2>Was kostet es?</h2>
+  <p>Der Preis pro Video hängt davon ab, wie viele Videos Sie auf einmal bestellen. Ein einzelnes Video kostet 100 €. Ab 5 Videos kostet ein Video 95 €, und alle 5 Videos sinkt der Preis um 5 €, bis auf 50 € pro Video.</p>
+  <PriceTable lang={lang} />
+  <p>Zum Beispiel: Fünf Zimmertypen und ein Video vom Haus sind 6 Videos, also 6 × 95 € = 570 €, zzgl. USt.</p>
+</Landing>
