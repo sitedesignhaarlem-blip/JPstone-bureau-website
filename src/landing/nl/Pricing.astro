@@ -1,0 +1,61 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pricePerVideo } from '../../data/pricing';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'nl';
+const faq = [q.volume, q.vat, q.payment, q.revisions, q.sample];
+const money = new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pricePerVideo(n)), total: money.format(n * pricePerVideo(n)) }));
+---
+<Landing
+  lang={lang}
+  page="pricing"
+  title="Prijzen: €100 tot €50 per video · Still to Film"
+  description="Still to Film kost €100 per video, vanaf 5 video's €95, en per 5 video's €5 minder, tot €50. Beide formaten en 2 revisies inbegrepen. Exclusief btw."
+  eyebrow="Prijzen"
+  h1="Prijzen: van €100 tot €50 per video"
+  summary="Een video van Still to Film kost €100 als je er één bestelt, en €95 per video vanaf 5 video's. Daarna gaat de prijs per video per 5 video's €5 omlaag, tot minimaal €50; de prijzen zijn exclusief btw, en beide formaten en twee revisierondes zitten erbij."
+  faqTitle="Vragen over prijzen"
+  faqItems={faq}
+  service
+  related={['yacht', 'hotel', 'faq']}
+>
+  <h2>De prijsstaffel</h2>
+  <p>De prijs per video hangt af van het aantal video's in de opdracht. Voor elke video in die opdracht geldt dezelfde prijs.</p>
+  <PriceTable lang={lang} />
+  <p>Je kunt ook zelf rekenen met de <a href={pagePath(lang, 'home', '#packages-title')}>calculator op de homepage</a>.</p>
+
+  <h2>Wat zit er in elke video?</h2>
+  <ul>
+    <li>Een walkthrough-video van 60 tot 90 seconden, gemaakt van je foto's.</li>
+    <li>Beide formaten: 16:9 voor websites en listingplatforms, 9:16 voor Reels, TikTok en Stories, als mp4-bestanden.</li>
+    <li>Een controle door een mens voor oplevering, zodat de video alleen laat zien wat op je foto's staat.</li>
+    <li>Twee revisierondes.</li>
+    <li>Onbeperkt gebruik voor je eigen marketing: website, listings, social media en advertenties.</li>
+  </ul>
+
+  <h2>Wat telt als revisie, en wat is een nieuwe video?</h2>
+  <p>Een revisie is een aanpassing binnen dezelfde foto's en dezelfde opzet: een andere volgorde van shots, een langzamere beweging, een clip eruit, een ander begin of einde. Bij elke video zitten twee revisierondes.</p>
+  <p>Nieuwe foto's, of een andere opzet voor de video, tellen als een nieuwe video. Dat geldt ook als je een kamer verbouwt of de foto's van een jacht vervangt en een bijgewerkte film wilt.</p>
+
+  <h2>Rekenvoorbeelden</h2>
+  <div class="table-wrap" role="region" aria-label="Rekenvoorbeelden" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Video's</th><th scope="col">Prijs per video</th><th scope="col">Totaal, exclusief btw</th></tr></thead>
+      <tbody>
+        {examples.map((e) => (
+          <tr><td data-label="Video's">{e.n}</td><td data-label="Prijs per video">{e.per}</td><td data-label="Totaal">{e.total}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Meer dan 100 video's?</h2>
+  <p>Voor opdrachten van meer dan 100 video's maken we een offerte. Dat geldt ook voor doorlopend werk: tot 100 video's per maand, beide formaten, per maand opzegbaar.</p>
+
+  <h2>Begin met een gratis proefvideo</h2>
+  <p>Voordat je bestelt, maken we een gratis proefvideo van je eigen listingfoto's. Vrijblijvend en zonder factuur. Een link naar je listing is genoeg.</p>
+</Landing>

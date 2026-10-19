@@ -1,0 +1,58 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'nl';
+const faq = [q.roomTypes, q.access, q.update, q.photos, q.sample];
+---
+<Landing
+  lang={lang}
+  page="hotel"
+  title="Hotelvideo van je kamerfoto's · Still to Film"
+  description="Hotelvideo van je kamerfoto's: een walkthrough van 60–90 seconden. Geen filmploeg, geen kamers dicht, 16:9 en 9:16 inbegrepen. €50 tot €100 per video."
+  eyebrow="Voor boutique hotels"
+  h1="Hotelvideo voor boutique hotels, gemaakt van je kamerfoto's"
+  summary="Still to Film maakt van de foto's die je al hebt van je kamers en je hotel een walkthrough-video van 60–90 seconden, zonder filmploeg en zonder een kamer een dag dicht te houden. Je krijgt elke video in 16:9 en 9:16, een mens controleert hem voor oplevering, en hij kost €50 tot €100, afhankelijk van het aantal."
+  faqTitle="Vragen van hotels"
+  faqItems={faq}
+  service
+  related={['yacht', 'aiVideo', 'pricing']}
+>
+  <h2>Waarom het hotel niet gewoon filmen?</h2>
+  <p>Een hotel filmen betekent plannen rond je gasten. Kamers moeten leeg en opgemaakt zijn, de openbare ruimtes rustig en het licht goed, vaak verspreid over meerdere dagen. Verbouw je een kamer of verander je de inrichting voor het seizoen, dan is de video verouderd en begint alles opnieuw.</p>
+  <p>De meeste boutique hotels hebben al professionele foto's van elk kamertype, de lobby, het restaurant, het terras of het zwembad. Wij maken de video van die foto's, dus in het hotel hoeft er niets voor te veranderen.</p>
+
+  <h2>Hoe werkt het?</h2>
+  <ol>
+    <li><strong>Je stuurt de foto's</strong>, of een link naar je website of boekingspagina.</li>
+    <li><strong>Wij maken de film.</strong> We kiezen de foto's, de volgorde en de camerabewegingen, en maken met AI van de stilstaande beelden een rustige beweging door de kamer of het hotel.</li>
+    <li><strong>Een mens controleert hem.</strong> We bekijken elke video helemaal voordat jij hem ziet. Klopt iets niet met je foto's, dan passen we het aan of halen we het eruit.</li>
+    <li><strong>Jij geeft feedback.</strong> Twee revisierondes zitten erbij.</li>
+    <li><strong>Jij publiceert.</strong> Je krijgt mp4-bestanden in 16:9 en 9:16.</li>
+  </ol>
+  <p>Je hebt geen software, prompts of account nodig. Meer uitleg vind je op de pagina <a href={pagePath(lang, 'how')}>werkwijze</a>.</p>
+
+  <h2>Per kamer, of het hele hotel?</h2>
+  <p>Allebei kan. Eén video van het hele hotel past bij je homepage en social media. Eén video per kamertype past bij boekingspagina's, waar een gast kamers vergelijkt. Elke video telt in de prijs als één video, dus een hotel met vijf kamertypes en één video van het hele hotel bestelt zes video's.</p>
+  <p>Verbouw je, of laat je nieuwe foto's maken, dan maken we een nieuwe video van de nieuwe foto's. Dat telt als een nieuwe video, niet als een revisie.</p>
+
+  <h2>Wat krijg je?</h2>
+  <ul>
+    <li>Een walkthrough-video van 60 tot 90 seconden per kamertype of per hotel.</li>
+    <li>16:9 voor je website en boekingsplatforms, en 9:16 voor Instagram Reels, TikTok en Stories. Beide formaten zijn inbegrepen.</li>
+    <li>Twee revisierondes per video.</li>
+    <li>Eén rustige, vaste stijl in al je video's.</li>
+    <li>Onbeperkt gebruik voor je eigen marketing: website, boekingspagina's, social media en advertenties.</li>
+  </ul>
+
+  <h2>Wat kan de video laten zien, en wat niet?</h2>
+  <p>De video laat alleen zien wat op je foto's staat. Een badkamer, uitzicht of terras dat nooit is gefotografeerd, zit niet in de film, en we voegen geen gasten, meubels of uitzichten toe. De kwaliteit van de foto's bepaalt de kwaliteit van de film: scherpe, goed belichte foto's in hoge resolutie werken het best.</p>
+  <p>De voorbeelden op deze site zijn van een jacht, omdat we nog geen hotelklanten hebben om te laten zien. De gratis proefvideo maken we van je eigen foto's, dus je ziet het resultaat voor je eigen hotel voordat je beslist.</p>
+
+  <h2>Wat kost het?</h2>
+  <p>De prijs per video hangt af van hoeveel video's je in één keer bestelt. Eén losse video kost €100. Vanaf 5 video's is het €95 per video, en per 5 video's gaat de prijs €5 omlaag, tot minimaal €50 per video.</p>
+  <PriceTable lang={lang} />
+  <p>Vijf kamertypes en één video van het hele hotel zijn bijvoorbeeld 6 video's: 6 × €95 = €570, exclusief btw.</p>
+</Landing>

@@ -1,0 +1,55 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'nl';
+const faq = [q.access, q.fleet, q.photos, q.owns, q.sample];
+---
+<Landing
+  lang={lang}
+  page="yacht"
+  title="Jachtcharter video van je listingfoto's · Still to Film"
+  description="Jachtcharter video zonder filmen: wij maken van je listingfoto's een walkthrough van 60–90 seconden. Geen crew aan boord, 16:9 en 9:16 inbegrepen. €50 tot €100."
+  eyebrow="Voor jachtcharters"
+  h1="Video voor jachtcharters, gemaakt van je listingfoto's"
+  summary="Still to Film maakt van de foto's die al op je jachtlisting staan een walkthrough-video van 60–90 seconden, zonder draaidag en zonder crew aan boord. Je krijgt elke video in 16:9 en 9:16, een mens controleert hem voor oplevering, en hij kost €50 tot €100, afhankelijk van het aantal."
+  faqTitle="Vragen van charterbedrijven"
+  faqItems={faq}
+  service
+  related={['hotel', 'aiVideo', 'pricing']}
+>
+  <h2>Waarom is een chartervloot filmen zo lastig?</h2>
+  <p>Voor een draaidag moet het jacht in de haven liggen, schoon en leeg, met goed weer, en met een crew een dag aan boord. In het seizoen zijn de meeste jachten op pad met gasten, dus een vrije dag is moeilijk te vinden. Voor een vloot betekent dat één opname per jacht, verspreid over maanden.</p>
+  <p>De meeste charterbedrijven hebben al goede foto's van elk jacht: buitenkant, dek, salon, kombuis en hutten. Met die foto's beginnen wij. Er hoeft niets rond de boot gepland te worden, en niemand hoeft aan boord te komen.</p>
+
+  <h2>Hoe werkt het?</h2>
+  <ol>
+    <li><strong>Je stuurt de link</strong> naar je listing, of de foto's zelf.</li>
+    <li><strong>Wij maken de film.</strong> We kiezen de foto's, de volgorde en de camerabewegingen, en maken met AI van de stilstaande beelden een rustige beweging.</li>
+    <li><strong>Een mens controleert hem.</strong> We bekijken elke video helemaal voordat jij hem ziet. Klopt iets niet met je foto's, dan passen we het aan of halen we het eruit.</li>
+    <li><strong>Jij geeft feedback.</strong> Twee revisierondes zitten erbij.</li>
+    <li><strong>Jij publiceert.</strong> Je krijgt mp4-bestanden in 16:9 en 9:16.</li>
+  </ol>
+  <p>Je hebt geen software, prompts of account nodig. Meer uitleg vind je op de pagina <a href={pagePath(lang, 'how')}>werkwijze</a>.</p>
+
+  <h2>Wat krijg je?</h2>
+  <ul>
+    <li>Een walkthrough-video van 60 tot 90 seconden per jacht.</li>
+    <li>16:9 voor je website en listingplatforms, en 9:16 voor Instagram Reels, TikTok en Stories. Beide formaten zijn inbegrepen.</li>
+    <li>Twee revisierondes per video.</li>
+    <li>Eén rustige, vaste stijl voor je hele vloot.</li>
+    <li>Onbeperkt gebruik voor je eigen marketing: website, listings, social media en advertenties.</li>
+  </ul>
+
+  <h2>Wat kan de video laten zien, en wat niet?</h2>
+  <p>De video laat alleen zien wat op je foto's staat. Heb je foto's van het jacht onderweg, voor anker, op het dek, in de salon, de kombuis en de hutten, dan kan dat allemaal bewegen. Is de flybridge of een hut nooit gefotografeerd, dan zit die niet in de film. We voegen geen mensen, uitzichten of onderdelen toe die er niet zijn.</p>
+  <p>De kwaliteit van de foto's bepaalt de kwaliteit van de film. Scherpe, goed belichte foto's in hoge resolutie werken het best, en de originele bestanden van je fotograaf werken beter dan beelden die van een website zijn opgeslagen.</p>
+  <p>In de <a href={pagePath(lang, 'library')}>bibliotheek</a> zie je clips die we maakten van de listingfoto's van een motorcatamaran, en op de <a href={pagePath(lang, 'home')}>homepage</a> vergelijk je de foto met de video.</p>
+
+  <h2>Wat kost het?</h2>
+  <p>De prijs per video hangt af van hoeveel video's je in één keer bestelt. Eén losse video kost €100. Vanaf 5 video's is het €95 per video, en per 5 video's gaat de prijs €5 omlaag, tot minimaal €50 per video.</p>
+  <PriceTable lang={lang} />
+  <p>Een vloot van 12 jachten kost bijvoorbeeld 12 × €90 = €1.080, exclusief btw. Voordat je beslist, maken we een gratis proefvideo van je eigen listingfoto's.</p>
+</Landing>

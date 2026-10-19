@@ -1,0 +1,67 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'nl';
+const faq = [q.ai, q.limits, q.skills, q.photos];
+---
+<Landing
+  lang={lang}
+  page="aiVideo"
+  title="AI-video van foto's: werkwijze en prijs · Still to Film"
+  description="AI-video van foto's: hoe listingfoto's een walkthrough worden, wat het kost, wat het wel en niet laat zien, en hoe een mens elke video controleert."
+  eyebrow="Uitleg"
+  h1="AI-video van foto's: hoe het werkt, wat het kost en wat je kunt verwachten"
+  summary="Bij AI-video van foto's voegt software camerabeweging en tussenbeelden toe aan stilstaande foto's, zodat een set listingfoto's een korte walkthrough-film wordt. Still to Film doet dit als dienst: jij stuurt de foto's, wij maken een video van 60–90 seconden, en een mens controleert elke video voor oplevering."
+  faqTitle="Vragen over AI-video"
+  faqItems={faq}
+  service
+  related={['yacht', 'hotel', 'pricing']}
+>
+  <h2>Wat is AI-video van foto's?</h2>
+  <p>Een foto is één moment vanuit één standpunt. AI-videosoftware neemt die foto en maakt de beelden eromheen: langzaam een kamer in, een pan langs het dek, een draai naar een raam. Achter elkaar gezet wordt een set foto's een korte film die voelt alsof je door de ruimte loopt.</p>
+  <p>De software filmt niets. Elk beeld is gemaakt van wat op de foto's staat. Dat is tegelijk de kracht en de grens.</p>
+
+  <h2>Hoe werkt het, stap voor stap?</h2>
+  <ol>
+    <li><strong>Foto's kiezen.</strong> Niet elke foto werkt in beweging. We kiezen de foto's die scherp zijn en de ruimte goed laten zien, en bepalen de volgorde van de rondgang.</li>
+    <li><strong>Bewegingen kiezen.</strong> Per foto kiezen we een camerabeweging die erbij past: langzaam en rustig, nooit snel of duizelig.</li>
+    <li><strong>Clips maken.</strong> De AI maakt van elke foto een korte clip. Sommige pogingen zien er niet goed uit; die gooien we weg en maken we opnieuw.</li>
+    <li><strong>Monteren.</strong> We zetten de clips samen tot één film van 60 tot 90 seconden, in 16:9 en 9:16.</li>
+    <li><strong>Controleren.</strong> Een mens bekijkt de hele video voordat jij hem ziet (zie hieronder).</li>
+  </ol>
+
+  <h2>Laten maken, of zelf doen?</h2>
+  <p>Er zijn tools waarmee je zelf foto's uploadt en video maakt. Die kunnen goedkoper zijn als je de tijd hebt en ze wilt leren. Het verschil zit in wie het werk doet en wie het controleert.</p>
+  <div class="table-wrap" role="region" aria-label="Vergelijking: zelf een AI-videotool gebruiken en Still to Film" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Onderwerp</th><th scope="col">AI-videotool, zelf doen</th><th scope="col">Still to Film</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Onderwerp">Kennis nodig</td><td data-label="Zelf doen">Je leert de tool en schrijft de prompts</td><td data-label="Still to Film">Geen: je stuurt een link of de foto's</td></tr>
+        <tr><td data-label="Onderwerp">Foto's en bewegingen kiezen</td><td data-label="Zelf doen">Jij</td><td data-label="Still to Film">Doen wij</td></tr>
+        <tr><td data-label="Onderwerp">Mislukte pogingen</td><td data-label="Zelf doen">Jij ziet ze en probeert het opnieuw</td><td data-label="Still to Film">Gooien wij weg voordat jij iets ziet</td></tr>
+        <tr><td data-label="Onderwerp">Kwaliteitscontrole</td><td data-label="Zelf doen">Aan jou</td><td data-label="Still to Film">Een mens bekijkt elke video helemaal</td></tr>
+        <tr><td data-label="Onderwerp">Formaten</td><td data-label="Zelf doen">Hangt af van de tool</td><td data-label="Still to Film">16:9 en 9:16, beide inbegrepen</td></tr>
+        <tr><td data-label="Onderwerp">Aanpassingen</td><td data-label="Zelf doen">Je doet het zelf opnieuw</td><td data-label="Still to Film">Twee revisierondes inbegrepen</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Wat zijn de grenzen?</h2>
+  <ul>
+    <li><strong>Het laat alleen zien wat op de foto's staat.</strong> Een kamer, uitzicht of detail dat nooit is gefotografeerd, kan niet in de film komen.</li>
+    <li><strong>Rustige bewegingen werken het best.</strong> Bij snelle camerabewegingen of grote veranderingen van hoek moet de AI gokken, en een gok kan er verkeerd uitzien. We houden de beweging bewust langzaam.</li>
+    <li><strong>Geen mensen, geen geluid van de plek.</strong> De film laat de ruimtes zien, geen gasten of crew, en heeft geen opgenomen geluid.</li>
+    <li><strong>De kwaliteit van de foto's telt.</strong> Wazige, donkere of kleine foto's geven een zwakkere film. De originele bestanden van je fotograaf werken het best.</li>
+  </ul>
+
+  <h2>Hoe werkt de kwaliteitscontrole?</h2>
+  <p>Voor oplevering bekijkt een mens elke video van begin tot eind en vergelijkt hem met de foto's. We letten op alles wat niet klopt: details die van vorm veranderen, lijnen die buigen, voorwerpen die verschijnen of verdwijnen, beweging die onnatuurlijk aanvoelt. Klopt er iets niet, dan maken we die clip opnieuw of halen we hem eruit. Pas daarna zie jij de video, en je hebt dan nog steeds twee revisierondes.</p>
+
+  <h2>Wanneer is een draaidag de betere keuze?</h2>
+  <p>AI-video van foto's past niet bij alles. Een draaidag is de betere keuze als je mensen in beeld wilt, echt geluid, een interview, dronebeelden van plekken waar je geen foto's van hebt, of ruimtes die nooit zijn gefotografeerd. Heb je al goede foto's en wil je een rustige walkthrough voor elke listing, dan doet AI-video het werk zonder een dag op locatie.</p>
+
+  <h2>Wat kost het?</h2>
+  <p>Eén losse video kost €100, exclusief btw. Vanaf 5 video's gaat de prijs per video per 5 video's €5 omlaag, tot minimaal €50. Bekijk de volledige <a href={pagePath(lang, 'pricing')}>prijsstaffel</a>, of begin met een gratis proefvideo van je eigen foto's.</p>
+</Landing>
