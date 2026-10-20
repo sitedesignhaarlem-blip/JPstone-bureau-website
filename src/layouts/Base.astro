@@ -1,5 +1,6 @@
 ---
 import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import '../styles/tokens.css';
 import '../styles/base.css';
 import { SITE_URL, site } from '../data/site';
@@ -83,5 +84,6 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
     <a class="skip-link" href="#main">{t.skip}</a>
     <slot />
     <Analytics />
+    <SpeedInsights />
   </body>
 </html>
