@@ -78,6 +78,8 @@ const first = clips[0];
       if (inView) play();
       else videos.forEach((v) => v.pause());
     }, { threshold: 0.3 }).observe(root.querySelector('.stage')!);
+    // After a swap, start as soon as the new file can play (an early play() can be aborted by load()).
+    videos.forEach((v) => v.addEventListener('loadeddata', play));
 
     root.querySelectorAll<HTMLButtonElement>('[data-clip]').forEach((tab) => {
       tab.addEventListener('click', () => {

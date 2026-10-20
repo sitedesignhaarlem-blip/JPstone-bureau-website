@@ -54,7 +54,7 @@ function setupDialog() {
       // Read at click time: the before/after play button changes its clip when you switch examples.
       const file = btn.dataset.open!;
       opener = btn;
-      video.innerHTML = `<source src="/media/${file}.webm" type="video/webm"><source src="/media/${file}.mp4" type="video/mp4">`;
+      video.innerHTML = `<source src="/media/${file}.mp4" type="video/mp4"><source src="/media/${file}.webm" type="video/webm">`;
       video.poster = `/media/${file}.jpg`;
       video.load();
       caption.textContent = btn.dataset.title ?? btn.closest('figure')?.querySelector('.tile-title')?.textContent ?? '';
@@ -65,6 +65,9 @@ function setupDialog() {
   );
   dialog.addEventListener('close', () => {
     video.pause();
+    // Let go of the file, so the browser frees the decoder for the videos on the page.
+    video.innerHTML = '';
+    video.load();
     opener?.focus();
   });
   dialog.addEventListener('click', (e) => {
