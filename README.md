@@ -72,7 +72,7 @@ Deze pagina's staan niet in de sitemap en worden niet geïndexeerd (`noindex`).
 - **robots.txt:** laat alle zoekmachines en AI-crawlers toe (GPTBot, ClaudeBot, PerplexityBot, Google-Extended en andere).
 - **llms.txt:** een korte, feitelijke samenvatting voor AI-assistenten in `public/llms.txt`. Houd die gelijk met de site als prijzen of diensten veranderen.
 - **Structured data:** `src/data/schema.ts` (Organization, WebSite, Service, FAQPage, VideoObject, BreadcrumbList). De FAQ-data komt uit dezelfde teksten als de zichtbare FAQ.
-- **Hoofdadres:** `https://stilltofilm.com` (zonder www). `vercel.json` stuurt www door met een 301.
+- **Hoofdadres:** `https://stilltofilm.com` (zonder www). De doorverwijzing van www regel je in Vercel onder **Settings → Domains**, niet in `vercel.json`: twee regels die elkaar tegenspreken geven een eindeloze lus (ERR_TOO_MANY_REDIRECTS).
 
 ## Beveiliging
 
