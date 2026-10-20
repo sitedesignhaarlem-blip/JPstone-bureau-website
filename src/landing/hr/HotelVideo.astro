@@ -1,0 +1,58 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'hr';
+const faq = [q.roomTypes, q.access, q.update, q.photos, q.sample];
+---
+<Landing
+  lang={lang}
+  page="hotel"
+  title="Video za hotel od fotografija soba i objekta · Still to Film"
+  description="Od fotografija soba i objekta boutique hotela izrađujemo video obilazak od 60 do 90 s. Bez filmske ekipe, 16:9 i 9:16 uključeni. 50 do 100 € po videu."
+  eyebrow="Za boutique hotele"
+  h1="Video za boutique hotele, izrađen od fotografija vaših soba i objekta"
+  summary="Still to Film od fotografija koje već imate od svojih soba i objekta izrađuje video obilazak od 60 do 90 sekundi, bez filmske ekipe i bez zatvaranja sobe na cijeli dan. Svaki video dobivate u formatima 16:9 i 9:16, osoba ga pregledava prije isporuke, a ovisno o količini stoji od 50 do 100 €."
+  faqTitle="Pitanja hotela"
+  faqItems={faq}
+  service
+  related={['yacht', 'aiVideo', 'pricing']}
+>
+  <h2>Zašto jednostavno ne snimiti hotel?</h2>
+  <p>Snimanje u hotelu treba planirati oko gostiju. Sobe moraju biti prazne i pripremljene, zajednički prostori mirni, a svjetlo odgovarajuće, često kroz nekoliko dana. Kad renovirate sobu ili promijenite izgled za sezonu, video zastari i sve počinje ispočetka.</p>
+  <p>Većina boutique hotela već ima profesionalne fotografije svakog tipa sobe, predvorja, restorana, terase ili bazena. Od tih fotografija izrađujemo video, a u hotelu se zbog toga ništa ne mora mijenjati.</p>
+
+  <h2>Kako to funkcionira?</h2>
+  <ol>
+    <li><strong>Pošaljete fotografije</strong> ili poveznicu na svoju web-stranicu ili stranicu za rezervacije.</li>
+    <li><strong>Mi izrađujemo film.</strong> Biramo fotografije, redoslijed i pokrete kamere te uz pomoć AI-ja od statičnih slika stvaramo miran pokret kroz sobu ili objekt.</li>
+    <li><strong>Osoba ga pregledava.</strong> Svaki video pogledamo do kraja prije nego što ga vi vidite. Ako nešto ne odgovara vašim fotografijama, ispravimo to ili izrežemo.</li>
+    <li><strong>Vi dajete povratne informacije.</strong> Uključena su dva kruga izmjena.</li>
+    <li><strong>Vi objavljujete.</strong> Dobivate MP4 datoteke u formatima 16:9 i 9:16.</li>
+  </ol>
+  <p>Ne trebate softver, upite (promptove) ni korisnički račun. Više o tome na stranici <a href={pagePath(lang, 'how')}>Kako funkcionira</a>.</p>
+
+  <h2>Soba po soba ili cijeli objekt?</h2>
+  <p>Moguće je oboje. Video cijelog objekta odgovara vašoj početnoj stranici i društvenim mrežama. Video po tipu sobe odgovara stranicama za rezervaciju na kojima gosti uspoređuju sobe. Svaki video naplaćuje se kao jedan video: hotel s pet tipova soba i jednim videom objekta naručuje, dakle, šest videa.</p>
+  <p>Ako renovirate ili date izraditi nove fotografije, od novih fotografija izradit ćemo novi video. To se računa kao novi video, a ne kao izmjena.</p>
+
+  <h2>Što dobivate?</h2>
+  <ul>
+    <li>Video obilazak od 60 do 90 sekundi po tipu sobe ili po objektu.</li>
+    <li>16:9 za vašu web-stranicu i platforme za rezervacije, 9:16 za Instagram Reels, TikTok i Stories. Oba formata su uključena.</li>
+    <li>Dva kruga izmjena po videu.</li>
+    <li>Miran, ujednačen stil za sve vaše videe.</li>
+    <li>Neograničeno korištenje za vaš vlastiti marketing: web-stranicu, stranice za rezervacije, društvene mreže i oglašavanje.</li>
+  </ul>
+
+  <h2>Što video može prikazati, a što ne?</h2>
+  <p>Video može prikazati samo ono što je na vašim fotografijama. Kupaonica, pogled ili terasa koji nikad nisu fotografirani neće biti ni u filmu, a ne dodajemo goste, namještaj ni poglede. Kvaliteta fotografija određuje kvalitetu filma: najbolje funkcioniraju oštre, dobro osvijetljene fotografije visoke rezolucije.</p>
+  <p>Primjeri na ovoj web-stranici prikazuju jahtu jer još nemamo hotelske klijente koje možemo pokazati. Besplatni probni video izrađujemo od vaših vlastitih fotografija, tako da rezultat za svoj hotel vidite prije nego što se odlučite.</p>
+
+  <h2>Koliko stoji?</h2>
+  <p>Cijena po videu ovisi o tome koliko videa naručite odjednom. Jedan video stoji 100 €. Od 5 videa cijena po videu je 95 €, a svakih 5 videa pada za 5 €, sve do 50 € po videu.</p>
+  <PriceTable lang={lang} />
+  <p>Na primjer: pet tipova soba i jedan video objekta čine 6 videa, dakle 6 × 95 € = 570 €, bez PDV-a.</p>
+</Landing>

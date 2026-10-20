@@ -1,0 +1,32 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { groups } from './faq';
+
+const lang = 'hr';
+const all = groups.flatMap((g) => g.items);
+---
+<Landing
+  lang={lang}
+  page="faq"
+  title="Česta pitanja o AI video obilascima · Still to Film"
+  description="Odgovori o videima studija Still to Film: prava korištenja, isporuka, formati, potrebne fotografije, AI i ljudski pregled, cijene i plaćanje."
+  eyebrow="Česta pitanja"
+  h1="Česta pitanja"
+  summary="Still to Film od fotografija iz oglasa charter tvrtki za jahte i boutique hotela izrađuje video obilaske od 60 do 90 sekundi, u formatima 16:9 i 9:16, po cijeni od 50 do 100 € po videu. Ovdje su odgovori na pitanja koja najčešće dobivamo, razvrstani po temama."
+  faqItems={all}
+  showFaq={false}
+  service
+  related={['pricing', 'yacht', 'hotel', 'aiVideo']}
+>
+  {groups.map((group) => (
+    <>
+      <h2>{group.title}</h2>
+      {group.items.map((item) => (
+        <details>
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </>
+  ))}
+</Landing>

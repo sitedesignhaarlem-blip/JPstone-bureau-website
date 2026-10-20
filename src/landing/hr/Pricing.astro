@@ -1,0 +1,61 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pricePerVideo } from '../../data/pricing';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'hr';
+const faq = [q.volume, q.vat, q.payment, q.revisions, q.sample];
+const money = new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pricePerVideo(n)), total: money.format(n * pricePerVideo(n)) }));
+---
+<Landing
+  lang={lang}
+  page="pricing"
+  title="Cijene videa: od 100 € do 50 € po videu · Still to Film"
+  description="Jedan video stoji 100 €, od 5 videa 95 € po videu, a svakih 5 videa 5 € manje, sve do 50 €. Oba formata i 2 kruga izmjena uključeni. Bez PDV-a."
+  eyebrow="Cijene"
+  h1="Cijene: od 100 € do 50 € po videu"
+  summary="Video studija Still to Film stoji 100 € ako naručite jedan, a od 5 videa 95 € po videu. Nakon toga cijena po videu pada za 5 € svakih 5 videa, sve do 50 €; cijene su bez PDV-a i uključuju oba formata i dva kruga izmjena."
+  faqTitle="Pitanja o cijenama"
+  faqItems={faq}
+  service
+  related={['yacht', 'hotel', 'faq']}
+>
+  <h2>Cjenik po količini</h2>
+  <p>Cijena po videu ovisi o broju videa u narudžbi. Ista cijena vrijedi za svaki video u toj narudžbi.</p>
+  <PriceTable lang={lang} />
+  <p>Brojke možete isprobati i u <a href={pagePath(lang, 'home', '#packages-title')}>kalkulatoru na početnoj stranici</a>.</p>
+
+  <h2>Što je uključeno u svaki video?</h2>
+  <ul>
+    <li>Video obilazak od 60 do 90 sekundi, izrađen od vaših fotografija.</li>
+    <li>Oba formata kao MP4 datoteke: 16:9 za web-stranice i platforme za oglase, 9:16 za Reels, TikTok i Stories.</li>
+    <li>Pregled koji obavlja osoba prije isporuke, kako bi video prikazivao samo ono što je na vašim fotografijama.</li>
+    <li>Dva kruga izmjena.</li>
+    <li>Neograničeno korištenje za vaš vlastiti marketing: web-stranicu, oglase, društvene mreže i oglašavanje.</li>
+  </ul>
+
+  <h2>Što je izmjena, a što novi video?</h2>
+  <p>Izmjena je promjena s istim fotografijama i istim konceptom: drugačiji redoslijed kadrova, sporiji pokret, jedan isječak manje, drugačiji početak ili kraj. Svaki video uključuje dva kruga izmjena.</p>
+  <p>Nove fotografije ili drugačiji koncept videa računaju se kao novi video. To vrijedi i kad renovirate sobu ili zamijenite fotografije jahte i želite ažurirani film.</p>
+
+  <h2>Primjeri izračuna</h2>
+  <div class="table-wrap" role="region" aria-label="Primjeri izračuna" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Videa</th><th scope="col">Cijena po videu</th><th scope="col">Ukupno, bez PDV-a</th></tr></thead>
+      <tbody>
+        {examples.map((e) => (
+          <tr><td data-label="Videa">{e.n}</td><td data-label="Cijena po videu">{e.per}</td><td data-label="Ukupno">{e.total}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Više od 100 videa?</h2>
+  <p>Za narudžbe veće od 100 videa izrađujemo ponudu. To vrijedi i za kontinuiranu suradnju: do 100 videa mjesečno, oba formata, uz mogućnost otkaza svaki mjesec.</p>
+
+  <h2>Započnite s besplatnim probnim videom</h2>
+  <p>Prije narudžbe izradit ćemo besplatni probni video od fotografija iz vašeg oglasa: kratak pregled od 15 do 25 sekundi s nekoliko kadrova, kako biste vidjeli stil i kvalitetu. Cijeli video koji naručite traje od 60 do 90 sekundi. Bez obveze i bez računa. Dovoljna je poveznica na vaš oglas.</p>
+</Landing>

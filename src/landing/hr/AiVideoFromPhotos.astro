@@ -1,0 +1,67 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'hr';
+const faq = [q.ai, q.limits, q.skills, q.photos];
+---
+<Landing
+  lang={lang}
+  page="aiVideo"
+  title="AI video od fotografija: postupak, cijena, ograničenja · Still to Film"
+  description="Kako AI od fotografija iz oglasa izrađuje video obilazak, koliko stoji, što može i ne može prikazati i kako ljudski pregled čuva vjernost fotografijama."
+  eyebrow="Objašnjenje"
+  h1="AI video od fotografija: kako funkcionira, koliko stoji i što možete očekivati"
+  summary="Kod AI videa od fotografija softver statičnim slikama dodaje pokret kamere i međukadrove, pa fotografije iz oglasa postaju kratak filmski obilazak. Still to Film to nudi kao uslugu: vi pošaljete fotografije, mi izradimo video od 60 do 90 sekundi, a osoba pregledava svaki video prije isporuke."
+  faqTitle="Pitanja o AI videu"
+  faqItems={faq}
+  service
+  related={['yacht', 'hotel', 'pricing']}
+>
+  <h2>Što je AI video od fotografija?</h2>
+  <p>Fotografija je jedan trenutak iz jednog kuta. AI softver za video uzima tu fotografiju i stvara slike oko nje: polagani ulazak u prostoriju, prelazak kamere preko palube, okret prema prozoru. Kad se poslože jedna za drugom, niz fotografija postaje kratak film koji djeluje kao šetnja prostorom.</p>
+  <p>Softver ništa ne snima. Svaka slika nastaje iz onoga što je na fotografijama. To mu je snaga, ali i ograničenje.</p>
+
+  <h2>Kako funkcionira, korak po korak?</h2>
+  <ol>
+    <li><strong>Odabir fotografija.</strong> Ne funkcionira svaka fotografija u pokretu. Biramo fotografije koje su oštre i dobro prikazuju prostor te određujemo redoslijed obilaska.</li>
+    <li><strong>Određivanje pokreta.</strong> Za svaku fotografiju biramo odgovarajući pokret kamere: polagan i miran, nikad brz ni nemiran.</li>
+    <li><strong>Izrada isječaka.</strong> AI od svake fotografije izrađuje kratak isječak. Neki pokušaji izgledaju pogrešno; njih odbacujemo i izrađujemo ponovno.</li>
+    <li><strong>Montaža.</strong> Isječke spajamo u film od 60 do 90 sekundi, u formatima 16:9 i 9:16.</li>
+    <li><strong>Pregled.</strong> Osoba pogleda cijeli video prije nego što ga vi vidite (vidi niže).</li>
+  </ol>
+
+  <h2>Prepustiti nama ili napraviti sami?</h2>
+  <p>Postoje alati u koje možete učitati fotografije i sami izraditi video. Mogu biti jeftiniji ako imate vremena i želite naučiti raditi s njima. Razlika je u tome tko radi posao i tko ga provjerava.</p>
+  <div class="table-wrap" role="region" aria-label="Usporedba: AI alat za video koji koristite sami i Still to Film" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Stavka</th><th scope="col">AI alat za video koji koristite sami</th><th scope="col">Still to Film</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Stavka">Potrebno znanje</td><td data-label="Alat koji koristite sami">Učite alat i pišete upite (promptove)</td><td data-label="Still to Film">Nikakvo: pošaljete poveznicu ili fotografije</td></tr>
+        <tr><td data-label="Stavka">Odabir fotografija i pokreta</td><td data-label="Alat koji koristite sami">Vi</td><td data-label="Still to Film">Mi</td></tr>
+        <tr><td data-label="Stavka">Neuspjeli pokušaji</td><td data-label="Alat koji koristite sami">Vi ih uočavate i pokušavate ponovno</td><td data-label="Still to Film">Odbacujemo ih prije nego što išta vidite</td></tr>
+        <tr><td data-label="Stavka">Provjera kvalitete</td><td data-label="Alat koji koristite sami">Na vama</td><td data-label="Still to Film">Osoba pogleda svaki video do kraja</td></tr>
+        <tr><td data-label="Stavka">Formati</td><td data-label="Alat koji koristite sami">Ovisi o alatu</td><td data-label="Still to Film">16:9 i 9:16, oba uključena</td></tr>
+        <tr><td data-label="Stavka">Izmjene</td><td data-label="Alat koji koristite sami">Sami ga ponovno izrađujete</td><td data-label="Still to Film">Dva kruga izmjena uključena</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Koja su ograničenja?</h2>
+  <ul>
+    <li><strong>Prikazuje samo ono što je na fotografijama.</strong> Prostorija, pogled ili detalj koji nikad nije fotografiran ne može se pojaviti u filmu.</li>
+    <li><strong>Mirni pokreti funkcioniraju najbolje.</strong> Brzi pokreti kamere ili velike promjene perspektive tjeraju AI da nagađa, a to može izgledati pogrešno. Pokret namjerno držimo polaganim.</li>
+    <li><strong>Bez ljudi, bez izvornog zvuka.</strong> Film prikazuje prostore, a ne goste ni posadu, i nema snimljeni zvuk.</li>
+    <li><strong>Kvaliteta fotografija je važna.</strong> Mutne, tamne fotografije ili fotografije niske rezolucije daju slabiji film. Najbolje funkcioniraju izvorne datoteke vašeg fotografa.</li>
+  </ul>
+
+  <h2>Kako izgleda provjera kvalitete?</h2>
+  <p>Prije isporuke osoba pogleda svaki video od početka do kraja i usporedi ga s fotografijama. Pazimo na sve što ne odgovara: detalje koji mijenjaju oblik, linije koje se savijaju, predmete koji se pojavljuju ili nestaju, pokret koji djeluje neprirodno. Ako nešto nije u redu, isječak izrađujemo ponovno ili ga izrežemo. Tek tada vi vidite video, a i dalje imate dva kruga izmjena.</p>
+
+  <h2>Kada je dan snimanja bolji izbor?</h2>
+  <p>AI video od fotografija ne odgovara za sve. Dan snimanja bolji je izbor ako želite ljude u kadru, pravi zvuk, intervju, snimke dronom mjesta kojih nemate na fotografijama ili prostore koji nikad nisu fotografirani. Ako već imate dobre fotografije i za svaki oglas želite miran obilazak, AI video to obavlja bez ijednog dana na lokaciji.</p>
+
+  <h2>Koliko stoji?</h2>
+  <p>Jedan video stoji 100 €, bez PDV-a. Od 5 videa cijena po videu pada za 5 € svakih 5 videa, sve do 50 €. Pogledajte cijeli <a href={pagePath(lang, 'pricing')}>cjenik po količini</a> ili započnite s besplatnim probnim videom od vlastitih fotografija.</p>
+</Landing>

@@ -1,0 +1,55 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'hr';
+const faq = [q.access, q.fleet, q.photos, q.owns, q.sample];
+---
+<Landing
+  lang={lang}
+  page="yacht"
+  title="Video za charter jahti od fotografija iz oglasa · Still to Film"
+  description="Od fotografija iz oglasa vaše jahte izrađujemo video obilazak od 60 do 90 sekundi. Bez dana snimanja, 16:9 i 9:16 uključeni. 50 do 100 € po videu."
+  eyebrow="Za charter jahti"
+  h1="Video za charter jahti, izrađen od fotografija iz vašeg oglasa"
+  summary="Still to Film od fotografija koje su već u oglasu vaše jahte izrađuje video obilazak od 60 do 90 sekundi, bez dana snimanja i bez ekipe na brodu. Svaki video dobivate u formatima 16:9 i 9:16, osoba ga pregledava prije isporuke, a ovisno o količini stoji od 50 do 100 €."
+  faqTitle="Pitanja charter tvrtki"
+  faqItems={faq}
+  service
+  related={['hotel', 'aiVideo', 'pricing']}
+>
+  <h2>Zašto je snimanje za charter flotu tako teško?</h2>
+  <p>Za dan snimanja jahta mora biti u luci, čista i prazna, po lijepom vremenu, s ekipom na brodu cijeli dan. U sezoni je većina jahti vani s gostima, pa je slobodan dan teško pronaći. Kod flote to znači jedno snimanje po jahti, raspoređeno kroz više mjeseci.</p>
+  <p>Većina charter tvrtki već ima dobre fotografije svake jahte: izvana, palube, salona, kuhinje i kabina. Mi radimo s tim fotografijama. Ništa se ne mora planirati oko broda i nitko ne mora dolaziti na brod.</p>
+
+  <h2>Kako to funkcionira?</h2>
+  <ol>
+    <li><strong>Pošaljete poveznicu</strong> na svoj oglas ili same fotografije.</li>
+    <li><strong>Mi izrađujemo film.</strong> Biramo fotografije, redoslijed i pokrete kamere te uz pomoć AI-ja od statičnih slika stvaramo miran pokret.</li>
+    <li><strong>Osoba ga pregledava.</strong> Svaki video pogledamo do kraja prije nego što ga vi vidite. Ako nešto ne odgovara vašim fotografijama, ispravimo to ili izrežemo.</li>
+    <li><strong>Vi dajete povratne informacije.</strong> Uključena su dva kruga izmjena.</li>
+    <li><strong>Vi objavljujete.</strong> Dobivate MP4 datoteke u formatima 16:9 i 9:16.</li>
+  </ol>
+  <p>Ne trebate softver, upite (promptove) ni korisnički račun. Više o tome na stranici <a href={pagePath(lang, 'how')}>Kako funkcionira</a>.</p>
+
+  <h2>Što dobivate?</h2>
+  <ul>
+    <li>Video obilazak od 60 do 90 sekundi po jahti.</li>
+    <li>16:9 za vašu web-stranicu i platforme za oglase, 9:16 za Instagram Reels, TikTok i Stories. Oba formata su uključena.</li>
+    <li>Dva kruga izmjena po videu.</li>
+    <li>Miran, ujednačen stil za cijelu vašu flotu.</li>
+    <li>Neograničeno korištenje za vaš vlastiti marketing: web-stranicu, oglase, društvene mreže i oglašavanje.</li>
+  </ul>
+
+  <h2>Što video može prikazati, a što ne?</h2>
+  <p>Video može prikazati samo ono što je na vašim fotografijama. Ako imate fotografije jahte u plovidbi, na sidru, na palubi, u salonu, u kuhinji i u kabinama, sve to može oživjeti u pokretu. Ako flybridge ili neka kabina nikad nisu fotografirani, neće biti ni u filmu. Ne dodajemo ljude, poglede ni opremu koji ne postoje.</p>
+  <p>Kvaliteta fotografija određuje kvalitetu filma. Najbolje funkcioniraju oštre, dobro osvijetljene fotografije visoke rezolucije, a izvorne datoteke vašeg fotografa bolje su od slika spremljenih s web-stranice.</p>
+  <p>Isječke izrađene od fotografija iz oglasa jednog motornog katamarana možete pogledati u <a href={pagePath(lang, 'library')}>biblioteci</a>. Usporedbu fotografije i videa jedno uz drugo vidjet ćete na <a href={pagePath(lang, 'home')}>početnoj stranici</a>.</p>
+
+  <h2>Koliko stoji?</h2>
+  <p>Cijena po videu ovisi o tome koliko videa naručite odjednom. Jedan video stoji 100 €. Od 5 videa cijena po videu je 95 €, a svakih 5 videa pada za 5 €, sve do 50 € po videu.</p>
+  <PriceTable lang={lang} />
+  <p>Na primjer, flota od 12 jahti stoji 12 × 90 € = 1.080 €, bez PDV-a. Prije nego što se odlučite, izradit ćemo besplatni probni video od fotografija iz vašeg oglasa.</p>
+</Landing>

@@ -25,12 +25,13 @@ Engels is de basistaal. De andere talen hebben een eigen voorvoegsel en vertaald
 | Duits | `/de/` | `/de/bibliothek/`, `/de/kontakt/` |
 | Frans | `/fr/` | `/fr/bibliotheque/`, `/fr/conditions/` |
 | Spaans | `/es/` | `/es/biblioteca/`, `/es/contacto/` |
+| Kroatisch | `/hr/` | `/hr/galerija/`, `/hr/cijene/` |
 
 De adressen staan in `src/i18n/config.ts`. Alle pagina's worden gemaakt door `src/pages/[...path].astro`.
 
 ## Teksten aanpassen
 
-- **Gewone teksten:** `src/i18n/en.ts`, `nl.ts`, `de.ts`, `fr.ts`, `es.ts`. Elk bestand heeft precies dezelfde sleutels. Pas je in het Engels iets aan, doe het dan ook in de andere talen.
+- **Gewone teksten:** `src/i18n/en.ts`, `nl.ts`, `de.ts`, `fr.ts`, `es.ts`, `hr.ts`. Elk bestand heeft precies dezelfde sleutels. Pas je in het Engels iets aan, doe het dan ook in de andere talen.
 - **Juridische teksten:** `src/legal/<taal>/Privacy.astro`, `Terms.astro`, `Cookies.astro`. De Nederlandse versie is leidend. Pas na een wijziging de datum aan in `src/i18n/index.ts` (`LEGAL_UPDATED`).
 - **Bedrijfsgegevens** (e-mail, telefoon, KvK, btw, adres, formulier): `src/data/site.ts`.
 - **Placeholders:** alles wat in een tekst als `[TODO: …]` staat, verschijnt op de site als oranje gestippelde tekst. Zo valt het op tot het is ingevuld. Zoek ze op met `grep -rn "TODO" src`.
@@ -44,7 +45,7 @@ De adressen staan in `src/i18n/config.ts`. Alle pagina's worden gemaakt door `sr
    ```
    Dit maakt `public/media/mijn-clip.mp4` (H.264), `.webm` (VP9) en `.jpg` (stilstaand beeld), 960 px breed, zonder geluid.
 3. Voeg de clip toe in `src/data/library.ts` (bestandsnaam en `exterior` of `interior`).
-4. Zet de titel en de beschrijving voor schermlezers onder `shots` in **alle vijf** de taalbestanden in `src/i18n/`.
+4. Zet de titel en de beschrijving voor schermlezers onder `shots` in **alle zes** de taalbestanden in `src/i18n/`.
 
 ### Voor/na-slider
 
@@ -100,7 +101,7 @@ Deze pagina's staan niet in de sitemap en worden niet geïndexeerd (`noindex`).
 - [x] **Levertijd en betaaltermijn:** tot 2 video's per dag, leverdatum altijd vooraf afgesproken (FAQ); betaaltermijn 14 dagen (artikel 6 van de voorwaarden).
 - [ ] **Case Virgin Charter Yachts** (op de bibliotheekpagina): levering, levertijd en citaat invullen in `caseStudy` in `src/i18n/`, pas na akkoord van de klant. Zolang ze op `[TODO` beginnen, worden ze niet getoond.
 - [ ] **Toestemming:** schriftelijke toestemming van de eigenaar om Southern Cross bij naam te tonen.
-- [ ] **Vertalingen:** Duits, Frans en Spaans laten nalezen door iemand met die moedertaal, vooral de voorwaarden.
+- [ ] **Vertalingen:** Duits, Frans, Spaans en Kroatisch laten nalezen door iemand met die moedertaal, vooral de voorwaarden.
 - [ ] **Juridische check:** voorwaarden en privacyverklaring laten controleren door een jurist.
 
 ## Opbouw

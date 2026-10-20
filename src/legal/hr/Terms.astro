@@ -1,0 +1,44 @@
+---
+import { site } from '../../data/site';
+---
+  <p>Ovi uvjeti primjenjuju se na svaku ponudu, probni videozapis i narudžbu tvrtke {site.name}. Namijenjeni su poslovnim korisnicima. Ako ponuda navodi nešto drugačije, vrijedi ponuda.</p>
+
+  <h2>1. Besplatni probni videozapis</h2>
+  <p>Probni videozapis kratki je pregled od 15 do 25 sekundi s nekoliko kadrova, izrađen od vaših fotografija. Videozapis koji naručite traje od 60 do 90 sekundi. Probni videozapis je besplatan i neobvezujući. Ni na što se ne obvezujete i ne šaljemo vam račun. Probni videozapis smijete pogledati i podijeliti unutar svojega poduzeća. Njegova objava smatra se narudžbom.</p>
+
+  <h2>2. Ponuda i cijene</h2>
+  <p>Unaprijed dobivate ponudu s ukupnom cijenom. U njoj je navedeno što dobivate: broj videozapisa, trajanje, formati i izmjene. Cijene su iskazane bez PDV-a, što je u ponudi uvijek navedeno. Ne dodaju se troškovi koji nisu navedeni u ponudi. Ako naknadno želite više, najprije dobivate cijenu, a vi odlučujete.</p>
+  <p>Ponuda vrijedi 30 dana.</p>
+
+  <h2>3. Vaše fotografije</h2>
+  <p>Vi dostavljate fotografije ili poveznicu na svoj oglas. Potvrđujete da te fotografije smijete koristiti za videozapis te da su osobe koje se na njima mogu prepoznati za to dale suglasnost. Ako primimo zahtjev za naknadu jer to nije točno, za to ste odgovorni vi.</p>
+
+  <h2>4. Izrađeno pomoću umjetne inteligencije</h2>
+  <p>Videozapise izrađujemo softverom umjetne inteligencije (AI), na temelju vaših fotografija. Videozapis prikazuje vašu jahtu ili hotel kao na fotografijama, ali pokrete kamere i međukadrove stvara softver. Moguća su mala odstupanja; njih ispravljamo u okviru izmjena. Ako videozapis objavite, preporučujemo da navedete da je izrađen pomoću umjetne inteligencije.</p>
+
+  <h2>5. Isporuka i izmjene</h2>
+  <p>Rok isporuke naveden je u ponudi. Videozapis dobivate u formatu MP4, u omjeru 16:9 i/ili 9:16, kako je dogovoreno.</p>
+  <p>Svaki videozapis uključuje 2 kruga izmjena. Izmjena je promjena unutar istog koncepta i istih fotografija. Nove fotografije ili drugačiji koncept čine novu narudžbu.</p>
+
+  <h2>6. Plaćanje</h2>
+  <p>Račun izdajemo nakon isporuke. Rok plaćanja je 14 dana. Za veće narudžbe možemo zatražiti predujam; to će tada biti navedeno u ponudi.</p>
+
+  <h2 id="cancellation">7. Otkazivanje i povrat novca</h2>
+  <ul>
+    <li><strong>Prije nego što smo započeli:</strong> otkazujete bez troškova.</li>
+    <li><strong>Ako već radimo na tome:</strong> plaćate dio koji je već izrađen, razmjerno ponudi. Iznos vam javljamo unaprijed.</li>
+    <li><strong>Nakon isporuke:</strong> ako videozapis ne odgovara ponudi, a to ne možemo ispraviti u okviru izmjena, vraćamo vam iznos koji ste platili za taj videozapis.</li>
+    <li>Eventualni predujam vraćamo umanjen za dio koji je već izrađen.</li>
+  </ul>
+  <p>Povrat novca izvršavamo u roku od 14 dana na račun s kojeg ste platili. Otkazivanje ili povrat novca zatražite e-poštom na <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+
+  <h2>8. Pravo korištenja</h2>
+  <p>Nakon plaćanja videozapis smijete neograničeno koristiti za vlastiti marketing: na svojoj web-stranici, u oglasima, na društvenim mrežama i u reklamama. Ne smijete ga dalje prodavati kao samostalni videozapis. Videozapis prikazujemo u svojem portfelju ili na ovoj stranici samo uz vaše dopuštenje.</p>
+
+  <h2>9. Odgovornost</h2>
+  <p>Naša je odgovornost ograničena na iznos predmetne narudžbe. Ne odgovaramo za neizravnu štetu, kao što su propuštene rezervacije. To ne vrijedi u slučaju namjere ili krajnje nepažnje.</p>
+
+  <h2>10. Mjerodavno pravo i sporovi</h2>
+  <p>Na ove se uvjete primjenjuje nizozemsko pravo. Ako spor ne možemo riješiti zajedno, odlučuje nadležni sud u Nizozemskoj.</p>
+
+  <p class="note">Podaci o tvrtki: {site.name}{site.address && ` · ${site.address}`}{site.kvk && ` · KvK ${site.kvk}`}{site.vat && ` · PDV ID ${site.vat}`}</p>

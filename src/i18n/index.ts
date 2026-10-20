@@ -3,12 +3,13 @@ import nl from './nl';
 import de from './de';
 import fr from './fr';
 import es from './es';
+import hr from './hr';
 import type { Locale } from './config';
 
 export * from './config';
 export type { UI };
 
-const dictionaries: Record<Locale, UI> = { en, nl, de, fr, es };
+const dictionaries: Record<Locale, UI> = { en, nl, de, fr, es, hr };
 
 /** All texts for one language. */
 export function useTranslations(locale: Locale): UI {

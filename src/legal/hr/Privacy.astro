@@ -1,0 +1,61 @@
+---
+import { site } from '../../data/site';
+import { pagePath } from '../../i18n';
+const deleteMail = `mailto:${site.email}?subject=${encodeURIComponent('Zahtjev: brisanje mojih podataka')}&body=${encodeURIComponent('Molim vas da izbrišete sve podatke koje Still to Film ima o meni.\n\nIme:\nAdresa e-pošte ili broj telefona s kojeg sam vas kontaktirao/la:\n')}`;
+const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Zahtjev: pristup mojim podacima')}`;
+---
+  <p>Still to Film izrađuje walkthrough videozapise od fotografija iz oglasa za poduzeća. Za to nam je potrebno što manje podataka. U nastavku točno navodimo koje podatke, zašto i kako ih možete dati izbrisati.</p>
+
+  <h2>Tko smo mi</h2>
+  <p>
+    {site.name}, sa sjedištem u Nizozemskoj.<br />
+    {site.address && <>Adresa: {site.address}<br /></>}
+    {site.kvk && <>Nizozemska gospodarska komora (KvK): {site.kvk}<br /></>}
+    E-pošta: <a href={`mailto:${site.email}`}>{site.email}</a> · Telefon: <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>
+  </p>
+
+  <h2>Koji podaci i zašto</h2>
+  <div class="table-wrap" role="region" aria-label="Pregled podataka, svrha i rokova čuvanja" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Podaci</th><th scope="col">Svrha</th><th scope="col">Pravna osnova</th><th scope="col">Rok čuvanja</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Podaci">Ime, web-stranica ili poveznica na oglas te, ako ih unesete, poduzeće i poruka (kontaktni obrazac)</td><td data-label="Svrha">Odgovor na vaš upit i izrada probnog videozapisa</td><td data-label="Pravna osnova">Na vaš zahtjev, prije sklapanja ugovora</td><td data-label="Rok čuvanja">Najviše 12 mjeseci ako ne uslijedi narudžba</td></tr>
+        <tr><td data-label="Podaci">E-pošta, poruke na WhatsAppu i broj telefona ako nas tako kontaktirate</td><td data-label="Svrha">Kontakt u vezi s vašim upitom ili narudžbom</td><td data-label="Pravna osnova">Na vaš zahtjev ili izvršenje ugovora</td><td data-label="Rok čuvanja">Dok traje kontakt, a zatim najviše 12 mjeseci</td></tr>
+        <tr><td data-label="Podaci">Fotografije koje nam pošaljete</td><td data-label="Svrha">Izrada videozapisa</td><td data-label="Pravna osnova">Izvršenje ugovora</td><td data-label="Rok čuvanja">Do 3 mjeseca nakon isporuke, zatim se brišu</td></tr>
+        <tr><td data-label="Podaci">Ime, podaci o poduzeću i računi</td><td data-label="Svrha">Računovodstvo</td><td data-label="Pravna osnova">Zakonska obveza</td><td data-label="Rok čuvanja">7 godina (nizozemska porezna obveza čuvanja)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Ne tražimo više nego što je potrebno. Poduzeće i poruka u obrascu nisu obvezni. Ne izrađujemo profile i ne koristimo vaše podatke za oglašavanje.</p>
+
+  <h2>Tko još obrađuje vaše podatke</h2>
+  <p>Ništa ne prodajemo dalje. Za svoj rad koristimo sljedeće usluge:</p>
+  <ul>
+    <li><strong>Vercel</strong> (hosting ove web-stranice). Pri svakom posjetu poslužitelj prima tehničke podatke, kao što je vaša IP adresa, kako bi prikazao i zaštitio stranicu te anonimno brojio posjete (vidi u nastavku).</li>
+    <li><strong>Google (Gmail)</strong> za e-poštu.</li>
+    <li><strong>WhatsApp (Meta)</strong>, samo ako nas sami kontaktirate putem WhatsAppa.</li>
+    <li><strong>Higgsfield</strong>, usluga umjetne inteligencije kojom od vaših fotografija izrađujemo videozapis. Vaše se fotografije u tu svrhu ondje učitavaju.</li>
+    {site.formEndpoint && <li><strong>Formspree</strong>, koji prosljeđuje kontaktni obrazac na našu e-poštu.</li>}
+  </ul>
+  <p>Neki od tih pružatelja usluga nalaze se izvan Europskoga gospodarskog prostora. Prijenos se tada temelji na zaštitnim mjerama koje zahtijeva Opća uredba o zaštiti podataka (GDPR), kao što su Okvir za privatnost podataka EU-a i SAD-a (EU-US Data Privacy Framework) ili standardne ugovorne klauzule.</p>
+
+  <h2>Kolačići i praćenje</h2>
+  <p>Ova stranica ne postavlja kolačiće i ne koristi oglašivačke piksele ni druge alate za praćenje. Posjete brojimo pomoću usluge Vercel Web Analytics, bez kolačića: bilježi se stranica, web-stranica s koje ste došli, država, preglednik, operacijski sustav i vrsta uređaja. Vaša IP adresa ne pohranjuje se i ne možete biti prepoznati na drugim stranicama ni nekog kasnijeg dana. Fontovi i videozapisi nalaze se na našem vlastitom poslužitelju. Pogledajte <a href={pagePath('hr', 'cookies')}>pravila o kolačićima</a>.</p>
+
+  <h2>Newsletter</h2>
+  <p>Ne šaljemo newsletter ni marketinšku e-poštu. Ako se to ikada promijeni, bit će to samo ako se sami prijavite, uz poveznicu za odjavu u svakoj poruci.</p>
+
+  <h2>Djeca</h2>
+  <p>Naše su usluge namijenjene poduzećima, a ne djeci mlađoj od 16 godina. Svjesno ne prikupljamo podatke o djeci. Ako mislite da se to ipak dogodilo, pišite nam i izbrisat ćemo ih.</p>
+
+  <h2>Vaša prava</h2>
+  <p>Imate pravo na pristup svojim podacima, njihov ispravak ili brisanje. Također možete uložiti prigovor, zatražiti ograničenje obrade ili zatražiti svoje podatke u uobičajenom formatu datoteke.</p>
+  <ul>
+    <li><a href={deleteMail}>Zatražite brisanje</a> (otvara unaprijed pripremljenu poruku e-pošte)</li>
+    <li><a href={accessMail}>Zatražite pristup</a></li>
+  </ul>
+  <p>Možete nam i jednostavno pisati na <a href={`mailto:${site.email}`}>{site.email}</a>. Odgovaramo u roku od mjesec dana, kako propisuje Opća uredba o zaštiti podataka. Podatke koje moramo čuvati po zakonu, kao što su računi, brišemo tek nakon isteka tog roka.</p>
+  <p>Niste zadovoljni načinom na koji postupamo s vašim podacima? Pritužbu možete podnijeti nizozemskom nadzornom tijelu za zaštitu podataka, <a href="https://autoriteitpersoonsgegevens.nl/en" rel="noopener">Autoriteit Persoonsgegevens</a>, ili nadzornom tijelu u svojoj državi.</p>
+
+  <h2>Izmjene</h2>
+  <p>Ako se nešto promijeni u načinu na koji postupamo s podacima, ažurirat ćemo ova pravila. Datum posljednje izmjene naveden je na vrhu.</p>
