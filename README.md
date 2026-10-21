@@ -66,6 +66,12 @@ Maak een proefvideo van de listing van een prospect en stuur een eigen link mee,
 
 Deze pagina's staan niet in de sitemap en worden niet geïndexeerd (`noindex`).
 
+## Artikelen (Insights)
+
+- Staan onder `/insights/` en `/<taal>/insights/`. Per taal een map in `src/insights/<taal>/` met `index.ts` (titels, adressen, datum) en per artikel een `.astro`-bestand met de tekst.
+- Een nieuw artikel: voeg het toe aan `index.ts` en maak het `.astro`-bestand met dezelfde `id`. Het verschijnt vanzelf op de overzichtspagina, in de sitemap, in de zoekbalk en met hreflang naar de andere talen. Zet het in alle zes de talen, anders meldt `npm run check:seo` ontbrekende taalversies.
+- Teksten rond de artikelen: `src/insights/ui.ts`.
+
 ## Reviews
 
 - **Formulier:** stuur klanten na levering de link `stilltofilm.com/review/` (of `/nl/review/`, `/de/review/`, `/fr/review/`, `/es/review/`, `/hr/review/`). Ze kiezen sterren, schrijven een review en geven wel of geen toestemming om te publiceren. De review komt binnen per e-mail of WhatsApp; er wordt niets vanzelf gepubliceerd. De pagina staat niet in het menu, niet in de sitemap en wordt niet geïndexeerd.
