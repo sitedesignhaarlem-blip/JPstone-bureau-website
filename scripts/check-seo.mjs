@@ -25,7 +25,8 @@ const urlOf = (file) => SITE + '/' + path.relative(DIST, path.dirname(file)).rep
 for (const file of pages) {
   const html = fs.readFileSync(file, 'utf8');
   const url = urlOf(file).replace(/\/\/$/, '/');
-  const isPrivate = url.includes('/p/');
+  // Pages that are not indexed (prospect pages, the review form) skip the public-page checks.
+  const isPrivate = url.includes('/p/') || /<meta name="robots" content="noindex"/.test(html);
   const err = (m) => errors.push(`${url}: ${m}`);
   const title = get(html, /<title>([^<]*)<\/title>/g);
   const desc = get(html, /<meta name="description" content="([^"]*)"/g);

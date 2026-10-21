@@ -1,0 +1,49 @@
+---
+// Client reviews, from src/data/reviews.ts. Hidden while there are none: the site never shows
+// placeholder reviews. No review structured data on purpose: Google ignores reviews a business
+// shows about itself.
+import { reviews } from '../data/reviews';
+import { reviewUI } from '../i18n/review';
+import type { Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+const r = reviewUI[Astro.props.lang];
+const star = 'M12 2.8l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 16.8l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z';
+---
+{reviews.length > 0 && (
+  <section class="section reviews" aria-labelledby="reviews-title">
+    <div class="wrap">
+      <div class="reviews-head">
+        <p class="eyebrow">{r.sectionEyebrow}</p>
+        <h2 id="reviews-title">{r.sectionTitle}</h2>
+      </div>
+      <ul class="reviews-list" role="list">
+        {reviews.map((rev) => (
+          <li class="review">
+            <p class="review-stars" aria-label={r.star.replace('{n}', String(rev.rating))}>
+              {[1, 2, 3, 4, 5].map((n) => (
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class:list={{ on: n <= rev.rating }}><path d={star} /></svg>
+              ))}
+            </p>
+            <blockquote lang={rev.lang}><p>{rev.text}</p></blockquote>
+            <p class="review-by"><strong>{rev.name}</strong>{rev.company && <span class="muted"> · {rev.company}</span>}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<style>
+  .reviews-head { display: grid; gap: var(--space-3); margin-bottom: var(--space-7); }
+  .reviews-list { display: grid; gap: var(--space-4); padding: 0; margin: 0; list-style: none; }
+  .review { display: grid; gap: var(--space-3); align-content: start; padding: var(--space-5); border-radius: var(--radius); background: var(--bg-alt); }
+  .review-stars { display: flex; gap: 2px; margin: 0; }
+  .review-stars svg { fill: var(--line); }
+  .review-stars svg.on { fill: #f5a623; }
+  blockquote { margin: 0; font-size: var(--step-lead); line-height: 1.45; }
+  .review-by { font-size: var(--step-small); margin: 0; }
+  @media (min-width: 48rem) { .reviews-list { grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); } }
+</style>

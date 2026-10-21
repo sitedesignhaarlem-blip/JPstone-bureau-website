@@ -1,0 +1,175 @@
+---
+// Review form for clients, at /review/ and /<lang>/review/. Not in the menu or the sitemap and not
+// indexed: you send the link after delivery. The review arrives by email or WhatsApp; nothing is
+// published automatically. Approved reviews go into src/data/reviews.ts.
+import Base from '../layouts/Base.astro';
+import LogoMark from '../components/LogoMark.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { site } from '../data/site';
+import { defaultLocale, pagePath, type Locale } from '../i18n';
+import { reviewUI } from '../i18n/review';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const r = reviewUI[lang];
+const path = `${lang === defaultLocale ? '' : `/${lang}`}/review/`;
+const stars = [5, 4, 3, 2, 1];
+---
+<Base title={r.title} description={r.description} lang={lang} page="home" path={path} noindex>
+  <header class="r-head">
+    <div class="wrap r-head-inner">
+      <a class="r-brand" href={pagePath(lang, 'home')}><LogoMark />{site.name}</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section section--alt">
+      <div class="wrap r-wrap">
+        <div class="r-intro">
+          <p class="eyebrow">{r.eyebrow}</p>
+          <h1 class="r-title">{r.h1}</h1>
+          <p class="lead muted">{r.lead}</p>
+        </div>
+
+        <form class="r-form" action={`mailto:${site.email}?subject=${encodeURIComponent(r.mailSubject)}`} method="post" enctype="text/plain"
+          data-review data-email={site.email} data-whatsapp={site.whatsapp} data-subject={r.mailSubject}
+          data-missing={r.ratingMissing} data-thanks={r.thanks}>
+          <input type="hidden" name="language" value={lang} />
+          <fieldset class="stars">
+            <legend>{r.rating}</legend>
+            {/* Highest first in the markup so CSS can fill the stars to the left of the chosen one. */}
+            <div class="stars-row">
+              {stars.map((n) => (
+                <>
+                  <input class="visually-hidden" type="radio" id={`star-${n}`} name="rating" value={n} required={n === 5} />
+                  <label for={`star-${n}`} title={r.star.replace('{n}', String(n))}>
+                    <svg viewBox="0 0 24 24" width="36" height="36" aria-hidden="true"><path d="M12 2.8l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 16.8l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" /></svg>
+                    <span class="visually-hidden">{r.star.replace('{n}', String(n))}</span>
+                  </label>
+                </>
+              ))}
+            </div>
+            <p class="r-error" data-missing-msg hidden>{r.ratingMissing}</p>
+          </fieldset>
+
+          <div class="field">
+            <label for="rv-name">{r.name}</label>
+            <input id="rv-name" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="rv-company">{r.company}</label>
+            <input id="rv-company" name="company" type="text" autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label for="rv-text">{r.text}</label>
+            <textarea id="rv-text" name="review" rows="5" required aria-describedby="rv-hint"></textarea>
+            <p id="rv-hint" class="hint muted">{r.textHint}</p>
+          </div>
+          <label class="consent">
+            <input type="checkbox" name="consent" value="yes" />
+            <span>{r.consent}</span>
+          </label>
+
+          <div class="r-actions">
+            <button class="button" type="submit">{r.submit}</button>
+            <button class="button button--secondary" type="button" data-review-wa>{r.whatsapp}</button>
+          </div>
+          <p class="r-status muted" data-status aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter lang={lang} />
+</Base>
+
+<script>
+  // Builds the review as plain text and opens the mail app or WhatsApp with it filled in.
+  const form = document.querySelector<HTMLFormElement>('[data-review]');
+  if (form) {
+    const d = form.dataset;
+    // With JavaScript we check the form ourselves, so the missing-stars message is our own.
+    form.noValidate = true;
+    const missing = form.querySelector<HTMLElement>('[data-missing-msg]')!;
+    const status = form.querySelector<HTMLElement>('[data-status]')!;
+
+    const text = () => {
+      const data = new FormData(form);
+      const n = Number(data.get('rating') ?? 0);
+      return [
+        `${'★'.repeat(n)}${'☆'.repeat(5 - n)} (${n}/5)`,
+        '',
+        String(data.get('review') ?? '').trim(),
+        '',
+        `${data.get('name')}${data.get('company') ? `, ${data.get('company')}` : ''}`,
+        `Publish: ${data.get('consent') ? 'yes' : 'no'} · ${data.get('language')}`,
+      ].join('\n');
+    };
+    const valid = () => {
+      const rated = !!form.querySelector('input[name="rating"]:checked');
+      missing.hidden = rated;
+      if (!rated) {
+        form.querySelector<HTMLInputElement>('input[name="rating"]')?.focus();
+        return false;
+      }
+      return form.reportValidity();
+    };
+
+    form.addEventListener('change', (e) => {
+      if ((e.target as HTMLInputElement).name === 'rating') missing.hidden = true;
+    });
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!valid()) return;
+      location.href = `mailto:${d.email}?subject=${encodeURIComponent(d.subject ?? '')}&body=${encodeURIComponent(text())}`;
+      status.textContent = d.thanks ?? '';
+    });
+    form.querySelector('[data-review-wa]')?.addEventListener('click', () => {
+      if (!valid()) return;
+      window.open(`${d.whatsapp}?text=${encodeURIComponent(text())}`, '_blank', 'noopener');
+    });
+  }
+</script>
+
+<style>
+  .r-head { border-bottom: 1px solid var(--line); background: var(--bg); }
+  .r-head-inner { display: flex; align-items: center; min-height: 3rem; }
+  .r-brand { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--fg); font-weight: 600; font-size: 0.875rem; text-decoration: none; }
+
+  .r-wrap { display: grid; gap: var(--space-7); max-width: 40rem; }
+  .r-intro { display: grid; gap: var(--space-4); }
+  .r-title { font-size: var(--step-h2); line-height: 1.07; }
+  .r-form { display: grid; gap: var(--space-5); padding: var(--space-5); background: var(--bg); border-radius: var(--radius); }
+
+  .stars { border: 0; padding: 0; margin: 0; display: grid; gap: var(--space-2); }
+  .stars legend { font-size: var(--step-small); font-weight: 600; padding: 0; margin-bottom: var(--space-2); }
+  .stars-row { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: var(--space-1); }
+  .stars label { cursor: pointer; line-height: 0; padding: 2px; border-radius: 8px; }
+  .stars svg { fill: var(--line); transition: fill 0.15s, transform 0.15s; }
+  /* Fill the chosen star and the ones before it (they come after it in the markup). */
+  .stars input:checked ~ label svg,
+  .stars-row:hover label:hover svg,
+  .stars-row:hover label:hover ~ label svg { fill: #f5a623; }
+  .stars-row:hover label svg { fill: var(--line); }
+  .stars-row:hover label:hover svg, .stars-row:hover label:hover ~ label svg { fill: #f5a623; }
+  .stars label:hover svg { transform: scale(1.08); }
+  .stars input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .r-error { color: #b3261e; font-size: var(--step-small); margin: 0; }
+
+  .field { display: grid; gap: var(--space-2); }
+  .field label { font-size: var(--step-small); font-weight: 600; }
+  .field input, .field textarea {
+    width: 100%; padding: 0.75rem 0.875rem; font-size: var(--step-body);
+    border: 1px solid var(--line); border-radius: 12px; background: var(--bg); color: var(--fg);
+  }
+  .field input:focus-visible, .field textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  .field textarea { resize: vertical; }
+  .hint { font-size: 0.8125rem; margin: 0; }
+  .consent { display: flex; gap: var(--space-3); align-items: flex-start; font-size: var(--step-small); cursor: pointer; }
+  .consent input { margin-top: 0.2rem; width: 1.1rem; height: 1.1rem; accent-color: var(--accent); flex: none; }
+  .r-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+  .r-status:empty { display: none; }
+  @media (min-width: 48rem) { .r-form { padding: var(--space-6); } }
+</style>

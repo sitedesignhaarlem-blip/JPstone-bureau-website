@@ -66,6 +66,12 @@ Maak een proefvideo van de listing van een prospect en stuur een eigen link mee,
 
 Deze pagina's staan niet in de sitemap en worden niet geïndexeerd (`noindex`).
 
+## Reviews
+
+- **Formulier:** stuur klanten na levering de link `stilltofilm.com/review/` (of `/nl/review/`, `/de/review/`, `/fr/review/`, `/es/review/`, `/hr/review/`). Ze kiezen sterren, schrijven een review en geven wel of geen toestemming om te publiceren. De review komt binnen per e-mail of WhatsApp; er wordt niets vanzelf gepubliceerd. De pagina staat niet in het menu, niet in de sitemap en wordt niet geïndexeerd.
+- **Tonen:** zet een goedgekeurde review (alleen met toestemming) in `src/data/reviews.ts`. Zolang die lijst leeg is, staat er geen reviewblok op de homepage.
+- **Teksten:** `src/i18n/review.ts`.
+
 ## Zoeken op de site
 
 Het vergrootglas in het menu (`src/components/SiteSearch.astro`) geeft suggesties terwijl je typt: pagina's, onderdelen van de homepage en alle vragen van de FAQ-pagina. Extra zoekwoorden per taal, zoals "betalen" of "btw" voor de prijzenpagina, staan in `src/i18n/search.ts`. Alles staat in de pagina zelf; er gaat niets naar een externe dienst. Sneltoets: `/` of Ctrl/Cmd+K.
