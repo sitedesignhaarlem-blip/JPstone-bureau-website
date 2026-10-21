@@ -1,0 +1,12 @@
+---
+import Article from '../../../views/Article.astro';
+import { defaultLocale, locales } from '../../../i18n';
+import { articlesFor } from '../../../insights';
+
+export function getStaticPaths() {
+  return locales
+    .filter((l) => l !== defaultLocale)
+    .flatMap((lang) => articlesFor(lang).map((article) => ({ params: { lang, slug: article.slug }, props: { article } })));
+}
+---
+<Article article={Astro.props.article} />

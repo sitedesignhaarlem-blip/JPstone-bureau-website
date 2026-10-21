@@ -1,0 +1,77 @@
+---
+// The list of articles in one language, at /insights/ and /<lang>/insights/.
+import Base from '../layouts/Base.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { SITE_URL } from '../data/site';
+import { hreflang, pagePath, useTranslations, type Locale } from '../i18n';
+import { articlePath, articlesFor, indexAlternates, insightsBase } from '../insights';
+import { insightsUI } from '../insights/ui';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const u = insightsUI[lang];
+const list = articlesFor(lang);
+const alternates = indexAlternates();
+const abs = (p: string) => new URL(p, SITE_URL).href;
+const schema = [
+  {
+    '@type': 'CollectionPage',
+    name: u.h1,
+    description: u.description,
+    inLanguage: hreflang[lang],
+    url: abs(insightsBase(lang)),
+    hasPart: list.map((a) => ({ '@type': 'Article', headline: a.h1, url: abs(articlePath(a)), datePublished: a.date })),
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t.nav.home, item: abs(pagePath(lang, 'home')) },
+      { '@type': 'ListItem', position: 2, name: u.name, item: abs(insightsBase(lang)) },
+    ],
+  },
+];
+---
+<Base title={u.title} description={u.description} lang={lang} page="home" path={insightsBase(lang)} alternates={alternates} schema={schema}>
+  <SiteNav lang={lang} langLinks={alternates} />
+  <main id="main">
+    <header class="section insights-head">
+      <div class="wrap insights-inner">
+        <h1>{u.h1}</h1>
+        <p class="lead muted">{u.lead}</p>
+      </div>
+    </header>
+    <section class="section section--alt" aria-labelledby="list-title">
+      <div class="wrap">
+        <h2 id="list-title" class="visually-hidden">{u.all}</h2>
+        <ul class="cards" role="list">
+          {list.map((a) => (
+            <li class="card">
+              <h3><a href={articlePath(a)}>{a.h1}</a></h3>
+              <p class="muted">{a.description}</p>
+              <p class="card-meta muted">{u.minutes.replace('{n}', String(a.readMinutes))}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  </main>
+  <SiteFooter lang={lang} />
+</Base>
+
+<style>
+  .insights-inner { display: grid; gap: var(--space-4); max-width: calc(44rem + 2 * var(--gutter)); }
+  .insights-head h1 { font-size: var(--step-h1, var(--step-h2)); line-height: 1.05; }
+  .cards { display: grid; gap: var(--space-4); padding: 0; margin: 0; list-style: none; }
+  .card { position: relative; display: grid; gap: var(--space-3); align-content: start; padding: var(--space-5); border-radius: var(--radius); background: var(--bg); }
+  .card h3 { font-size: var(--step-h3); line-height: 1.15; }
+  .card h3 a { color: var(--fg); text-decoration: none; }
+  /* The whole card is clickable through the title link. */
+  .card h3 a::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius); }
+  .card:hover h3 a { text-decoration: underline; }
+  .card-meta { font-size: var(--step-small); margin-top: auto; }
+  @media (min-width: 48rem) { .cards { grid-template-columns: repeat(2, 1fr); } }
+</style>

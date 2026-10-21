@@ -160,6 +160,7 @@ const de: UI = {
   pages: {
     yacht: "Video für Yachtcharter",
     hotel: "Video für Boutique-Hotels",
+    rental: "Video für Ferienwohnungen",
     aiVideo: "KI-Video aus Fotos",
     pricing: "Preise",
     faq: "Häufige Fragen",
@@ -173,6 +174,7 @@ const de: UI = {
     allQuestions: "Alle Fragen",
     forYachts: "Video für Yachtcharter",
     forHotels: "Video für Boutique-Hotels",
+    forRentals: "Video für Ferienwohnungen",
     colVideos: "Videos im Auftrag",
     colPrice: "Preis pro Video",
     colExample: "Beispiel",

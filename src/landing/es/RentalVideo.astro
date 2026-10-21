@@ -1,0 +1,59 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'es';
+const faq = [q.platforms, q.units, q.listingLink, q.access, q.sample];
+---
+<Landing
+  lang={lang}
+  page="rental"
+  title="Vídeo de alquiler vacacional a partir de tus fotos · Still to Film"
+  description="Convertimos las fotos de tu casa de vacaciones o apartamento en un vídeo de recorrido de 60 a 90 segundos. Sin rodaje, en 16:9 y 9:16. De 50 € a 100 € por vídeo."
+  eyebrow="Para alquiler vacacional"
+  h1="Vídeo para alquileres vacacionales, a partir de las fotos de tu anuncio"
+  summary="Still to Film convierte las fotos que ya tienes de tu casa de vacaciones o tu apartamento en un vídeo de recorrido de 60 a 90 segundos, sin día de rodaje y sin mover ninguna reserva. Recibes cada vídeo en 16:9 y 9:16, una persona lo revisa antes de la entrega y cuesta de 50 € a 100 € según el volumen."
+  faqTitle="Preguntas de anfitriones"
+  faqItems={faq}
+  service
+  related={['hotel', 'aiVideo', 'pricing']}
+>
+  <h2>¿Por qué no grabar el alojamiento sin más?</h2>
+  <p>Grabar un alojamiento vacacional exige un día libre entre dos huéspedes, la casa limpia y preparada, buen tiempo y alguien que abra al equipo de rodaje. En temporada, esos días escasean. Si alquilas varios apartamentos o casas, cada uno necesita su propio rodaje, y cuando cambias los muebles o pintas, el vídeo queda desfasado.</p>
+  <p>La mayoría de los anfitriones ya tienen fotos de cada estancia, del exterior, la terraza, el jardín o la piscina, a menudo las mismas que aparecen en el anuncio. Hacemos el vídeo a partir de esas fotos, así que nadie tiene que ir y ningún huésped tiene que moverse.</p>
+
+  <h2>¿Cómo funciona?</h2>
+  <ol>
+    <li><strong>Nos envías el enlace</strong> a tu anuncio en Airbnb, Booking.com, Vrbo o tu propia web, o las fotos.</li>
+    <li><strong>Hacemos la película.</strong> Elegimos las fotos, el orden y los movimientos de cámara, y usamos IA para convertir las imágenes fijas en un movimiento tranquilo por las estancias y los espacios exteriores.</li>
+    <li><strong>Una persona la revisa.</strong> Vemos cada vídeo completo antes de que lo veas tú. Si algo no coincide con tus fotos, lo corregimos o lo quitamos.</li>
+    <li><strong>Nos das tu opinión.</strong> Incluye dos rondas de revisión.</li>
+    <li><strong>Tú publicas.</strong> Recibes archivos MP4 en 16:9 y 9:16.</li>
+  </ol>
+  <p>No necesitas conocimientos, software, prompts ni cuenta. Más detalles en la página <a href={pagePath(lang, 'how')}>cómo funciona</a>.</p>
+
+  <h2>¿Un vídeo por alojamiento o uno por apartamento?</h2>
+  <p>Las dos opciones funcionan. Una villa o una casa de vacaciones suele tener un vídeo de toda la propiedad. Si alquilas varios apartamentos en un mismo edificio, cada apartamento puede tener su propio vídeo para su propio anuncio. Si varios apartamentos son iguales, puede bastar con un vídeo para ese tipo de apartamento. Cada vídeo se cobra como un vídeo, así que cuatro apartamentos con un vídeo cada uno son cuatro vídeos.</p>
+  <p>Cuando cambias los muebles o haces fotos nuevas, hacemos un vídeo nuevo con las fotos nuevas. Eso cuenta como un vídeo nuevo, no como una revisión.</p>
+
+  <h2>¿Qué recibes?</h2>
+  <ul>
+    <li>Un vídeo de recorrido de 60 a 90 segundos por alojamiento o por apartamento.</li>
+    <li>16:9 para tu web y tus páginas de anuncio, y 9:16 para Instagram Reels, TikTok y Stories. Los dos formatos están incluidos.</li>
+    <li>Dos rondas de revisión por vídeo.</li>
+    <li>Un estilo tranquilo y coherente en todos tus alojamientos.</li>
+    <li>Uso ilimitado para tu propio marketing: tu web, redes sociales, publicidad y las plataformas de alquiler que admitan vídeo.</li>
+  </ul>
+  <p>Cada plataforma de reservas decide si se puede subir un vídeo y dónde, y sus normas cambian, así que comprueba qué permite tu propio anuncio. Siempre puedes usar el vídeo en tu propia web y en redes sociales.</p>
+
+  <h2>¿Qué puede mostrar el vídeo y qué no?</h2>
+  <p>El vídeo solo puede mostrar lo que hay en tus fotos. Un dormitorio, un baño o la vista desde el balcón que nunca se fotografió no aparecerá en la película. No hay personas ni sonido, y no añadimos muebles, vistas ni equipamiento que no existan. La calidad de las fotos marca la calidad de la película: las fotos nítidas, bien iluminadas y en alta resolución funcionan mejor.</p>
+  <p>Los ejemplos de esta web son de un yate, porque todavía no tenemos clientes de alquiler vacacional que mostrar. El vídeo de prueba gratis es un avance corto de 15 a 25 segundos con algunas tomas, hecho con tus propias fotos, así que ves el resultado con tu propio alojamiento antes de decidir.</p>
+
+  <h2>¿Cuánto cuesta?</h2>
+  <p>El precio por vídeo depende de cuántos vídeos encargues a la vez. Un solo vídeo cuesta 100 €. A partir de 5 vídeos son 95 € por vídeo, y el precio baja 5 € cada 5 vídeos, hasta un mínimo de 50 € por vídeo. Todos los precios incluyen IVA.</p>
+  <PriceTable lang={lang} />
+  <p>Por ejemplo, seis apartamentos en un mismo edificio, cada uno con su propio vídeo, son 6 vídeos: 6 × 95 € = 570 €, IVA incluido. Pagas por transferencia bancaria después de la entrega, con un plazo de pago de 14 días. Hacemos hasta 2 vídeos al día, y la fecha de entrega se acuerda de antemano.</p>
+</Landing>

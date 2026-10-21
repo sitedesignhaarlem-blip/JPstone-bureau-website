@@ -1,0 +1,59 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'en';
+const faq = [q.platforms, q.units, q.listingLink, q.access, q.sample];
+---
+<Landing
+  lang={lang}
+  page="rental"
+  title="Vacation rental video from your listing photos · Still to Film"
+  description="Turn the photos of your holiday home or apartment into a 60–90 second walkthrough video. No filming day, 16:9 and 9:16 included. €50 to €100 per video."
+  eyebrow="For vacation rentals"
+  h1="Video for vacation rentals, made from your listing photos"
+  summary="Still to Film turns the photos you already have of your holiday home or apartment into a 60–90 second walkthrough video, without a filming day and without moving a booking. Videos come in 16:9 and 9:16, a person checks every one before delivery, and they cost €50 to €100 each depending on volume."
+  faqTitle="Questions from hosts"
+  faqItems={faq}
+  service
+  related={['hotel', 'aiVideo', 'pricing']}
+>
+  <h2>Why not just film the property?</h2>
+  <p>Filming a holiday home needs a free day between guests, the place cleaned and set up, good weather and someone to let the crew in. In the season those days are rare. If you rent out several apartments or houses, each one needs its own shoot, and when you refurnish or repaint, the video is out of date.</p>
+  <p>Most hosts already have photos of every room, the outside, the terrace, the garden or the pool, often the same photos that are on the listing. We make the video from those photos, so nobody has to visit and no guest has to move.</p>
+
+  <h2>How does it work?</h2>
+  <ol>
+    <li><strong>You send the link</strong> to your listing on Airbnb, Booking.com, Vrbo or your own website, or the photos themselves.</li>
+    <li><strong>We make the film.</strong> We choose the photos, the order and the camera moves, and use AI to turn the stills into calm movement through the rooms and the outside spaces.</li>
+    <li><strong>A person checks it.</strong> We watch every video in full before you see it. If something does not match your photos, we fix it or cut it.</li>
+    <li><strong>You give feedback.</strong> Two rounds of revisions are included.</li>
+    <li><strong>You publish.</strong> You get MP4 files in 16:9 and 9:16.</li>
+  </ol>
+  <p>You do not need any skills, software, prompts or an account. More detail on the <a href={pagePath(lang, 'how')}>how it works</a> page.</p>
+
+  <h2>One video per property, or one per unit?</h2>
+  <p>Both work. A villa or a holiday home usually gets one video of the whole property. If you rent out several apartments in one building, each apartment can get its own video for its own listing. When several units look the same, one video for that type of apartment can be enough. Each video is priced as one video, so four apartments with a video each are four videos.</p>
+  <p>When you refurnish or take new photos, we make a new video from the new photos. That counts as a new video, not as a revision.</p>
+
+  <h2>What do you get?</h2>
+  <ul>
+    <li>A 60 to 90 second walkthrough video per property or per unit.</li>
+    <li>16:9 for your website and listing pages, and 9:16 for Instagram Reels, TikTok and Stories. Both formats are included.</li>
+    <li>Two rounds of revisions per video.</li>
+    <li>One calm, consistent style across all your properties.</li>
+    <li>Unlimited use for your own marketing: your website, social media, ads, and listing platforms where they allow video.</li>
+  </ul>
+  <p>Booking platforms differ in whether and where they accept a video upload, and their rules change, so check what your own listing allows. You can always use the video on your own website and on social media.</p>
+
+  <h2>What can the video show, and what not?</h2>
+  <p>The video can only show what is in your photos. A bedroom, a bathroom or the view from the balcony that was never photographed will not be in the film. There are no people and no sound, and we do not add furniture, views or features that are not there. The quality of the photos sets the quality of the film: sharp, well-lit, high-resolution photos work best.</p>
+  <p>The examples on this site are from a yacht, because we have no vacation rental clients to show yet. The free sample is a short preview of 15 to 25 seconds with a few shots, made from your own photos, so you see the result for your own property before you decide.</p>
+
+  <h2>What does it cost?</h2>
+  <p>The price per video depends on how many videos you order at once. A single video costs €100. From 5 videos it is €95 per video, and the price drops by €5 for every 5 videos, down to €50 per video. All prices include VAT.</p>
+  <PriceTable lang={lang} />
+  <p>For example, six apartments in one building, each with its own video, are 6 videos: 6 × €95 = €570, including VAT. You pay by bank transfer after delivery, with a payment term of 14 days. We make up to 2 videos a day, and the delivery date is agreed beforehand.</p>
+</Landing>

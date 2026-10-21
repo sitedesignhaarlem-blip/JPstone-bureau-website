@@ -2,6 +2,8 @@
 import LogoMark from './LogoMark.astro';
 import { site } from '../data/site';
 import { hasPage, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
+import { insightLocales, insightsBase } from '../insights';
+import { insightsUI } from '../insights/ui';
 
 interface Props {
   lang: Locale;
@@ -9,7 +11,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const year = new Date().getFullYear();
-const services = (['yacht', 'hotel', 'aiVideo', 'pricing', 'faq'] as PageId[]).filter((p) => hasPage(lang, p));
+const services = (['yacht', 'hotel', 'rental', 'aiVideo', 'pricing', 'faq'] as PageId[]).filter((p) => hasPage(lang, p));
 ---
 <footer class="footer">
   <div class="wrap footer-inner">
@@ -27,6 +29,7 @@ const services = (['yacht', 'hotel', 'aiVideo', 'pricing', 'faq'] as PageId[]).f
       <nav class="footer-links" aria-label={t.landing.services}>
         <ul role="list">
           {services.map((p) => <li><a href={pagePath(lang, p)}>{t.pages[p as keyof typeof t.pages]}</a></li>)}
+          {insightLocales().includes(lang) && <li><a href={insightsBase(lang)}>{insightsUI[lang].name}</a></li>}
         </ul>
       </nav>
     )}

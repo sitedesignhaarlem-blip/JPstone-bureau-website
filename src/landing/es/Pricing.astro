@@ -6,7 +6,7 @@ import { pagePath } from '../../i18n';
 import { q } from './faq';
 
 const lang = 'es';
-const faq = [q.volume, q.vat, q.payment, q.revisions, q.sample];
+const faq = [q.volume, q.vat, q.payment, q.revisions, q.referral, q.sample];
 const money = new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
 const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pricePerVideo(n)), total: money.format(n * pricePerVideo(n)) }));
 ---
@@ -55,6 +55,9 @@ const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pric
 
   <h2>¿Más de 100 vídeos?</h2>
   <p>Para encargos de más de 100 vídeos te preparamos un presupuesto. Lo mismo vale para el trabajo continuo: hasta 100 vídeos al mes, ambos formatos, cancelable cada mes.</p>
+
+  <h2>Recomiéndanos y llévate un vídeo gratis</h2>
+  <p>¿Conoces otra empresa de chárter, un hotel o un anfitrión a quien le venga bien? Si hace un pedido después de tu recomendación, recibes un vídeo gratis en tu próximo pedido. Sin límite y sin papeleo: solo tiene que mencionar tu nombre al contactarnos.</p>
 
   <h2>Empieza con un vídeo de prueba gratis</h2>
   <p>Antes de encargar, hacemos un vídeo de prueba gratis con las fotos de tu propio anuncio: un avance corto de 15 a 25 segundos con algunas tomas, para que veas el estilo y la calidad. El vídeo completo que encargas dura de 60 a 90 segundos. Sin compromiso y sin factura. Solo necesitamos el enlace de tu anuncio.</p>

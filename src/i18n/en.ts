@@ -162,6 +162,7 @@ const en = {
   pages: {
     yacht: "Video for yacht charters",
     hotel: "Video for boutique hotels",
+    rental: "Video for vacation rentals",
     aiVideo: "AI video from photos",
     pricing: "Pricing",
     faq: "FAQ",
@@ -175,6 +176,7 @@ const en = {
     allQuestions: "All questions",
     forYachts: "Video for yacht charters",
     forHotels: "Video for boutique hotels",
+    forRentals: "Video for vacation rentals",
     colVideos: "Videos in the order",
     colPrice: "Price per video",
     colExample: "Example",

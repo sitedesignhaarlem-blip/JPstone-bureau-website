@@ -1,0 +1,59 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'hr';
+const faq = [q.platforms, q.units, q.listingLink, q.access, q.sample];
+---
+<Landing
+  lang={lang}
+  page="rental"
+  title="Video za apartmane i kuće za odmor od fotografija · Still to Film"
+  description="Od fotografija vašeg apartmana ili kuće za odmor izrađujemo video obilazak od 60 do 90 s. Bez dana snimanja, 16:9 i 9:16 uključeni. 50 do 100 € po videu."
+  eyebrow="Za privatni smještaj"
+  h1="Video za apartmane i kuće za odmor, izrađen od fotografija iz vašeg oglasa"
+  summary="Still to Film od fotografija koje već imate od svojeg apartmana ili kuće za odmor izrađuje video obilazak od 60 do 90 sekundi, bez dana snimanja i bez pomicanja ijedne rezervacije. Svaki video dobivate u formatima 16:9 i 9:16, osoba ga pregledava prije isporuke, a ovisno o količini stoji od 50 do 100 €."
+  faqTitle="Pitanja iznajmljivača"
+  faqItems={faq}
+  service
+  related={['hotel', 'aiVideo', 'pricing']}
+>
+  <h2>Zašto jednostavno ne snimiti objekt?</h2>
+  <p>Snimanje apartmana ili kuće za odmor traži slobodan dan između dvaju gostiju, čist i pripremljen prostor, lijepo vrijeme i nekoga tko će pustiti filmsku ekipu unutra. U sezoni su takvi dani rijetki. Ako iznajmljujete nekoliko apartmana ili kuća, svaki treba vlastito snimanje, a kad promijenite namještaj ili obojite zidove, video zastari.</p>
+  <p>Većina iznajmljivača već ima fotografije svake prostorije, vanjskog dijela, terase, vrta ili bazena, često iste one koje su u oglasu. Od tih fotografija izrađujemo video, tako da nitko ne mora dolaziti i nijedan se gost ne mora seliti.</p>
+
+  <h2>Kako to funkcionira?</h2>
+  <ol>
+    <li><strong>Pošaljete poveznicu</strong> na svoj oglas na Airbnbu, Booking.comu, Vrbu ili vlastitoj web-stranici, ili same fotografije.</li>
+    <li><strong>Mi izrađujemo film.</strong> Biramo fotografije, redoslijed i pokrete kamere te uz pomoć AI-ja od statičnih slika stvaramo miran pokret kroz prostorije i vanjske prostore.</li>
+    <li><strong>Osoba ga pregledava.</strong> Svaki video pogledamo do kraja prije nego što ga vi vidite. Ako nešto ne odgovara vašim fotografijama, ispravimo to ili izrežemo.</li>
+    <li><strong>Vi dajete povratne informacije.</strong> Uključena su dva kruga izmjena.</li>
+    <li><strong>Vi objavljujete.</strong> Dobivate MP4 datoteke u formatima 16:9 i 9:16.</li>
+  </ol>
+  <p>Ne trebate posebna znanja, softver, upite (promptove) ni korisnički račun. Više o tome na stranici <a href={pagePath(lang, 'how')}>Kako funkcionira</a>.</p>
+
+  <h2>Jedan video po objektu ili jedan po apartmanu?</h2>
+  <p>Moguće je oboje. Vila ili kuća za odmor obično dobiva jedan video cijelog objekta. Ako iznajmljujete nekoliko apartmana u istoj zgradi, svaki apartman može dobiti vlastiti video za svoj oglas. Ako nekoliko apartmana izgleda jednako, može biti dovoljan jedan video za taj tip apartmana. Svaki video naplaćuje se kao jedan video: četiri apartmana s po jednim videom čine, dakle, četiri videa.</p>
+  <p>Ako promijenite namještaj ili date izraditi nove fotografije, od novih fotografija izradit ćemo novi video. To se računa kao novi video, a ne kao izmjena.</p>
+
+  <h2>Što dobivate?</h2>
+  <ul>
+    <li>Video obilazak od 60 do 90 sekundi po objektu ili po apartmanu.</li>
+    <li>16:9 za vašu web-stranicu i stranice oglasa, 9:16 za Instagram Reels, TikTok i Stories. Oba formata su uključena.</li>
+    <li>Dva kruga izmjena po videu.</li>
+    <li>Miran, ujednačen stil za sve vaše objekte.</li>
+    <li>Neograničeno korištenje za vaš vlastiti marketing: web-stranicu, društvene mreže, oglašavanje i platforme za iznajmljivanje koje dopuštaju video.</li>
+  </ul>
+  <p>Platforme za rezervacije razlikuju se po tome dopuštaju li prijenos videa i gdje, a njihova se pravila mijenjaju, pa provjerite što dopušta vaš oglas. Video uvijek možete koristiti na vlastitoj web-stranici i društvenim mrežama.</p>
+
+  <h2>Što video može prikazati, a što ne?</h2>
+  <p>Video može prikazati samo ono što je na vašim fotografijama. Spavaća soba, kupaonica ili pogled s balkona koji nikad nisu fotografirani neće biti ni u filmu. U videu nema ljudi ni zvuka, a ne dodajemo namještaj, poglede ni opremu kojih nema. Kvaliteta fotografija određuje kvalitetu filma: najbolje funkcioniraju oštre, dobro osvijetljene fotografije visoke rezolucije.</p>
+  <p>Primjeri na ovoj web-stranici prikazuju jahtu jer još nemamo klijente iz privatnog smještaja koje možemo pokazati. Besplatni probni video kratak je pregled od 15 do 25 sekundi s nekoliko kadrova, izrađen od vaših vlastitih fotografija, tako da rezultat za svoj objekt vidite prije nego što se odlučite.</p>
+
+  <h2>Koliko stoji?</h2>
+  <p>Cijena po videu ovisi o tome koliko videa naručite odjednom. Jedan video stoji 100 €. Od 5 videa cijena po videu je 95 €, a svakih 5 videa pada za 5 €, sve do 50 € po videu. Sve cijene su s PDV-om.</p>
+  <PriceTable lang={lang} />
+  <p>Na primjer: šest apartmana u istoj zgradi, svaki s vlastitim videom, čini 6 videa, dakle 6 × 95 € = 570 €, s PDV-om. Plaćate bankovnom doznakom nakon isporuke, s rokom plaćanja od 14 dana. Izrađujemo do 2 videa dnevno, a datum isporuke dogovaramo unaprijed.</p>
+</Landing>

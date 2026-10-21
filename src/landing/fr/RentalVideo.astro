@@ -1,0 +1,59 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'fr';
+const faq = [q.platforms, q.units, q.listingLink, q.access, q.sample];
+---
+<Landing
+  lang={lang}
+  page="rental"
+  title="Vidéo de location de vacances à partir de vos photos · Still to Film"
+  description="Les photos de votre location de vacances deviennent une vidéo de visite de 60 à 90 secondes. Sans tournage, 16:9 et 9:16 inclus. De 50 € à 100 € par vidéo."
+  eyebrow="Pour les locations de vacances"
+  h1="Vidéo pour locations de vacances, à partir des photos de votre annonce"
+  summary="Still to Film transforme les photos que vous avez déjà de votre maison de vacances ou de votre appartement en une vidéo de visite de 60 à 90 secondes, sans journée de tournage et sans déplacer une réservation. Chaque vidéo est livrée en 16:9 et 9:16, vérifiée par une personne avant la livraison, et coûte de 50 € à 100 € selon le volume."
+  faqTitle="Questions des hôtes"
+  faqItems={faq}
+  service
+  related={['hotel', 'aiVideo', 'pricing']}
+>
+  <h2>Pourquoi ne pas simplement filmer le logement ?</h2>
+  <p>Filmer une location de vacances demande un jour libre entre deux séjours, un logement propre et préparé, du beau temps et quelqu’un pour ouvrir à l’équipe de tournage. En saison, ces jours sont rares. Si vous louez plusieurs appartements ou maisons, chacun a besoin de son propre tournage, et quand vous changez le mobilier ou repeignez, la vidéo n’est plus à jour.</p>
+  <p>La plupart des hôtes ont déjà des photos de chaque pièce, de l’extérieur, de la terrasse, du jardin ou de la piscine, souvent les mêmes que celles de l’annonce. Nous réalisons la vidéo à partir de ces photos : personne ne doit passer sur place et aucun voyageur ne doit être déplacé.</p>
+
+  <h2>Comment ça marche ?</h2>
+  <ol>
+    <li><strong>Vous envoyez le lien</strong> de votre annonce sur Airbnb, Booking.com, Vrbo ou votre propre site, ou les photos elles-mêmes.</li>
+    <li><strong>Nous réalisons le film.</strong> Nous choisissons les photos, l’ordre et les mouvements de caméra, et l’IA transforme les images fixes en mouvements calmes à travers les pièces et les espaces extérieurs.</li>
+    <li><strong>Une personne le vérifie.</strong> Nous regardons chaque vidéo en entier avant que vous la voyiez. Si quelque chose ne correspond pas à vos photos, nous le corrigeons ou le retirons.</li>
+    <li><strong>Vous donnez votre avis.</strong> Deux séries de révisions sont incluses.</li>
+    <li><strong>Vous publiez.</strong> Vous recevez des fichiers MP4 en 16:9 et 9:16.</li>
+  </ol>
+  <p>Aucune compétence, aucun logiciel, aucun prompt, aucun compte nécessaire. Plus de détails sur la page <a href={pagePath(lang, 'how')}>Comment ça marche</a>.</p>
+
+  <h2>Une vidéo par logement, ou une par appartement ?</h2>
+  <p>Les deux sont possibles. Une villa ou une maison de vacances a généralement une vidéo de tout le logement. Si vous louez plusieurs appartements dans un même immeuble, chaque appartement peut avoir sa propre vidéo pour sa propre annonce. Si plusieurs appartements sont identiques, une vidéo pour ce type d’appartement peut suffire. Chaque vidéo est facturée comme une vidéo : quatre appartements avec chacun sa vidéo font donc quatre vidéos.</p>
+  <p>Quand vous changez le mobilier ou faites de nouvelles photos, nous réalisons une nouvelle vidéo à partir des nouvelles photos. Cela compte comme une nouvelle vidéo, pas comme une révision.</p>
+
+  <h2>Que recevez-vous ?</h2>
+  <ul>
+    <li>Une vidéo de visite de 60 à 90 secondes par logement ou par appartement.</li>
+    <li>Le 16:9 pour votre site et vos pages d’annonce, et le 9:16 pour les Reels Instagram, TikTok et les Stories. Les deux formats sont inclus.</li>
+    <li>Deux séries de révisions par vidéo.</li>
+    <li>Un style calme et cohérent pour tous vos logements.</li>
+    <li>Une utilisation illimitée pour votre propre marketing : votre site, les réseaux sociaux, la publicité, et les plateformes de location qui acceptent la vidéo.</li>
+  </ul>
+  <p>Les plateformes de réservation diffèrent quant à la possibilité et à l’endroit où l’on peut mettre en ligne une vidéo, et leurs règles changent : vérifiez ce que votre propre annonce permet. Vous pouvez toujours utiliser la vidéo sur votre propre site et sur les réseaux sociaux.</p>
+
+  <h2>Que peut montrer la vidéo, et que ne peut-elle pas montrer ?</h2>
+  <p>La vidéo ne peut montrer que ce qui est sur vos photos. Une chambre, une salle de bain ou la vue depuis le balcon qui n’a jamais été photographiée ne sera pas dans le film. Il n’y a ni personnes ni son, et nous n’ajoutons ni meubles, ni vues, ni équipements qui n’existent pas. La qualité des photos fait la qualité du film : des photos nettes, bien éclairées et en haute résolution donnent le meilleur résultat.</p>
+  <p>Les exemples sur ce site montrent un yacht, car nous n’avons pas encore de clients en location de vacances à présenter. La vidéo d’essai gratuite est un court aperçu de 15 à 25 secondes avec quelques plans, réalisé à partir de vos propres photos : vous voyez le résultat pour votre logement avant de vous décider.</p>
+
+  <h2>Combien ça coûte ?</h2>
+  <p>Le prix par vidéo dépend du nombre de vidéos commandées en une fois. Une seule vidéo coûte 100 €. À partir de 5 vidéos, c’est 95 € par vidéo, puis le prix baisse de 5 € toutes les 5 vidéos, jusqu’à 50 € par vidéo. Tous les prix incluent la TVA.</p>
+  <PriceTable lang={lang} />
+  <p>Par exemple, six appartements dans un même immeuble, chacun avec sa vidéo, font 6 vidéos : 6 × 95 € = 570 €, TVA incluse. Vous payez par virement bancaire après la livraison, avec un délai de paiement de 14 jours. Nous réalisons jusqu’à 2 vidéos par jour, et la date de livraison est convenue à l’avance.</p>
+</Landing>

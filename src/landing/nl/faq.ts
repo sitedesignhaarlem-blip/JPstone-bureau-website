@@ -34,6 +34,10 @@ export const q = {
     q: "Kan de video kamers of uitzichten laten zien die niet op de foto's staan?",
     a: "Nee. De video laat alleen zien wat op je foto's staat. Is een hut, een kamer of een uitzicht nooit gefotografeerd, dan zit het niet in de film. We voegen geen mensen, meubels of uitzichten toe.",
   },
+  referral: {
+    q: "Hebben jullie een beloning voor doorverwijzen?",
+    a: "Ja. Verwijs je een ander bedrijf door en plaatst dat een bestelling, dan krijg je één gratis video bij je volgende bestelling. Er is geen maximum: één gratis video voor elk bedrijf dat je doorverwijst.",
+  },
   vat: {
     q: 'Zijn de prijzen inclusief btw?',
     a: 'Ja. Alle prijzen zijn inclusief btw, en dat staat ook altijd in de offerte.',
@@ -46,13 +50,25 @@ export const q = {
     q: 'Hoe werkt de staffelprijs?',
     a: "Eén losse video kost €100. Vanaf 5 video's is de prijs €95 per video, en per 5 video's gaat er €5 af, tot minimaal €50 per video. Meer dan 100 video's: dan maken we een offerte.",
   },
+  platforms: {
+    q: "Kan ik de video op Airbnb of Booking.com gebruiken?",
+    a: "Platforms verschillen in of en waar je een video kunt uploaden, en hun regels veranderen, dus kijk wat jouw eigen listing toestaat. Op je eigen website en social media kun je de video altijd gebruiken, en op elk platform dat video toestaat. Je krijgt mp4-bestanden in 16:9 en 9:16.",
+  },
+  units: {
+    q: "Ik heb meerdere appartementen in één gebouw. Hoe werkt de prijs?",
+    a: "Elke video telt als één video, en de staffelprijs geldt voor de hele bestelling. Zes appartementen met elk een eigen video zijn 6 × €95 = €570, inclusief btw. Zien meerdere appartementen er hetzelfde uit, dan kan één video voor dat type appartement genoeg zijn.",
+  },
+  listingLink: {
+    q: "Kunnen jullie werken vanaf mijn Airbnb- of Booking.com-listing?",
+    a: "Ja. Stuur de link naar je listing, dan werken we met de foto's die erop staan. Originele bestanden van je fotograaf geven een scherper resultaat dan foto's die van een platform zijn opgeslagen, dus stuur die ook mee als je ze hebt.",
+  },
 } satisfies Record<string, FaqItem>;
 
 export const groups: { title: string; items: FaqItem[] }[] = [
   { title: 'Eigendom en gebruiksrecht', items: [q.owns] },
   { title: 'Levering', items: [q.fast, q.revisions, q.fleet, q.update] },
-  { title: 'Formaten', items: [q.formats, q.roomTypes] },
-  { title: "Welke foto's je nodig hebt", items: [q.photos, q.access, q.skills] },
+  { title: 'Formaten', items: [q.formats, q.roomTypes, q.platforms] },
+  { title: "Welke foto's je nodig hebt", items: [q.photos, q.access, q.skills, q.listingLink] },
   { title: 'AI en kwaliteit', items: [q.ai, q.limits] },
-  { title: 'Prijzen en betaling', items: [q.volume, q.vat, q.payment, q.sample] },
+  { title: 'Prijzen en betaling', items: [q.volume, q.units, q.vat, q.payment, q.referral, q.sample] },
 ];

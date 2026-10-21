@@ -5,9 +5,12 @@ import { hasPage, locales, localeNames, pagePath, useTranslations, type Locale, 
 
 interface Props {
   lang: Locale;
-  page: PageId;
+  /** The current page; leave out on pages outside the page list (e.g. articles). */
+  page?: PageId;
+  /** Language menu targets for pages outside the page list; other languages fall back to their home page. */
+  langLinks?: Partial<Record<Locale, string>>;
 }
-const { lang, page } = Astro.props;
+const { lang, page, langLinks } = Astro.props;
 const t = useTranslations(lang);
 const links: { id: PageId; label: string }[] = [
   { id: 'home', label: t.nav.home },
@@ -17,7 +20,7 @@ const links: { id: PageId; label: string }[] = [
   { id: 'contact', label: t.nav.contact },
 ].filter((l) => hasPage(lang, l.id as PageId)) as { id: PageId; label: string }[];
 // A page that is not translated yet links to the home page of the other language.
-const langHref = (l: Locale) => pagePath(l, hasPage(l, page) ? page : 'home');
+const langHref = (l: Locale) => langLinks ? (langLinks[l] ?? pagePath(l, 'home')) : pagePath(l, page && hasPage(l, page) ? page : 'home');
 ---
 <header class="nav">
   <nav class="wrap nav-inner" aria-label={t.nav.label}>

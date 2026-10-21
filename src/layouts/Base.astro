@@ -23,8 +23,12 @@ interface Props {
   preloadImage?: string;
   /** Address of a page outside the normal page list (e.g. a prospect page). Turns off language alternates. */
   path?: string;
+  /** With `path`: the same page in other languages (address per language), e.g. an article. */
+  alternates?: Partial<Record<Locale, string>>;
+  /** Extra structured data for this page, e.g. an Article. */
+  schema?: object[];
 }
-const { title, description, lang, page, noindex = false, videos = [], faqItems = [], service: isService = false, preloadImage, path } = Astro.props;
+const { title, description, lang, page, noindex = false, videos = [], faqItems = [], service: isService = false, preloadImage, path, alternates, schema = [] } = Astro.props;
 const t = useTranslations(lang);
 const canonical = new URL(path ?? pagePath(lang, page), SITE_URL).href;
 const abs = (path: string) => new URL(path, SITE_URL).href;
@@ -34,8 +38,10 @@ const graph: object[] = [organization(), website()];
 if (isService) graph.push(page === 'home' ? service(lang) : service(lang, { name: title, description, url: canonical }));
 if (faqItems.length) graph.push(faqPage(lang, canonical, faqItems));
 // Only languages this page exists in get an hreflang alternate.
-const alternateLocales = localesFor(page);
+const alternateLocales = path ? (Object.keys(alternates ?? {}) as Locale[]) : localesFor(page);
+const alternateHref = (l: Locale) => new URL(path ? alternates![l]! : pagePath(l, page), SITE_URL).href;
 graph.push(...videos.map((file) => videoObject(lang, file)));
+graph.push(...schema);
 if (page !== 'home' && !path) graph.push(breadcrumbs(lang, page));
 const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
 ---
@@ -48,8 +54,8 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
-    {!path && alternateLocales.map((l) => <link rel="alternate" hreflang={hreflang[l]} href={new URL(pagePath(l, page), SITE_URL).href} />)}
-    {!path && <link rel="alternate" hreflang="x-default" href={new URL(pagePath(defaultLocale, page), SITE_URL).href} />}
+    {alternateLocales.map((l) => <link rel="alternate" hreflang={hreflang[l]} href={alternateHref(l)} />)}
+    {alternateLocales.includes(defaultLocale) && <link rel="alternate" hreflang="x-default" href={alternateHref(defaultLocale)} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />

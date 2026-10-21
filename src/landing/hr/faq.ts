@@ -34,6 +34,10 @@ export const q = {
     q: 'Može li video prikazati prostorije ili poglede kojih nema na fotografijama?',
     a: 'Ne. Video može prikazati samo ono što je na vašim fotografijama. Ako kabina, soba ili pogled nikad nisu fotografirani, neće biti ni u filmu. Ne dodajemo ljude, namještaj ni poglede.',
   },
+  referral: {
+    q: "Imate li nagradu za preporuku?",
+    a: "Da. Ako preporučite drugu tvrtku i ona naruči, dobivate jedan besplatan video uz sljedeću narudžbu. Nema ograničenja: jedan besplatan video za svaku tvrtku koju preporučite.",
+  },
   vat: {
     q: 'Jesu li cijene s PDV-om?',
     a: 'Da. Sve cijene su s PDV-om, i to uvijek piše u ponudi.',
@@ -46,13 +50,25 @@ export const q = {
     q: 'Kako funkcionira cijena prema količini?',
     a: 'Jedan video stoji 100 €. Od 5 videa cijena po videu je 95 €, a svakih 5 videa pada za 5 €, sve do 50 € po videu. Za više od 100 videa izrađujemo ponudu.',
   },
+  platforms: {
+    q: "Mogu li video koristiti na Airbnbu ili Booking.comu?",
+    a: "Platforme se razlikuju po tome dopuštaju li prijenos videa i gdje, a njihova se pravila mijenjaju, pa provjerite što dopušta vaš oglas. Video uvijek možete koristiti na vlastitoj web-stranici i društvenim mrežama te na svakoj platformi koja dopušta video. Dobivate MP4 datoteke u formatima 16:9 i 9:16.",
+  },
+  units: {
+    q: "Imam nekoliko apartmana u istoj zgradi. Kako se to naplaćuje?",
+    a: "Svaki video naplaćuje se kao jedan video, a cijena prema količini vrijedi za cijelu narudžbu. Šest apartmana s vlastitim videom stoji 6 × 95 € = 570 €, s PDV-om. Ako nekoliko apartmana izgleda jednako, može biti dovoljan jedan video za taj tip apartmana.",
+  },
+  listingLink: {
+    q: "Možete li raditi s mojim oglasom na Airbnbu ili Booking.comu?",
+    a: "Da. Pošaljite nam poveznicu na svoj oglas i radit ćemo s fotografijama koje su na njemu. Originalne datoteke vašeg fotografa daju oštriji rezultat od slika spremljenih s platforme, pa pošaljite i njih ako ih imate.",
+  },
 } satisfies Record<string, FaqItem>;
 
 export const groups: { title: string; items: FaqItem[] }[] = [
   { title: 'Vlasništvo i prava korištenja', items: [q.owns] },
   { title: 'Isporuka', items: [q.fast, q.revisions, q.fleet, q.update] },
-  { title: 'Formati', items: [q.formats, q.roomTypes] },
-  { title: 'Koje fotografije trebate', items: [q.photos, q.access, q.skills] },
+  { title: 'Formati', items: [q.formats, q.roomTypes, q.platforms] },
+  { title: 'Koje fotografije trebate', items: [q.photos, q.access, q.skills, q.listingLink] },
   { title: 'AI i kvaliteta', items: [q.ai, q.limits] },
-  { title: 'Cijene i plaćanje', items: [q.volume, q.vat, q.payment, q.sample] },
+  { title: 'Cijene i plaćanje', items: [q.volume, q.units, q.vat, q.payment, q.referral, q.sample] },
 ];

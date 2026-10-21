@@ -6,7 +6,7 @@ import { pagePath } from '../../i18n';
 import { q } from './faq';
 
 const lang = 'de';
-const faq = [q.volume, q.vat, q.payment, q.revisions, q.sample];
+const faq = [q.volume, q.vat, q.payment, q.revisions, q.referral, q.sample];
 const money = new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
 const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pricePerVideo(n)), total: money.format(n * pricePerVideo(n)) }));
 ---
@@ -55,6 +55,9 @@ const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pric
 
   <h2>Mehr als 100 Videos?</h2>
   <p>Für Aufträge über mehr als 100 Videos erstellen wir ein Angebot. Das gilt auch für laufende Arbeit: bis zu 100 Videos pro Monat, beide Formate, monatlich kündbar.</p>
+
+  <h2>Empfehlen Sie uns weiter und erhalten Sie ein kostenloses Video</h2>
+  <p>Kennen Sie eine andere Charterfirma, ein Hotel oder einen Vermieter, für die das passt? Wenn sie nach Ihrer Empfehlung bestellen, erhalten Sie bei Ihrer nächsten Bestellung ein kostenloses Video. Ohne Obergrenze und ohne Formulare: Sie nennen einfach Ihren Namen, wenn sie sich melden.</p>
 
   <h2>Beginnen Sie mit einem kostenlosen Probevideo</h2>
   <p>Bevor Sie bestellen, erstellen wir ein kostenloses Probevideo aus Ihren eigenen Inseratsfotos: eine kurze Vorschau von 15 bis 25 Sekunden mit einigen Einstellungen, damit Sie Stil und Qualität sehen. Das vollständige Video, das Sie bestellen, dauert 60 bis 90 Sekunden. Unverbindlich und ohne Rechnung. Ein Link zu Ihrem Inserat genügt.</p>

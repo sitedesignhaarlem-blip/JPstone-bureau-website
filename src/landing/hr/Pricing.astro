@@ -6,7 +6,7 @@ import { pagePath } from '../../i18n';
 import { q } from './faq';
 
 const lang = 'hr';
-const faq = [q.volume, q.vat, q.payment, q.revisions, q.sample];
+const faq = [q.volume, q.vat, q.payment, q.revisions, q.referral, q.sample];
 const money = new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
 const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pricePerVideo(n)), total: money.format(n * pricePerVideo(n)) }));
 ---
@@ -55,6 +55,9 @@ const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pric
 
   <h2>Više od 100 videa?</h2>
   <p>Za narudžbe veće od 100 videa izrađujemo ponudu. To vrijedi i za kontinuiranu suradnju: do 100 videa mjesečno, oba formata, uz mogućnost otkaza svaki mjesec.</p>
+
+  <h2>Preporučite nas i dobijte besplatan video</h2>
+  <p>Poznajete li drugu charter tvrtku, hotel ili iznajmljivača kojima bi ovo koristilo? Ako naruče nakon vaše preporuke, dobivate jedan besplatan video uz sljedeću narudžbu. Bez ograničenja i bez papirologije: dovoljno je da spomenu vaše ime kad nam se jave.</p>
 
   <h2>Započnite s besplatnim probnim videom</h2>
   <p>Prije narudžbe izradit ćemo besplatni probni video od fotografija iz vašeg oglasa: kratak pregled od 15 do 25 sekundi s nekoliko kadrova, kako biste vidjeli stil i kvalitetu. Cijeli video koji naručite traje od 60 do 90 sekundi. Bez obveze i bez računa. Dovoljna je poveznica na vaš oglas.</p>

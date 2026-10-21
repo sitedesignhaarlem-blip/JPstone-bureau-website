@@ -1,0 +1,59 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'de';
+const faq = [q.platforms, q.units, q.listingLink, q.access, q.sample];
+---
+<Landing
+  lang={lang}
+  page="rental"
+  title="Video für Ferienwohnungen aus Ihren Inseratsfotos · Still to Film"
+  description="Aus den Fotos Ihrer Ferienwohnung oder Ihres Ferienhauses wird ein Rundgang von 60 bis 90 s. Kein Drehtag, 16:9 und 9:16 inklusive. 50 bis 100 € pro Video."
+  eyebrow="Für Ferienvermietung"
+  h1="Video für Ferienwohnungen, erstellt aus Ihren Inseratsfotos"
+  summary="Still to Film macht aus den Fotos, die Sie von Ihrer Ferienwohnung oder Ihrem Ferienhaus schon haben, ein Walkthrough-Video von 60 bis 90 Sekunden, ohne Drehtag und ohne eine Buchung zu verschieben. Sie erhalten jedes Video in 16:9 und 9:16, ein Mensch prüft es vor der Lieferung, und es kostet je nach Menge 50 bis 100 €."
+  faqTitle="Fragen von Gastgebern"
+  faqItems={faq}
+  service
+  related={['hotel', 'aiVideo', 'pricing']}
+>
+  <h2>Warum die Unterkunft nicht einfach filmen?</h2>
+  <p>Ein Dreh in einer Ferienwohnung braucht einen freien Tag zwischen zwei Gästen, eine geputzte und hergerichtete Wohnung, gutes Wetter und jemanden, der das Filmteam hereinlässt. In der Saison sind solche Tage selten. Wenn Sie mehrere Wohnungen oder Häuser vermieten, braucht jede einen eigenen Dreh, und nach neuer Einrichtung oder einem neuen Anstrich ist das Video veraltet.</p>
+  <p>Die meisten Gastgeber haben schon Fotos von jedem Raum, von außen, der Terrasse, dem Garten oder dem Pool, oft dieselben Fotos, die im Inserat sind. Aus diesen Fotos machen wir das Video. Niemand muss vorbeikommen, und kein Gast muss umziehen.</p>
+
+  <h2>Wie funktioniert es?</h2>
+  <ol>
+    <li><strong>Sie senden den Link</strong> zu Ihrem Inserat auf Airbnb, Booking.com, Vrbo oder Ihrer eigenen Website, oder die Fotos selbst.</li>
+    <li><strong>Wir machen den Film.</strong> Wir wählen die Fotos, die Reihenfolge und die Kamerabewegungen und machen mit KI aus den Standbildern eine ruhige Bewegung durch die Räume und den Außenbereich.</li>
+    <li><strong>Ein Mensch prüft ihn.</strong> Wir sehen uns jedes Video vollständig an, bevor Sie es sehen. Passt etwas nicht zu Ihren Fotos, korrigieren wir es oder schneiden es heraus.</li>
+    <li><strong>Sie geben Feedback.</strong> Zwei Korrekturrunden sind inklusive.</li>
+    <li><strong>Sie veröffentlichen.</strong> Sie erhalten MP4-Dateien in 16:9 und 9:16.</li>
+  </ol>
+  <p>Sie brauchen keine Vorkenntnisse, keine Software, keine Prompts und kein Konto. Mehr dazu auf der Seite <a href={pagePath(lang, 'how')}>So funktioniert’s</a>.</p>
+
+  <h2>Ein Video pro Unterkunft oder eins pro Wohnung?</h2>
+  <p>Beides ist möglich. Eine Villa oder ein Ferienhaus bekommt meist ein Video vom ganzen Haus. Wenn Sie mehrere Wohnungen in einem Haus vermieten, kann jede Wohnung ein eigenes Video für ihr eigenes Inserat bekommen. Sehen mehrere Wohnungen gleich aus, kann ein Video für diesen Wohnungstyp genügen. Jedes Video wird als ein Video berechnet: Vier Wohnungen mit je einem Video sind also vier Videos.</p>
+  <p>Wenn Sie neu einrichten oder neue Fotos machen lassen, erstellen wir aus den neuen Fotos ein neues Video. Das gilt als neues Video, nicht als Korrektur.</p>
+
+  <h2>Was bekommen Sie?</h2>
+  <ul>
+    <li>Ein Walkthrough-Video von 60 bis 90 Sekunden pro Unterkunft oder pro Wohnung.</li>
+    <li>16:9 für Ihre Website und Inseratsseiten, 9:16 für Instagram Reels, TikTok und Stories. Beide Formate sind inklusive.</li>
+    <li>Zwei Korrekturrunden pro Video.</li>
+    <li>Einen ruhigen, einheitlichen Stil für alle Ihre Unterkünfte.</li>
+    <li>Unbegrenzte Nutzung für Ihr eigenes Marketing: Ihre Website, Social Media, Werbung und Buchungsplattformen, soweit sie Videos erlauben.</li>
+  </ul>
+  <p>Buchungsplattformen unterscheiden sich darin, ob und wo sie den Upload eines Videos erlauben, und ihre Regeln ändern sich. Prüfen Sie daher, was Ihr eigenes Inserat zulässt. Auf Ihrer eigenen Website und in Social Media können Sie das Video immer verwenden.</p>
+
+  <h2>Was kann das Video zeigen, und was nicht?</h2>
+  <p>Das Video kann nur zeigen, was auf Ihren Fotos ist. Ein Schlafzimmer, ein Bad oder der Blick vom Balkon, die nie fotografiert wurden, sind auch nicht im Film. Es gibt keine Menschen und keinen Ton, und wir fügen keine Möbel, Ausblicke oder Ausstattung hinzu, die es nicht gibt. Die Qualität der Fotos bestimmt die Qualität des Films: Scharfe, gut belichtete Fotos in hoher Auflösung funktionieren am besten.</p>
+  <p>Die Beispiele auf dieser Website zeigen eine Yacht, weil wir noch keine Kunden aus der Ferienvermietung haben, die wir zeigen können. Das kostenlose Probevideo ist eine kurze Vorschau von 15 bis 25 Sekunden mit einigen Einstellungen, erstellt aus Ihren eigenen Fotos. So sehen Sie das Ergebnis für Ihre Unterkunft, bevor Sie sich entscheiden.</p>
+
+  <h2>Was kostet es?</h2>
+  <p>Der Preis pro Video hängt davon ab, wie viele Videos Sie auf einmal bestellen. Ein einzelnes Video kostet 100 €. Ab 5 Videos kostet ein Video 95 €, und alle 5 Videos sinkt der Preis um 5 €, bis auf 50 € pro Video. Alle Preise verstehen sich inkl. USt.</p>
+  <PriceTable lang={lang} />
+  <p>Zum Beispiel: Sechs Wohnungen in einem Haus mit je einem eigenen Video sind 6 Videos, also 6 × 95 € = 570 €, inkl. USt. Sie zahlen nach der Lieferung per Banküberweisung mit einem Zahlungsziel von 14 Tagen. Wir erstellen bis zu 2 Videos pro Tag, und den Liefertermin vereinbaren wir vorab.</p>
+</Landing>

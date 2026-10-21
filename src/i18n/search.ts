@@ -8,7 +8,7 @@ export interface SearchUI {
   placeholder: string;
   empty: string; // no results
   hint: string; // short help under the input
-  types: { page: string; section: string; question: string };
+  types: { page: string; section: string; question: string; article: string };
   sections: { calculator: string; compare: string; formats: string };
   keywords: Partial<Record<PageId | 'calculator' | 'compare' | 'formats', string[]>>;
 }
@@ -20,7 +20,7 @@ export const searchUI: Record<Locale, SearchUI> = {
     placeholder: 'Search, e.g. pricing or payment',
     empty: 'Nothing found. Try another word, or ask us on WhatsApp.',
     hint: 'Use ↑ ↓ to choose and Enter to open.',
-    types: { page: 'Page', section: 'On the home page', question: 'Question' },
+    types: { page: 'Page', section: 'On the home page', question: 'Question', article: 'Article' },
     sections: { calculator: 'Price calculator', compare: 'Before and after', formats: 'Landscape and portrait (16:9 and 9:16)' },
     keywords: {
       home: ['start', 'overview'],
@@ -31,6 +31,7 @@ export const searchUI: Record<Locale, SearchUI> = {
       faq: ['questions', 'help', 'answers'],
       yacht: ['yacht', 'boat', 'charter', 'catamaran', 'fleet', 'sailing'],
       hotel: ['hotel', 'rooms', 'boutique', 'property', 'hospitality'],
+      rental: ['vacation rental', 'holiday home', 'holiday let', 'holiday rental', 'airbnb', 'villa', 'apartment', 'host', 'booking.com', 'vrbo', 'short-term rental'],
       aiVideo: ['ai', 'artificial intelligence', 'how it is made', 'limits', 'quality'],
       privacy: ['data', 'gdpr', 'personal data'],
       terms: ['conditions', 'refund', 'cancellation', 'payment terms', 'usage rights', 'license'],
@@ -46,7 +47,7 @@ export const searchUI: Record<Locale, SearchUI> = {
     placeholder: 'Zoek, bijv. prijzen of betalen',
     empty: 'Niets gevonden. Probeer een ander woord, of vraag het ons via WhatsApp.',
     hint: 'Kies met ↑ ↓ en open met Enter.',
-    types: { page: 'Pagina', section: 'Op de homepage', question: 'Vraag' },
+    types: { page: 'Pagina', section: 'Op de homepage', question: 'Vraag', article: 'Artikel' },
     sections: { calculator: 'Prijscalculator', compare: 'Voor en na', formats: 'Liggend en staand (16:9 en 9:16)' },
     keywords: {
       home: ['start', 'overzicht'],
@@ -57,6 +58,7 @@ export const searchUI: Record<Locale, SearchUI> = {
       faq: ['vragen', 'hulp', 'antwoorden'],
       yacht: ['jacht', 'boot', 'charter', 'catamaran', 'vloot', 'zeilen'],
       hotel: ['hotel', 'kamers', 'boutique', 'accommodatie'],
+      rental: ['vakantiehuis', 'vakantiewoning', 'vakantieverhuur', 'airbnb', 'villa', 'appartement', 'host', 'verhuurder', 'booking.com', 'vrbo'],
       aiVideo: ['ai', 'kunstmatige intelligentie', 'hoe het werkt', 'beperkingen', 'kwaliteit'],
       privacy: ['gegevens', 'avg', 'persoonsgegevens'],
       terms: ['voorwaarden', 'terugbetaling', 'annuleren', 'opzeggen', 'betalingstermijn', 'gebruiksrecht', 'licentie'],
@@ -72,7 +74,7 @@ export const searchUI: Record<Locale, SearchUI> = {
     placeholder: 'Suchen, z. B. Preise oder Zahlung',
     empty: 'Nichts gefunden. Versuchen Sie ein anderes Wort oder fragen Sie uns per WhatsApp.',
     hint: 'Mit ↑ ↓ auswählen, mit Enter öffnen.',
-    types: { page: 'Seite', section: 'Auf der Startseite', question: 'Frage' },
+    types: { page: 'Seite', section: 'Auf der Startseite', question: 'Frage', article: 'Artikel' },
     sections: { calculator: 'Preisrechner', compare: 'Vorher und nachher', formats: 'Quer und hoch (16:9 und 9:16)' },
     keywords: {
       home: ['start', 'überblick'],
@@ -83,6 +85,7 @@ export const searchUI: Record<Locale, SearchUI> = {
       faq: ['fragen', 'hilfe', 'antworten'],
       yacht: ['yacht', 'boot', 'charter', 'katamaran', 'flotte', 'segeln'],
       hotel: ['hotel', 'zimmer', 'boutique', 'unterkunft'],
+      rental: ['ferienwohnung', 'ferienhaus', 'ferienvermietung', 'airbnb', 'villa', 'apartment', 'gastgeber', 'vermieter', 'booking.com', 'vrbo'],
       aiVideo: ['ki', 'künstliche intelligenz', 'ai', 'grenzen', 'qualität'],
       privacy: ['datenschutz', 'daten', 'dsgvo'],
       terms: ['agb', 'bedingungen', 'erstattung', 'stornierung', 'kündigung', 'zahlungsziel', 'nutzungsrechte', 'lizenz'],
@@ -98,7 +101,7 @@ export const searchUI: Record<Locale, SearchUI> = {
     placeholder: 'Rechercher, p. ex. tarifs ou paiement',
     empty: 'Aucun résultat. Essayez un autre mot, ou demandez-nous sur WhatsApp.',
     hint: 'Choisissez avec ↑ ↓ et ouvrez avec Entrée.',
-    types: { page: 'Page', section: 'Sur la page d’accueil', question: 'Question' },
+    types: { page: 'Page', section: 'Sur la page d’accueil', question: 'Question', article: 'Article' },
     sections: { calculator: 'Calculateur de prix', compare: 'Avant et après', formats: 'Horizontal et vertical (16:9 et 9:16)' },
     keywords: {
       home: ['accueil', 'aperçu'],
@@ -109,6 +112,7 @@ export const searchUI: Record<Locale, SearchUI> = {
       faq: ['questions', 'aide', 'réponses'],
       yacht: ['yacht', 'bateau', 'location', 'charter', 'catamaran', 'flotte', 'voile'],
       hotel: ['hôtel', 'chambres', 'boutique', 'établissement'],
+      rental: ['location de vacances', 'location saisonnière', 'gîte', 'maison de vacances', 'airbnb', 'villa', 'appartement', 'hôte', 'booking.com', 'vrbo'],
       aiVideo: ['ia', 'intelligence artificielle', 'ai', 'limites', 'qualité'],
       privacy: ['confidentialité', 'données', 'rgpd'],
       terms: ['conditions', 'remboursement', 'annulation', 'délai de paiement', 'droits d’utilisation', 'licence'],
@@ -124,7 +128,7 @@ export const searchUI: Record<Locale, SearchUI> = {
     placeholder: 'Buscar, p. ej. precios o pago',
     empty: 'No hay resultados. Prueba otra palabra o pregúntanos por WhatsApp.',
     hint: 'Elige con ↑ ↓ y abre con Intro.',
-    types: { page: 'Página', section: 'En la página de inicio', question: 'Pregunta' },
+    types: { page: 'Página', section: 'En la página de inicio', question: 'Pregunta', article: 'Artículo' },
     sections: { calculator: 'Calculadora de precios', compare: 'Antes y después', formats: 'Horizontal y vertical (16:9 y 9:16)' },
     keywords: {
       home: ['inicio', 'resumen'],
@@ -135,6 +139,7 @@ export const searchUI: Record<Locale, SearchUI> = {
       faq: ['preguntas', 'ayuda', 'respuestas'],
       yacht: ['yate', 'barco', 'chárter', 'charter', 'catamarán', 'flota', 'vela'],
       hotel: ['hotel', 'habitaciones', 'boutique', 'alojamiento'],
+      rental: ['alquiler vacacional', 'casa de vacaciones', 'apartamento turístico', 'airbnb', 'villa', 'apartamento', 'anfitrión', 'propietario', 'booking.com', 'vrbo'],
       aiVideo: ['ia', 'inteligencia artificial', 'ai', 'límites', 'calidad'],
       privacy: ['privacidad', 'datos', 'rgpd'],
       terms: ['condiciones', 'reembolso', 'cancelación', 'plazo de pago', 'derechos de uso', 'licencia'],
@@ -150,7 +155,7 @@ export const searchUI: Record<Locale, SearchUI> = {
     placeholder: 'Pretražite, npr. cijene ili plaćanje',
     empty: 'Nema rezultata. Pokušajte s drugom riječi ili nas pitajte na WhatsAppu.',
     hint: 'Odaberite s ↑ ↓ i otvorite s Enter.',
-    types: { page: 'Stranica', section: 'Na početnoj stranici', question: 'Pitanje' },
+    types: { page: 'Stranica', section: 'Na početnoj stranici', question: 'Pitanje', article: 'Članak' },
     sections: { calculator: 'Kalkulator cijene', compare: 'Prije i poslije', formats: 'Vodoravno i okomito (16:9 i 9:16)' },
     keywords: {
       home: ['početna', 'pregled'],
@@ -161,6 +166,7 @@ export const searchUI: Record<Locale, SearchUI> = {
       faq: ['pitanja', 'pomoć', 'odgovori'],
       yacht: ['jahta', 'jahte', 'brod', 'charter', 'čarter', 'katamaran', 'flota', 'najam'],
       hotel: ['hotel', 'sobe', 'boutique', 'smještaj'],
+      rental: ['apartman', 'apartmani', 'kuća za odmor', 'privatni smještaj', 'iznajmljivanje', 'airbnb', 'vila', 'domaćin', 'iznajmljivač', 'booking.com', 'vrbo'],
       aiVideo: ['ai', 'umjetna inteligencija', 'ograničenja', 'kvaliteta'],
       privacy: ['privatnost', 'podaci', 'gdpr', 'osobni podaci'],
       terms: ['uvjeti', 'povrat novca', 'otkazivanje', 'rok plaćanja', 'prava korištenja', 'licenca'],

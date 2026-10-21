@@ -68,7 +68,7 @@ export function service(lang: Locale, page?: { name: string; description: string
     description: page?.description ?? t.meta.homeDesc,
     provider: { '@id': ids.organization },
     areaServed: 'Worldwide',
-    audience: { '@type': 'BusinessAudience', audienceType: 'Yacht charter companies and boutique hotels' },
+    audience: { '@type': 'BusinessAudience', audienceType: 'Yacht charter companies, boutique hotels and vacation rental hosts' },
     offers: {
       '@type': 'AggregateOffer',
       priceCurrency: 'EUR',

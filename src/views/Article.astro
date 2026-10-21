@@ -1,0 +1,113 @@
+---
+// One article in the Insights section: same header, prose and call to action as the landing pages.
+import Base from '../layouts/Base.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { SITE_URL } from '../data/site';
+import { hreflang, pagePath, useTranslations } from '../i18n';
+import { articleAlternates, articlePath, articlesFor, insightsBase, type Article } from '../insights';
+import { insightsUI } from '../insights/ui';
+
+interface Props {
+  article: Article;
+}
+const { article: a } = Astro.props;
+const lang = a.lang;
+const t = useTranslations(lang);
+const u = insightsUI[lang];
+const Body = a.Body;
+const abs = (p: string) => new URL(p, SITE_URL).href;
+const alternates = articleAlternates(a.id);
+const date = new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(a.date));
+const others = articlesFor(lang).filter((x) => x.id !== a.id).slice(0, 3);
+const schema = [
+  {
+    '@type': 'Article',
+    headline: a.h1,
+    description: a.description,
+    inLanguage: hreflang[lang],
+    datePublished: a.date,
+    dateModified: a.date,
+    url: abs(articlePath(a)),
+    mainEntityOfPage: abs(articlePath(a)),
+    image: abs('/og.jpg'),
+    author: { '@id': abs('/#organization') },
+    publisher: { '@id': abs('/#organization') },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t.nav.home, item: abs(pagePath(lang, 'home')) },
+      { '@type': 'ListItem', position: 2, name: u.name, item: abs(insightsBase(lang)) },
+      { '@type': 'ListItem', position: 3, name: a.h1, item: abs(articlePath(a)) },
+    ],
+  },
+];
+---
+<Base title={a.title} description={a.description} lang={lang} page="home" path={articlePath(a)} alternates={alternates} schema={schema}>
+  <SiteNav lang={lang} langLinks={alternates} />
+  <main id="main">
+    <header class="section article-head">
+      <div class="wrap article-inner">
+        <p class="eyebrow"><a href={insightsBase(lang)}>{u.name}</a></p>
+        <h1>{a.h1}</h1>
+        <p class="lead summary">{a.summary}</p>
+        <p class="meta muted"><time datetime={a.date}>{u.published} {date}</time> · {u.minutes.replace('{n}', String(a.readMinutes))}</p>
+      </div>
+    </header>
+
+    <article class="section section--alt article-body">
+      <div class="wrap article-inner prose">
+        <Body />
+      </div>
+    </article>
+
+    {others.length > 0 && (
+      <nav class="section related" aria-labelledby="related-title">
+        <div class="wrap article-inner">
+          <h2 id="related-title">{t.landing.related}</h2>
+          <ul class="related-list" role="list">
+            {others.map((o) => <li><a class="link-more" href={articlePath(o)}>{o.h1}</a></li>)}
+            <li><a class="link-more" href={insightsBase(lang)}>{u.all}</a></li>
+          </ul>
+        </div>
+      </nav>
+    )}
+
+    <section class="section section--alt cta" aria-labelledby="cta-title">
+      <div class="wrap article-inner cta-inner">
+        <h2 id="cta-title">{t.landing.ctaTitle}</h2>
+        <p class="lead muted">{t.landing.ctaText}</p>
+        <p><a class="button" href={pagePath(lang, 'contact')}>{t.hero.cta}</a></p>
+      </div>
+    </section>
+  </main>
+  <SiteFooter lang={lang} />
+</Base>
+
+<style>
+  .article-inner { max-width: calc(44rem + 2 * var(--gutter)); }
+  .article-head .article-inner { display: grid; gap: var(--space-4); }
+  .article-head h1 { font-size: var(--step-h2); line-height: 1.07; }
+  .eyebrow a { color: inherit; text-decoration: none; }
+  .eyebrow a:hover { text-decoration: underline; }
+  .summary { color: var(--fg); }
+  .meta { font-size: var(--step-small); }
+  .prose :global(h2) { font-size: var(--step-h3); line-height: 1.15; margin: var(--space-8) 0 var(--space-3); }
+  .prose :global(h2:first-child) { margin-top: 0; }
+  .prose :global(h3) { font-size: 1.125rem; margin: var(--space-5) 0 var(--space-2); }
+  .prose :global(p + p) { margin-top: var(--space-3); }
+  .prose :global(ul), .prose :global(ol) { padding-left: 1.25rem; margin: var(--space-3) 0; display: grid; gap: var(--space-2); }
+  .prose :global(table) { width: 100%; border-collapse: collapse; margin: var(--space-4) 0; font-size: var(--step-small); }
+  .prose :global(th), .prose :global(td) { text-align: left; vertical-align: top; padding: var(--space-3) var(--space-3) var(--space-3) 0; border-bottom: 1px solid var(--line); }
+  .prose :global(th) { font-weight: 600; }
+  .prose :global(.table-wrap) { overflow-x: auto; }
+  @media (max-width: 40rem) {
+    .prose :global(thead) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    .prose :global(tr) { display: grid; gap: var(--space-1); padding: var(--space-3) 0; border-bottom: 1px solid var(--line); }
+    .prose :global(td) { display: grid; grid-template-columns: 8.5rem 1fr; gap: var(--space-3); padding: 0; border: 0; }
+    .prose :global(td::before) { content: attr(data-label); font-weight: 600; color: var(--fg-muted); }
+  }
+  .related-list { display: grid; gap: var(--space-3); padding: 0; margin: var(--space-4) 0 0; list-style: none; }
+  .cta-inner { display: grid; gap: var(--space-3); }
+</style>

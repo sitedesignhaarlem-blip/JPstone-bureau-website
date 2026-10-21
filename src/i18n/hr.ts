@@ -160,6 +160,7 @@ const hr: UI = {
   pages: {
     yacht: 'Video za charter jahti',
     hotel: 'Video za boutique hotele',
+    rental: 'Video za apartmane i kuće za odmor',
     aiVideo: 'AI video od fotografija',
     pricing: 'Cijene',
     faq: 'Česta pitanja',
@@ -173,6 +174,7 @@ const hr: UI = {
     allQuestions: 'Sva pitanja',
     forYachts: 'Video za charter jahti',
     forHotels: 'Video za boutique hotele',
+    forRentals: 'Video za apartmane i kuće za odmor',
     colVideos: 'Broj videa u narudžbi',
     colPrice: 'Cijena po videu',
     colExample: 'Primjer',

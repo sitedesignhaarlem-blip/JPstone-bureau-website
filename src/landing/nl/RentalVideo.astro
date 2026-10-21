@@ -1,0 +1,59 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'nl';
+const faq = [q.platforms, q.units, q.listingLink, q.access, q.sample];
+---
+<Landing
+  lang={lang}
+  page="rental"
+  title="Video voor je vakantiehuis van je listingfoto's · Still to Film"
+  description="Je vakantiehuis of appartement in een walkthrough-video van 60–90 seconden, gemaakt van je foto's. Geen draaidag, 16:9 en 9:16 inbegrepen. €50 tot €100 per video."
+  eyebrow="Voor vakantieverhuur"
+  h1="Video voor vakantiehuizen, gemaakt van je listingfoto's"
+  summary="Still to Film maakt van de foto's die je al hebt van je vakantiehuis of appartement een walkthrough-video van 60–90 seconden, zonder draaidag en zonder een boeking te verschuiven. Je krijgt elke video in 16:9 en 9:16, een mens controleert hem voor oplevering, en hij kost €50 tot €100, afhankelijk van het aantal."
+  faqTitle="Vragen van verhuurders"
+  faqItems={faq}
+  service
+  related={['hotel', 'aiVideo', 'pricing']}
+>
+  <h2>Waarom de woning niet gewoon filmen?</h2>
+  <p>Een vakantiehuis filmen vraagt om een vrije dag tussen twee gasten, een schone en opgemaakte woning, goed weer en iemand die de filmploeg binnenlaat. In het seizoen zijn die dagen zeldzaam. Verhuur je meerdere appartementen of huizen, dan heeft elk een eigen draaidag nodig, en richt je opnieuw in of schilder je, dan is de video verouderd.</p>
+  <p>De meeste verhuurders hebben al foto's van elke kamer, de buitenkant, het terras, de tuin of het zwembad, vaak dezelfde foto's die op de listing staan. Wij maken de video van die foto's, dus er hoeft niemand langs te komen en geen gast hoeft te verhuizen.</p>
+
+  <h2>Hoe werkt het?</h2>
+  <ol>
+    <li><strong>Je stuurt de link</strong> naar je listing op Airbnb, Booking.com, Vrbo of je eigen website, of de foto's zelf.</li>
+    <li><strong>Wij maken de film.</strong> We kiezen de foto's, de volgorde en de camerabewegingen, en maken met AI van de stilstaande beelden een rustige beweging door de kamers en de buitenruimtes.</li>
+    <li><strong>Een mens controleert hem.</strong> We bekijken elke video helemaal voordat jij hem ziet. Klopt iets niet met je foto's, dan passen we het aan of halen we het eruit.</li>
+    <li><strong>Jij geeft feedback.</strong> Twee revisierondes zitten erbij.</li>
+    <li><strong>Jij publiceert.</strong> Je krijgt mp4-bestanden in 16:9 en 9:16.</li>
+  </ol>
+  <p>Je hebt geen kennis, software, prompts of account nodig. Meer uitleg vind je op de pagina <a href={pagePath(lang, 'how')}>werkwijze</a>.</p>
+
+  <h2>Eén video per woning, of één per appartement?</h2>
+  <p>Allebei kan. Een villa of vakantiehuis krijgt meestal één video van de hele woning. Verhuur je meerdere appartementen in één gebouw, dan kan elk appartement een eigen video krijgen voor zijn eigen listing. Zien meerdere appartementen er hetzelfde uit, dan kan één video voor dat type appartement genoeg zijn. Elke video telt in de prijs als één video, dus vier appartementen met elk een video zijn vier video's.</p>
+  <p>Richt je opnieuw in, of laat je nieuwe foto's maken, dan maken we een nieuwe video van de nieuwe foto's. Dat telt als een nieuwe video, niet als een revisie.</p>
+
+  <h2>Wat krijg je?</h2>
+  <ul>
+    <li>Een walkthrough-video van 60 tot 90 seconden per woning of per appartement.</li>
+    <li>16:9 voor je website en listingpagina's, en 9:16 voor Instagram Reels, TikTok en Stories. Beide formaten zijn inbegrepen.</li>
+    <li>Twee revisierondes per video.</li>
+    <li>Eén rustige, vaste stijl voor al je woningen.</li>
+    <li>Onbeperkt gebruik voor je eigen marketing: je website, social media, advertenties, en verhuurplatforms waar video is toegestaan.</li>
+  </ul>
+  <p>Boekingsplatforms verschillen in of en waar je een video kunt uploaden, en hun regels veranderen, dus kijk wat jouw eigen listing toestaat. Op je eigen website en social media kun je de video altijd gebruiken.</p>
+
+  <h2>Wat kan de video laten zien, en wat niet?</h2>
+  <p>De video laat alleen zien wat op je foto's staat. Een slaapkamer, een badkamer of het uitzicht vanaf het balkon dat nooit is gefotografeerd, zit niet in de film. Er zitten geen mensen en geen geluid in, en we voegen geen meubels, uitzichten of voorzieningen toe die er niet zijn. De kwaliteit van de foto's bepaalt de kwaliteit van de film: scherpe, goed belichte foto's in hoge resolutie werken het best.</p>
+  <p>De voorbeelden op deze site zijn van een jacht, omdat we nog geen klanten met vakantiewoningen hebben om te laten zien. De gratis proefvideo is een korte preview van 15 tot 25 seconden met een paar shots, gemaakt van je eigen foto's, dus je ziet het resultaat voor je eigen woning voordat je beslist.</p>
+
+  <h2>Wat kost het?</h2>
+  <p>De prijs per video hangt af van hoeveel video's je in één keer bestelt. Eén losse video kost €100. Vanaf 5 video's is het €95 per video, en per 5 video's gaat de prijs €5 omlaag, tot minimaal €50 per video. Alle prijzen zijn inclusief btw.</p>
+  <PriceTable lang={lang} />
+  <p>Zes appartementen in één gebouw, elk met een eigen video, zijn bijvoorbeeld 6 video's: 6 × €95 = €570, inclusief btw. Je betaalt na oplevering per bankoverschrijving, met een betaaltermijn van 14 dagen. We maken tot 2 video's per dag, en de leverdatum spreken we vooraf af.</p>
+</Landing>

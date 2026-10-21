@@ -34,6 +34,10 @@ export const q = {
     q: 'La vidéo peut-elle montrer des pièces ou des vues absentes des photos ?',
     a: 'Non. La vidéo ne peut montrer que ce qui est sur vos photos. Si une cabine, une chambre ou une vue n’a jamais été photographiée, elle ne sera pas dans le film. Nous n’ajoutons ni personnes, ni meubles, ni vues.',
   },
+  referral: {
+    q: "Avez-vous une récompense de parrainage ?",
+    a: "Oui. Si vous recommandez une autre entreprise et qu’elle passe commande, vous recevez une vidéo gratuite sur votre prochaine commande. Sans limite : une vidéo gratuite pour chaque entreprise recommandée.",
+  },
   vat: {
     q: 'Les prix sont-ils TTC ?',
     a: 'Oui. Tous les prix incluent la TVA, et le devis le précise toujours.',
@@ -46,13 +50,25 @@ export const q = {
     q: 'Comment fonctionne le prix dégressif ?',
     a: 'Une seule vidéo coûte 100 €. À partir de 5 vidéos, le prix est de 95 € par vidéo, puis il baisse de 5 € toutes les 5 vidéos, jusqu’à 50 € par vidéo. Plus de 100 vidéos : nous établissons un devis.',
   },
+  platforms: {
+    q: "Puis-je utiliser la vidéo sur Airbnb ou Booking.com ?",
+    a: "Les plateformes diffèrent quant à la possibilité et à l’endroit où l’on peut mettre en ligne une vidéo, et leurs règles changent : vérifiez ce que votre propre annonce permet. Vous pouvez toujours utiliser la vidéo sur votre propre site et sur les réseaux sociaux, ainsi que sur toute plateforme qui accepte la vidéo. Vous recevez des fichiers MP4 en 16:9 et 9:16.",
+  },
+  units: {
+    q: "J’ai plusieurs appartements dans un même immeuble. Comment est-ce facturé ?",
+    a: "Chaque vidéo est facturée comme une vidéo, et le prix dégressif s’applique à toute la commande. Six appartements avec chacun sa vidéo font 6 × 95 € = 570 €, TVA incluse. Si plusieurs appartements sont identiques, une vidéo pour ce type d’appartement peut suffire.",
+  },
+  listingLink: {
+    q: "Pouvez-vous travailler à partir de mon annonce Airbnb ou Booking.com ?",
+    a: "Oui. Envoyez le lien de votre annonce et nous travaillons à partir des photos qui y figurent. Les fichiers originaux de votre photographe donnent un résultat plus net que des images enregistrées depuis une plateforme : envoyez-les aussi si vous les avez.",
+  },
 } satisfies Record<string, FaqItem>;
 
 export const groups: { title: string; items: FaqItem[] }[] = [
   { title: 'Propriété et droits', items: [q.owns] },
   { title: 'Livraison', items: [q.fast, q.revisions, q.fleet, q.update] },
-  { title: 'Formats', items: [q.formats, q.roomTypes] },
-  { title: 'Les photos nécessaires', items: [q.photos, q.access, q.skills] },
+  { title: 'Formats', items: [q.formats, q.roomTypes, q.platforms] },
+  { title: 'Les photos nécessaires', items: [q.photos, q.access, q.skills, q.listingLink] },
   { title: 'IA et qualité', items: [q.ai, q.limits] },
-  { title: 'Prix et paiement', items: [q.volume, q.vat, q.payment, q.sample] },
+  { title: 'Prix et paiement', items: [q.volume, q.units, q.vat, q.payment, q.referral, q.sample] },
 ];

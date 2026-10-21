@@ -1,6 +1,6 @@
 # Still to Film – website
 
-Marketingsite voor Still to Film: walkthrough-video's van listingfoto's, voor jachtcharters en boutique hotels.
+Marketingsite voor Still to Film: walkthrough-video's van listingfoto's, voor jachtcharters, boutique hotels en vakantieverhuur.
 Gebouwd met [Astro](https://astro.build) als statische site, met gewone CSS en een beetje JavaScript. Bedoeld voor hosting op Vercel.
 
 ## Starten

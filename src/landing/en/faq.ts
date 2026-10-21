@@ -34,6 +34,10 @@ export const q = {
     q: 'Can the video show rooms or views that are not in the photos?',
     a: 'No. The video can only show what is in your photos. If a cabin, a room or a view was never photographed, it will not be in the film. We do not add people, furniture or views.',
   },
+  referral: {
+    q: "Do you have a referral reward?",
+    a: "Yes. If you refer another company and they place an order, you get one free video on your next order. There is no limit: one free video for every company you refer.",
+  },
   vat: {
     q: 'Are prices including VAT?',
     a: 'Yes. All prices include VAT, and the quote always says so.',
@@ -46,13 +50,25 @@ export const q = {
     q: 'How does the volume price work?',
     a: 'A single video costs €100. From 5 videos the price per video is €95, and it drops by €5 for every 5 videos, down to €50 per video. More than 100 videos: we make a quote.',
   },
+  platforms: {
+    q: "Can I use the video on Airbnb or Booking.com?",
+    a: "Platforms differ in whether and where they accept a video upload, and their rules change, so check what your own listing allows. You can always use the video on your own website and on social media, and on any platform that allows video. You get MP4 files in 16:9 and 9:16.",
+  },
+  units: {
+    q: "I have several apartments in one building. How is that priced?",
+    a: "Each video is priced as one video, and the volume price applies to the whole order. Six apartments with a video each are 6 × €95 = €570, including VAT. If several apartments look the same, one video for that type of apartment can be enough.",
+  },
+  listingLink: {
+    q: "Can you work from my Airbnb or Booking.com listing?",
+    a: "Yes. Send the link to your listing and we work from the photos on it. Original files from your photographer give a sharper result than images saved from a platform, so send those too if you have them.",
+  },
 } satisfies Record<string, FaqItem>;
 
 export const groups: { title: string; items: FaqItem[] }[] = [
   { title: 'Ownership and rights', items: [q.owns] },
   { title: 'Delivery', items: [q.fast, q.revisions, q.fleet, q.update] },
-  { title: 'Formats', items: [q.formats, q.roomTypes] },
-  { title: 'Photos you need', items: [q.photos, q.access, q.skills] },
+  { title: 'Formats', items: [q.formats, q.roomTypes, q.platforms] },
+  { title: 'Photos you need', items: [q.photos, q.access, q.skills, q.listingLink] },
   { title: 'AI and quality', items: [q.ai, q.limits] },
-  { title: 'Pricing and payment', items: [q.volume, q.vat, q.payment, q.sample] },
+  { title: 'Pricing and payment', items: [q.volume, q.units, q.vat, q.payment, q.referral, q.sample] },
 ];

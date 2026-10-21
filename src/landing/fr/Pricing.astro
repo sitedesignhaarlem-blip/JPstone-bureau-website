@@ -6,7 +6,7 @@ import { pagePath } from '../../i18n';
 import { q } from './faq';
 
 const lang = 'fr';
-const faq = [q.volume, q.vat, q.payment, q.revisions, q.sample];
+const faq = [q.volume, q.vat, q.payment, q.revisions, q.referral, q.sample];
 const money = new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
 const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pricePerVideo(n)), total: money.format(n * pricePerVideo(n)) }));
 ---
@@ -55,6 +55,9 @@ const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pric
 
   <h2>Plus de 100 vidéos ?</h2>
   <p>Pour les commandes de plus de 100 vidéos, nous établissons un devis. C’est aussi le cas pour un travail continu : jusqu’à 100 vidéos par mois, deux formats, résiliable chaque mois.</p>
+
+  <h2>Recommandez-nous, recevez une vidéo gratuite</h2>
+  <p>Vous connaissez un autre loueur de yachts, un hôtel ou un propriétaire pour qui ce serait utile ? S’il commande après votre recommandation, vous recevez une vidéo gratuite sur votre prochaine commande. Sans limite et sans formalités : il suffit qu’il mentionne votre nom en nous contactant.</p>
 
   <h2>Commencez par une vidéo d’essai gratuite</h2>
   <p>Avant votre commande, nous réalisons une vidéo d’essai gratuite à partir de vos propres photos d’annonce : un court aperçu de 15 à 25 secondes avec quelques plans, pour que vous voyiez le style et la qualité. La vidéo complète que vous commandez dure de 60 à 90 secondes. Sans engagement et sans facture. Le lien de votre annonce suffit.</p>

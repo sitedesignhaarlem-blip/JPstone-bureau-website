@@ -160,6 +160,7 @@ const nl: UI = {
   pages: {
     yacht: "Video voor jachtcharters",
     hotel: "Video voor boutique hotels",
+    rental: "Video voor vakantiehuizen",
     aiVideo: "AI-video van foto's",
     pricing: "Prijzen",
     faq: "Veelgestelde vragen",
@@ -173,6 +174,7 @@ const nl: UI = {
     allQuestions: "Alle vragen",
     forYachts: "Video voor jachtcharters",
     forHotels: "Video voor boutique hotels",
+    forRentals: "Video voor vakantiehuizen",
     colVideos: "Video's in de opdracht",
     colPrice: "Prijs per video",
     colExample: "Voorbeeld",

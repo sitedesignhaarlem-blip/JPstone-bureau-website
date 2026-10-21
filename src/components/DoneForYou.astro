@@ -12,6 +12,7 @@ const p = t.promise;
 const links = [
   { page: 'yacht' as const, label: t.landing.forYachts },
   { page: 'hotel' as const, label: t.landing.forHotels },
+  { page: 'rental' as const, label: t.landing.forRentals },
 ].filter((l) => hasPage(lang, l.page));
 ---
 <section class="section section--dark promise" aria-labelledby="promise-title">

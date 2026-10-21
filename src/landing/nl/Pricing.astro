@@ -6,7 +6,7 @@ import { pagePath } from '../../i18n';
 import { q } from './faq';
 
 const lang = 'nl';
-const faq = [q.volume, q.vat, q.payment, q.revisions, q.sample];
+const faq = [q.volume, q.vat, q.payment, q.revisions, q.referral, q.sample];
 const money = new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
 const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pricePerVideo(n)), total: money.format(n * pricePerVideo(n)) }));
 ---
@@ -55,6 +55,9 @@ const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pric
 
   <h2>Meer dan 100 video's?</h2>
   <p>Voor opdrachten van meer dan 100 video's maken we een offerte. Dat geldt ook voor doorlopend werk: tot 100 video's per maand, beide formaten, per maand opzegbaar.</p>
+
+  <h2>Verwijs iemand door, krijg een gratis video</h2>
+  <p>Ken je een ander charterbedrijf, hotel of verhuurder voor wie dit handig is? Bestellen ze nadat jij ze hebt doorverwezen, dan krijg je één gratis video bij je volgende bestelling. Er is geen maximum en geen papierwerk: ze noemen gewoon jouw naam als ze contact opnemen.</p>
 
   <h2>Begin met een gratis proefvideo</h2>
   <p>Voordat je bestelt, maken we een gratis proefvideo van je eigen listingfoto's: een korte preview van 15 tot 25 seconden met een paar shots, zodat je de stijl en kwaliteit ziet. De volledige video die je bestelt duurt 60 tot 90 seconden. Vrijblijvend en zonder factuur. Een link naar je listing is genoeg.</p>
