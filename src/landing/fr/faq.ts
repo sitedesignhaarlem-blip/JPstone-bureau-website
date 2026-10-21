@@ -36,11 +36,11 @@ export const q = {
   },
   vat: {
     q: 'Les prix sont-ils TTC ?',
-    a: 'Non. Tous les prix sont hors TVA, et le devis le précise toujours.',
+    a: 'Oui. Tous les prix incluent la TVA, et le devis le précise toujours.',
   },
   payment: {
     q: 'Quand dois-je payer ?',
-    a: 'Nous facturons après la livraison, avec un délai de paiement de 14 jours. Pour les commandes plus importantes, nous pouvons demander un acompte ; le devis le précisera.',
+    a: 'Nous facturons après la livraison et vous payez par virement bancaire, avec un délai de paiement de 14 jours. Pour les commandes plus importantes, nous pouvons demander un acompte ; le devis le précisera.',
   },
   volume: {
     q: 'Comment fonctionne le prix dégressif ?',

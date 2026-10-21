@@ -123,7 +123,7 @@ const es: UI = {
   },
   packages: {
     title: 'Paquetes.',
-    lead: 'Cada encargo recibe un presupuesto cerrado antes de empezar. Precios sin IVA.',
+    lead: 'Cada encargo recibe un presupuesto cerrado antes de empezar. Precios con IVA incluido.',
     price: '€100',
     perVideo: 'por vídeo',
     from: 'desde',
@@ -176,7 +176,7 @@ const es: UI = {
     colVideos: "Vídeos en el encargo",
     colPrice: "Precio por vídeo",
     colExample: "Ejemplo",
-    priceNote: "Precios sin IVA. Más de 100 vídeos: te preparamos un presupuesto.",
+    priceNote: "Precios con IVA incluido. Más de 100 vídeos: te preparamos un presupuesto.",
   },
   vertical: {
     eyebrow: "Dos formatos",
@@ -188,7 +188,7 @@ const es: UI = {
     label: 'Número de vídeos',
     total: 'Total',
     perVideo: 'Precio por vídeo',
-    note: "IVA no incluido. Ambos formatos y 2 revisiones incluidas. Cada 5 vídeos, el precio por vídeo baja 5 €, hasta un mínimo de 50 €.",
+    note: "IVA incluido. Ambos formatos y 2 revisiones incluidas. Cada 5 vídeos, el precio por vídeo baja 5 €, hasta un mínimo de 50 €.",
     more: '¿Más de 100 vídeos? Te preparamos un presupuesto.',
   },
   booking: {

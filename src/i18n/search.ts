@@ -1,0 +1,185 @@
+// Texts for the site search, per language. `keywords` are extra words that lead to a page, so
+// someone typing "payment" or "bank" still finds pricing. Write them in lower case.
+import type { Locale, PageId } from './config';
+
+export interface SearchUI {
+  open: string; // button label
+  label: string; // label of the input
+  placeholder: string;
+  empty: string; // no results
+  hint: string; // short help under the input
+  types: { page: string; section: string; question: string };
+  sections: { calculator: string; compare: string; formats: string };
+  keywords: Partial<Record<PageId | 'calculator' | 'compare' | 'formats', string[]>>;
+}
+
+export const searchUI: Record<Locale, SearchUI> = {
+  en: {
+    open: 'Search',
+    label: 'Search the site',
+    placeholder: 'Search, e.g. pricing or payment',
+    empty: 'Nothing found. Try another word, or ask us on WhatsApp.',
+    hint: 'Use ↑ ↓ to choose and Enter to open.',
+    types: { page: 'Page', section: 'On the home page', question: 'Question' },
+    sections: { calculator: 'Price calculator', compare: 'Before and after', formats: 'Landscape and portrait (16:9 and 9:16)' },
+    keywords: {
+      home: ['start', 'overview'],
+      library: ['examples', 'portfolio', 'videos', 'clips', 'gallery', 'work'],
+      how: ['process', 'steps', 'workflow', 'delivery', 'revisions'],
+      contact: ['email', 'whatsapp', 'phone', 'call', 'sample', 'free sample', 'quote', 'get in touch'],
+      pricing: ['price', 'prices', 'cost', 'costs', 'payment', 'pay', 'bank transfer', 'invoice', 'vat', 'tax', 'discount', 'volume', 'quote'],
+      faq: ['questions', 'help', 'answers'],
+      yacht: ['yacht', 'boat', 'charter', 'catamaran', 'fleet', 'sailing'],
+      hotel: ['hotel', 'rooms', 'boutique', 'property', 'hospitality'],
+      aiVideo: ['ai', 'artificial intelligence', 'how it is made', 'limits', 'quality'],
+      privacy: ['data', 'gdpr', 'personal data'],
+      terms: ['conditions', 'refund', 'cancellation', 'payment terms', 'usage rights', 'license'],
+      cookies: ['cookie', 'tracking', 'analytics'],
+      calculator: ['calculator', 'calculate', 'how much', 'total'],
+      compare: ['slider', 'before', 'after', 'photo'],
+      formats: ['formats', '16:9', '9:16', 'reels', 'tiktok', 'stories', 'vertical', 'portrait'],
+    },
+  },
+  nl: {
+    open: 'Zoeken',
+    label: 'Zoek op de site',
+    placeholder: 'Zoek, bijv. prijzen of betalen',
+    empty: 'Niets gevonden. Probeer een ander woord, of vraag het ons via WhatsApp.',
+    hint: 'Kies met ↑ ↓ en open met Enter.',
+    types: { page: 'Pagina', section: 'Op de homepage', question: 'Vraag' },
+    sections: { calculator: 'Prijscalculator', compare: 'Voor en na', formats: 'Liggend en staand (16:9 en 9:16)' },
+    keywords: {
+      home: ['start', 'overzicht'],
+      library: ['voorbeelden', 'portfolio', "video's", 'clips', 'galerij', 'werk'],
+      how: ['proces', 'stappen', 'levering', 'levertijd', 'revisies'],
+      contact: ['e-mail', 'mail', 'whatsapp', 'telefoon', 'bellen', 'proefvideo', 'gratis', 'offerte'],
+      pricing: ['prijs', 'prijzen', 'kosten', 'betalen', 'betaling', 'bankoverschrijving', 'overschrijving', 'factuur', 'btw', 'korting', 'offerte'],
+      faq: ['vragen', 'hulp', 'antwoorden'],
+      yacht: ['jacht', 'boot', 'charter', 'catamaran', 'vloot', 'zeilen'],
+      hotel: ['hotel', 'kamers', 'boutique', 'accommodatie'],
+      aiVideo: ['ai', 'kunstmatige intelligentie', 'hoe het werkt', 'beperkingen', 'kwaliteit'],
+      privacy: ['gegevens', 'avg', 'persoonsgegevens'],
+      terms: ['voorwaarden', 'terugbetaling', 'annuleren', 'opzeggen', 'betalingstermijn', 'gebruiksrecht', 'licentie'],
+      cookies: ['cookie', 'tracking', 'statistieken'],
+      calculator: ['calculator', 'berekenen', 'hoeveel', 'totaal'],
+      compare: ['slider', 'voor', 'na', 'foto'],
+      formats: ['formaten', '16:9', '9:16', 'reels', 'tiktok', 'stories', 'staand', 'liggend'],
+    },
+  },
+  de: {
+    open: 'Suchen',
+    label: 'Website durchsuchen',
+    placeholder: 'Suchen, z. B. Preise oder Zahlung',
+    empty: 'Nichts gefunden. Versuchen Sie ein anderes Wort oder fragen Sie uns per WhatsApp.',
+    hint: 'Mit ↑ ↓ auswählen, mit Enter öffnen.',
+    types: { page: 'Seite', section: 'Auf der Startseite', question: 'Frage' },
+    sections: { calculator: 'Preisrechner', compare: 'Vorher und nachher', formats: 'Quer und hoch (16:9 und 9:16)' },
+    keywords: {
+      home: ['start', 'überblick'],
+      library: ['beispiele', 'portfolio', 'videos', 'clips', 'galerie', 'arbeiten'],
+      how: ['ablauf', 'schritte', 'lieferung', 'lieferzeit', 'korrekturen'],
+      contact: ['e-mail', 'mail', 'whatsapp', 'telefon', 'anrufen', 'probevideo', 'kostenlos', 'angebot'],
+      pricing: ['preis', 'preise', 'kosten', 'zahlung', 'bezahlen', 'banküberweisung', 'überweisung', 'rechnung', 'mwst', 'ust', 'umsatzsteuer', 'rabatt', 'angebot'],
+      faq: ['fragen', 'hilfe', 'antworten'],
+      yacht: ['yacht', 'boot', 'charter', 'katamaran', 'flotte', 'segeln'],
+      hotel: ['hotel', 'zimmer', 'boutique', 'unterkunft'],
+      aiVideo: ['ki', 'künstliche intelligenz', 'ai', 'grenzen', 'qualität'],
+      privacy: ['datenschutz', 'daten', 'dsgvo'],
+      terms: ['agb', 'bedingungen', 'erstattung', 'stornierung', 'kündigung', 'zahlungsziel', 'nutzungsrechte', 'lizenz'],
+      cookies: ['cookie', 'tracking', 'statistik'],
+      calculator: ['rechner', 'berechnen', 'wie viel', 'gesamt'],
+      compare: ['slider', 'vorher', 'nachher', 'foto'],
+      formats: ['formate', '16:9', '9:16', 'reels', 'tiktok', 'stories', 'hochformat', 'querformat'],
+    },
+  },
+  fr: {
+    open: 'Rechercher',
+    label: 'Rechercher sur le site',
+    placeholder: 'Rechercher, p. ex. tarifs ou paiement',
+    empty: 'Aucun résultat. Essayez un autre mot, ou demandez-nous sur WhatsApp.',
+    hint: 'Choisissez avec ↑ ↓ et ouvrez avec Entrée.',
+    types: { page: 'Page', section: 'Sur la page d’accueil', question: 'Question' },
+    sections: { calculator: 'Calculateur de prix', compare: 'Avant et après', formats: 'Horizontal et vertical (16:9 et 9:16)' },
+    keywords: {
+      home: ['accueil', 'aperçu'],
+      library: ['exemples', 'portfolio', 'vidéos', 'clips', 'galerie', 'réalisations'],
+      how: ['processus', 'étapes', 'livraison', 'délai', 'révisions'],
+      contact: ['e-mail', 'mail', 'whatsapp', 'téléphone', 'appeler', 'vidéo d’essai', 'gratuit', 'devis'],
+      pricing: ['prix', 'tarif', 'tarifs', 'coût', 'paiement', 'payer', 'virement', 'virement bancaire', 'facture', 'tva', 'remise', 'devis'],
+      faq: ['questions', 'aide', 'réponses'],
+      yacht: ['yacht', 'bateau', 'location', 'charter', 'catamaran', 'flotte', 'voile'],
+      hotel: ['hôtel', 'chambres', 'boutique', 'établissement'],
+      aiVideo: ['ia', 'intelligence artificielle', 'ai', 'limites', 'qualité'],
+      privacy: ['confidentialité', 'données', 'rgpd'],
+      terms: ['conditions', 'remboursement', 'annulation', 'délai de paiement', 'droits d’utilisation', 'licence'],
+      cookies: ['cookie', 'suivi', 'statistiques'],
+      calculator: ['calculateur', 'calculer', 'combien', 'total'],
+      compare: ['curseur', 'avant', 'après', 'photo'],
+      formats: ['formats', '16:9', '9:16', 'reels', 'tiktok', 'stories', 'vertical', 'horizontal'],
+    },
+  },
+  es: {
+    open: 'Buscar',
+    label: 'Buscar en la web',
+    placeholder: 'Buscar, p. ej. precios o pago',
+    empty: 'No hay resultados. Prueba otra palabra o pregúntanos por WhatsApp.',
+    hint: 'Elige con ↑ ↓ y abre con Intro.',
+    types: { page: 'Página', section: 'En la página de inicio', question: 'Pregunta' },
+    sections: { calculator: 'Calculadora de precios', compare: 'Antes y después', formats: 'Horizontal y vertical (16:9 y 9:16)' },
+    keywords: {
+      home: ['inicio', 'resumen'],
+      library: ['ejemplos', 'portfolio', 'vídeos', 'clips', 'galería', 'trabajos'],
+      how: ['proceso', 'pasos', 'entrega', 'plazo', 'revisiones'],
+      contact: ['correo', 'email', 'whatsapp', 'teléfono', 'llamar', 'vídeo de prueba', 'gratis', 'presupuesto'],
+      pricing: ['precio', 'precios', 'coste', 'pago', 'pagar', 'transferencia', 'transferencia bancaria', 'factura', 'iva', 'descuento', 'presupuesto'],
+      faq: ['preguntas', 'ayuda', 'respuestas'],
+      yacht: ['yate', 'barco', 'chárter', 'charter', 'catamarán', 'flota', 'vela'],
+      hotel: ['hotel', 'habitaciones', 'boutique', 'alojamiento'],
+      aiVideo: ['ia', 'inteligencia artificial', 'ai', 'límites', 'calidad'],
+      privacy: ['privacidad', 'datos', 'rgpd'],
+      terms: ['condiciones', 'reembolso', 'cancelación', 'plazo de pago', 'derechos de uso', 'licencia'],
+      cookies: ['cookie', 'seguimiento', 'estadísticas'],
+      calculator: ['calculadora', 'calcular', 'cuánto', 'total'],
+      compare: ['deslizador', 'antes', 'después', 'foto'],
+      formats: ['formatos', '16:9', '9:16', 'reels', 'tiktok', 'stories', 'vertical', 'horizontal'],
+    },
+  },
+  hr: {
+    open: 'Pretraži',
+    label: 'Pretražite stranicu',
+    placeholder: 'Pretražite, npr. cijene ili plaćanje',
+    empty: 'Nema rezultata. Pokušajte s drugom riječi ili nas pitajte na WhatsAppu.',
+    hint: 'Odaberite s ↑ ↓ i otvorite s Enter.',
+    types: { page: 'Stranica', section: 'Na početnoj stranici', question: 'Pitanje' },
+    sections: { calculator: 'Kalkulator cijene', compare: 'Prije i poslije', formats: 'Vodoravno i okomito (16:9 i 9:16)' },
+    keywords: {
+      home: ['početna', 'pregled'],
+      library: ['primjeri', 'portfolio', 'videi', 'isječci', 'galerija', 'radovi'],
+      how: ['postupak', 'koraci', 'isporuka', 'rok', 'izmjene'],
+      contact: ['e-mail', 'mail', 'whatsapp', 'telefon', 'nazvati', 'probni video', 'besplatno', 'ponuda'],
+      pricing: ['cijena', 'cijene', 'trošak', 'plaćanje', 'platiti', 'bankovna doznaka', 'uplata', 'račun', 'pdv', 'popust', 'ponuda'],
+      faq: ['pitanja', 'pomoć', 'odgovori'],
+      yacht: ['jahta', 'jahte', 'brod', 'charter', 'čarter', 'katamaran', 'flota', 'najam'],
+      hotel: ['hotel', 'sobe', 'boutique', 'smještaj'],
+      aiVideo: ['ai', 'umjetna inteligencija', 'ograničenja', 'kvaliteta'],
+      privacy: ['privatnost', 'podaci', 'gdpr', 'osobni podaci'],
+      terms: ['uvjeti', 'povrat novca', 'otkazivanje', 'rok plaćanja', 'prava korištenja', 'licenca'],
+      cookies: ['kolačić', 'kolačići', 'praćenje', 'statistika'],
+      calculator: ['kalkulator', 'izračun', 'koliko', 'ukupno'],
+      compare: ['klizač', 'prije', 'poslije', 'fotografija'],
+      formats: ['formati', '16:9', '9:16', 'reels', 'tiktok', 'stories', 'okomito', 'vodoravno'],
+    },
+  },
+};
+
+/** Anchor id for a question on the FAQ page, so search results can link straight to it. */
+export function faqAnchor(question: string): string {
+  const slug = question
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 60);
+  return `q-${slug}`;
+}

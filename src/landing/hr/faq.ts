@@ -36,11 +36,11 @@ export const q = {
   },
   vat: {
     q: 'Jesu li cijene s PDV-om?',
-    a: 'Ne. Sve cijene su bez PDV-a, i to uvijek piše u ponudi.',
+    a: 'Da. Sve cijene su s PDV-om, i to uvijek piše u ponudi.',
   },
   payment: {
     q: 'Kada plaćam?',
-    a: 'Račun izdajemo nakon isporuke, s rokom plaćanja od 14 dana. Za veće narudžbe možemo zatražiti predujam; to će pisati u ponudi.',
+    a: 'Račun izdajemo nakon isporuke, a plaćate bankovnom doznakom (uplatom na račun), s rokom plaćanja od 14 dana. Za veće narudžbe možemo zatražiti predujam; to će pisati u ponudi.',
   },
   volume: {
     q: 'Kako funkcionira cijena prema količini?',

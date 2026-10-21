@@ -80,7 +80,7 @@ export function service(lang: Locale, page?: { name: string; description: string
         minPrice: MIN_PRICE,
         maxPrice: BASE_PRICE,
         unitText: 'video',
-        valueAddedTaxIncluded: false,
+        valueAddedTaxIncluded: true,
       },
     },
   };

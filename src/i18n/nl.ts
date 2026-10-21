@@ -123,7 +123,7 @@ const nl: UI = {
   },
   packages: {
     title: 'Pakketten.',
-    lead: 'Elke opdracht krijgt vooraf een vaste offerte. Prijzen zijn exclusief btw.',
+    lead: 'Elke opdracht krijgt vooraf een vaste offerte. Prijzen zijn inclusief btw.',
     price: '€100',
     perVideo: 'per video',
     from: 'vanaf',
@@ -176,7 +176,7 @@ const nl: UI = {
     colVideos: "Video's in de opdracht",
     colPrice: "Prijs per video",
     colExample: "Voorbeeld",
-    priceNote: "Prijzen exclusief btw. Meer dan 100 video's: dan maken we een offerte.",
+    priceNote: "Prijzen inclusief btw. Meer dan 100 video's: dan maken we een offerte.",
   },
   vertical: {
     eyebrow: "Twee formaten",
@@ -188,7 +188,7 @@ const nl: UI = {
     label: "Aantal video's",
     total: 'Totaal',
     perVideo: 'Prijs per video',
-    note: "Exclusief btw. Beide formaten en 2 revisies inbegrepen. Per 5 video's gaat de prijs per video €5 omlaag, tot minimaal €50.",
+    note: "Inclusief btw. Beide formaten en 2 revisies inbegrepen. Per 5 video's gaat de prijs per video €5 omlaag, tot minimaal €50.",
     more: "Meer dan 100 video's? Dan maken we een offerte.",
   },
   booking: {

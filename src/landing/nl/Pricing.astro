@@ -14,10 +14,10 @@ const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pric
   lang={lang}
   page="pricing"
   title="Prijzen: €100 tot €50 per video · Still to Film"
-  description="Still to Film kost €100 per video, vanaf 5 video's €95, en per 5 video's €5 minder, tot €50. Beide formaten en 2 revisies inbegrepen. Exclusief btw."
+  description="Still to Film kost €100 per video, vanaf 5 video's €95, en per 5 video's €5 minder, tot €50. Beide formaten en 2 revisies inbegrepen. Inclusief btw."
   eyebrow="Prijzen"
   h1="Prijzen: van €100 tot €50 per video"
-  summary="Een video van Still to Film kost €100 als je er één bestelt, en €95 per video vanaf 5 video's. Daarna gaat de prijs per video per 5 video's €5 omlaag, tot minimaal €50; de prijzen zijn exclusief btw, en beide formaten en twee revisierondes zitten erbij."
+  summary="Een video van Still to Film kost €100 als je er één bestelt, en €95 per video vanaf 5 video's. Daarna gaat de prijs per video per 5 video's €5 omlaag, tot minimaal €50; de prijzen zijn inclusief btw, en beide formaten en twee revisierondes zitten erbij."
   faqTitle="Vragen over prijzen"
   faqItems={faq}
   service
@@ -44,7 +44,7 @@ const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pric
   <h2>Rekenvoorbeelden</h2>
   <div class="table-wrap" role="region" aria-label="Rekenvoorbeelden" tabindex="0">
     <table>
-      <thead><tr><th scope="col">Video's</th><th scope="col">Prijs per video</th><th scope="col">Totaal, exclusief btw</th></tr></thead>
+      <thead><tr><th scope="col">Video's</th><th scope="col">Prijs per video</th><th scope="col">Totaal, inclusief btw</th></tr></thead>
       <tbody>
         {examples.map((e) => (
           <tr><td data-label="Video's">{e.n}</td><td data-label="Prijs per video">{e.per}</td><td data-label="Totaal">{e.total}</td></tr>

@@ -123,7 +123,7 @@ const hr: UI = {
   },
   packages: {
     title: 'Paketi.',
-    lead: 'Za svaki projekt prije početka dobivate ponudu s fiksnom cijenom. Cijene ne uključuju PDV.',
+    lead: 'Za svaki projekt prije početka dobivate ponudu s fiksnom cijenom. Cijene uključuju PDV.',
     price: '€100',
     perVideo: 'po videu',
     from: 'od',
@@ -176,7 +176,7 @@ const hr: UI = {
     colVideos: 'Broj videa u narudžbi',
     colPrice: 'Cijena po videu',
     colExample: 'Primjer',
-    priceNote: 'Cijene ne uključuju PDV. Više od 100 videozapisa: izradit ćemo ponudu.',
+    priceNote: 'Cijene uključuju PDV. Više od 100 videozapisa: izradit ćemo ponudu.',
   },
   vertical: {
     eyebrow: 'Dva formata',
@@ -188,7 +188,7 @@ const hr: UI = {
     label: 'Broj videozapisa',
     total: 'Ukupno',
     perVideo: 'Cijena po videu',
-    note: 'Bez PDV-a. Oba formata i 2 kruga izmjena uključeni. Svakih 5 videozapisa cijena po videu pada za 5 €, do najniže 50 €.',
+    note: 'PDV uključen. Oba formata i 2 kruga izmjena uključeni. Svakih 5 videozapisa cijena po videu pada za 5 €, do najniže 50 €.',
     more: 'Više od 100 videozapisa? Izradit ćemo vam ponudu.',
   },
   booking: {

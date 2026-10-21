@@ -36,11 +36,11 @@ export const q = {
   },
   vat: {
     q: 'Sind die Preise inklusive Umsatzsteuer?',
-    a: 'Nein. Alle Preise verstehen sich zzgl. USt., und das steht auch immer im Angebot.',
+    a: 'Ja. Alle Preise verstehen sich inkl. USt., und das steht auch immer im Angebot.',
   },
   payment: {
     q: 'Wann bezahle ich?',
-    a: 'Wir stellen die Rechnung nach der Lieferung, mit einem Zahlungsziel von 14 Tagen. Bei größeren Aufträgen bitten wir eventuell um eine Anzahlung; das steht dann im Angebot.',
+    a: 'Wir stellen die Rechnung nach der Lieferung, und Sie zahlen per Banküberweisung mit einem Zahlungsziel von 14 Tagen. Bei größeren Aufträgen bitten wir eventuell um eine Anzahlung; das steht dann im Angebot.',
   },
   volume: {
     q: 'Wie funktioniert der Mengenpreis?',

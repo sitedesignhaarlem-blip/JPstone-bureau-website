@@ -123,7 +123,7 @@ const de: UI = {
   },
   packages: {
     title: 'Pakete.',
-    lead: 'Jeder Auftrag bekommt vorab ein Festpreisangebot. Preise zuzüglich Umsatzsteuer.',
+    lead: 'Jeder Auftrag bekommt vorab ein Festpreisangebot. Preise inklusive Umsatzsteuer.',
     price: '€100',
     perVideo: 'pro Video',
     from: 'ab',
@@ -176,7 +176,7 @@ const de: UI = {
     colVideos: "Videos im Auftrag",
     colPrice: "Preis pro Video",
     colExample: "Beispiel",
-    priceNote: "Preise zzgl. USt. Mehr als 100 Videos: Wir erstellen ein Angebot.",
+    priceNote: "Preise inkl. USt. Mehr als 100 Videos: Wir erstellen ein Angebot.",
   },
   vertical: {
     eyebrow: "Zwei Formate",
@@ -188,7 +188,7 @@ const de: UI = {
     label: 'Anzahl Videos',
     total: 'Gesamt',
     perVideo: 'Preis pro Video',
-    note: "Zzgl. USt. Beide Formate und 2 Korrekturen inklusive. Alle 5 Videos sinkt der Preis pro Video um 5 €, bis auf 50 €.",
+    note: "Inkl. USt. Beide Formate und 2 Korrekturen inklusive. Alle 5 Videos sinkt der Preis pro Video um 5 €, bis auf 50 €.",
     more: 'Mehr als 100 Videos? Wir erstellen Ihnen ein Angebot.',
   },
   booking: {

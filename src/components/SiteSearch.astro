@@ -1,0 +1,248 @@
+---
+// Site search in the menu: a button opens a field that suggests pages, home page sections and
+// FAQ questions while you type ("p" → Pricing, Privacy, payment…). Everything is in the page,
+// so it works offline and sends nothing anywhere. Without JavaScript the button stays hidden.
+import { hasPage, pageIds, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
+import { faqAnchor, searchUI } from '../i18n/search';
+import { groups as en } from '../landing/en/faq';
+import { groups as nl } from '../landing/nl/faq';
+import { groups as de } from '../landing/de/faq';
+import { groups as fr } from '../landing/fr/faq';
+import { groups as es } from '../landing/es/faq';
+import { groups as hr } from '../landing/hr/faq';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const s = searchUI[lang];
+const faqGroups = { en, nl, de, fr, es, hr }[lang];
+
+const pageLabel: Record<PageId, string> = {
+  home: t.nav.home, library: t.nav.library, how: t.nav.how, contact: t.nav.contact,
+  pricing: t.pages.pricing, faq: t.pages.faq, yacht: t.pages.yacht, hotel: t.pages.hotel, aiVideo: t.pages.aiVideo,
+  privacy: t.footer.privacy, terms: t.footer.terms, cookies: t.footer.cookies,
+};
+
+// How likely someone looks for a page: breaks ties, so "p" shows Pricing before Privacy.
+const weight: Partial<Record<PageId, number>> = { pricing: 6, contact: 5, library: 4, faq: 3, how: 3, yacht: 2, hotel: 2, aiVideo: 2, home: 1 };
+// The library is also found by the names of its clips ("galley", "saloon"…).
+const clipNames = Object.values(t.shots).map((shot) => shot.title);
+
+// t: type (p page, s section, q question), l: label, h: link, k: keywords, a: answer text, w: weight
+type Entry = { t: 'p' | 's' | 'q'; l: string; h: string; k: string; a?: string; w?: number };
+const index: Entry[] = [
+  ...pageIds.filter((p) => hasPage(lang, p)).map((p) => ({
+    t: 'p' as const, l: pageLabel[p], h: pagePath(lang, p), w: weight[p] ?? 0,
+    k: [...(s.keywords[p] ?? []), ...(p === 'library' ? clipNames : [])].join('|'),
+  })),
+  { t: 's', l: s.sections.calculator, h: pagePath(lang, 'home', '#packages-title'), k: (s.keywords.calculator ?? []).join('|') },
+  { t: 's', l: s.sections.compare, h: pagePath(lang, 'home', '#compare-title'), k: [...(s.keywords.compare ?? []), ...Object.values(t.compare.pairs)].join('|') },
+  { t: 's', l: s.sections.formats, h: pagePath(lang, 'home', '#devices-title'), k: (s.keywords.formats ?? []).join('|') },
+  ...faqGroups.flatMap((g) => g.items.map((item) => ({ t: 'q' as const, l: item.q, h: pagePath(lang, 'faq', `#${faqAnchor(item.q)}`), k: g.title, a: item.a }))),
+];
+const suggested = ['pricing', 'contact', 'library', 'faq'].map((p) => pagePath(lang, p as PageId));
+---
+<div class="search" data-search>
+  <button class="search-open" type="button" aria-expanded="false" aria-controls="site-search" data-search-open>
+    <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.75" fill="none" stroke="currentColor" stroke-width="1.8" /><path d="m13 13 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+    <span class="visually-hidden">{s.open}</span>
+  </button>
+  <div class="search-panel" id="site-search" hidden data-search-panel
+    data-index={JSON.stringify(index)} data-suggested={JSON.stringify(suggested)}
+    data-types={JSON.stringify(s.types)}>
+    <div class="wrap search-inner">
+      <label class="visually-hidden" for="search-input">{s.label}</label>
+      <div class="search-field">
+        <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.75" fill="none" stroke="currentColor" stroke-width="1.8" /><path d="m13 13 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+        <input id="search-input" type="search" role="combobox" aria-autocomplete="list" aria-expanded="false"
+          aria-controls="search-list" aria-describedby="search-hint" autocomplete="off" spellcheck="false"
+          placeholder={s.placeholder} enterkeyhint="go" data-search-input />
+      </div>
+      <ul id="search-list" class="search-list" role="listbox" aria-label={s.label} data-search-list></ul>
+      <p class="search-empty muted" hidden data-search-empty>{s.empty}</p>
+      <p id="search-hint" class="search-hint muted">{s.hint}</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  type Entry = { t: 'p' | 's' | 'q'; l: string; h: string; k: string; a?: string; w?: number };
+  const root = document.querySelector<HTMLElement>('[data-search]');
+  if (root) {
+    const openBtn = root.querySelector<HTMLButtonElement>('[data-search-open]')!;
+    const panel = root.querySelector<HTMLElement>('[data-search-panel]')!;
+    const input = root.querySelector<HTMLInputElement>('[data-search-input]')!;
+    const list = root.querySelector<HTMLUListElement>('[data-search-list]')!;
+    const empty = root.querySelector<HTMLElement>('[data-search-empty]')!;
+    const index: Entry[] = JSON.parse(panel.dataset.index!);
+    const suggested: string[] = JSON.parse(panel.dataset.suggested!);
+    const types: Record<'page' | 'section' | 'question', string> = JSON.parse(panel.dataset.types!);
+    const typeLabel = { p: types.page, s: types.section, q: types.question };
+
+    // Lower case without accents, so "e" finds "é" and "c" finds "č".
+    const norm = (x: string) => x.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+    const words = (x: string) => norm(x).split(/[^a-z0-9:]+/).filter(Boolean);
+    const prepared = index.map((e) => ({
+      e,
+      label: norm(e.l),
+      labelWords: words(e.l),
+      keys: norm(e.k).split('|').filter(Boolean),
+      keyWords: words(e.k),
+      answerWords: e.a ? words(e.a) : [],
+    }));
+
+    const score = (p: (typeof prepared)[number], q: string, tokens: string[]) => {
+      let total = 0;
+      for (const tok of tokens) {
+        if (p.labelWords.some((w) => w.startsWith(tok))) total += 30;
+        else if (p.keys.some((k) => k.startsWith(tok)) || p.keyWords.some((w) => w.startsWith(tok))) total += 20;
+        else if (tok.length >= 3 && p.answerWords.some((w) => w.startsWith(tok))) total += 5;
+        else return 0;
+      }
+      if (p.label.startsWith(q)) total += 15;
+      if (p.keys.some((k) => k.startsWith(q))) total += 8;
+      return total + { p: 3, s: 2, q: 1 }[p.e.t] + (p.e.w ?? 0);
+    };
+
+    let results: Entry[] = [];
+    let active = -1;
+
+    const render = () => {
+      const q = norm(input.value.trim());
+      if (!q) {
+        results = suggested.map((h) => index.find((e) => e.h === h)).filter(Boolean) as Entry[];
+      } else {
+        const tokens = q.split(/\s+/);
+        results = prepared
+          .map((p) => ({ p, s: score(p, q, tokens) }))
+          .filter((r) => r.s > 0)
+          .sort((a, b) => b.s - a.s)
+          .slice(0, 8)
+          .map((r) => r.p.e);
+      }
+      active = results.length ? 0 : -1;
+      list.replaceChildren(
+        ...results.map((e, i) => {
+          const li = document.createElement('li');
+          li.id = `search-opt-${i}`;
+          li.setAttribute('role', 'option');
+          li.dataset.href = e.h;
+          const label = document.createElement('span');
+          label.className = 'search-label';
+          label.textContent = e.l;
+          const type = document.createElement('span');
+          type.className = 'search-type';
+          type.textContent = typeLabel[e.t];
+          li.append(label, type);
+          return li;
+        }),
+      );
+      empty.hidden = results.length > 0;
+      input.setAttribute('aria-expanded', String(results.length > 0));
+      highlight();
+    };
+
+    const highlight = () => {
+      list.querySelectorAll('[role="option"]').forEach((li, i) => li.setAttribute('aria-selected', String(i === active)));
+      if (active >= 0) {
+        input.setAttribute('aria-activedescendant', `search-opt-${active}`);
+        list.children[active]?.scrollIntoView({ block: 'nearest' });
+      } else input.removeAttribute('aria-activedescendant');
+    };
+
+    const open = () => {
+      panel.hidden = false;
+      openBtn.setAttribute('aria-expanded', 'true');
+      render();
+      input.focus();
+    };
+    const close = (focusButton = true) => {
+      panel.hidden = true;
+      openBtn.setAttribute('aria-expanded', 'false');
+      if (focusButton) openBtn.focus();
+    };
+
+    openBtn.addEventListener('click', () => (panel.hidden ? open() : close()));
+    input.addEventListener('input', render);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (!results.length) return;
+        active = (active + (e.key === 'ArrowDown' ? 1 : -1) + results.length) % results.length;
+        highlight();
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (active >= 0) go(results[active].h);
+      } else if (e.key === 'Escape') {
+        close();
+      }
+    });
+    list.addEventListener('mousemove', (e) => {
+      const li = (e.target as HTMLElement).closest('[role="option"]');
+      const i = li ? [...list.children].indexOf(li) : -1;
+      if (i >= 0 && i !== active) { active = i; highlight(); }
+    });
+    const go = (href: string) => {
+      close(false);
+      location.href = href;
+    };
+    list.addEventListener('click', (e) => {
+      const li = (e.target as HTMLElement).closest<HTMLElement>('[role="option"]');
+      if (li?.dataset.href) go(li.dataset.href);
+    });
+    document.addEventListener('click', (e) => {
+      if (!panel.hidden && !root.contains(e.target as Node)) close(false);
+    });
+    // "/" or Ctrl/Cmd+K opens the search from anywhere, unless you are typing in a field.
+    document.addEventListener('keydown', (e) => {
+      const typing = (e.target as HTMLElement).closest('input, textarea, select, [contenteditable]');
+      if ((e.key === '/' && !typing) || (e.key.toLowerCase() === 'k' && (e.metaKey || e.ctrlKey))) {
+        e.preventDefault();
+        open();
+      }
+    });
+  }
+
+  // A link to a question on the FAQ page opens that question.
+  const openTarget = () => {
+    if (!location.hash) return;
+    const el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (el instanceof HTMLDetailsElement) el.open = true;
+  };
+  openTarget();
+  addEventListener('hashchange', openTarget);
+</script>
+
+<style>
+  .search-open {
+    display: none; align-items: center; justify-content: center; width: 2rem; height: 2rem; padding: 0;
+    border: 0; border-radius: 50%; background: none; color: var(--fg); opacity: 0.8; cursor: pointer;
+  }
+  :global(.js) .search-open { display: inline-flex; }
+  .search-open:hover, .search-open[aria-expanded='true'] { opacity: 1; background: var(--bg-alt); }
+
+  .search-panel {
+    position: absolute; left: 0; right: 0; top: 100%; background: var(--bg);
+    border-bottom: 1px solid var(--line); box-shadow: 0 16px 32px rgb(0 0 0 / 0.08);
+  }
+  .search-inner { display: grid; gap: var(--space-3); max-width: 44rem; padding-block: var(--space-5); }
+  .search-field { display: flex; align-items: center; gap: var(--space-3); padding: 0 var(--space-4); border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--bg-alt); color: var(--fg-muted); }
+  .search-field:focus-within { border-color: var(--accent); }
+  .search-field input {
+    flex: 1; min-width: 0; min-height: 2.75rem; border: 0; background: none; color: var(--fg);
+    font: inherit; font-size: 1rem; letter-spacing: normal; outline: none;
+  }
+  .search-field input::-webkit-search-cancel-button { cursor: pointer; }
+  .search-list { display: grid; gap: 0; padding: 0; margin: 0; list-style: none; max-height: min(24rem, 60svh); overflow-y: auto; }
+  .search-list :global([role='option']) {
+    display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4);
+    padding: var(--space-3) var(--space-4); border-radius: 10px; color: var(--fg); font-size: var(--step-small); cursor: pointer;
+  }
+  .search-list :global([aria-selected='true']) { background: var(--bg-alt); }
+  :global(.search-label) { font-weight: 600; }
+  :global(.search-type) { flex: none; font-size: 0.75rem; color: var(--fg-muted); }
+  .search-empty, .search-hint { font-size: 0.8125rem; margin: 0; padding-inline: var(--space-4); }
+  @media (any-hover: none) { .search-hint { display: none; } }
+</style>

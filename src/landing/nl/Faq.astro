@@ -1,6 +1,7 @@
 ---
 import Landing from '../../layouts/Landing.astro';
 import { groups } from './faq';
+import { faqAnchor } from '../../i18n/search';
 
 const lang = 'nl';
 const all = groups.flatMap((g) => g.items);
@@ -22,7 +23,7 @@ const all = groups.flatMap((g) => g.items);
     <>
       <h2>{group.title}</h2>
       {group.items.map((item) => (
-        <details>
+        <details id={faqAnchor(item.q)}>
           <summary>{item.q}</summary>
           <p>{item.a}</p>
         </details>

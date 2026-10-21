@@ -14,10 +14,10 @@ const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pric
   lang={lang}
   page="pricing"
   title="Cijene videa: od 100 € do 50 € po videu · Still to Film"
-  description="Jedan video stoji 100 €, od 5 videa 95 € po videu, a svakih 5 videa 5 € manje, sve do 50 €. Oba formata i 2 kruga izmjena uključeni. Bez PDV-a."
+  description="Jedan video stoji 100 €, od 5 videa 95 € po videu, a svakih 5 videa 5 € manje, sve do 50 €. Oba formata i 2 kruga izmjena uključeni. PDV uključen."
   eyebrow="Cijene"
   h1="Cijene: od 100 € do 50 € po videu"
-  summary="Video studija Still to Film stoji 100 € ako naručite jedan, a od 5 videa 95 € po videu. Nakon toga cijena po videu pada za 5 € svakih 5 videa, sve do 50 €; cijene su bez PDV-a i uključuju oba formata i dva kruga izmjena."
+  summary="Video studija Still to Film stoji 100 € ako naručite jedan, a od 5 videa 95 € po videu. Nakon toga cijena po videu pada za 5 € svakih 5 videa, sve do 50 €; cijene uključuju PDV, oba formata i dva kruga izmjena."
   faqTitle="Pitanja o cijenama"
   faqItems={faq}
   service
@@ -44,7 +44,7 @@ const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pric
   <h2>Primjeri izračuna</h2>
   <div class="table-wrap" role="region" aria-label="Primjeri izračuna" tabindex="0">
     <table>
-      <thead><tr><th scope="col">Videa</th><th scope="col">Cijena po videu</th><th scope="col">Ukupno, bez PDV-a</th></tr></thead>
+      <thead><tr><th scope="col">Videa</th><th scope="col">Cijena po videu</th><th scope="col">Ukupno, s PDV-om</th></tr></thead>
       <tbody>
         {examples.map((e) => (
           <tr><td data-label="Videa">{e.n}</td><td data-label="Cijena po videu">{e.per}</td><td data-label="Ukupno">{e.total}</td></tr>

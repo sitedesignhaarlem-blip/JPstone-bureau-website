@@ -36,11 +36,11 @@ export const q = {
   },
   vat: {
     q: '¿Los precios incluyen IVA?',
-    a: 'No. Todos los precios son sin IVA, y el presupuesto siempre lo indica.',
+    a: 'Sí. Todos los precios incluyen IVA, y el presupuesto siempre lo indica.',
   },
   payment: {
     q: '¿Cuándo pago?',
-    a: 'Facturamos después de la entrega, con un plazo de pago de 14 días. En encargos grandes podemos pedir un anticipo; el presupuesto lo indicará.',
+    a: 'Facturamos después de la entrega y pagas por transferencia bancaria, con un plazo de pago de 14 días. En encargos grandes podemos pedir un anticipo; el presupuesto lo indicará.',
   },
   volume: {
     q: '¿Cómo funciona el precio por volumen?',

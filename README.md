@@ -66,6 +66,10 @@ Maak een proefvideo van de listing van een prospect en stuur een eigen link mee,
 
 Deze pagina's staan niet in de sitemap en worden niet geïndexeerd (`noindex`).
 
+## Zoeken op de site
+
+Het vergrootglas in het menu (`src/components/SiteSearch.astro`) geeft suggesties terwijl je typt: pagina's, onderdelen van de homepage en alle vragen van de FAQ-pagina. Extra zoekwoorden per taal, zoals "betalen" of "btw" voor de prijzenpagina, staan in `src/i18n/search.ts`. Alles staat in de pagina zelf; er gaat niets naar een externe dienst. Sneltoets: `/` of Ctrl/Cmd+K.
+
 ## SEO en AI-zoekmachines
 
 - **Sitemap:** `/sitemap.xml` wordt bij elke build gemaakt uit de paginalijst in `src/i18n/config.ts`, met alle taalversies (hreflang). Een nieuwe pagina komt er vanzelf in.

@@ -36,11 +36,11 @@ export const q = {
   },
   vat: {
     q: 'Zijn de prijzen inclusief btw?',
-    a: 'Nee. Alle prijzen zijn exclusief btw, en dat staat ook altijd in de offerte.',
+    a: 'Ja. Alle prijzen zijn inclusief btw, en dat staat ook altijd in de offerte.',
   },
   payment: {
     q: 'Wanneer betaal ik?',
-    a: 'We factureren na oplevering, met een betaaltermijn van 14 dagen. Bij grotere opdrachten kunnen we om een aanbetaling vragen; dat staat dan in de offerte.',
+    a: 'We factureren na oplevering en je betaalt per bankoverschrijving, met een betaaltermijn van 14 dagen. Bij grotere opdrachten kunnen we om een aanbetaling vragen; dat staat dan in de offerte.',
   },
   volume: {
     q: 'Hoe werkt de staffelprijs?',

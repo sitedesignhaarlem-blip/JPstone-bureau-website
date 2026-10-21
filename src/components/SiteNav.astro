@@ -1,5 +1,6 @@
 ---
 import LogoMark from './LogoMark.astro';
+import SiteSearch from './SiteSearch.astro';
 import { hasPage, locales, localeNames, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
 
 interface Props {
@@ -29,6 +30,7 @@ const langHref = (l: Locale) => pagePath(l, hasPage(l, page) ? page : 'home');
           </li>
         ))}
       </ul>
+      <SiteSearch lang={lang} />
       <details class="lang" data-lang-menu>
         <summary>{lang.toUpperCase()}<span class="visually-hidden"> · {t.nav.language}: {localeNames[lang]}</span></summary>
         <ul class="lang-list" role="list">
@@ -92,12 +94,14 @@ const langHref = (l: Locale) => pagePath(l, hasPage(l, page) ? page : 'home');
   /* Phones: name and language on the first row, the page links on a second row. */
   @media (max-width: 48rem) {
     .nav-inner {
-      display: grid; grid-template-columns: 1fr auto; grid-template-areas: 'brand lang' 'links links';
+      display: grid; grid-template-columns: 1fr auto auto; grid-template-areas: 'brand search lang' 'links links links';
+      column-gap: var(--space-2);
       row-gap: 0; padding-top: var(--space-2);
     }
     .nav-brand { grid-area: brand; }
     .nav-right { display: contents; }
     .lang { grid-area: lang; }
+    .nav-right > :global(.search) { grid-area: search; }
     .nav-links {
       grid-area: links; gap: var(--space-5); overflow-x: auto; scrollbar-width: none;
       padding-block: var(--space-2); margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter);

@@ -36,11 +36,11 @@ export const q = {
   },
   vat: {
     q: 'Are prices including VAT?',
-    a: 'No. All prices exclude VAT, and the quote always says so.',
+    a: 'Yes. All prices include VAT, and the quote always says so.',
   },
   payment: {
     q: 'When do I pay?',
-    a: 'We invoice after delivery, with a payment term of 14 days. For larger orders we may ask for a deposit; the quote will say so.',
+    a: 'We invoice after delivery and you pay by bank transfer, with a payment term of 14 days. For larger orders we may ask for a deposit; the quote will say so.',
   },
   volume: {
     q: 'How does the volume price work?',

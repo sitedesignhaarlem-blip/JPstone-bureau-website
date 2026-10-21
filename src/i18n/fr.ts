@@ -123,7 +123,7 @@ const fr: UI = {
   },
   packages: {
     title: 'Formules.',
-    lead: 'Chaque commande reçoit un devis fixe avant de commencer. Prix hors TVA.',
+    lead: 'Chaque commande reçoit un devis fixe avant de commencer. Prix TTC.',
     price: '€100',
     perVideo: 'par vidéo',
     from: 'à partir de',
@@ -176,7 +176,7 @@ const fr: UI = {
     colVideos: "Vidéos dans la commande",
     colPrice: "Prix par vidéo",
     colExample: "Exemple",
-    priceNote: "Prix hors TVA. Plus de 100 vidéos : nous établissons un devis.",
+    priceNote: "Prix TTC. Plus de 100 vidéos : nous établissons un devis.",
   },
   vertical: {
     eyebrow: "Deux formats",
@@ -188,7 +188,7 @@ const fr: UI = {
     label: 'Nombre de vidéos',
     total: 'Total',
     perVideo: 'Prix par vidéo',
-    note: "Hors TVA. Deux formats et 2 révisions inclus. Toutes les 5 vidéos, le prix par vidéo baisse de 5 €, jusqu’à 50 €.",
+    note: "TVA incluse. Deux formats et 2 révisions inclus. Toutes les 5 vidéos, le prix par vidéo baisse de 5 €, jusqu’à 50 €.",
     more: 'Plus de 100 vidéos ? Nous vous faisons un devis.',
   },
   booking: {

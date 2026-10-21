@@ -125,7 +125,7 @@ const en = {
   },
   packages: {
     title: 'Packages.',
-    lead: 'Every project gets a fixed quote before we start. Prices exclude VAT.',
+    lead: 'Every project gets a fixed quote before we start. Prices include VAT.',
     price: '€100',
     perVideo: 'per video',
     from: 'from',
@@ -178,7 +178,7 @@ const en = {
     colVideos: "Videos in the order",
     colPrice: "Price per video",
     colExample: "Example",
-    priceNote: "Prices exclude VAT. More than 100 videos: we make a quote.",
+    priceNote: "Prices include VAT. More than 100 videos: we make a quote.",
   },
   vertical: {
     eyebrow: "Two formats",
@@ -190,7 +190,7 @@ const en = {
     label: 'Number of videos',
     total: 'Total',
     perVideo: 'Price per video',
-    note: "Excl. VAT. Both formats and 2 revisions included. Every 5 videos, the price per video drops by €5, down to €50.",
+    note: "Incl. VAT. Both formats and 2 revisions included. Every 5 videos, the price per video drops by €5, down to €50.",
     more: 'More than 100 videos? We’ll make you a quote.',
   },
   booking: {
