@@ -1,0 +1,42 @@
+---
+// A softly bobbing arrow at the bottom of a section, so it's clear the page goes on.
+// Clicking it scrolls to the next section. Place it inside a section with position: relative.
+import { themeUI } from '../i18n/theme';
+import type { Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+const label = themeUI[Astro.props.lang].more;
+---
+<button class="scroll-cue" type="button" data-scroll-cue aria-label={label} title={label}>
+  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 9.5l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+</button>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-scroll-cue]').forEach((btn) =>
+    btn.addEventListener('click', () => {
+      const next = btn.closest('section')?.nextElementSibling as HTMLElement | null;
+      next?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }),
+  );
+</script>
+
+<style>
+  .scroll-cue {
+    position: absolute; left: 50%; bottom: var(--space-5); z-index: 2;
+    display: grid; place-items: center; width: 2.75rem; height: 2.75rem; padding: 0;
+    border: 1px solid currentColor; border-radius: 50%; background: rgb(0 0 0 / 0.25);
+    color: inherit; opacity: 0.85; cursor: pointer;
+    transform: translateX(-50%);
+    animation: bob 1.8s var(--ease) infinite;
+  }
+  .scroll-cue:hover { opacity: 1; }
+  @keyframes bob {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 6px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-cue { animation: none; }
+  }
+</style>

@@ -1,6 +1,7 @@
 ---
 // What sets the service apart from self-serve AI video tools: nothing to learn for the client,
 // and a person checks every video before delivery.
+import ScrollCue from './ScrollCue.astro';
 import { hasPage, pagePath, useTranslations, type Locale } from '../i18n';
 
 interface Props {
@@ -36,9 +37,12 @@ const links = [
       </p>
     )}
   </div>
+  <ScrollCue lang={lang} />
 </section>
 
 <style>
+  /* Room at the bottom for the scroll arrow. */
+  .promise { position: relative; padding-bottom: calc(var(--section) + var(--space-7)); }
   .promise-head { display: grid; gap: var(--space-3); max-width: 40rem; margin-bottom: var(--space-7); }
   .promise-lead { color: var(--on-dark-muted); }
   .promise-list { display: grid; gap: var(--space-6); padding: 0; margin: 0; list-style: none; }

@@ -10,6 +10,7 @@ import Packages from '../components/Packages.astro';
 import Faq from '../components/Faq.astro';
 import Vertical from '../components/Vertical.astro';
 import DoneForYou from '../components/DoneForYou.astro';
+import ScrollCue from '../components/ScrollCue.astro';
 import Reviews from '../components/Reviews.astro';
 import { hasPage, pagePath, useTranslations, type Locale } from '../i18n';
 
@@ -42,6 +43,7 @@ const t = useTranslations(lang);
           <a class="link-more" href={pagePath(lang, 'library')}>{t.hero.more}</a>
         </div>
       </div>
+      <ScrollCue lang={lang} />
     </section>
 
     <BeforeAfter lang={lang} />
@@ -130,7 +132,7 @@ const t = useTranslations(lang);
   }
   .hero-inner {
     position: relative; display: grid; justify-items: start; gap: var(--space-4);
-    padding-block: var(--space-9) var(--space-8);
+    padding-block: var(--space-9) calc(var(--space-8) + 3rem); /* room for the scroll arrow */
   }
   .hero .eyebrow { color: var(--on-dark); }
   .hero-title { max-width: 14ch; }
