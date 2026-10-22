@@ -3,8 +3,8 @@ import type { UI } from './en';
 
 const fr: UI = {
   meta: {
-    homeTitle: 'Still to Film · Des vidéos de visite à partir de vos photos d’annonce',
-    homeDesc: "Nous transformons les photos de votre annonce de yacht ou d’hôtel en une vidéo de visite calme de 60 à 90 secondes. Pas de tournage, aucun logiciel à apprendre : nous la réalisons, et une personne vérifie chaque vidéo.",
+    homeTitle: 'Still to Film · Vidéos de visite à partir de vos photos',
+    homeDesc: "Les photos de votre annonce de yacht ou d’hôtel deviennent une vidéo de visite de 60 à 90 s. Sans tournage ni logiciel, chaque vidéo vérifiée par une personne.",
     libraryTitle: 'Bibliothèque · Still to Film',
     libraryDesc: 'Southern Cross : six clips d’un catamaran à moteur, réalisés avec l’IA à partir des photos de son annonce.',
     howTitle: 'Comment ça marche · Still to Film',
@@ -97,7 +97,7 @@ const fr: UI = {
     termsTitle: 'Conditions générales',
     termsDesc: 'Les conditions des vidéos d’essai et des commandes de Still to Film : prix, livraison, révisions, droits d’utilisation, annulation et remboursement.',
     cookiesTitle: 'Politique relative aux cookies',
-    cookiesDesc: 'Still to Film ne dépose aucun cookie et n’utilise aucun traceur publicitaire ; les statistiques de visite sont anonymes. C’est pourquoi vous ne voyez pas de bandeau cookies.',
+    cookiesDesc: 'Still to Film ne dépose aucun cookie ni traceur publicitaire ; les statistiques de visite sont anonymes. D’où l’absence de bandeau cookies.',
     translationNote: 'Ceci est une traduction du texte néerlandais. En cas de divergence, la version néerlandaise prévaut.',
   },
   compare: {

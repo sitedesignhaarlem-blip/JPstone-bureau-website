@@ -4,7 +4,7 @@ import type { UI } from './en';
 const de: UI = {
   meta: {
     homeTitle: 'Still to Film · Walkthrough-Videos aus Ihren Inseratsfotos',
-    homeDesc: "Wir machen aus den Fotos Ihres Yacht- oder Hotelinserats ein ruhiges Walkthrough-Video von 60 bis 90 Sekunden. Kein Drehtag, keine Software zum Lernen: Wir erstellen es, und ein Mensch prüft jedes Video.",
+    homeDesc: "Aus den Fotos Ihres Yacht- oder Hotelinserats machen wir ein ruhiges Walkthrough-Video von 60–90 Sekunden. Kein Drehtag, keine Software, jedes Video geprüft.",
     libraryTitle: 'Bibliothek · Still to Film',
     libraryDesc: 'Southern Cross: sechs Clips eines Motorkatamarans, mit KI aus den vorhandenen Inseratsfotos erstellt.',
     howTitle: 'So funktioniert’s · Still to Film',

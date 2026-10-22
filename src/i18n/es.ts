@@ -3,8 +3,8 @@ import type { UI } from './en';
 
 const es: UI = {
   meta: {
-    homeTitle: 'Still to Film · Vídeos de recorrido a partir de las fotos de tu anuncio',
-    homeDesc: "Convertimos las fotos de tu anuncio de yate u hotel en un vídeo de recorrido tranquilo de 60 a 90 segundos. Sin día de rodaje ni software que aprender: lo hacemos nosotros, y una persona revisa cada vídeo.",
+    homeTitle: 'Still to Film · Vídeos de recorrido con las fotos de tu anuncio',
+    homeDesc: "Convertimos las fotos de tu anuncio de yate u hotel en un vídeo de recorrido de 60 a 90 s. Sin rodaje ni software, y una persona revisa cada vídeo.",
     libraryTitle: 'Biblioteca · Still to Film',
     libraryDesc: 'Southern Cross: seis clips de un catamarán a motor, hechos con IA a partir de las fotos de su anuncio.',
     howTitle: 'Cómo funciona · Still to Film',

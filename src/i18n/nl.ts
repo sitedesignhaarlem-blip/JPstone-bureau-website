@@ -4,7 +4,7 @@ import type { UI } from './en';
 const nl: UI = {
   meta: {
     homeTitle: "Still to Film · Walkthrough-video's van je listingfoto's",
-    homeDesc: "Wij maken van de foto's op je jacht- of hotellisting een rustige walkthrough-video van 60 tot 90 seconden. Geen draaidag en geen software om te leren: wij maken hem, en een mens controleert elke video.",
+    homeDesc: "We maken van de foto's op je jacht- of hotellisting een rustige walkthrough-video van 60 tot 90 seconden. Geen draaidag, geen software, door een mens gecheckt.",
     libraryTitle: 'Bibliotheek · Still to Film',
     libraryDesc: "Southern Cross: zes clips van een motorcatamaran, met AI gemaakt van de bestaande listingfoto's.",
     howTitle: 'Werkwijze · Still to Film',

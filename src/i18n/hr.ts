@@ -4,7 +4,7 @@ import type { UI } from './en';
 const hr: UI = {
   meta: {
     homeTitle: 'Still to Film · Video-obilasci od fotografija iz vašeg oglasa',
-    homeDesc: "Fotografije iz oglasa za vašu jahtu ili hotel pretvaramo u miran video-obilazak od 60 do 90 sekundi. Bez dana snimanja i bez softvera: mi ga izrađujemo, a čovjek pregleda svaki video.",
+    homeDesc: "Fotografije iz oglasa za jahtu ili hotel pretvaramo u miran video-obilazak od 60 do 90 s. Bez snimanja i softvera, a čovjek pregleda svaki video.",
     libraryTitle: 'Galerija · Still to Film',
     libraryDesc: 'Southern Cross: šest isječaka motornog katamarana, izrađenih umjetnom inteligencijom od fotografija iz oglasa.',
     howTitle: 'Kako funkcionira · Still to Film',

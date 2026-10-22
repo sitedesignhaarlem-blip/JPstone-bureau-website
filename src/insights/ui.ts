@@ -49,7 +49,7 @@ export const insightsUI: Record<Locale, InsightsUI> = {
   },
   fr: {
     name: 'Conseils',
-    title: 'Conseils : vidéo pour location de yachts et hôtels · Still to Film',
+    title: 'Conseils : vidéo pour yachts et hôtels · Still to Film',
     description: 'Articles pratiques sur la vidéo de visite pour loueurs de yachts, hôtels et locations de vacances : quelles photos, quoi montrer et où l’utiliser.',
     h1: 'Conseils',
     lead: 'Des réponses pratiques sur la vidéo de visite réalisée à partir de photos d’annonce : quelles photos fonctionnent, quoi montrer et où l’utiliser.',

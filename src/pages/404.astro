@@ -1,0 +1,30 @@
+---
+// Shown for any address that doesn't exist. English, with links to the home page in every language.
+import Base from '../layouts/Base.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { locales, localeNames, pagePath } from '../i18n';
+---
+<Base title="Page not found · Still to Film" description="This page does not exist. Go to the Still to Film home page or choose your language." lang="en" page="home" path="/404/" noindex>
+  <SiteNav lang="en" />
+  <main id="main">
+    <section class="section nf">
+      <div class="wrap nf-inner">
+        <p class="eyebrow">404</p>
+        <h1>This page doesn't exist.</h1>
+        <p class="lead muted">The link may be old or mistyped. Start from the home page, or pick your language.</p>
+        <p><a class="button" href={pagePath('en', 'home')}>Go to the home page</a></p>
+        <ul class="nf-langs" role="list">
+          {locales.map((l) => <li><a href={pagePath(l, 'home')} hreflang={l} lang={l}>{localeNames[l]}</a></li>)}
+        </ul>
+      </div>
+    </section>
+  </main>
+  <SiteFooter lang="en" />
+</Base>
+
+<style>
+  .nf-inner { display: grid; gap: var(--space-4); justify-items: start; max-width: 40rem; }
+  .nf h1 { font-size: var(--step-h2); line-height: 1.07; }
+  .nf-langs { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); padding: 0; margin: var(--space-4) 0 0; list-style: none; }
+</style>

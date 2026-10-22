@@ -5,7 +5,7 @@
 const en = {
   meta: {
     homeTitle: 'Still to Film · Walkthrough videos from your listing photos',
-    homeDesc: "We turn the photos on your yacht or hotel listing into a calm 60–90 second walkthrough video. No shoot day, no software to learn: we make it, and a person checks every video.",
+    homeDesc: "We turn the photos on your yacht or hotel listing into a calm 60–90 second walkthrough video. No shoot day, no software, and a person checks every video.",
     libraryTitle: 'Library · Still to Film',
     libraryDesc: 'Southern Cross: six clips of a motor catamaran, made with AI from its existing listing photos.',
     howTitle: 'How it works · Still to Film',
