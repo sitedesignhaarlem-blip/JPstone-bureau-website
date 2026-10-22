@@ -1,6 +1,7 @@
 ---
 import LogoMark from './LogoMark.astro';
 import SiteSearch from './SiteSearch.astro';
+import ThemeToggle from './ThemeToggle.astro';
 import { hasPage, locales, localeNames, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
 
 interface Props {
@@ -34,6 +35,7 @@ const langHref = (l: Locale) => langLinks ? (langLinks[l] ?? pagePath(l, 'home')
         ))}
       </ul>
       <SiteSearch lang={lang} />
+      <ThemeToggle lang={lang} />
       <details class="lang" data-lang-menu>
         <summary>{lang.toUpperCase()}<span class="visually-hidden"> · {t.nav.language}: {localeNames[lang]}</span></summary>
         <ul class="lang-list" role="list">
@@ -67,7 +69,7 @@ const langHref = (l: Locale) => langLinks ? (langLinks[l] ?? pagePath(l, 'home')
 </script>
 
 <style>
-  .nav { position: sticky; top: 0; z-index: 10; background: rgb(255 255 255 / 0.96); border-bottom: 1px solid var(--line); }
+  .nav { position: sticky; top: 0; z-index: 10; background: var(--nav-bg); border-bottom: 1px solid var(--line); }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 3rem; font-size: 0.75rem; letter-spacing: -0.01em; }
   .nav-right { display: flex; align-items: center; gap: var(--space-5); }
   ul { display: flex; gap: var(--space-5); padding: 0; margin: 0; list-style: none; }
@@ -97,7 +99,7 @@ const langHref = (l: Locale) => langLinks ? (langLinks[l] ?? pagePath(l, 'home')
   /* Phones: name and language on the first row, the page links on a second row. */
   @media (max-width: 48rem) {
     .nav-inner {
-      display: grid; grid-template-columns: 1fr auto auto; grid-template-areas: 'brand search lang' 'links links links';
+      display: grid; grid-template-columns: 1fr auto auto auto; grid-template-areas: 'brand search theme lang' 'links links links links';
       column-gap: var(--space-2);
       row-gap: 0; padding-top: var(--space-2);
     }
@@ -105,6 +107,7 @@ const langHref = (l: Locale) => langLinks ? (langLinks[l] ?? pagePath(l, 'home')
     .nav-right { display: contents; }
     .lang { grid-area: lang; }
     .nav-right > :global(.search) { grid-area: search; }
+    .nav-right > :global(.theme-toggle) { grid-area: theme; }
     .nav-links {
       grid-area: links; gap: var(--space-5); overflow-x: auto; scrollbar-width: none;
       padding-block: var(--space-2); margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter);

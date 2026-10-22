@@ -80,6 +80,13 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script is:inline>
       document.documentElement.classList.add('js');
+      // Dark mode only when the visitor chose it before; light is the default.
+      try {
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.dataset.theme = 'dark';
+          document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#000000');
+        }
+      } catch {}
       // A new page always opens at the top, unless the link points to a section (#…).
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
       addEventListener('pageshow', () => { if (!location.hash) scrollTo(0, 0); });
