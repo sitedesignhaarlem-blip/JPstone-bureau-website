@@ -10,7 +10,7 @@ interface Props {
 const label = themeUI[Astro.props.lang].more;
 ---
 <button class="scroll-cue" type="button" data-scroll-cue aria-label={label} title={label}>
-  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 9.5l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 9.5l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
 </button>
 
 <script>
@@ -23,18 +23,21 @@ const label = themeUI[Astro.props.lang].more;
 </script>
 
 <style>
+  /* Quiet, like the rest of the site: a thin chevron in the muted text colour, no circle. */
   .scroll-cue {
     position: absolute; left: 50%; bottom: var(--space-5); z-index: 2;
     display: grid; place-items: center; width: 2.75rem; height: 2.75rem; padding: 0;
-    border: 1px solid currentColor; border-radius: 50%; background: rgb(0 0 0 / 0.25);
-    color: inherit; opacity: 0.85; cursor: pointer;
+    border: 0; border-radius: 50%; background: none;
+    color: var(--on-dark-muted); cursor: pointer;
     transform: translateX(-50%);
-    animation: bob 1.8s var(--ease) infinite;
+    animation: bob 2.4s var(--ease) infinite;
+    transition: color var(--dur) var(--ease);
   }
-  .scroll-cue:hover { opacity: 1; }
+  .scroll-cue:hover { color: var(--on-dark); }
+  .scroll-cue svg { width: 28px; height: 28px; }
   @keyframes bob {
     0%, 100% { transform: translate(-50%, 0); }
-    50% { transform: translate(-50%, 6px); }
+    50% { transform: translate(-50%, 5px); }
   }
   @media (prefers-reduced-motion: reduce) {
     .scroll-cue { animation: none; }
