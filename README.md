@@ -95,6 +95,39 @@ Het vergrootglas in het menu (`src/components/SiteSearch.astro`) geeft suggestie
 - **Structured data:** `src/data/schema.ts` (Organization, WebSite, Service, FAQPage, VideoObject, BreadcrumbList). De FAQ-data komt uit dezelfde teksten als de zichtbare FAQ.
 - **Hoofdadres:** `https://stilltofilm.com` (zonder www). De doorverwijzing van www regel je in Vercel onder **Settings → Domains**, niet in `vercel.json`: twee regels die elkaar tegenspreken geven een eindeloze lus (ERR_TOO_MANY_REDIRECTS).
 
+## Klantportaal: inloggen en betalen
+
+Klanten loggen in op **/account/** met een code van 6 cijfers per e-mail (geen wachtwoord). Daar zien ze hun bestellingen, betalen ze via Stripe (iDEAL, creditcard, Bancontact), bekijken ze hun video's, geven ze feedback of vragen ze een revisie aan, en downloaden ze de bestanden zodra alles betaald is. Jij beheert alles op **/admin/**.
+
+**Betaalregel** (in `src/lib/orders.ts`, `SPLIT_FROM_CENTS`): onder €1.000 betaalt de klant alles vooraf; vanaf €1.000 50% vooraf en 50% na oplevering. Het restbedrag is pas te betalen als jij de status op `delivered` zet. Een bankoverschrijving markeer je in de admin met "Markeer als betaald".
+
+**Werkwijze per klant**
+1. Klant gaat akkoord met de offerte → jij maakt op /admin/ een bestelling (e-mail klant, aantal video's; het bedrag volgt de staffel of vul je zelf in).
+2. Kopieer het bericht op de bestelpagina naar e-mail of WhatsApp. De klant logt in en betaalt.
+3. Na betaling staat de bestelling op `in_production`. Upload de video's (16:9 en 9:16) op de bestelpagina; de klant krijgt ze te zien en geeft feedback.
+4. Nieuwe versie? Upload hem bij dezelfde video: versienummer gaat omhoog, status terug naar beoordelen.
+5. Alles goed → status `delivered` (bij 50/50 kan de klant dan het restbedrag betalen) en daarna `completed`.
+
+**Eenmalig instellen** (alles kan eerst in testmodus, zonder KvK)
+1. **Supabase** (supabase.com, gratis): maak een project in regio Frankfurt of Ierland.
+   - SQL Editor → plak `supabase/schema.sql` → Run.
+   - Authentication → URL Configuration: Site URL `https://stilltofilm.com`, Redirect URL `https://stilltofilm.com/account/auth/callback/`.
+   - Authentication → Email Templates → **Magic Link**: zet de code erin, bijv. `<p>Je code: <strong>{{ .Token }}</strong></p><p>Of klik: <a href="{{ .ConfirmationURL }}">inloggen</a></p>`.
+   - Project Settings → API: kopieer URL, `anon` key en `service_role` key.
+   - Let op: het gratis plan staat bestanden tot 50 MB toe en 1 GB opslag in totaal. Comprimeer video's (bijv. met `scripts/encode-media.sh`) of neem Pro als je meer nodig hebt. Supabase stuurt standaard maar een paar e-mails per uur; stel later eigen SMTP in (Authentication → SMTP).
+2. **Stripe** (stripe.com): maak een account; testmodus werkt zonder KvK.
+   - Developers → API keys: kopieer de **secret key** (`sk_test_…`).
+   - Developers → Webhooks → endpoint `https://stilltofilm.com/api/stripe-webhook/`, events `checkout.session.completed` en `checkout.session.async_payment_succeeded`; kopieer de signing secret (`whsec_…`).
+   - Settings → Payment methods: zet iDEAL, kaarten en Bancontact aan.
+   - Live gaan: na KvK-inschrijving het account activeren en de live-sleutels (`sk_live_…`, nieuwe webhook) in Vercel zetten. Zodra je btw-nummer hebt: zet het in Stripe (Settings → Business → Tax details) zodat het op de facturen komt.
+3. **Vercel** → Settings → Environment Variables: zet de zes waarden uit `.env.example` en deploy opnieuw.
+
+Zonder deze sleutels werkt de site gewoon; /account/ zegt dan dat het portaal nog niet beschikbaar is.
+
+**Lokaal testen:** kopieer `.env.example` naar `.env`, vul in, en start `npm run dev`. Voor Stripe-webhooks lokaal: `stripe listen --forward-to localhost:4321/api/stripe-webhook/`.
+
+**Techniek:** de site blijft statisch, behalve /account/, /admin/ en /api/ (Vercel-functies, `prerender = false`). Klanten zien in de database alleen hun eigen bestellingen (row level security op e-mail); alles wat iets wijzigt loopt via de server, na een controle wie het vraagt. Video's staan in een privé-bucket en zijn alleen bereikbaar via links die een uur geldig zijn.
+
 ## Beveiliging
 
 - **Content Security Policy:** Astro zet bij elke build een CSP-tag in elke pagina met een hash van elk eigen script en elke eigen style (`security.csp` in `astro.config.mjs`). Alleen die scripts mogen draaien; alles van andere websites wordt geblokkeerd. Voeg je een externe dienst toe (bijvoorbeeld een andere formulierdienst), zet het domein dan bij de juiste regel in `astro.config.mjs`.

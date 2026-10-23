@@ -1,10 +1,14 @@
-// Writes dist/llms-full.txt after the build: the full English text of every public page in one
+// Writes llms-full.txt into the build output after the build: the full English text of every public page in one
 // plain-text file, so AI assistants can read the whole site in one request. Runs after
 // `astro build` and reads the built pages, so it is never out of date. See /llms.txt for the summary.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
-const dist = new URL('../dist/', import.meta.url).pathname;
+// The static files: dist/client with the Vercel adapter (copied to .vercel/output/static, which is
+// what Vercel serves), or dist without it.
+const root = new URL('../', import.meta.url).pathname;
+const outputs = ['.vercel/output/static', 'dist/client', 'dist'].map((d) => join(root, d)).filter((d) => existsSync(join(d, 'sitemap.xml')));
+const dist = outputs[0];
 const site = 'https://stilltofilm.com';
 const sitemap = readFileSync(join(dist, 'sitemap.xml'), 'utf8');
 const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
@@ -57,5 +61,5 @@ const header = `# Still to Film: full text of the English pages
 > The complete text of every public English page on ${site}, generated at build time. The short summary is at ${site}/llms.txt. Prices include VAT. Other languages: Dutch (/nl/), German (/de/), French (/fr/), Spanish (/es/), Croatian (/hr/) and Portuguese (/pt/).
 
 Generated: ${new Date().toISOString().slice(0, 10)}`;
-writeFileSync(join(dist, 'llms-full.txt'), `${header}\n\n---\n\n${parts.join('\n\n---\n\n')}\n`);
+for (const out of outputs) writeFileSync(join(out, 'llms-full.txt'), `${header}\n\n---\n\n${parts.join('\n\n---\n\n')}\n`);
 console.log(`llms-full.txt: ${parts.length} pages`);

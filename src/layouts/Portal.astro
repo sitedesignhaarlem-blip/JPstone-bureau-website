@@ -1,0 +1,81 @@
+---
+// Layout for the client portal and the admin pages: a quiet header with the account, the page,
+// and the normal footer. Never indexed; these pages run on the server on every request.
+import Base from './Base.astro';
+import LogoMark from '../components/LogoMark.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { site } from '../data/site';
+import { pagePath } from '../i18n';
+import { portalUI } from '../i18n/portal';
+
+interface Props {
+  lang: 'en' | 'nl';
+  title: string;
+  path: string;
+  email?: string | null;
+  admin?: boolean;
+}
+const { lang, title, path, email, admin = false } = Astro.props;
+const p = portalUI[lang];
+const other = lang === 'en' ? 'nl' : 'en';
+---
+<Base title={`${title} · ${site.name}`} description={p.login.lead} lang={lang} page="home" path={path} noindex>
+  <header class="p-head">
+    <div class="wrap p-head-inner">
+      <a class="p-brand" href={pagePath(lang, 'home')}><LogoMark />{site.name}</a>
+      <div class="p-right">
+        {email && <a href="/account/">{p.title}</a>}
+        {admin && <a href="/admin/">Admin</a>}
+        <a href={`?lang=${other}`} hreflang={other} lang={other}>{other.toUpperCase()}</a>
+        <ThemeToggle lang={lang} />
+        {email && (
+          <form method="post" action="/account/logout/">
+            <button class="p-logout" type="submit">{p.logout}</button>
+          </form>
+        )}
+      </div>
+    </div>
+  </header>
+  <main id="main" class="section section--alt p-main">
+    <div class="wrap p-wrap">
+      {email && <p class="muted p-who">{p.loggedInAs} {email}</p>}
+      <slot />
+    </div>
+  </main>
+  <SiteFooter lang={lang} />
+</Base>
+
+<style>
+  .p-head { border-bottom: 1px solid var(--line); background: var(--bg); }
+  .p-head-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 3rem; }
+  .p-brand { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--fg); font-weight: 600; font-size: 0.875rem; text-decoration: none; }
+  .p-right { display: flex; align-items: center; gap: var(--space-4); font-size: var(--step-small); }
+  .p-right form { display: contents; }
+  .p-logout { background: none; border: 0; padding: 0; color: var(--accent); cursor: pointer; font-size: var(--step-small); }
+  .p-logout:hover { text-decoration: underline; }
+  .p-main { min-height: 70svh; padding-block: var(--space-8); }
+  .p-wrap { display: grid; gap: var(--space-6); max-width: calc(48rem + 2 * var(--gutter)); }
+  .p-who { font-size: var(--step-small); }
+  /* Shared portal styles for the pages inside this layout. */
+  .p-wrap :global(h1) { font-size: var(--step-h2); line-height: 1.07; }
+  .p-wrap :global(h2) { font-size: var(--step-h3); line-height: 1.15; }
+  .p-wrap :global(.card) { display: grid; gap: var(--space-4); padding: var(--space-5); background: var(--bg); border-radius: var(--radius); }
+  .p-wrap :global(.field) { display: grid; gap: var(--space-2); }
+  .p-wrap :global(.field label) { font-size: var(--step-small); font-weight: 600; }
+  .p-wrap :global(.field input), .p-wrap :global(.field textarea), .p-wrap :global(.field select) {
+    width: 100%; padding: 0.75rem 0.875rem; font-size: var(--step-body);
+    border: 1px solid var(--line); border-radius: 12px; background: var(--bg); color: var(--fg);
+  }
+  .p-wrap :global(.field textarea) { resize: vertical; }
+  .p-wrap :global(.hint) { font-size: 0.8125rem; }
+  .p-wrap :global(.row) { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); }
+  .p-wrap :global(.badge) { display: inline-block; padding: 0.15rem 0.6rem; border-radius: var(--radius-pill); background: var(--bg-alt); border: 1px solid var(--line); font-size: 0.8125rem; font-weight: 600; white-space: nowrap; }
+  .p-wrap :global(.badge--ok) { color: #1b7f3b; border-color: currentColor; }
+  .p-wrap :global(.notice) { padding: var(--space-4); border-radius: 12px; background: var(--bg); border-left: 3px solid var(--accent); }
+  .p-wrap :global(.notice--error) { border-left-color: var(--error); }
+  .p-wrap :global(.list) { list-style: none; padding: 0; display: grid; gap: var(--space-3); }
+  .p-wrap :global(.actions) { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+  .p-wrap :global(.button--small) { padding: 0.5rem 1rem; font-size: var(--step-small); }
+  :global([data-theme='dark']) .p-wrap :global(.badge--ok) { color: #4ade80; }
+</style>

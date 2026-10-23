@@ -44,7 +44,7 @@ export const q = {
   },
   payment: {
     q: '¿Cuándo pago?',
-    a: 'Facturamos después de la entrega y pagas por transferencia bancaria, con un plazo de pago de 14 días. En encargos grandes podemos pedir un anticipo; el presupuesto lo indicará.',
+    a: "Los encargos de menos de 1.000 € se pagan por completo al hacer el pedido. A partir de 1.000 € pagas el 50 % al hacer el pedido y el 50 % tras la entrega. Pagas online en tu cuenta de cliente con iDEAL, tarjeta o Bancontact, o por transferencia bancaria, y recibes una factura por cada pago.",
   },
   volume: {
     q: '¿Cómo funciona el precio por volumen?',

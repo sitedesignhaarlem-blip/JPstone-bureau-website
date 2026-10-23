@@ -44,7 +44,7 @@ export const q = {
   },
   payment: {
     q: 'When do I pay?',
-    a: 'We invoice after delivery and you pay by bank transfer, with a payment term of 14 days. For larger orders we may ask for a deposit; the quote will say so.',
+    a: "Orders under €1,000 are paid in full when you order. From €1,000 you pay 50% when you order and 50% after delivery. You pay online in your client account with iDEAL, card or Bancontact, or by bank transfer, and you get an invoice for every payment.",
   },
   volume: {
     q: 'How does the volume price work?',

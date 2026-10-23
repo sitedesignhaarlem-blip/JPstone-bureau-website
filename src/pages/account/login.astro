@@ -1,0 +1,74 @@
+---
+// Login with a one-time code by e-mail (Supabase). Step 1: e-mail address. Step 2: the 6-digit code.
+// The e-mail also has a link (see /account/auth/callback/); the code works on any device.
+export const prerender = false;
+import Portal from '../../layouts/Portal.astro';
+import { currentEmail, portalReady, userClient } from '../../lib/supabase';
+import { fill, portalLang, portalUI } from '../../i18n/portal';
+
+const lang = portalLang(Astro.url, Astro.request, Astro.cookies.get('lang')?.value);
+if (Astro.url.searchParams.get('lang')) Astro.cookies.set('lang', lang, { path: '/', maxAge: 31536000, sameSite: 'lax' as const });
+const p = portalUI[lang];
+
+let step: 'email' | 'code' = 'email';
+let email = '';
+let error = Astro.url.searchParams.get('error') === 'link' ? p.login.linkFailed : '';
+
+if (portalReady) {
+  if (await currentEmail(Astro.request, Astro.cookies)) return Astro.redirect('/account/');
+  if (Astro.request.method === 'POST') {
+    const form = await Astro.request.formData();
+    email = String(form.get('email') ?? '').trim().toLowerCase();
+    const supabase = userClient(Astro.request, Astro.cookies);
+    if (form.get('action') === 'send' && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      const { error: e } = await supabase.auth.signInWithOtp({
+        email,
+        options: { emailRedirectTo: new URL('/account/auth/callback/', Astro.url).href, shouldCreateUser: true },
+      });
+      if (e) error = p.login.error;
+      else step = 'code';
+    } else if (form.get('action') === 'verify') {
+      const token = String(form.get('code') ?? '').replace(/\D/g, '');
+      const { error: e } = await supabase.auth.verifyOtp({ email, token, type: 'email' });
+      if (!e) return Astro.redirect('/account/');
+      error = p.login.invalid;
+      step = 'code';
+    } else {
+      error = p.login.error;
+    }
+  }
+}
+---
+<Portal lang={lang} title={p.login.title} path="/account/login/">
+  <h1>{p.login.title}</h1>
+  {!portalReady ? <p class="notice">{p.notReady}</p> : (
+    <>
+      {error && <p class="notice notice--error" role="alert">{error}</p>}
+      {step === 'email' ? (
+        <form class="card" method="post">
+          <p class="muted">{p.login.lead}</p>
+          <div class="field">
+            <label for="email">{p.login.email}</label>
+            <input id="email" name="email" type="email" autocomplete="email" required value={email} />
+          </div>
+          <input type="hidden" name="action" value="send" />
+          <p><button class="button" type="submit">{p.login.send}</button></p>
+        </form>
+      ) : (
+        <form class="card" method="post">
+          <p>{fill(p.login.sent, { email })}</p>
+          <div class="field">
+            <label for="code">{p.login.code}</label>
+            <input id="code" name="code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9 ]{6,10}" required autofocus />
+          </div>
+          <input type="hidden" name="email" value={email} />
+          <input type="hidden" name="action" value="verify" />
+          <div class="actions">
+            <button class="button" type="submit">{p.login.verify}</button>
+            <a class="button button--secondary" href="/account/login/">{p.login.other}</a>
+          </div>
+        </form>
+      )}
+    </>
+  )}
+</Portal>

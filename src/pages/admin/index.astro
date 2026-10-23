@@ -1,0 +1,96 @@
+---
+// Admin: all orders, and a form to create a new one (after the customer agreed to the quote).
+// Only for the e-mail addresses in ADMIN_EMAILS.
+export const prerender = false;
+import Portal from '../../layouts/Portal.astro';
+import { adminClient, currentEmail, isAdmin, portalReady } from '../../lib/supabase';
+import { euro, paymentSchedule, SPLIT_FROM_CENTS, type Order } from '../../lib/orders';
+import { pricePerVideo } from '../../data/pricing';
+
+const email = await currentEmail(Astro.request, Astro.cookies);
+if (!portalReady || !email) return Astro.redirect('/account/login/');
+if (!isAdmin(email)) return Astro.redirect('/account/');
+const db = adminClient();
+
+let error = '';
+if (Astro.request.method === 'POST') {
+  const f = await Astro.request.formData();
+  const count = Math.max(1, Math.floor(Number(f.get('videos_count')) || 0));
+  const totalInput = String(f.get('total') ?? '').replace(',', '.').trim();
+  const total_cents = totalInput ? Math.round(Number(totalInput) * 100) : count * pricePerVideo(count) * 100;
+  const customer_email = String(f.get('customer_email') ?? '').trim().toLowerCase();
+  if (!customer_email.includes('@') || !Number.isFinite(total_cents) || total_cents <= 0) {
+    error = 'Check the e-mail address and the amount.';
+  } else {
+    const { data: order, error: e } = await db.from('orders').insert({
+      customer_email,
+      customer_name: String(f.get('customer_name') ?? '').trim() || null,
+      company: String(f.get('company') ?? '').trim() || null,
+      title: String(f.get('title') ?? '').trim() || `${count} video${count === 1 ? '' : 's'}`,
+      videos_count: count,
+      total_cents,
+      lang: f.get('lang') === 'nl' ? 'nl' : 'en',
+      note: String(f.get('note') ?? '').trim() || null,
+    }).select('id').single();
+    if (e || !order) error = e?.message ?? 'Could not create the order.';
+    else {
+      await db.from('payments').insert(paymentSchedule(total_cents).map((p) => ({ ...p, order_id: order.id })));
+      return Astro.redirect(`/admin/orders/${order.id}/?created=1`);
+    }
+  }
+}
+
+const { data } = await db.from('orders').select('*').order('created_at', { ascending: false }).limit(200);
+const orders = (data ?? []) as Order[];
+const ladder = [1, 5, 10, 20].map((n) => `${n} → ${euro(n * pricePerVideo(n) * 100, 'nl')}`).join(' · ');
+---
+<Portal lang="nl" title="Admin" path="/admin/" email={email} admin>
+  <h1>Bestellingen</h1>
+  {error && <p class="notice notice--error" role="alert">{error}</p>}
+
+  <details class="card">
+    <summary><strong>Nieuwe bestelling</strong></summary>
+    <form method="post" class="new">
+      <div class="field"><label for="ce">E-mail klant (hiermee logt de klant in)</label><input id="ce" name="customer_email" type="email" required /></div>
+      <div class="field"><label for="cn">Naam</label><input id="cn" name="customer_name" /></div>
+      <div class="field"><label for="co">Bedrijf</label><input id="co" name="company" /></div>
+      <div class="field"><label for="ti">Omschrijving</label><input id="ti" name="title" placeholder="bijv. Vloot zomer 2027" /></div>
+      <div class="field"><label for="vc">Aantal video's</label><input id="vc" name="videos_count" type="number" min="1" value="1" required /></div>
+      <div class="field">
+        <label for="to">Totaal in euro incl. btw (leeg = staffelprijs)</label>
+        <input id="to" name="total" inputmode="decimal" aria-describedby="toh" />
+        <p id="toh" class="muted hint">Staffel: {ladder}. Vanaf {euro(SPLIT_FROM_CENTS, 'nl')} wordt het 50% vooraf en 50% na oplevering, daaronder alles vooraf.</p>
+      </div>
+      <div class="field"><label for="la">Taal van de klant</label><select id="la" name="lang"><option value="nl">Nederlands</option><option value="en">Engels (en andere talen)</option></select></div>
+      <div class="field"><label for="no">Notitie voor de klant (optioneel)</label><textarea id="no" name="note" rows="2"></textarea></div>
+      <p><button class="button" type="submit">Bestelling aanmaken</button></p>
+    </form>
+  </details>
+
+  {orders.length === 0 ? <p class="muted">Nog geen bestellingen.</p> : (
+    <div class="table-wrap" role="region" aria-label="Bestellingen" tabindex="0">
+      <table>
+        <thead><tr><th scope="col">#</th><th scope="col">Klant</th><th scope="col">Omschrijving</th><th scope="col">Bedrag</th><th scope="col">Status</th></tr></thead>
+        <tbody>
+          {orders.map((o) => (
+            <tr>
+              <td><a href={`/admin/orders/${o.id}/`}>#{o.number}</a></td>
+              <td>{o.company || o.customer_name || ''}<br /><span class="muted">{o.customer_email}</span></td>
+              <td>{o.title}</td>
+              <td>{euro(o.total_cents, 'nl')}</td>
+              <td><span class="badge">{o.status}</span></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )}
+</Portal>
+
+<style>
+  .new { display: grid; gap: var(--space-4); margin-top: var(--space-4); }
+  summary { cursor: pointer; }
+  table { width: 100%; border-collapse: collapse; font-size: var(--step-small); }
+  th, td { text-align: left; vertical-align: top; padding: var(--space-3) var(--space-3) var(--space-3) 0; border-bottom: 1px solid var(--line); }
+  .table-wrap { overflow-x: auto; }
+</style>

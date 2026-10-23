@@ -1,0 +1,49 @@
+---
+// The customer's orders. Only their own: the database filters on the e-mail they logged in with.
+export const prerender = false;
+import Portal from '../../layouts/Portal.astro';
+import { currentEmail, isAdmin, portalReady, userClient } from '../../lib/supabase';
+import { euro, type Order } from '../../lib/orders';
+import { fill, portalLang, portalUI } from '../../i18n/portal';
+
+const lang = portalLang(Astro.url, Astro.request, Astro.cookies.get('lang')?.value);
+if (Astro.url.searchParams.get('lang')) Astro.cookies.set('lang', lang, { path: '/', maxAge: 31536000, sameSite: 'lax' as const });
+const p = portalUI[lang];
+const locale = lang === 'nl' ? 'nl' : 'en-GB';
+
+const email = await currentEmail(Astro.request, Astro.cookies);
+if (portalReady && !email) return Astro.redirect('/account/login/');
+let orders: Order[] = [];
+if (email) {
+  const { data } = await userClient(Astro.request, Astro.cookies).from('orders').select('*').order('created_at', { ascending: false });
+  orders = (data ?? []) as Order[];
+}
+const date = (iso: string) => new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(iso));
+---
+<Portal lang={lang} title={p.title} path="/account/" email={email} admin={isAdmin(email)}>
+  <h1>{p.orders}</h1>
+  {!portalReady && <p class="notice">{p.notReady}</p>}
+  {email && orders.length === 0 && <p class="notice">{p.noOrders}</p>}
+  {orders.length > 0 && (
+    <ul class="list" role="list">
+      {orders.map((o) => (
+        <li>
+          <a class="card order-link" href={`/account/orders/${o.id}/`}>
+            <span class="row">
+              <strong>{p.order} #{o.number} · {o.title}</strong>
+              <span class="badge">{p.status[o.status]}</span>
+            </span>
+            <span class="muted">
+              {o.videos_count === 1 ? p.videoCount1 : fill(p.videosCount, { n: o.videos_count })} · {euro(o.total_cents, locale)} · {date(o.created_at)}
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</Portal>
+
+<style>
+  .order-link { color: var(--fg); text-decoration: none; }
+  .order-link:hover { text-decoration: none; outline: 1px solid var(--line); }
+</style>

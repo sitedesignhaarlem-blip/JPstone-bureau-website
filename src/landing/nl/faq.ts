@@ -44,7 +44,7 @@ export const q = {
   },
   payment: {
     q: 'Wanneer betaal ik?',
-    a: 'We factureren na oplevering en je betaalt per bankoverschrijving, met een betaaltermijn van 14 dagen. Bij grotere opdrachten kunnen we om een aanbetaling vragen; dat staat dan in de offerte.',
+    a: "Opdrachten onder €1.000 betaal je volledig bij het bestellen. Vanaf €1.000 betaal je 50% bij het bestellen en 50% na oplevering. Je betaalt online in je klantaccount met iDEAL, creditcard of Bancontact, of per bankoverschrijving, en je krijgt voor elke betaling een factuur.",
   },
   volume: {
     q: 'Hoe werkt de staffelprijs?',

@@ -1,0 +1,199 @@
+---
+// Admin: one order. Change the status, upload videos (new or a new version), reply to feedback,
+// mark a payment as paid (e.g. a bank transfer), and copy the login link for the customer.
+export const prerender = false;
+import Portal from '../../../layouts/Portal.astro';
+import { adminClient, currentEmail, isAdmin, portalReady, signedVideoUrl } from '../../../lib/supabase';
+import { euro, type Feedback, type Order, type OrderStatus, type Payment, type Video } from '../../../lib/orders';
+
+const email = await currentEmail(Astro.request, Astro.cookies);
+if (!portalReady || !email) return Astro.redirect('/account/login/');
+if (!isAdmin(email)) return Astro.redirect('/account/');
+const db = adminClient();
+const id = Astro.params.id!;
+const here = `/admin/orders/${id}/`;
+const statuses: OrderStatus[] = ['awaiting_payment', 'in_production', 'in_review', 'delivered', 'completed', 'cancelled'];
+const now = () => new Date().toISOString();
+
+if (Astro.request.method === 'POST') {
+  const f = await Astro.request.formData();
+  const action = String(f.get('action') ?? '');
+  const str = (k: string) => String(f.get(k) ?? '').trim();
+  if (action === 'status' && statuses.includes(str('status') as OrderStatus)) {
+    await db.from('orders').update({ status: str('status') }).eq('id', id);
+  } else if (action === 'video') {
+    const landscape = str('file_landscape') || null;
+    const portrait = str('file_portrait') || null;
+    const existing = str('video_id');
+    if (existing) {
+      const { data: v } = await db.from('videos').select('*').eq('id', existing).eq('order_id', id).single<Video>();
+      if (v) await db.from('videos').update({
+        file_landscape: landscape ?? v.file_landscape, file_portrait: portrait ?? v.file_portrait,
+        version: v.version + 1, status: 'in_review', updated_at: now(),
+      }).eq('id', v.id);
+    } else if (landscape || portrait) {
+      await db.from('videos').insert({ order_id: id, title: str('title') || 'Video', file_landscape: landscape, file_portrait: portrait });
+    }
+    // New videos to review: move the order on, unless it still waits for the first payment.
+    await db.from('orders').update({ status: 'in_review' }).eq('id', id).in('status', ['in_production', 'delivered']);
+  } else if (action === 'reply' && str('message')) {
+    await db.from('feedback').insert({ video_id: str('video_id'), author_email: email, from_studio: true, message: str('message').slice(0, 5000) });
+  } else if (action === 'paid') {
+    await db.from('payments').update({ status: 'paid', paid_at: now() }).eq('id', str('payment_id')).eq('order_id', id);
+    await db.from('orders').update({ status: 'in_production' }).eq('id', id).eq('status', 'awaiting_payment');
+  } else if (action === 'delete-video') {
+    const { data: v } = await db.from('videos').select('*').eq('id', str('video_id')).eq('order_id', id).single<Video>();
+    if (v) {
+      await db.storage.from('videos').remove([v.file_landscape, v.file_portrait].filter(Boolean) as string[]);
+      await db.from('videos').delete().eq('id', v.id);
+    }
+  }
+  return Astro.redirect(here);
+}
+
+const { data: order } = await db.from('orders').select('*').eq('id', id).maybeSingle<Order>();
+if (!order) return Astro.redirect('/admin/');
+const [{ data: pays }, { data: vids }] = await Promise.all([
+  db.from('payments').select('*').eq('order_id', id).order('created_at'),
+  db.from('videos').select('*').eq('order_id', id).order('created_at'),
+]);
+const payments = (pays ?? []) as Payment[];
+const videoList = (vids ?? []) as Video[];
+const { data: notes } = videoList.length
+  ? await db.from('feedback').select('*').in('video_id', videoList.map((v) => v.id)).order('created_at')
+  : { data: [] };
+const videos = await Promise.all(videoList.map(async (v) => ({
+  ...v,
+  url: v.file_landscape ? await signedVideoUrl(v.file_landscape) : v.file_portrait ? await signedVideoUrl(v.file_portrait) : null,
+  notes: ((notes ?? []) as Feedback[]).filter((n) => n.video_id === v.id),
+})));
+const loginLink = new URL(`/account/login/?lang=${order.lang}`, Astro.url).href;
+const message = order.lang === 'nl'
+  ? `Je bestelling bij Still to Film staat klaar. Log in met ${order.customer_email} via ${loginLink}`
+  : `Your Still to Film order is ready. Log in with ${order.customer_email} at ${loginLink}`;
+---
+<Portal lang="nl" title={`Admin #${order.number}`} path={here} email={email} admin>
+  <p><a href="/admin/">← Alle bestellingen</a></p>
+  <div class="row"><h1>#{order.number} · {order.title}</h1><span class="badge">{order.status}</span></div>
+  {Astro.url.searchParams.get('created') && <p class="notice" role="status">Bestelling aangemaakt. Stuur de klant het bericht hieronder.</p>}
+
+  <section class="card">
+    <h2>Klant</h2>
+    <p>{order.customer_name} {order.company && `· ${order.company}`}<br />{order.customer_email} · taal {order.lang}</p>
+    <p>{order.videos_count} video's · {euro(order.total_cents, 'nl')} incl. btw</p>
+    <div class="field">
+      <label for="msg">Bericht voor de klant (kopiëren naar e-mail of WhatsApp)</label>
+      <textarea id="msg" rows="3" readonly>{message}</textarea>
+    </div>
+    <form method="post" class="actions">
+      <input type="hidden" name="action" value="status" />
+      <div class="field">
+        <label for="st">Status</label>
+        <select id="st" name="status">{statuses.map((s) => <option value={s} selected={s === order.status}>{s}</option>)}</select>
+      </div>
+      <button class="button button--small" type="submit">Status opslaan</button>
+    </form>
+    <p class="muted hint">Zet de status op <strong>delivered</strong> als alles klaar is: dan kan de klant het restbedrag betalen. Na volledige betaling kan de klant downloaden.</p>
+  </section>
+
+  <section class="card">
+    <h2>Betalingen</h2>
+    <ul class="list" role="list">
+      {payments.map((p) => (
+        <li class="row">
+          <span>{p.kind} · {euro(p.amount_cents, 'nl')} · {p.status}{p.paid_at && ` op ${new Date(p.paid_at).toLocaleDateString('nl')}`}</span>
+          <span class="actions">
+            {p.invoice_url && <a href={p.invoice_url} target="_blank" rel="noopener">Factuur</a>}
+            {p.status === 'open' && (
+              <form method="post"><input type="hidden" name="action" value="paid" /><input type="hidden" name="payment_id" value={p.id} />
+                <button class="button button--small button--secondary" type="submit">Markeer als betaald (overschrijving)</button></form>
+            )}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Video's</h2>
+    {videos.map((v) => (
+      <article class="video">
+        <div class="row"><h3>{v.title} · versie {v.version}</h3><span class="badge">{v.status}</span></div>
+        {v.url && <video src={v.url} controls preload="metadata"></video>}
+        {v.notes.map((n) => <p class:list={['note', { 'note--studio': n.from_studio }]}><span class="muted hint">{n.from_studio ? 'Jij' : n.author_email} · {new Date(n.created_at).toLocaleString('nl')}</span><br />{n.message}</p>)}
+        <form method="post" class="actions">
+          <input type="hidden" name="action" value="reply" /><input type="hidden" name="video_id" value={v.id} />
+          <div class="field grow"><label for={`r-${v.id}`}>Reactie aan klant</label><textarea id={`r-${v.id}`} name="message" rows="2"></textarea></div>
+          <button class="button button--small button--secondary" type="submit">Reageren</button>
+        </form>
+        <form method="post" class="upload" data-upload data-order={order.id}>
+          <input type="hidden" name="action" value="video" /><input type="hidden" name="video_id" value={v.id} />
+          <p class="muted hint">Nieuwe versie uploaden (vervangt de bestanden die je kiest; status gaat terug naar in_review):</p>
+          <div class="field"><label for={`l-${v.id}`}>16:9 (mp4)</label><input id={`l-${v.id}`} type="file" accept="video/mp4" data-target="file_landscape" /></div>
+          <div class="field"><label for={`p-${v.id}`}>9:16 (mp4)</label><input id={`p-${v.id}`} type="file" accept="video/mp4" data-target="file_portrait" /></div>
+          <input type="hidden" name="file_landscape" /><input type="hidden" name="file_portrait" />
+          <button class="button button--small" type="submit">Nieuwe versie uploaden</button>
+          <p class="muted hint" data-progress aria-live="polite"></p>
+        </form>
+        <form method="post" data-confirm="Video en bestanden verwijderen?"><input type="hidden" name="action" value="delete-video" /><input type="hidden" name="video_id" value={v.id} />
+          <button class="link-danger" type="submit">Video verwijderen</button></form>
+      </article>
+    ))}
+
+    <form method="post" class="upload" data-upload data-order={order.id}>
+      <h3>Video toevoegen</h3>
+      <input type="hidden" name="action" value="video" />
+      <div class="field"><label for="nt">Titel</label><input id="nt" name="title" placeholder="bijv. Lagoon 46 · Blue Horizon" required /></div>
+      <div class="field"><label for="nl">16:9 (mp4)</label><input id="nl" type="file" accept="video/mp4" data-target="file_landscape" /></div>
+      <div class="field"><label for="np">9:16 (mp4)</label><input id="np" type="file" accept="video/mp4" data-target="file_portrait" /></div>
+      <input type="hidden" name="file_landscape" /><input type="hidden" name="file_portrait" />
+      <button class="button button--small" type="submit">Uploaden en toevoegen</button>
+      <p class="muted hint" data-progress aria-live="polite"></p>
+    </form>
+  </section>
+</Portal>
+
+<script>
+  // Uploads the chosen files straight to Supabase, then submits the form with their paths.
+  document.querySelectorAll<HTMLFormElement>('[data-upload]').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      if (form.dataset.ready) return;
+      e.preventDefault();
+      const progress = form.querySelector<HTMLElement>('[data-progress]')!;
+      const inputs = [...form.querySelectorAll<HTMLInputElement>('input[type=file]')].filter((i) => i.files?.length);
+      if (!inputs.length) { progress.textContent = 'Kies minstens één bestand.'; return; }
+      try {
+        for (const input of inputs) {
+          const file = input.files![0];
+          progress.textContent = `Uploaden: ${file.name} (${Math.round(file.size / 1e6)} MB)…`;
+          const res = await fetch('/api/admin/upload-url/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ orderId: form.dataset.order, name: file.name }) });
+          if (!res.ok) throw new Error(await res.text());
+          const { url, path } = await res.json();
+          const put = await fetch(url, { method: 'PUT', headers: { 'Content-Type': file.type || 'video/mp4' }, body: file });
+          if (!put.ok) throw new Error(`${put.status} ${await put.text()}`);
+          form.querySelector<HTMLInputElement>(`input[name="${input.dataset.target}"]`)!.value = path;
+        }
+        progress.textContent = 'Klaar, opslaan…';
+        form.dataset.ready = '1';
+        form.submit();
+      } catch (err) {
+        progress.textContent = `Uploaden mislukt: ${(err as Error).message}`;
+      }
+    });
+  });
+  document.querySelectorAll<HTMLFormElement>('[data-confirm]').forEach((form) => {
+    form.addEventListener('submit', (e) => { if (!confirm(form.dataset.confirm)) e.preventDefault(); });
+  });
+</script>
+
+<style>
+  .video { display: grid; gap: var(--space-3); padding-bottom: var(--space-5); margin-bottom: var(--space-5); border-bottom: 1px solid var(--line); }
+  h3 { font-size: 1.0625rem; }
+  video { width: 100%; max-height: 22rem; border-radius: 12px; background: #000; }
+  .upload { display: grid; gap: var(--space-3); }
+  .grow { flex: 1 1 20rem; }
+  .actions { align-items: flex-end; }
+  .note { padding: var(--space-3); border-radius: 12px; background: var(--bg-alt); }
+  .note--studio { border-left: 3px solid var(--accent); }
+  .link-danger { background: none; border: 0; padding: 0; color: var(--error); cursor: pointer; font-size: var(--step-small); }
+</style>

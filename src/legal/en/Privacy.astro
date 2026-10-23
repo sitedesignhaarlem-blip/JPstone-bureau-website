@@ -32,6 +32,8 @@ const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Request: 
   <p>We sell nothing on. For our work we use these services:</p>
   <ul>
     <li><strong>Vercel</strong> (hosting of this website). On every visit the server receives technical data such as your IP address, to show and secure the site, and to count visits anonymously (see below).</li>
+    <li><strong>Stripe</strong>, for online payments. Stripe processes your payment details and sends the invoice; we never see your card or bank details.</li>
+    <li><strong>Supabase</strong>, for the client account: your email address for logging in, your orders, your videos and your feedback.</li>
     <li><strong>Google (Gmail)</strong> for email.</li>
     <li><strong>WhatsApp (Meta)</strong>, only if you contact us via WhatsApp yourself.</li>
     <li><strong>Higgsfield</strong>, the AI service we use to turn your photos into a video. Your photos are uploaded to it for that purpose.</li>
@@ -40,7 +42,7 @@ const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Request: 
   <p>Some of these companies are based outside the European Economic Area. Transfers then rely on the safeguards the GDPR requires, such as the EU-US Data Privacy Framework or standard contractual clauses.</p>
 
   <h2>Cookies and tracking</h2>
-  <p>This site sets no cookies and uses no advertising pixels or other trackers. We count visits with Vercel Web Analytics, without cookies: it records the page, the site you came from, country, browser, operating system and device type. It does not store your IP address and cannot recognise you on other sites or on a later day. Vercel Speed Insights also measures how fast pages load, in the same anonymous way. Fonts and videos are served from our own server. See the <a href={pagePath('en', 'cookies')}>cookie policy</a>.</p>
+  <p>The public pages set no cookies and use no advertising pixels or other trackers. Only the client account uses necessary login cookies; see the cookie policy. We count visits with Vercel Web Analytics, without cookies: it records the page, the site you came from, country, browser, operating system and device type. It does not store your IP address and cannot recognise you on other sites or on a later day. Vercel Speed Insights also measures how fast pages load, in the same anonymous way. Fonts and videos are served from our own server. See the <a href={pagePath('en', 'cookies')}>cookie policy</a>.</p>
 
   <h2>Newsletter</h2>
   <p>We send no newsletter and no marketing email. If that ever changes, it will only be if you sign up yourself, with an unsubscribe link in every email.</p>

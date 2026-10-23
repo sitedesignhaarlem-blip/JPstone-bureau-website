@@ -44,7 +44,7 @@ export const q = {
   },
   payment: {
     q: 'Quando é que pago?',
-    a: 'Faturamos após a entrega e o pagamento é feito por transferência bancária, com um prazo de 14 dias. Em encomendas grandes podemos pedir um adiantamento; o orçamento indicá-lo-á.',
+    a: "As encomendas abaixo de 1000 € são pagas na totalidade no momento da encomenda. A partir de 1000 € paga 50 % na encomenda e 50 % após a entrega. Paga online na sua área de cliente com iDEAL, cartão ou Bancontact, ou por transferência bancária, e recebe uma fatura por cada pagamento.",
   },
   volume: {
     q: 'Como funciona o preço por volume?',

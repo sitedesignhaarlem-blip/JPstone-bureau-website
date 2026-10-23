@@ -44,7 +44,7 @@ export const q = {
   },
   payment: {
     q: 'Quand dois-je payer ?',
-    a: 'Nous facturons après la livraison et vous payez par virement bancaire, avec un délai de paiement de 14 jours. Pour les commandes plus importantes, nous pouvons demander un acompte ; le devis le précisera.',
+    a: "Les commandes de moins de 1 000 € se paient en totalité à la commande. À partir de 1 000 €, vous payez 50 % à la commande et 50 % après la livraison. Vous payez en ligne dans votre espace client par iDEAL, carte ou Bancontact, ou par virement bancaire, et vous recevez une facture pour chaque paiement.",
   },
   volume: {
     q: 'Comment fonctionne le prix dégressif ?',

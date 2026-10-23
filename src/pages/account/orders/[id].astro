@@ -1,0 +1,172 @@
+---
+// One order: what was ordered, the payments (with pay buttons), the videos with preview,
+// feedback and approval, and downloads once everything is paid.
+export const prerender = false;
+import Portal from '../../../layouts/Portal.astro';
+import { currentEmail, isAdmin, portalReady, signedVideoUrl, userClient } from '../../../lib/supabase';
+import { paymentsReady, stripe } from '../../../lib/stripe';
+import { canPay, euro, fullyPaid, recordCheckout, type Feedback, type Order, type Payment, type Video } from '../../../lib/orders';
+import { fill, portalLang, portalUI } from '../../../i18n/portal';
+
+const lang = portalLang(Astro.url, Astro.request, Astro.cookies.get('lang')?.value);
+const p = portalUI[lang];
+const locale = lang === 'nl' ? 'nl' : 'en-GB';
+const id = Astro.params.id!;
+const path = `/account/orders/${id}/`;
+
+const email = await currentEmail(Astro.request, Astro.cookies);
+if (!portalReady || !email) return Astro.redirect('/account/login/');
+const db = userClient(Astro.request, Astro.cookies);
+
+// Back from Stripe: record the payment right away, so the page is up to date even before the webhook.
+const sessionId = Astro.url.searchParams.get('session_id');
+let payMessage = Astro.url.searchParams.get('pay') === 'cancelled' ? p.cancelledPay : '';
+if (sessionId && paymentsReady) {
+  try {
+    const session = await stripe().checkout.sessions.retrieve(sessionId);
+    if (session.metadata?.order_id === id) {
+      await recordCheckout(session);
+      payMessage = session.payment_status === 'paid' ? p.thanks : p.pending;
+    }
+  } catch { /* an unknown session id is ignored */ }
+}
+
+const { data: order } = await db.from('orders').select('*').eq('id', id).maybeSingle<Order>();
+let payments: Payment[] = [];
+let videos: (Video & { landscapeUrl?: string | null; portraitUrl?: string | null; landscapeDl?: string | null; portraitDl?: string | null; notes: Feedback[] })[] = [];
+if (order) {
+  const [{ data: pays }, { data: vids }, { data: notes }] = await Promise.all([
+    db.from('payments').select('*').eq('order_id', id).order('created_at'),
+    db.from('videos').select('*').eq('order_id', id).order('created_at'),
+    db.from('feedback').select('*').order('created_at'),
+  ]);
+  payments = (pays ?? []) as Payment[];
+  const paid = fullyPaid(payments);
+  videos = await Promise.all(((vids ?? []) as Video[]).map(async (v) => {
+    const name = (suffix: string) => `${order.title} - ${v.title} ${suffix}.mp4`.replace(/[^\w .()-]+/g, '');
+    return {
+      ...v,
+      landscapeUrl: v.file_landscape ? await signedVideoUrl(v.file_landscape) : null,
+      portraitUrl: v.file_portrait ? await signedVideoUrl(v.file_portrait) : null,
+      landscapeDl: paid && v.file_landscape ? await signedVideoUrl(v.file_landscape, name('16x9')) : null,
+      portraitDl: paid && v.file_portrait ? await signedVideoUrl(v.file_portrait, name('9x16')) : null,
+      notes: ((notes ?? []) as Feedback[]).filter((n) => n.video_id === v.id),
+    };
+  }));
+}
+const saved = Astro.url.searchParams.get('saved') === '1';
+const time = (iso: string) => new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }).format(new Date(iso));
+---
+<Portal lang={lang} title={order ? `${p.order} #${order.number}` : p.order} path={path} email={email} admin={isAdmin(email)}>
+  <p><a href="/account/">← {p.back}</a></p>
+  {!order ? <p class="notice notice--error">{p.notFound}</p> : (
+    <>
+      <div class="row">
+        <h1>{p.order} #{order.number}</h1>
+        <span class="badge">{p.status[order.status]}</span>
+      </div>
+      {payMessage && <p class="notice" role="status">{payMessage}</p>}
+      {saved && <p class="notice" role="status">{p.saved}</p>}
+
+      <section class="card" aria-labelledby="sum">
+        <h2 id="sum">{order.title}</h2>
+        <p>{order.videos_count === 1 ? p.videoCount1 : fill(p.videosCount, { n: order.videos_count })} · {p.total}: <strong>{euro(order.total_cents, locale)}</strong></p>
+        {order.note && <p class="muted">{order.note}</p>}
+      </section>
+
+      <section class="card" aria-labelledby="pay">
+        <h2 id="pay">{p.payments}</h2>
+        <ul class="list" role="list">
+          {payments.map((pay) => (
+            <li class="row">
+              <span>{p.kind[pay.kind]} · {euro(pay.amount_cents, locale)}</span>
+              {pay.status === 'paid' ? (
+                <span class="actions">
+                  <span class="badge badge--ok">{p.paid}</span>
+                  {pay.invoice_url && <a href={pay.invoice_url} rel="noopener" target="_blank">{p.invoice}</a>}
+                </span>
+              ) : canPay(order, pay, payments) && paymentsReady ? (
+                <form method="post" action="/api/checkout/">
+                  <input type="hidden" name="payment_id" value={pay.id} />
+                  <input type="hidden" name="lang" value={lang} />
+                  <button class="button button--small" type="submit">{fill(p.pay, { amount: euro(pay.amount_cents, locale) })}</button>
+                </form>
+              ) : (
+                <span class="muted">{pay.kind === 'balance' ? p.payLater : p.open}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+        <p class="muted hint">{p.payNote}</p>
+      </section>
+
+      <section aria-labelledby="vids" class="vids">
+        <h2 id="vids">{p.videos}</h2>
+        {videos.length === 0 && <p class="muted">{p.noVideos}</p>}
+        {videos.length > 0 && !fullyPaid(payments) && <p class="muted">{p.downloadLocked}</p>}
+        {videos.map((v) => (
+          <article class="card" aria-labelledby={`v-${v.id}`}>
+            <div class="row">
+              <h3 id={`v-${v.id}`}>{v.title} <span class="muted">· {fill(p.version, { n: v.version })}</span></h3>
+              <span class:list={['badge', { 'badge--ok': v.status === 'approved' }]}>{p.videoStatus[v.status]}</span>
+            </div>
+            <div class="players">
+              {v.landscapeUrl && (
+                <figure>
+                  <video src={v.landscapeUrl} controls playsinline preload="metadata"></video>
+                  <figcaption class="muted">{p.landscape}{v.landscapeDl && <> · <a href={v.landscapeDl}>{p.download}</a></>}</figcaption>
+                </figure>
+              )}
+              {v.portraitUrl && (
+                <figure class="portrait">
+                  <video src={v.portraitUrl} controls playsinline preload="metadata"></video>
+                  <figcaption class="muted">{p.portrait}{v.portraitDl && <> · <a href={v.portraitDl}>{p.download}</a></>}</figcaption>
+                </figure>
+              )}
+            </div>
+
+            {v.notes.length > 0 && (
+              <ul class="list notes" role="list">
+                {v.notes.map((n) => (
+                  <li class:list={['note', { 'note--studio': n.from_studio }]}>
+                    <span class="muted hint">{n.from_studio ? p.studio : p.you} · {time(n.created_at)}</span>
+                    <span>{n.message}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {v.status === 'approved' ? <p class="muted">{p.approved}</p> : (
+              <form method="post" action="/api/video/" class="fb">
+                <input type="hidden" name="video_id" value={v.id} />
+                <div class="field">
+                  <label for={`fb-${v.id}`}>{p.feedbackLabel}</label>
+                  <textarea id={`fb-${v.id}`} name="message" rows="3" maxlength="5000" aria-describedby={`fbh-${v.id}`}></textarea>
+                  <p id={`fbh-${v.id}`} class="muted hint">{p.feedbackHint} {p.revisionsNote}</p>
+                </div>
+                <div class="actions">
+                  <button class="button button--small button--secondary" type="submit" name="action" value="feedback">{p.sendFeedback}</button>
+                  <button class="button button--small button--secondary" type="submit" name="action" value="revision">{p.requestRevision}</button>
+                  <button class="button button--small" type="submit" name="action" value="approve">{p.approve}</button>
+                </div>
+              </form>
+            )}
+          </article>
+        ))}
+      </section>
+    </>
+  )}
+</Portal>
+
+<style>
+  .vids { display: grid; gap: var(--space-4); }
+  h3 { font-size: 1.125rem; }
+  .players { display: grid; gap: var(--space-4); grid-template-columns: 1fr; align-items: start; }
+  @media (min-width: 40rem) { .players:has(.portrait) { grid-template-columns: 3fr 1fr; } }
+  figure { display: grid; gap: var(--space-2); }
+  video { width: 100%; border-radius: 12px; background: #000; }
+  figcaption { font-size: var(--step-small); }
+  .note { display: grid; gap: var(--space-1); padding: var(--space-3); border-radius: 12px; background: var(--bg-alt); }
+  .note--studio { border-left: 3px solid var(--accent); }
+  .fb { display: grid; gap: var(--space-3); }
+</style>

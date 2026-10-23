@@ -4,7 +4,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const DIST = 'dist';
+// With the Vercel adapter the static pages are in dist/client.
+const DIST = fs.existsSync('dist/client') ? 'dist/client' : 'dist';
 const SITE = 'https://stilltofilm.com';
 const LANGS = ['en', 'nl', 'de', 'fr', 'es', 'hr', 'pt', 'x-default'];
 const pages = [];
@@ -57,6 +58,8 @@ for (const file of pages) {
   }
   // internal links resolve to a built file
   for (const href of get(html, /href="(\/[^"#?]*)/g)) {
+    // The client portal runs on the server, so it has no built file.
+    if (/^\/(account|admin|api)\//.test(href)) continue;
     const target = path.join(DIST, href.endsWith('/') ? href + 'index.html' : href);
     if (!fs.existsSync(target)) err(`broken link ${href}`);
   }
