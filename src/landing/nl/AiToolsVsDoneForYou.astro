@@ -1,0 +1,89 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'nl';
+const faq = [
+  {
+    q: 'Is een AI-videotool goedkoper dan Still to Film?',
+    a: 'Vaak wel, als je alleen het abonnement of de credits telt en de tool al kent. Meestal niet meer als je je eigen uren meetelt: foto’s kiezen, prompts schrijven, mislukte clips opnieuw maken, monteren en twee formaten exporteren. Still to Film kost €50 tot €100 per video, inclusief btw, met het werk en de controle erbij.',
+  },
+  {
+    q: 'Welke AI-videotools maken video van listingfoto’s?',
+    a: 'Algemene image-to-video-generatoren zoals Runway, Kling of Luma, en videomakers voor vastgoed en marketing. Ze veranderen snel, dus kijk zelf wat ze vandaag bieden. Wij verkopen geen van deze tools door en hebben geen afspraken met ze.',
+  },
+  {
+    q: 'Wanneer kan ik beter zelf een tool gebruiken?',
+    a: 'Als je het leuk vindt om software te leren, tijd over hebt, maar één of twee video’s nodig hebt, of zelf met stijlen wilt experimenteren. Voor een vloot, meerdere accommodaties, of als je het gewoon gedaan en gecontroleerd wilt hebben, scheelt uitbesteden je het werk.',
+  },
+  q.ai,
+  q.sample,
+];
+---
+<Landing
+  lang={lang}
+  page="versus"
+  title="AI-videotools of uitbesteden: een eerlijke vergelijking"
+  description="Zelf een AI-videotool gebruiken of je listingfoto’s laten omzetten door een dienst? Wat het kost aan geld en tijd, wie het resultaat controleert, en wanneer welke keuze beter is."
+  eyebrow="Vergeleken"
+  h1="AI-videotools of uitbesteden: wat past bij jouw listings?"
+  summary="Met een AI-videotool krijg je de software: jij kiest de foto’s, schrijft de prompts, spot mislukte clips en monteert de film zelf. Een dienst als Still to Film doet dat allemaal voor €50 tot €100 per video, inclusief btw, en een mens controleert elke video voor oplevering. De tool is goedkoper in geld, uitbesteden is goedkoper in tijd."
+  faqTitle="Vragen over tools en uitbesteden"
+  faqItems={faq}
+  related={['aiVideo', 'pricing', 'yacht']}
+>
+  <h2>Wat is het verschil?</h2>
+  <p>Beide gebruiken dezelfde soort techniek: software die van een foto een korte clip met camerabeweging maakt. Het verschil zit in wie het werk eromheen doet. Met een tool ben jij de editor. Bij uitbesteden stuur je de link naar je listing en krijg je een afgeronde, gecontroleerde video terug.</p>
+
+  <h2>Naast elkaar</h2>
+  <div class="table-wrap" role="region" aria-label="Vergelijking: AI-videotool en uitbesteden" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Onderwerp</th><th scope="col">Zelf met een AI-videotool</th><th scope="col">Uitbesteden (Still to Film)</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Onderwerp">Wat je betaalt</td><td data-label="Tool">Een abonnement of credits; prijzen veranderen, dus kijk op de site van de tool</td><td data-label="Uitbesteden">€50 tot €100 per video, inclusief btw, gefactureerd na oplevering</td></tr>
+        <tr><td data-label="Onderwerp">Jouw tijd per video</td><td data-label="Tool">Uren: foto’s kiezen, prompts, opnieuw proberen, monteren, exporteren</td><td data-label="Uitbesteden">Een paar minuten: link sturen en feedback geven</td></tr>
+        <tr><td data-label="Onderwerp">Benodigde kennis</td><td data-label="Tool">De tool leren en leren prompten</td><td data-label="Uitbesteden">Geen</td></tr>
+        <tr><td data-label="Onderwerp">Mislukte clips</td><td data-label="Tool">Jij spot ze en maakt ze opnieuw, vaak betaal je per poging</td><td data-label="Uitbesteden">Wij gooien ze weg en maken ze opnieuw; je betaalt nooit voor mislukte pogingen</td></tr>
+        <tr><td data-label="Onderwerp">Controle</td><td data-label="Tool">Aan jou</td><td data-label="Uitbesteden">Een mens vergelijkt elke video met je foto’s</td></tr>
+        <tr><td data-label="Onderwerp">Formaten</td><td data-label="Tool">Hangt af van de tool; vaak één tegelijk</td><td data-label="Uitbesteden">16:9 en 9:16, allebei inbegrepen</td></tr>
+        <tr><td data-label="Onderwerp">Aanpassingen</td><td data-label="Tool">Je doet het werk zelf opnieuw</td><td data-label="Uitbesteden">Twee revisierondes inbegrepen</td></tr>
+        <tr><td data-label="Onderwerp">Eén stijl voor veel listings</td><td data-label="Tool">Kan, als je elke keer dezelfde instellingen gebruikt</td><td data-label="Uitbesteden">Ja, dezelfde rustige stijl voor elk jacht of elke accommodatie</td></tr>
+        <tr><td data-label="Onderwerp">Snelheid</td><td data-label="Tool">Zo snel als jij werkt</td><td data-label="Uitbesteden">Tot 2 video’s per dag; leverdatum staat in de offerte</td></tr>
+        <tr><td data-label="Onderwerp">Eerst proberen</td><td data-label="Tool">De meeste tools hebben een proefperiode of een paar gratis credits</td><td data-label="Uitbesteden">Een gratis proefvideo van 15 tot 25 seconden van je eigen foto’s</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Waar gaat de tijd heen met een tool?</h2>
+  <ol>
+    <li><strong>Foto’s kiezen.</strong> Niet elke foto werkt in beweging. Brede, scherpe, goed belichte foto’s wel; donkere of rommelige foto’s geven vreemde resultaten.</li>
+    <li><strong>Prompten.</strong> Elke foto heeft een omschrijving nodig van de beweging die je wilt. Te veel beweging en de software gaat gokken.</li>
+    <li><strong>Opnieuw proberen.</strong> Een deel van de clips komt verkeerd uit: lijnen die buigen, voorwerpen die veranderen, een bed dat verschuift. Die vind je door elke clip te bekijken, en dan probeer je het opnieuw.</li>
+    <li><strong>Monteren.</strong> De clips worden op volgorde gezet, ingekort en samengevoegd tot één film van 60 tot 90 seconden.</li>
+    <li><strong>Exporteren.</strong> Een liggende versie voor je website en een staande versie voor Reels en Stories.</li>
+  </ol>
+  <p>Voor één video is dit een prima middag als je het werk leuk vindt. Voor een vloot jachten of een groep vakantiehuizen wordt het een parttimebaan.</p>
+
+  <h2>Wanneer is een tool de betere keuze?</h2>
+  <ul>
+    <li>Je vindt het leuk om nieuwe software te leren en je hebt de tijd.</li>
+    <li>Je hebt één of twee video’s nodig, geen serie.</li>
+    <li>Je wilt zelf veel verschillende stijlen uitproberen.</li>
+    <li>Je betaalt al voor een tool voor ander werk.</li>
+  </ul>
+
+  <h2>Wanneer is uitbesteden de betere keuze?</h2>
+  <ul>
+    <li>Je hebt meerdere jachten, kamers of accommodaties en wilt dat ze er hetzelfde uitzien.</li>
+    <li>Je wilt geen tool leren en niet zelf elke clip controleren.</li>
+    <li>Je wilt dat iemand anders verantwoordelijk is voor een resultaat dat klopt met je foto’s.</li>
+    <li>Je wilt beide formaten en revisies zonder extra werk.</li>
+  </ul>
+
+  <h2>Wat geen van beide kan</h2>
+  <p>Beide werken alleen met je foto’s. Geen van beide kan een kamer, uitzicht of detail laten zien dat nooit is gefotografeerd, en geen van beide voegt echte mensen of opgenomen geluid toe. Heb je dat nodig, dan is een draaidag de betere keuze. Meer daarover in <a href={pagePath(lang, 'aiVideo')}>hoe AI-video van foto’s werkt</a>.</p>
+
+  <h2>Hoe kies je?</h2>
+  <p>Tel je eigen uren. Als een middag per video tijd is die je liever aan gasten of boekingen besteedt, is uitbesteden meestal de betere deal. Zo niet, dan is een tool een prima begin. Hoe dan ook kun je ons om een gratis proefvideo van je eigen foto’s vragen en die vergelijken met wat een tool je geeft. Bekijk <a href={pagePath(lang, 'pricing')}>alle prijzen</a>.</p>
+</Landing>

@@ -33,11 +33,15 @@ Still to Film is a small studio based in the Netherlands. We work for yacht char
 
 ## Key pages
 
+The full text of every English page is in one file: [llms-full.txt](https://stilltofilm.com/llms-full.txt)
+
+
 - [Home](https://stilltofilm.com/): what we do, before/after examples, packages, price calculator and FAQ
 - [Video for yacht charters](https://stilltofilm.com/yacht-charter-video/): walkthrough videos from yacht listing photos, no filming day
 - [Video for boutique hotels](https://stilltofilm.com/hotel-video/): videos per room type or for the whole property, from existing photos
 - [Video for vacation rentals](https://stilltofilm.com/vacation-rental-video/): videos per holiday home or per apartment, from the listing photos (Airbnb, Booking.com, Vrbo or own website)
 - [AI video from photos](https://stilltofilm.com/ai-video-from-photos/): how it works, limits, the human quality check, done-for-you vs self-serve tools
+- [AI video tools vs. done for you](https://stilltofilm.com/ai-video-tools-vs-done-for-you/): honest comparison of self-serve AI video tools and a done-for-you service: cost, time, quality check, and when each is the better choice
 - [Pricing](https://stilltofilm.com/pricing/): the full price ladder, what is included, revisions vs new videos, example totals
 - [FAQ](https://stilltofilm.com/faq/): all questions, grouped by topic
 - [How it works](https://stilltofilm.com/how-it-works/): the four steps from photos to delivered video

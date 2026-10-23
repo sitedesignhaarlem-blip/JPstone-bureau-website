@@ -90,7 +90,7 @@
       ]
     },
     {
-      "source": "/(sitemap.xml|robots.txt|llms.txt)",
+      "source": "/(sitemap.xml|robots.txt|llms.txt|llms-full.txt)",
       "headers": [
         {
           "key": "Cache-Control",

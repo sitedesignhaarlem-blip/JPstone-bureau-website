@@ -19,55 +19,62 @@ import YachtEn from '../landing/en/YachtCharterVideo.astro';
 import HotelEn from '../landing/en/HotelVideo.astro';
 import RentalEn from '../landing/en/RentalVideo.astro';
 import AiVideoEn from '../landing/en/AiVideoFromPhotos.astro';
+import VersusEn from '../landing/en/AiToolsVsDoneForYou.astro';
 import PricingEn from '../landing/en/Pricing.astro';
 import FaqEn from '../landing/en/Faq.astro';
 import YachtNl from '../landing/nl/YachtCharterVideo.astro';
 import HotelNl from '../landing/nl/HotelVideo.astro';
 import RentalNl from '../landing/nl/RentalVideo.astro';
 import AiVideoNl from '../landing/nl/AiVideoFromPhotos.astro';
+import VersusNl from '../landing/nl/AiToolsVsDoneForYou.astro';
 import PricingNl from '../landing/nl/Pricing.astro';
 import FaqNl from '../landing/nl/Faq.astro';
 import YachtDe from '../landing/de/YachtCharterVideo.astro';
 import HotelDe from '../landing/de/HotelVideo.astro';
 import RentalDe from '../landing/de/RentalVideo.astro';
 import AiVideoDe from '../landing/de/AiVideoFromPhotos.astro';
+import VersusDe from '../landing/de/AiToolsVsDoneForYou.astro';
 import PricingDe from '../landing/de/Pricing.astro';
 import FaqDe from '../landing/de/Faq.astro';
 import YachtFr from '../landing/fr/YachtCharterVideo.astro';
 import HotelFr from '../landing/fr/HotelVideo.astro';
 import RentalFr from '../landing/fr/RentalVideo.astro';
 import AiVideoFr from '../landing/fr/AiVideoFromPhotos.astro';
+import VersusFr from '../landing/fr/AiToolsVsDoneForYou.astro';
 import PricingFr from '../landing/fr/Pricing.astro';
 import FaqFr from '../landing/fr/Faq.astro';
 import YachtEs from '../landing/es/YachtCharterVideo.astro';
 import HotelEs from '../landing/es/HotelVideo.astro';
 import RentalEs from '../landing/es/RentalVideo.astro';
 import AiVideoEs from '../landing/es/AiVideoFromPhotos.astro';
+import VersusEs from '../landing/es/AiToolsVsDoneForYou.astro';
 import PricingEs from '../landing/es/Pricing.astro';
 import FaqEs from '../landing/es/Faq.astro';
 import YachtHr from '../landing/hr/YachtCharterVideo.astro';
 import HotelHr from '../landing/hr/HotelVideo.astro';
 import RentalHr from '../landing/hr/RentalVideo.astro';
 import AiVideoHr from '../landing/hr/AiVideoFromPhotos.astro';
+import VersusHr from '../landing/hr/AiToolsVsDoneForYou.astro';
 import PricingHr from '../landing/hr/Pricing.astro';
 import FaqHr from '../landing/hr/Faq.astro';
 import YachtPt from '../landing/pt/YachtCharterVideo.astro';
 import HotelPt from '../landing/pt/HotelVideo.astro';
 import RentalPt from '../landing/pt/RentalVideo.astro';
 import AiVideoPt from '../landing/pt/AiVideoFromPhotos.astro';
+import VersusPt from '../landing/pt/AiToolsVsDoneForYou.astro';
 import PricingPt from '../landing/pt/Pricing.astro';
 import FaqPt from '../landing/pt/Faq.astro';
 
 // Landing pages per language. A page only exists in the languages listed here
 // (and in pageLocales in src/i18n/config.ts).
 const landing: Partial<Record<Locale, Partial<Record<PageId, any>>>> = {
-  en: { yacht: YachtEn, hotel: HotelEn, rental: RentalEn, aiVideo: AiVideoEn, pricing: PricingEn, faq: FaqEn },
-  nl: { yacht: YachtNl, hotel: HotelNl, rental: RentalNl, aiVideo: AiVideoNl, pricing: PricingNl, faq: FaqNl },
-  de: { yacht: YachtDe, hotel: HotelDe, rental: RentalDe, aiVideo: AiVideoDe, pricing: PricingDe, faq: FaqDe },
-  fr: { yacht: YachtFr, hotel: HotelFr, rental: RentalFr, aiVideo: AiVideoFr, pricing: PricingFr, faq: FaqFr },
-  es: { yacht: YachtEs, hotel: HotelEs, rental: RentalEs, aiVideo: AiVideoEs, pricing: PricingEs, faq: FaqEs },
-  hr: { yacht: YachtHr, hotel: HotelHr, rental: RentalHr, aiVideo: AiVideoHr, pricing: PricingHr, faq: FaqHr },
-  pt: { yacht: YachtPt, hotel: HotelPt, rental: RentalPt, aiVideo: AiVideoPt, pricing: PricingPt, faq: FaqPt },
+  en: { yacht: YachtEn, hotel: HotelEn, rental: RentalEn, aiVideo: AiVideoEn, versus: VersusEn, pricing: PricingEn, faq: FaqEn },
+  nl: { yacht: YachtNl, hotel: HotelNl, rental: RentalNl, aiVideo: AiVideoNl, versus: VersusNl, pricing: PricingNl, faq: FaqNl },
+  de: { yacht: YachtDe, hotel: HotelDe, rental: RentalDe, aiVideo: AiVideoDe, versus: VersusDe, pricing: PricingDe, faq: FaqDe },
+  fr: { yacht: YachtFr, hotel: HotelFr, rental: RentalFr, aiVideo: AiVideoFr, versus: VersusFr, pricing: PricingFr, faq: FaqFr },
+  es: { yacht: YachtEs, hotel: HotelEs, rental: RentalEs, aiVideo: AiVideoEs, versus: VersusEs, pricing: PricingEs, faq: FaqEs },
+  hr: { yacht: YachtHr, hotel: HotelHr, rental: RentalHr, aiVideo: AiVideoHr, versus: VersusHr, pricing: PricingHr, faq: FaqHr },
+  pt: { yacht: YachtPt, hotel: HotelPt, rental: RentalPt, aiVideo: AiVideoPt, versus: VersusPt, pricing: PricingPt, faq: FaqPt },
 };
 
 export const getStaticPaths = (() =>

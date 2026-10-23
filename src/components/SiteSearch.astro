@@ -24,12 +24,12 @@ const faqGroups = { en, nl, de, fr, es, hr, pt }[lang];
 
 const pageLabel: Record<PageId, string> = {
   home: t.nav.home, library: t.nav.library, how: t.nav.how, contact: t.nav.contact,
-  pricing: t.pages.pricing, faq: t.pages.faq, yacht: t.pages.yacht, hotel: t.pages.hotel, rental: t.pages.rental, aiVideo: t.pages.aiVideo,
+  pricing: t.pages.pricing, faq: t.pages.faq, yacht: t.pages.yacht, hotel: t.pages.hotel, rental: t.pages.rental, aiVideo: t.pages.aiVideo, versus: t.pages.versus,
   privacy: t.footer.privacy, terms: t.footer.terms, cookies: t.footer.cookies,
 };
 
 // How likely someone looks for a page: breaks ties, so "p" shows Pricing before Privacy.
-const weight: Partial<Record<PageId, number>> = { pricing: 6, contact: 5, library: 4, faq: 3, how: 3, yacht: 2, hotel: 2, rental: 2, aiVideo: 2, home: 1 };
+const weight: Partial<Record<PageId, number>> = { pricing: 6, contact: 5, library: 4, faq: 3, how: 3, yacht: 2, hotel: 2, rental: 2, aiVideo: 2, versus: 2, home: 1 };
 // The library is also found by the names of its clips ("galley", "saloon"…).
 const clipNames = Object.values(t.shots).map((shot) => shot.title);
 

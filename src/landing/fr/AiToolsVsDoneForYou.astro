@@ -1,0 +1,89 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'fr';
+const faq = [
+  {
+    q: 'Un outil vidéo IA est-il moins cher que Still to Film ?',
+    a: 'Souvent, si vous ne comptez que l’abonnement ou les crédits et que vous maîtrisez déjà l’outil. En général non, si vous comptez vos propres heures : choisir les photos, écrire les prompts, régénérer les clips ratés, monter et exporter deux formats. Still to Film coûte de 50 à 100 € par vidéo, TVA comprise, travail et contrôle inclus.',
+  },
+  {
+    q: 'Quels outils vidéo IA transforment des photos d’annonce en vidéo ?',
+    a: 'Des générateurs image-vers-vidéo généralistes comme Runway, Kling ou Luma, et des outils vidéo pensés pour l’immobilier et le marketing. Ils évoluent vite : vérifiez ce que chacun propose aujourd’hui. Nous ne revendons aucun d’entre eux et n’avons aucun accord avec eux.',
+  },
+  {
+    q: 'Quand vaut-il mieux utiliser un outil soi-même ?',
+    a: 'Quand vous aimez apprendre un logiciel, avez du temps, n’avez besoin que d’une ou deux vidéos, ou voulez tester des styles vous-même. Pour une flotte, plusieurs logements, ou si vous voulez simplement un travail fait et vérifié, un service vous épargne le travail.',
+  },
+  q.ai,
+  q.sample,
+];
+---
+<Landing
+  lang={lang}
+  page="versus"
+  title="Outils vidéo IA ou service clé en main : comparaison honnête"
+  description="Utiliser soi-même un outil vidéo IA ou confier vos photos d’annonce à un service ? Coût en argent et en temps, qui contrôle le résultat, et quand chaque option est la meilleure."
+  eyebrow="Comparaison"
+  h1="Outil vidéo IA ou service clé en main : lequel convient à vos annonces ?"
+  summary="Un outil vidéo IA vous donne le logiciel : vous choisissez les photos, écrivez les prompts, repérez les clips ratés et montez le film vous-même. Un service clé en main comme Still to Film fait tout cela pour 50 à 100 € par vidéo, TVA comprise, et une personne vérifie chaque vidéo avant livraison. L’outil coûte moins d’argent, le service moins de temps."
+  faqTitle="Questions sur les outils et le service"
+  faqItems={faq}
+  related={['aiVideo', 'pricing', 'yacht']}
+>
+  <h2>Quelle est la différence ?</h2>
+  <p>Les deux utilisent le même type de technologie : un logiciel qui transforme une photo en un court clip avec un mouvement de caméra. La différence, c’est qui fait le travail autour. Avec un outil, c’est vous le monteur. Avec un service, vous envoyez le lien de votre annonce et recevez une vidéo finie et vérifiée.</p>
+
+  <h2>Côte à côte</h2>
+  <div class="table-wrap" role="region" aria-label="Comparaison : outil vidéo IA et service clé en main" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Sujet</th><th scope="col">Vous-même avec un outil vidéo IA</th><th scope="col">Clé en main (Still to Film)</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Sujet">Ce que vous payez</td><td data-label="Outil">Un abonnement ou des crédits ; les prix changent, consultez le site de l’outil</td><td data-label="Clé en main">50 à 100 € par vidéo, TVA comprise, facturé après livraison</td></tr>
+        <tr><td data-label="Sujet">Votre temps par vidéo</td><td data-label="Outil">Des heures : choix des photos, prompts, nouveaux essais, montage, export</td><td data-label="Clé en main">Quelques minutes : envoyer un lien et donner votre avis</td></tr>
+        <tr><td data-label="Sujet">Compétences nécessaires</td><td data-label="Outil">Apprendre l’outil et l’art du prompt</td><td data-label="Clé en main">Aucune</td></tr>
+        <tr><td data-label="Sujet">Clips ratés</td><td data-label="Outil">Vous les repérez et les régénérez, souvent en payant chaque essai</td><td data-label="Clé en main">Nous les jetons et les refaisons ; vous ne payez jamais les essais ratés</td></tr>
+        <tr><td data-label="Sujet">Contrôle qualité</td><td data-label="Outil">À votre charge</td><td data-label="Clé en main">Une personne compare chaque vidéo à vos photos</td></tr>
+        <tr><td data-label="Sujet">Formats</td><td data-label="Outil">Selon l’outil ; souvent un à la fois</td><td data-label="Clé en main">16:9 et 9:16, tous deux inclus</td></tr>
+        <tr><td data-label="Sujet">Modifications</td><td data-label="Outil">Vous refaites le travail vous-même</td><td data-label="Clé en main">Deux séries de retouches incluses</td></tr>
+        <tr><td data-label="Sujet">Un style pour beaucoup d’annonces</td><td data-label="Outil">Possible, si vous gardez les mêmes réglages à chaque fois</td><td data-label="Clé en main">Oui, le même style calme pour chaque yacht ou logement</td></tr>
+        <tr><td data-label="Sujet">Rapidité</td><td data-label="Outil">Aussi vite que vous travaillez</td><td data-label="Clé en main">Jusqu’à 2 vidéos par jour ; date de livraison fixée dans le devis</td></tr>
+        <tr><td data-label="Sujet">Essayer avant de payer</td><td data-label="Outil">La plupart des outils offrent un essai ou quelques crédits gratuits</td><td data-label="Clé en main">Un extrait gratuit de 15 à 25 secondes à partir de vos propres photos</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Où passe le temps avec un outil ?</h2>
+  <ol>
+    <li><strong>Choisir les photos.</strong> Toutes les photos ne fonctionnent pas en mouvement. Les photos larges, nettes et bien éclairées, oui ; les photos sombres ou encombrées donnent des résultats étranges.</li>
+    <li><strong>Écrire les prompts.</strong> Chaque photo a besoin d’une description du mouvement voulu. Trop de mouvement, et le logiciel se met à deviner.</li>
+    <li><strong>Recommencer.</strong> Une partie des clips sort mal : des lignes qui se courbent, des objets qui changent, un lit qui se déplace. Vous les trouvez en regardant chaque clip, puis vous recommencez.</li>
+    <li><strong>Monter.</strong> Les clips sont mis dans l’ordre, raccourcis et assemblés en un film de 60 à 90 secondes.</li>
+    <li><strong>Exporter.</strong> Une version paysage pour votre site et une version portrait pour les Reels et les Stories.</li>
+  </ol>
+  <p>Pour une vidéo, c’est un agréable après-midi si le travail vous plaît. Pour une flotte de yachts ou un groupe de maisons de vacances, cela devient un mi-temps.</p>
+
+  <h2>Quand un outil est-il le meilleur choix ?</h2>
+  <ul>
+    <li>Vous aimez apprendre de nouveaux logiciels et vous avez le temps.</li>
+    <li>Vous avez besoin d’une ou deux vidéos, pas d’une série.</li>
+    <li>Vous voulez essayer vous-même beaucoup de styles différents.</li>
+    <li>Vous payez déjà un outil pour d’autres travaux.</li>
+  </ul>
+
+  <h2>Quand le clé en main est-il le meilleur choix ?</h2>
+  <ul>
+    <li>Vous avez plusieurs yachts, chambres ou logements et voulez une présentation homogène.</li>
+    <li>Vous ne voulez pas apprendre un outil ni vérifier chaque clip vous-même.</li>
+    <li>Vous voulez que quelqu’un d’autre soit responsable d’un résultat fidèle à vos photos.</li>
+    <li>Vous voulez les deux formats et des retouches sans travail en plus.</li>
+  </ul>
+
+  <h2>Ce qu’aucun des deux ne peut faire</h2>
+  <p>Les deux travaillent uniquement à partir de vos photos. Aucun ne peut montrer une pièce, une vue ou un détail jamais photographié, et aucun n’ajoute de vraies personnes ni de son enregistré. Si vous en avez besoin, un tournage est le meilleur choix. Plus de détails dans <a href={pagePath(lang, 'aiVideo')}>comment fonctionne la vidéo IA à partir de photos</a>.</p>
+
+  <h2>Comment décider ?</h2>
+  <p>Comptez vos propres heures. Si un après-midi par vidéo est du temps que vous préférez consacrer à vos clients ou à vos réservations, un service est généralement plus avantageux. Sinon, un outil est un bon point de départ. Dans les deux cas, vous pouvez nous demander un extrait gratuit à partir de vos photos et le comparer à ce que donne un outil. Voir <a href={pagePath(lang, 'pricing')}>tous les tarifs</a>.</p>
+</Landing>

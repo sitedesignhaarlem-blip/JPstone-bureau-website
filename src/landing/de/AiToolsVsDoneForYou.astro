@@ -1,0 +1,89 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'de';
+const faq = [
+  {
+    q: 'Ist ein KI-Video-Tool günstiger als Still to Film?',
+    a: 'Oft ja, wenn Sie nur das Abo oder die Credits zählen und das Tool schon kennen. Meist nicht mehr, wenn Sie Ihre eigenen Stunden mitrechnen: Fotos auswählen, Prompts schreiben, misslungene Clips neu erzeugen, schneiden und zwei Formate exportieren. Still to Film kostet 50 bis 100 € pro Video inklusive MwSt., mit Arbeit und Kontrolle.',
+  },
+  {
+    q: 'Welche KI-Video-Tools machen aus Inseratsfotos ein Video?',
+    a: 'Allgemeine Image-to-Video-Generatoren wie Runway, Kling oder Luma sowie Video-Tools für Immobilien und Marketing. Sie ändern sich schnell, prüfen Sie also selbst, was sie heute bieten. Wir verkaufen keines dieser Tools weiter und haben keine Vereinbarungen mit ihnen.',
+  },
+  {
+    q: 'Wann nutze ich besser selbst ein Tool statt eines Service?',
+    a: 'Wenn Sie gern Software lernen, Zeit übrig haben, nur ein oder zwei Videos brauchen oder selbst mit Stilen experimentieren möchten. Für eine Flotte, mehrere Unterkünfte oder wenn es einfach erledigt und geprüft sein soll, spart Ihnen ein Service die Arbeit.',
+  },
+  q.ai,
+  q.sample,
+];
+---
+<Landing
+  lang={lang}
+  page="versus"
+  title="KI-Video-Tools oder Full Service: ein ehrlicher Vergleich"
+  description="Selbst ein KI-Video-Tool nutzen oder Ihre Inseratsfotos von einem Service umsetzen lassen? Kosten an Geld und Zeit, wer das Ergebnis prüft und wann was besser passt."
+  eyebrow="Im Vergleich"
+  h1="KI-Video-Tools oder Full Service: was passt zu Ihren Inseraten?"
+  summary="Ein KI-Video-Tool gibt Ihnen die Software: Sie wählen die Fotos, schreiben die Prompts, erkennen misslungene Clips und schneiden den Film selbst. Ein Full Service wie Still to Film erledigt all das für 50 bis 100 € pro Video inklusive MwSt., und ein Mensch prüft jedes Video vor der Lieferung. Das Tool spart Geld, der Service spart Zeit."
+  faqTitle="Fragen zu Tools und Service"
+  faqItems={faq}
+  related={['aiVideo', 'pricing', 'yacht']}
+>
+  <h2>Was ist der Unterschied?</h2>
+  <p>Beide nutzen dieselbe Art von Technik: Software, die aus einem Foto einen kurzen Clip mit Kamerabewegung macht. Der Unterschied liegt darin, wer die Arbeit drumherum macht. Mit einem Tool sind Sie der Cutter. Beim Full Service schicken Sie den Link zu Ihrem Inserat und bekommen ein fertiges, geprüftes Video zurück.</p>
+
+  <h2>Im direkten Vergleich</h2>
+  <div class="table-wrap" role="region" aria-label="Vergleich: KI-Video-Tool und Full Service" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Thema</th><th scope="col">Selbst mit KI-Video-Tool</th><th scope="col">Full Service (Still to Film)</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Thema">Was Sie zahlen</td><td data-label="Tool">Ein Abo oder Credits; Preise ändern sich, schauen Sie auf der Seite des Tools nach</td><td data-label="Full Service">50 bis 100 € pro Video inklusive MwSt., Rechnung nach Lieferung</td></tr>
+        <tr><td data-label="Thema">Ihre Zeit pro Video</td><td data-label="Tool">Stunden: Fotos wählen, Prompts, neue Versuche, Schnitt, Export</td><td data-label="Full Service">Ein paar Minuten: Link schicken und Feedback geben</td></tr>
+        <tr><td data-label="Thema">Nötige Kenntnisse</td><td data-label="Tool">Das Tool lernen und das Prompten</td><td data-label="Full Service">Keine</td></tr>
+        <tr><td data-label="Thema">Misslungene Clips</td><td data-label="Tool">Sie finden sie und erzeugen sie neu, oft zahlen Sie pro Versuch</td><td data-label="Full Service">Wir verwerfen sie und machen sie neu; Sie zahlen nie für Fehlversuche</td></tr>
+        <tr><td data-label="Thema">Qualitätskontrolle</td><td data-label="Tool">Liegt bei Ihnen</td><td data-label="Full Service">Ein Mensch vergleicht jedes Video mit Ihren Fotos</td></tr>
+        <tr><td data-label="Thema">Formate</td><td data-label="Tool">Je nach Tool; oft eins nach dem anderen</td><td data-label="Full Service">16:9 und 9:16, beide inklusive</td></tr>
+        <tr><td data-label="Thema">Änderungen</td><td data-label="Tool">Sie machen die Arbeit selbst noch einmal</td><td data-label="Full Service">Zwei Korrekturrunden inklusive</td></tr>
+        <tr><td data-label="Thema">Ein Stil für viele Inserate</td><td data-label="Tool">Möglich, wenn Sie jedes Mal dieselben Einstellungen nutzen</td><td data-label="Full Service">Ja, derselbe ruhige Stil für jede Yacht und jede Unterkunft</td></tr>
+        <tr><td data-label="Thema">Tempo</td><td data-label="Tool">So schnell, wie Sie arbeiten</td><td data-label="Full Service">Bis zu 2 Videos pro Tag; Liefertermin steht im Angebot</td></tr>
+        <tr><td data-label="Thema">Vorher testen</td><td data-label="Tool">Die meisten Tools haben eine Testphase oder ein paar Gratis-Credits</td><td data-label="Full Service">Ein kostenloses Probevideo von 15 bis 25 Sekunden aus Ihren eigenen Fotos</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Wohin geht die Zeit mit einem Tool?</h2>
+  <ol>
+    <li><strong>Fotos auswählen.</strong> Nicht jedes Foto funktioniert in Bewegung. Weite, scharfe, gut belichtete Fotos schon; dunkle oder unruhige Fotos ergeben seltsame Ergebnisse.</li>
+    <li><strong>Prompten.</strong> Jedes Foto braucht eine Beschreibung der gewünschten Bewegung. Zu viel Bewegung, und die Software fängt an zu raten.</li>
+    <li><strong>Neu versuchen.</strong> Ein Teil der Clips gerät falsch: Linien, die sich biegen, Gegenstände, die sich verändern, ein Bett, das wandert. Sie finden sie, indem Sie jeden Clip ansehen, und versuchen es dann erneut.</li>
+    <li><strong>Schneiden.</strong> Die Clips werden geordnet, gekürzt und zu einem Film von 60 bis 90 Sekunden zusammengefügt.</li>
+    <li><strong>Exportieren.</strong> Eine Querformat-Version für Ihre Website und eine Hochformat-Version für Reels und Stories.</li>
+  </ol>
+  <p>Für ein Video ist das ein angenehmer Nachmittag, wenn Ihnen die Arbeit Spaß macht. Für eine Yachtflotte oder mehrere Ferienhäuser wird es ein Teilzeitjob.</p>
+
+  <h2>Wann ist ein Tool die bessere Wahl?</h2>
+  <ul>
+    <li>Sie lernen gern neue Software und haben die Zeit.</li>
+    <li>Sie brauchen ein oder zwei Videos, keine Serie.</li>
+    <li>Sie möchten selbst viele verschiedene Stile ausprobieren.</li>
+    <li>Sie zahlen schon für ein Tool, das Sie für andere Arbeit nutzen.</li>
+  </ul>
+
+  <h2>Wann ist Full Service die bessere Wahl?</h2>
+  <ul>
+    <li>Sie haben mehrere Yachten, Zimmer oder Unterkünfte und möchten, dass sie einheitlich aussehen.</li>
+    <li>Sie möchten kein Tool lernen und nicht jeden Clip selbst prüfen.</li>
+    <li>Sie möchten, dass jemand anderes dafür verantwortlich ist, dass das Ergebnis zu Ihren Fotos passt.</li>
+    <li>Sie möchten beide Formate und Korrekturen ohne zusätzlichen Aufwand.</li>
+  </ul>
+
+  <h2>Was beide nicht können</h2>
+  <p>Beide arbeiten nur mit Ihren Fotos. Keines kann einen Raum, eine Aussicht oder ein Detail zeigen, das nie fotografiert wurde, und keines fügt echte Menschen oder aufgenommenen Ton hinzu. Brauchen Sie das, ist ein Drehtag die bessere Wahl. Mehr dazu unter <a href={pagePath(lang, 'aiVideo')}>so funktioniert KI-Video aus Fotos</a>.</p>
+
+  <h2>Wie entscheiden Sie?</h2>
+  <p>Zählen Sie Ihre eigenen Stunden. Wenn ein Nachmittag pro Video Zeit ist, die Sie lieber in Gäste oder Buchungen stecken, ist ein Service meist das bessere Geschäft. Wenn nicht, ist ein Tool ein guter Anfang. So oder so können Sie uns um ein kostenloses Probevideo aus Ihren eigenen Fotos bitten und es mit dem vergleichen, was ein Tool liefert. Siehe <a href={pagePath(lang, 'pricing')}>alle Preise</a>.</p>
+</Landing>

@@ -162,6 +162,7 @@ const hr: UI = {
     hotel: 'Video za boutique hotele',
     rental: 'Video za apartmane i kuće za odmor',
     aiVideo: 'AI video od fotografija',
+    versus: "AI alati za video ili usluga",
     pricing: 'Cijene',
     faq: 'Česta pitanja',
   },

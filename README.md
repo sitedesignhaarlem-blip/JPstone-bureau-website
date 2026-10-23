@@ -34,6 +34,7 @@ De adressen staan in `src/i18n/config.ts`. Alle pagina's worden gemaakt door `sr
 
 - **Gewone teksten:** `src/i18n/en.ts`, `nl.ts`, `de.ts`, `fr.ts`, `es.ts`, `hr.ts`, `pt.ts`. Elk bestand heeft precies dezelfde sleutels. Pas je in het Engels iets aan, doe het dan ook in de andere talen.
 - **Juridische teksten:** `src/legal/<taal>/Privacy.astro`, `Terms.astro`, `Cookies.astro`. De Nederlandse versie is leidend. Pas na een wijziging de datum aan in `src/i18n/index.ts` (`LEGAL_UPDATED`).
+- **Landingspagina's** (jacht, hotel, vakantiehuis, AI-video, vergelijking, prijzen, FAQ): `src/landing/<taal>/`. Ze tonen "Laatst bijgewerkt" en sturen `dateModified` mee aan zoekmachines. Pas na een inhoudelijke wijziging (prijzen, levertijd, voorwaarden) `CONTENT_UPDATED` aan in `src/i18n/index.ts`.
 - **Bedrijfsgegevens** (e-mail, telefoon, KvK, btw, adres, formulier): `src/data/site.ts`.
 - **Placeholders:** alles wat in een tekst als `[TODO: …]` staat, verschijnt op de site als oranje gestippelde tekst. Zo valt het op tot het is ingevuld. Zoek ze op met `grep -rn "TODO" src`.
 
@@ -88,6 +89,9 @@ Het vergrootglas in het menu (`src/components/SiteSearch.astro`) geeft suggestie
 - **Sitemap:** `/sitemap.xml` wordt bij elke build gemaakt uit de paginalijst in `src/i18n/config.ts`, met alle taalversies (hreflang). Een nieuwe pagina komt er vanzelf in.
 - **robots.txt:** laat alle zoekmachines en AI-crawlers toe (GPTBot, ClaudeBot, PerplexityBot, Google-Extended en andere).
 - **llms.txt:** een korte, feitelijke samenvatting voor AI-assistenten in `public/llms.txt`. Houd die gelijk met de site als prijzen of diensten veranderen.
+- **llms-full.txt:** wordt bij elke build automatisch gemaakt (`scripts/llms-full.mjs`) met de volledige Engelse tekst van alle openbare pagina's. Niets aan doen.
+- **IndexNow:** na elke productiebuild op Vercel meldt `scripts/indexnow.mjs` alle adressen uit de sitemap bij Bing en andere IndexNow-zoekmachines (Bing voedt ook ChatGPT-zoeken en Copilot). De sleutel staat in die file en in `public/<sleutel>.txt`; verander ze alleen samen. Mislukt het melden, dan gaat de deploy gewoon door.
+- **Vergelijkingspagina:** `src/landing/<taal>/AiToolsVsDoneForYou.astro` (AI-tools zelf gebruiken of uitbesteden). Noem geen prijzen of functies van andere tools die je niet zelf hebt gecontroleerd.
 - **Structured data:** `src/data/schema.ts` (Organization, WebSite, Service, FAQPage, VideoObject, BreadcrumbList). De FAQ-data komt uit dezelfde teksten als de zichtbare FAQ.
 - **Hoofdadres:** `https://stilltofilm.com` (zonder www). De doorverwijzing van www regel je in Vercel onder **Settings → Domains**, niet in `vercel.json`: twee regels die elkaar tegenspreken geven een eindeloze lus (ERR_TOO_MANY_REDIRECTS).
 

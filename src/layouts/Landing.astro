@@ -7,7 +7,8 @@ import SiteNav from '../components/SiteNav.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import Faq from '../components/Faq.astro';
 import type { FaqItem } from '../data/schema';
-import { hasPage, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
+import { SITE_URL } from '../data/site';
+import { CONTENT_UPDATED, formatDate, hasPage, hreflang, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
 
 interface Props {
   lang: Locale;
@@ -30,8 +31,10 @@ interface Props {
 const { lang, page, title, description, eyebrow, h1, summary, faqTitle, faqItems = [], showFaq = true, service = false, related = [] } = Astro.props;
 const t = useTranslations(lang);
 const relatedLinks = related.filter((p) => hasPage(lang, p));
+const url = new URL(pagePath(lang, page), SITE_URL).href;
+const webPage = { '@type': 'WebPage', '@id': `${url}#webpage`, url, name: title, description, inLanguage: hreflang[lang], dateModified: CONTENT_UPDATED, isPartOf: { '@id': new URL('/#website', SITE_URL).href } };
 ---
-<Base title={title} description={description} lang={lang} page={page} service={service} faqItems={faqItems}>
+<Base title={title} description={description} lang={lang} page={page} service={service} faqItems={faqItems} schema={[webPage]}>
   <SiteNav lang={lang} page={page} />
   <main id="main">
     <header class="section landing-head">
@@ -39,6 +42,7 @@ const relatedLinks = related.filter((p) => hasPage(lang, p));
         <p class="eyebrow">{eyebrow}</p>
         <h1>{h1}</h1>
         <p class="lead summary">{summary}</p>
+        <p class="updated muted">{t.legal.updated}: <time datetime={CONTENT_UPDATED}>{formatDate(lang, CONTENT_UPDATED)}</time></p>
         <div class="actions">
           <a class="button" href={pagePath(lang, 'contact')}>{t.hero.cta}</a>
           {page !== 'pricing' && hasPage(lang, 'pricing') && <a class="link-more" href={pagePath(lang, 'pricing')}>{t.landing.fullPricing}</a>}
@@ -83,6 +87,7 @@ const relatedLinks = related.filter((p) => hasPage(lang, p));
   .landing-head .landing-inner { display: grid; gap: var(--space-4); }
   .landing-head h1 { font-size: var(--step-h2); line-height: 1.07; }
   .summary { color: var(--fg); }
+  .updated { font-size: var(--step-small); }
   .actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-6); margin-top: var(--space-2); }
 
   .prose :global(h2) { font-size: var(--step-h3); line-height: 1.15; margin: var(--space-8) 0 var(--space-3); }

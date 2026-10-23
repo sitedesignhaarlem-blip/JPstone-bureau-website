@@ -162,6 +162,7 @@ const nl: UI = {
     hotel: "Video voor boutique hotels",
     rental: "Video voor vakantiehuizen",
     aiVideo: "AI-video van foto's",
+    versus: "AI-videotools of uitbesteden",
     pricing: "Prijzen",
     faq: "Veelgestelde vragen",
   },

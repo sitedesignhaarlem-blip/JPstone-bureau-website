@@ -162,6 +162,7 @@ const de: UI = {
     hotel: "Video für Boutique-Hotels",
     rental: "Video für Ferienwohnungen",
     aiVideo: "KI-Video aus Fotos",
+    versus: "KI-Video-Tools oder Full Service",
     pricing: "Preise",
     faq: "Häufige Fragen",
   },

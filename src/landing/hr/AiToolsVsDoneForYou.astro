@@ -1,0 +1,89 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'hr';
+const faq = [
+  {
+    q: 'Je li AI alat za video jeftiniji od Still to Filma?',
+    a: 'Često jest, ako računate samo pretplatu ili kredite i već poznajete alat. Obično nije, ako uračunate vlastite sate: odabir fotografija, pisanje promptova, ponovno generiranje neuspjelih isječaka, montažu i izvoz dvaju formata. Still to Film stoji od 50 do 100 € po videu, s uključenim PDV-om, a rad i provjera su uključeni.',
+  },
+  {
+    q: 'Koji AI alati od fotografija oglasa rade video?',
+    a: 'Opći generatori slike u video poput Runwaya, Klinga ili Lume te alati za video namijenjeni nekretninama i marketingu. Brzo se mijenjaju, pa provjerite što koji nudi danas. Ne preprodajemo nijedan od njih i nemamo dogovore s njima.',
+  },
+  {
+    q: 'Kada je bolje sam koristiti alat?',
+    a: 'Kada volite učiti softver, imate vremena, trebate samo jedan ili dva videa ili želite sami eksperimentirati sa stilovima. Za flotu, više smještajnih jedinica ili kada jednostavno želite da je posao gotov i provjeren, usluga vam štedi rad.',
+  },
+  q.ai,
+  q.sample,
+];
+---
+<Landing
+  lang={lang}
+  page="versus"
+  title="AI alati za video ili usluga: iskrena usporedba"
+  description="Sami koristiti AI alat za video ili fotografije oglasa prepustiti usluzi? Koliko košta u novcu i vremenu, tko provjerava rezultat i kada je koja opcija bolja."
+  eyebrow="Usporedba"
+  h1="AI alat za video ili usluga: što odgovara vašim oglasima?"
+  summary="AI alat za video daje vam softver: vi birate fotografije, pišete promptove, uočavate neuspjele isječke i sami montirate film. Usluga poput Still to Filma sve to radi za 50 do 100 € po videu, s uključenim PDV-om, a osoba provjerava svaki video prije isporuke. Alat štedi novac, usluga štedi vrijeme."
+  faqTitle="Pitanja o alatima i usluzi"
+  faqItems={faq}
+  related={['aiVideo', 'pricing', 'yacht']}
+>
+  <h2>U čemu je razlika?</h2>
+  <p>Oboje koristi istu vrstu tehnologije: softver koji od fotografije radi kratki isječak s pokretom kamere. Razlika je u tome tko radi posao oko toga. S alatom ste vi montažer. S uslugom pošaljete poveznicu na svoj oglas i dobijete gotov, provjeren video.</p>
+
+  <h2>Jedno uz drugo</h2>
+  <div class="table-wrap" role="region" aria-label="Usporedba: AI alat za video i usluga" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Tema</th><th scope="col">Sami s AI alatom za video</th><th scope="col">Usluga (Still to Film)</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Tema">Što plaćate</td><td data-label="Alat">Pretplatu ili kredite; cijene se mijenjaju, provjerite na stranici alata</td><td data-label="Usluga">50 do 100 € po videu, s PDV-om, fakturirano nakon isporuke</td></tr>
+        <tr><td data-label="Tema">Vaše vrijeme po videu</td><td data-label="Alat">Sati: odabir fotografija, promptovi, ponovni pokušaji, montaža, izvoz</td><td data-label="Usluga">Nekoliko minuta: pošaljete poveznicu i date povratnu informaciju</td></tr>
+        <tr><td data-label="Tema">Potrebno znanje</td><td data-label="Alat">Učenje alata i pisanja promptova</td><td data-label="Usluga">Nikakvo</td></tr>
+        <tr><td data-label="Tema">Neuspjeli isječci</td><td data-label="Alat">Vi ih uočavate i ponovno generirate, često plaćajući svaki pokušaj</td><td data-label="Usluga">Mi ih odbacujemo i radimo ponovno; nikad ne plaćate neuspjele pokušaje</td></tr>
+        <tr><td data-label="Tema">Provjera kvalitete</td><td data-label="Alat">Na vama</td><td data-label="Usluga">Osoba uspoređuje svaki video s vašim fotografijama</td></tr>
+        <tr><td data-label="Tema">Formati</td><td data-label="Alat">Ovisi o alatu; često jedan po jedan</td><td data-label="Usluga">16:9 i 9:16, oba uključena</td></tr>
+        <tr><td data-label="Tema">Izmjene</td><td data-label="Alat">Sami ponovno radite posao</td><td data-label="Usluga">Dva kruga izmjena uključena</td></tr>
+        <tr><td data-label="Tema">Jedan stil za mnogo oglasa</td><td data-label="Alat">Moguće, ako svaki put koristite iste postavke</td><td data-label="Usluga">Da, isti miran stil za svaku jahtu ili smještaj</td></tr>
+        <tr><td data-label="Tema">Brzina</td><td data-label="Alat">Onoliko brzo koliko vi radite</td><td data-label="Usluga">Do 2 videa dnevno; datum isporuke dogovara se u ponudi</td></tr>
+        <tr><td data-label="Tema">Probati prije plaćanja</td><td data-label="Alat">Većina alata ima probno razdoblje ili nekoliko besplatnih kredita</td><td data-label="Usluga">Besplatni ogledni video od 15 do 25 sekundi od vaših fotografija</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Gdje odlazi vrijeme s alatom?</h2>
+  <ol>
+    <li><strong>Odabir fotografija.</strong> Ne radi svaka fotografija u pokretu. Široke, oštre i dobro osvijetljene rade; tamne ili pretrpane daju čudne rezultate.</li>
+    <li><strong>Pisanje promptova.</strong> Svaka fotografija treba opis pokreta koji želite. Previše pokreta i softver počinje nagađati.</li>
+    <li><strong>Ponovni pokušaji.</strong> Dio isječaka ispadne pogrešno: linije koje se savijaju, predmeti koji se mijenjaju, krevet koji se pomiče. Pronađete ih gledajući svaki isječak i pokušate ponovno.</li>
+    <li><strong>Montaža.</strong> Isječci se slažu po redu, skraćuju i spajaju u jedan film od 60 do 90 sekundi.</li>
+    <li><strong>Izvoz.</strong> Vodoravna verzija za vašu web-stranicu i okomita za Reels i Stories.</li>
+  </ol>
+  <p>Za jedan video to je ugodno poslijepodne ako vam se posao sviđa. Za flotu jahti ili skupinu kuća za odmor postaje posao na pola radnog vremena.</p>
+
+  <h2>Kada je alat bolji izbor?</h2>
+  <ul>
+    <li>Volite učiti novi softver i imate vremena.</li>
+    <li>Trebate jedan ili dva videa, ne seriju.</li>
+    <li>Želite sami isprobati mnogo različitih stilova.</li>
+    <li>Već plaćate alat za drugi posao.</li>
+  </ul>
+
+  <h2>Kada je usluga bolji izbor?</h2>
+  <ul>
+    <li>Imate više jahti, soba ili smještajnih jedinica i želite da izgledaju ujednačeno.</li>
+    <li>Ne želite učiti alat ni sami provjeravati svaki isječak.</li>
+    <li>Želite da netko drugi bude odgovoran za to da rezultat odgovara vašim fotografijama.</li>
+    <li>Želite oba formata i izmjene bez dodatnog posla.</li>
+  </ul>
+
+  <h2>Što ne može ni jedno ni drugo</h2>
+  <p>Oboje radi samo s vašim fotografijama. Nijedno ne može prikazati prostoriju, pogled ili detalj koji nikad nije fotografiran, i nijedno ne dodaje stvarne ljude ni snimljeni zvuk. Ako vam to treba, dan snimanja je bolji izbor. Više o tome u <a href={pagePath(lang, 'aiVideo')}>kako radi AI video od fotografija</a>.</p>
+
+  <h2>Kako odlučiti?</h2>
+  <p>Izbrojite vlastite sate. Ako je jedno poslijepodne po videu vrijeme koje biste radije posvetili gostima ili rezervacijama, usluga se obično više isplati. Ako nije, alat je dobar početak. U svakom slučaju možete nas zamoliti za besplatni ogledni video od svojih fotografija i usporediti ga s onim što daje alat. Pogledajte <a href={pagePath(lang, 'pricing')}>sve cijene</a>.</p>
+</Landing>

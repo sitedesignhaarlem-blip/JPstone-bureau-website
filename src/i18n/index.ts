@@ -22,5 +22,15 @@ const LEGAL_UPDATED = new Date('2026-10-19T12:00:00Z');
 
 /** The legal "last updated" date, written the way each language writes dates. */
 export function legalDate(locale: Locale): string {
-  return new Intl.DateTimeFormat(htmlLang[locale], { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(LEGAL_UPDATED);
+  return formatDate(locale, LEGAL_UPDATED);
+}
+
+// When the text of the landing pages (yacht, hotel, pricing…) last changed. Shown on the page and
+// sent as dateModified, so search engines and AI assistants can see the information is current.
+// Change it whenever you change prices or other facts on those pages.
+export const CONTENT_UPDATED = '2026-10-23';
+
+/** A date written out in the language, e.g. "23 October 2026". */
+export function formatDate(locale: Locale, date: Date | string): string {
+  return new Intl.DateTimeFormat(htmlLang[locale], { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(date));
 }

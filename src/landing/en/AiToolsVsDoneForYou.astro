@@ -1,0 +1,89 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'en';
+const faq = [
+  {
+    q: 'Is a self-serve AI video tool cheaper than Still to Film?',
+    a: 'Often, if you count only the subscription or credits and you already know the tool. It is usually not cheaper once you count your own hours: choosing photos, writing prompts, regenerating failed clips, editing and exporting two formats. Still to Film costs €50 to €100 per video, including VAT, with the work and the check included.',
+  },
+  {
+    q: 'Which AI video tools can turn listing photos into video?',
+    a: 'General image-to-video generators such as Runway, Kling or Luma, and video makers aimed at property and marketing. They change quickly, so check what each one offers today. We do not resell any of them and have no deal with them.',
+  },
+  {
+    q: 'When should I use a tool myself instead of a service?',
+    a: 'When you enjoy learning software, have time to spare, need only one or two videos, or want to experiment with styles yourself. For a fleet, several properties, or when you simply want it done and checked, a service saves you the work.',
+  },
+  q.ai,
+  q.sample,
+];
+---
+<Landing
+  lang={lang}
+  page="versus"
+  title="AI video tools vs. done for you: an honest comparison"
+  description="Self-serve AI video tool or a done-for-you service for your listing photos? What each costs in money and time, who checks the result, and when each is the better choice."
+  eyebrow="Compared"
+  h1="AI video tools or done for you: which fits your listings?"
+  summary="A self-serve AI video tool gives you the software: you choose the photos, write the prompts, spot failed clips and edit the film yourself. A done-for-you service like Still to Film does all of that for €50 to €100 per video, including VAT, and a person checks every video before delivery. The tool is cheaper in money, the service is cheaper in time."
+  faqTitle="Questions about tools and services"
+  faqItems={faq}
+  related={['aiVideo', 'pricing', 'yacht']}
+>
+  <h2>What is the difference?</h2>
+  <p>Both use the same kind of technology: software that turns a still photo into a short clip with camera movement. The difference is who does the work around it. With a tool, you are the editor. With a service, you send the link to your listing and get a finished, checked video back.</p>
+
+  <h2>Side by side</h2>
+  <div class="table-wrap" role="region" aria-label="Comparison: self-serve AI video tool and done-for-you service" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Topic</th><th scope="col">Self-serve AI video tool</th><th scope="col">Done for you (Still to Film)</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Topic">What you pay</td><td data-label="Tool">A subscription or credits; prices change, so check the tool's own page</td><td data-label="Done for you">€50 to €100 per video, including VAT, invoiced after delivery</td></tr>
+        <tr><td data-label="Topic">Your time per video</td><td data-label="Tool">Hours: choosing photos, prompts, retries, editing, exporting</td><td data-label="Done for you">A few minutes: send a link and give feedback</td></tr>
+        <tr><td data-label="Topic">Skills needed</td><td data-label="Tool">Learning the tool and how to prompt it</td><td data-label="Done for you">None</td></tr>
+        <tr><td data-label="Topic">Failed clips</td><td data-label="Tool">You spot them and generate again, often paying for each attempt</td><td data-label="Done for you">We discard and redo them; you never pay for failed attempts</td></tr>
+        <tr><td data-label="Topic">Quality check</td><td data-label="Tool">Up to you</td><td data-label="Done for you">A person compares every video with your photos</td></tr>
+        <tr><td data-label="Topic">Formats</td><td data-label="Tool">Depends on the tool; often one at a time</td><td data-label="Done for you">16:9 and 9:16, both included</td></tr>
+        <tr><td data-label="Topic">Changes</td><td data-label="Tool">You redo the work yourself</td><td data-label="Done for you">Two revision rounds included</td></tr>
+        <tr><td data-label="Topic">One style across many listings</td><td data-label="Tool">Possible, if you keep the same settings every time</td><td data-label="Done for you">Yes, the same calm style for every yacht or property</td></tr>
+        <tr><td data-label="Topic">Speed</td><td data-label="Tool">As fast as you work</td><td data-label="Done for you">Up to 2 videos a day; delivery date agreed in the quote</td></tr>
+        <tr><td data-label="Topic">Try before you pay</td><td data-label="Tool">Most tools have a free trial or a few free credits</td><td data-label="Done for you">A free sample of 15 to 25 seconds from your own photos</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Where does the time go with a tool?</h2>
+  <ol>
+    <li><strong>Choosing photos.</strong> Not every photo works in motion. Wide, sharp, well-lit photos do; dark or cluttered ones give odd results.</li>
+    <li><strong>Prompting.</strong> Each photo needs a description of the move you want. Too much movement and the software starts to guess.</li>
+    <li><strong>Retrying.</strong> A share of the clips come out wrong: lines that bend, objects that change, a bed that moves. You find them by watching every clip, then try again.</li>
+    <li><strong>Editing.</strong> The clips are put in order, trimmed and joined into one film of 60 to 90 seconds.</li>
+    <li><strong>Exporting.</strong> A landscape version for your website and a portrait version for Reels and Stories.</li>
+  </ol>
+  <p>For one video this is a pleasant afternoon if you like the work. For a fleet of yachts or a group of holiday homes it becomes a part-time job.</p>
+
+  <h2>When is a tool the better choice?</h2>
+  <ul>
+    <li>You enjoy learning new software and have the time.</li>
+    <li>You need one or two videos, not a series.</li>
+    <li>You want to try many different styles yourself.</li>
+    <li>You already pay for a tool for other work.</li>
+  </ul>
+
+  <h2>When is done for you the better choice?</h2>
+  <ul>
+    <li>You have several yachts, rooms or properties and want them to look consistent.</li>
+    <li>You do not want to learn a tool or check every clip yourself.</li>
+    <li>You want someone else to be responsible for the result matching your photos.</li>
+    <li>You want both formats and revisions without extra work.</li>
+  </ul>
+
+  <h2>What neither can do</h2>
+  <p>Both work only from your photos. Neither can show a room, a view or a detail that was never photographed, and neither adds real people or recorded sound. If you need those, a filming day is the better choice. More on that in <a href={pagePath(lang, 'aiVideo')}>how AI video from photos works</a>.</p>
+
+  <h2>How to decide</h2>
+  <p>Count your own hours. If an afternoon per video is time you would rather spend on guests or bookings, a service is usually the better deal. If not, a tool is a fine way to start. Either way, you can ask us for a free sample from your own photos and compare it with what a tool gives you. See <a href={pagePath(lang, 'pricing')}>the full price ladder</a>.</p>
+</Landing>

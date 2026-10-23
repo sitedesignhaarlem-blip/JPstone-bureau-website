@@ -11,7 +11,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const year = new Date().getFullYear();
-const services = (['yacht', 'hotel', 'rental', 'aiVideo', 'pricing', 'faq'] as PageId[]).filter((p) => hasPage(lang, p));
+const services = (['yacht', 'hotel', 'rental', 'aiVideo', 'versus', 'pricing', 'faq'] as PageId[]).filter((p) => hasPage(lang, p));
 ---
 <footer class="footer">
   <div class="wrap footer-inner">

@@ -162,6 +162,7 @@ const es: UI = {
     hotel: "Vídeo para hoteles boutique",
     rental: "Vídeo para alquileres vacacionales",
     aiVideo: "Vídeo con IA a partir de fotos",
+    versus: "Herramientas de vídeo IA o servicio completo",
     pricing: "Precios",
     faq: "Preguntas frecuentes",
   },

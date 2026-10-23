@@ -164,6 +164,7 @@ const en = {
     hotel: "Video for boutique hotels",
     rental: "Video for vacation rentals",
     aiVideo: "AI video from photos",
+    versus: "AI video tools vs. done for you",
     pricing: "Pricing",
     faq: "FAQ",
   },

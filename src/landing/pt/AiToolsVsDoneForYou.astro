@@ -1,0 +1,89 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'pt';
+const faq = [
+  {
+    q: 'Uma ferramenta de vídeo IA é mais barata do que a Still to Film?',
+    a: 'Muitas vezes, se contar só a subscrição ou os créditos e já conhecer a ferramenta. Normalmente não, se contar as suas próprias horas: escolher fotografias, escrever prompts, gerar de novo clipes falhados, editar e exportar dois formatos. A Still to Film custa de 50 a 100 € por vídeo, IVA incluído, com o trabalho e a verificação incluídos.',
+  },
+  {
+    q: 'Que ferramentas de vídeo IA transformam fotografias de anúncios em vídeo?',
+    a: 'Geradores gerais de imagem para vídeo como o Runway, o Kling ou o Luma, e criadores de vídeo pensados para imobiliário e marketing. Mudam depressa, por isso confirme o que cada um oferece hoje. Não revendemos nenhum deles nem temos acordos com eles.',
+  },
+  {
+    q: 'Quando é melhor usar eu próprio uma ferramenta?',
+    a: 'Quando gosta de aprender software, tem tempo, precisa só de um ou dois vídeos ou quer experimentar estilos sozinho. Para uma frota, vários alojamentos, ou quando quer simplesmente o trabalho feito e verificado, um serviço poupa-lhe o trabalho.',
+  },
+  q.ai,
+  q.sample,
+];
+---
+<Landing
+  lang={lang}
+  page="versus"
+  title="Ferramentas de vídeo IA ou serviço completo: comparação"
+  description="Usar uma ferramenta de vídeo IA ou entregar as fotografias do anúncio a um serviço? Quanto custa em dinheiro e em tempo, quem verifica o resultado e quando cada opção é melhor."
+  eyebrow="Comparação"
+  h1="Ferramenta de vídeo IA ou serviço completo: o que serve os seus anúncios?"
+  summary="Uma ferramenta de vídeo IA dá-lhe o software: escolhe as fotografias, escreve os prompts, deteta os clipes falhados e edita o filme. Um serviço completo como a Still to Film faz tudo isso por 50 a 100 € por vídeo, IVA incluído, e uma pessoa verifica cada vídeo antes da entrega. A ferramenta poupa dinheiro, o serviço poupa tempo."
+  faqTitle="Perguntas sobre ferramentas e serviço"
+  faqItems={faq}
+  related={['aiVideo', 'pricing', 'yacht']}
+>
+  <h2>Qual é a diferença?</h2>
+  <p>Ambos usam o mesmo tipo de tecnologia: software que transforma uma fotografia num clipe curto com movimento de câmara. A diferença está em quem faz o trabalho à volta. Com uma ferramenta, o editor é você. Com um serviço, envia a ligação do seu anúncio e recebe um vídeo pronto e verificado.</p>
+
+  <h2>Lado a lado</h2>
+  <div class="table-wrap" role="region" aria-label="Comparação: ferramenta de vídeo IA e serviço completo" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Tema</th><th scope="col">Você com uma ferramenta de vídeo IA</th><th scope="col">Serviço completo (Still to Film)</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Tema">O que paga</td><td data-label="Ferramenta">Uma subscrição ou créditos; os preços mudam, consulte o site da ferramenta</td><td data-label="Serviço">50 a 100 € por vídeo, IVA incluído, faturado após a entrega</td></tr>
+        <tr><td data-label="Tema">O seu tempo por vídeo</td><td data-label="Ferramenta">Horas: escolher fotografias, prompts, novas tentativas, edição, exportação</td><td data-label="Serviço">Alguns minutos: enviar uma ligação e dar a sua opinião</td></tr>
+        <tr><td data-label="Tema">Conhecimentos necessários</td><td data-label="Ferramenta">Aprender a ferramenta e a escrever prompts</td><td data-label="Serviço">Nenhuns</td></tr>
+        <tr><td data-label="Tema">Clipes falhados</td><td data-label="Ferramenta">Deteta-os e gera-os de novo, muitas vezes pagando cada tentativa</td><td data-label="Serviço">Descartamo-los e refazemo-los; nunca paga tentativas falhadas</td></tr>
+        <tr><td data-label="Tema">Controlo de qualidade</td><td data-label="Ferramenta">Fica a seu cargo</td><td data-label="Serviço">Uma pessoa compara cada vídeo com as suas fotografias</td></tr>
+        <tr><td data-label="Tema">Formatos</td><td data-label="Ferramenta">Depende da ferramenta; muitas vezes um de cada vez</td><td data-label="Serviço">16:9 e 9:16, ambos incluídos</td></tr>
+        <tr><td data-label="Tema">Alterações</td><td data-label="Ferramenta">Refaz o trabalho sozinho</td><td data-label="Serviço">Duas rondas de revisão incluídas</td></tr>
+        <tr><td data-label="Tema">Um estilo para muitos anúncios</td><td data-label="Ferramenta">Possível, se usar sempre as mesmas definições</td><td data-label="Serviço">Sim, o mesmo estilo calmo para cada iate ou alojamento</td></tr>
+        <tr><td data-label="Tema">Rapidez</td><td data-label="Ferramenta">Tão rápido quanto trabalhar</td><td data-label="Serviço">Até 2 vídeos por dia; data de entrega acordada no orçamento</td></tr>
+        <tr><td data-label="Tema">Experimentar antes de pagar</td><td data-label="Ferramenta">A maioria tem um período de teste ou alguns créditos grátis</td><td data-label="Serviço">Um vídeo de amostra grátis de 15 a 25 segundos com as suas fotografias</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Para onde vai o tempo com uma ferramenta?</h2>
+  <ol>
+    <li><strong>Escolher fotografias.</strong> Nem todas as fotografias funcionam em movimento. As amplas, nítidas e bem iluminadas sim; as escuras ou carregadas dão resultados estranhos.</li>
+    <li><strong>Escrever prompts.</strong> Cada fotografia precisa de uma descrição do movimento pretendido. Com movimento a mais, o software começa a adivinhar.</li>
+    <li><strong>Tentar de novo.</strong> Parte dos clipes sai mal: linhas que se curvam, objetos que mudam, uma cama que se mexe. Encontra-os vendo cada clipe e tenta de novo.</li>
+    <li><strong>Editar.</strong> Os clipes são ordenados, cortados e juntos num filme de 60 a 90 segundos.</li>
+    <li><strong>Exportar.</strong> Uma versão horizontal para o seu site e uma vertical para Reels e Stories.</li>
+  </ol>
+  <p>Para um vídeo é uma tarde agradável, se gostar do trabalho. Para uma frota de iates ou um grupo de casas de férias passa a ser um trabalho a meio tempo.</p>
+
+  <h2>Quando é melhor uma ferramenta?</h2>
+  <ul>
+    <li>Gosta de aprender software novo e tem tempo.</li>
+    <li>Precisa de um ou dois vídeos, não de uma série.</li>
+    <li>Quer experimentar sozinho muitos estilos diferentes.</li>
+    <li>Já paga uma ferramenta para outros trabalhos.</li>
+  </ul>
+
+  <h2>Quando é melhor um serviço completo?</h2>
+  <ul>
+    <li>Tem vários iates, quartos ou alojamentos e quer que tenham um aspeto coerente.</li>
+    <li>Não quer aprender uma ferramenta nem verificar cada clipe sozinho.</li>
+    <li>Quer que outra pessoa seja responsável por o resultado corresponder às suas fotografias.</li>
+    <li>Quer os dois formatos e revisões sem trabalho extra.</li>
+  </ul>
+
+  <h2>O que nenhum dos dois consegue fazer</h2>
+  <p>Ambos trabalham só com as suas fotografias. Nenhum consegue mostrar uma divisão, uma vista ou um pormenor que nunca foi fotografado, e nenhum acrescenta pessoas reais nem som gravado. Se precisar disso, um dia de filmagem é a melhor opção. Mais sobre isto em <a href={pagePath(lang, 'aiVideo')}>como funciona o vídeo IA a partir de fotografias</a>.</p>
+
+  <h2>Como decidir</h2>
+  <p>Conte as suas próprias horas. Se uma tarde por vídeo é tempo que prefere dedicar aos hóspedes ou às reservas, um serviço costuma compensar mais. Se não, uma ferramenta é um bom começo. Em qualquer caso, pode pedir-nos um vídeo de amostra grátis com as suas fotografias e compará-lo com o que uma ferramenta lhe dá. Veja <a href={pagePath(lang, 'pricing')}>todos os preços</a>.</p>
+</Landing>

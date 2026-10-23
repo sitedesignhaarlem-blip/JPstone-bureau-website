@@ -23,10 +23,10 @@ export const ogLocale: Record<Locale, string> = { nl: 'nl_NL', en: 'en_GB', de: 
 
 export type PageId =
   | 'home' | 'library' | 'how' | 'contact' | 'privacy' | 'terms' | 'cookies'
-  | 'yacht' | 'hotel' | 'rental' | 'aiVideo' | 'pricing' | 'faq';
+  | 'yacht' | 'hotel' | 'rental' | 'aiVideo' | 'versus' | 'pricing' | 'faq';
 export const pageIds: PageId[] = [
   'home', 'library', 'how', 'contact', 'privacy', 'terms', 'cookies',
-  'yacht', 'hotel', 'rental', 'aiVideo', 'pricing', 'faq',
+  'yacht', 'hotel', 'rental', 'aiVideo', 'versus', 'pricing', 'faq',
 ];
 
 // Pages that exist in only some languages (the rest exist in all). A page is added to a
@@ -45,13 +45,13 @@ export function localesFor(page: PageId): Locale[] {
 
 // Page addresses per language. '' is the language's home page.
 export const slugs: Record<Locale, Record<PageId, string>> = {
-  nl: { home: '', library: 'bibliotheek', how: 'werkwijze', contact: 'contact', privacy: 'privacy', terms: 'voorwaarden', cookies: 'cookies', yacht: 'yachtcharter-video', hotel: 'hotel-video', rental: 'vakantiehuis-video', aiVideo: 'ai-video-van-fotos', pricing: 'prijzen', faq: 'veelgestelde-vragen' },
-  en: { home: '', library: 'library', how: 'how-it-works', contact: 'contact', privacy: 'privacy', terms: 'terms', cookies: 'cookies', yacht: 'yacht-charter-video', hotel: 'hotel-video', rental: 'vacation-rental-video', aiVideo: 'ai-video-from-photos', pricing: 'pricing', faq: 'faq' },
-  de: { home: '', library: 'bibliothek', how: 'so-funktionierts', contact: 'kontakt', privacy: 'datenschutz', terms: 'agb', cookies: 'cookies', yacht: 'yachtcharter-video', hotel: 'hotel-video', rental: 'ferienwohnung-video', aiVideo: 'ki-video-aus-fotos', pricing: 'preise', faq: 'faq' },
-  fr: { home: '', library: 'bibliotheque', how: 'comment-ca-marche', contact: 'contact', privacy: 'confidentialite', terms: 'conditions', cookies: 'cookies', yacht: 'video-location-yacht', hotel: 'video-hotel', rental: 'video-location-vacances', aiVideo: 'video-ia-a-partir-de-photos', pricing: 'tarifs', faq: 'faq' },
-  es: { home: '', library: 'biblioteca', how: 'como-funciona', contact: 'contacto', privacy: 'privacidad', terms: 'condiciones', cookies: 'cookies', yacht: 'video-charter-yates', hotel: 'video-hotel', rental: 'video-alquiler-vacacional', aiVideo: 'video-ia-desde-fotos', pricing: 'precios', faq: 'preguntas-frecuentes' },
-  hr: { home: '', library: 'galerija', how: 'kako-funkcionira', contact: 'kontakt', privacy: 'privatnost', terms: 'uvjeti', cookies: 'kolacici', yacht: 'video-charter-jahti', hotel: 'video-za-hotel', rental: 'video-za-apartmane', aiVideo: 'ai-video-od-fotografija', pricing: 'cijene', faq: 'cesta-pitanja' },
-  pt: { home: '', library: 'galeria', how: 'como-funciona', contact: 'contacto', privacy: 'privacidade', terms: 'termos', cookies: 'cookies', yacht: 'video-charter-iates', hotel: 'video-hotel', rental: 'video-alojamento-local', aiVideo: 'video-ia-a-partir-de-fotografias', pricing: 'precos', faq: 'perguntas-frequentes' },
+  nl: { home: '', library: 'bibliotheek', how: 'werkwijze', contact: 'contact', privacy: 'privacy', terms: 'voorwaarden', cookies: 'cookies', yacht: 'yachtcharter-video', hotel: 'hotel-video', rental: 'vakantiehuis-video', aiVideo: 'ai-video-van-fotos', versus: 'ai-videotools-of-uitbesteden', pricing: 'prijzen', faq: 'veelgestelde-vragen' },
+  en: { home: '', library: 'library', how: 'how-it-works', contact: 'contact', privacy: 'privacy', terms: 'terms', cookies: 'cookies', yacht: 'yacht-charter-video', hotel: 'hotel-video', rental: 'vacation-rental-video', aiVideo: 'ai-video-from-photos', versus: 'ai-video-tools-vs-done-for-you', pricing: 'pricing', faq: 'faq' },
+  de: { home: '', library: 'bibliothek', how: 'so-funktionierts', contact: 'kontakt', privacy: 'datenschutz', terms: 'agb', cookies: 'cookies', yacht: 'yachtcharter-video', hotel: 'hotel-video', rental: 'ferienwohnung-video', aiVideo: 'ki-video-aus-fotos', versus: 'ki-video-tools-oder-full-service', pricing: 'preise', faq: 'faq' },
+  fr: { home: '', library: 'bibliotheque', how: 'comment-ca-marche', contact: 'contact', privacy: 'confidentialite', terms: 'conditions', cookies: 'cookies', yacht: 'video-location-yacht', hotel: 'video-hotel', rental: 'video-location-vacances', aiVideo: 'video-ia-a-partir-de-photos', versus: 'outils-video-ia-ou-service-cle-en-main', pricing: 'tarifs', faq: 'faq' },
+  es: { home: '', library: 'biblioteca', how: 'como-funciona', contact: 'contacto', privacy: 'privacidad', terms: 'condiciones', cookies: 'cookies', yacht: 'video-charter-yates', hotel: 'video-hotel', rental: 'video-alquiler-vacacional', aiVideo: 'video-ia-desde-fotos', versus: 'herramientas-video-ia-o-servicio-completo', pricing: 'precios', faq: 'preguntas-frecuentes' },
+  hr: { home: '', library: 'galerija', how: 'kako-funkcionira', contact: 'kontakt', privacy: 'privatnost', terms: 'uvjeti', cookies: 'kolacici', yacht: 'video-charter-jahti', hotel: 'video-za-hotel', rental: 'video-za-apartmane', aiVideo: 'ai-video-od-fotografija', versus: 'ai-alati-za-video-ili-usluga', pricing: 'cijene', faq: 'cesta-pitanja' },
+  pt: { home: '', library: 'galeria', how: 'como-funciona', contact: 'contacto', privacy: 'privacidade', terms: 'termos', cookies: 'cookies', yacht: 'video-charter-iates', hotel: 'video-hotel', rental: 'video-alojamento-local', aiVideo: 'video-ia-a-partir-de-fotografias', versus: 'ferramentas-video-ia-ou-servico-completo', pricing: 'precos', faq: 'perguntas-frequentes' },
 };
 
 /** Address of a page in a language, always with a trailing slash. */
