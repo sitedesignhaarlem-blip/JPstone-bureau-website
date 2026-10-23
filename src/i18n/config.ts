@@ -1,7 +1,7 @@
 // Languages and page addresses. English is the default and lives at the root (/),
-// the others under their own prefix (/nl/, /de/, /fr/, /es/, /hr/).
+// the others under their own prefix (/nl/, /de/, /fr/, /es/, /hr/, /pt/).
 
-export const locales = ['en', 'nl', 'de', 'fr', 'es', 'hr'] as const;
+export const locales = ['en', 'nl', 'de', 'fr', 'es', 'hr', 'pt'] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = 'en';
 
@@ -12,13 +12,14 @@ export const localeNames: Record<Locale, string> = {
   fr: 'Français',
   es: 'Español',
   hr: 'Hrvatski',
+  pt: 'Português',
 };
 
-// <html lang> per language; English is written for a British audience.
-export const htmlLang: Record<Locale, string> = { nl: 'nl', en: 'en-GB', de: 'de', fr: 'fr', es: 'es', hr: 'hr' };
+// <html lang> per language; English is written for a British audience, Portuguese for Portugal.
+export const htmlLang: Record<Locale, string> = { nl: 'nl', en: 'en-GB', de: 'de', fr: 'fr', es: 'es', hr: 'hr', pt: 'pt-PT' };
 // hreflang targets the language as a whole, so every English-speaking country gets the English pages.
-export const hreflang: Record<Locale, string> = { nl: 'nl', en: 'en', de: 'de', fr: 'fr', es: 'es', hr: 'hr' };
-export const ogLocale: Record<Locale, string> = { nl: 'nl_NL', en: 'en_GB', de: 'de_DE', fr: 'fr_FR', es: 'es_ES', hr: 'hr_HR' };
+export const hreflang: Record<Locale, string> = { nl: 'nl', en: 'en', de: 'de', fr: 'fr', es: 'es', hr: 'hr', pt: 'pt' };
+export const ogLocale: Record<Locale, string> = { nl: 'nl_NL', en: 'en_GB', de: 'de_DE', fr: 'fr_FR', es: 'es_ES', hr: 'hr_HR', pt: 'pt_PT' };
 
 export type PageId =
   | 'home' | 'library' | 'how' | 'contact' | 'privacy' | 'terms' | 'cookies'
@@ -50,6 +51,7 @@ export const slugs: Record<Locale, Record<PageId, string>> = {
   fr: { home: '', library: 'bibliotheque', how: 'comment-ca-marche', contact: 'contact', privacy: 'confidentialite', terms: 'conditions', cookies: 'cookies', yacht: 'video-location-yacht', hotel: 'video-hotel', rental: 'video-location-vacances', aiVideo: 'video-ia-a-partir-de-photos', pricing: 'tarifs', faq: 'faq' },
   es: { home: '', library: 'biblioteca', how: 'como-funciona', contact: 'contacto', privacy: 'privacidad', terms: 'condiciones', cookies: 'cookies', yacht: 'video-charter-yates', hotel: 'video-hotel', rental: 'video-alquiler-vacacional', aiVideo: 'video-ia-desde-fotos', pricing: 'precios', faq: 'preguntas-frecuentes' },
   hr: { home: '', library: 'galerija', how: 'kako-funkcionira', contact: 'kontakt', privacy: 'privatnost', terms: 'uvjeti', cookies: 'kolacici', yacht: 'video-charter-jahti', hotel: 'video-za-hotel', rental: 'video-za-apartmane', aiVideo: 'ai-video-od-fotografija', pricing: 'cijene', faq: 'cesta-pitanja' },
+  pt: { home: '', library: 'galeria', how: 'como-funciona', contact: 'contacto', privacy: 'privacidade', terms: 'termos', cookies: 'cookies', yacht: 'video-charter-iates', hotel: 'video-hotel', rental: 'video-alojamento-local', aiVideo: 'video-ia-a-partir-de-fotografias', pricing: 'precos', faq: 'perguntas-frequentes' },
 };
 
 /** Address of a page in a language, always with a trailing slash. */

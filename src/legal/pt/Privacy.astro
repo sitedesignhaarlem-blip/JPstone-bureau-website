@@ -1,0 +1,61 @@
+---
+import { site } from '../../data/site';
+import { pagePath } from '../../i18n';
+const deleteMail = `mailto:${site.email}?subject=${encodeURIComponent('Pedido: apagar os meus dados')}&body=${encodeURIComponent('Peço que apaguem todos os dados que a Still to Film tem sobre mim.\n\nNome:\nEndereço de e-mail ou número de telefone a partir do qual entrei em contacto:\n')}`;
+const accessMail = `mailto:${site.email}?subject=${encodeURIComponent('Pedido: acesso aos meus dados')}`;
+---
+  <p>A Still to Film faz vídeos de visita a partir das fotografias de anúncios, para empresas. Para isso, precisamos do mínimo de dados possível. Abaixo explicamos exatamente quais, porquê e como pode pedir que sejam apagados.</p>
+
+  <h2>Quem somos</h2>
+  <p>
+    {site.name}, com sede nos Países Baixos.<br />
+    {site.address && <>Morada: {site.address}<br /></>}
+    {site.kvk && <>Registo comercial (KvK): {site.kvk}<br /></>}
+    E-mail: <a href={`mailto:${site.email}`}>{site.email}</a> · Telefone: <a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a>
+  </p>
+
+  <h2>Que dados e porquê</h2>
+  <div class="table-wrap" role="region" aria-label="Resumo dos dados, finalidades e prazos de conservação" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Dados</th><th scope="col">Finalidade</th><th scope="col">Fundamento jurídico</th><th scope="col">Conservação</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Dados">Nome, website ou link do anúncio e, se os indicar, empresa e mensagem (formulário de contacto)</td><td data-label="Finalidade">Responder ao seu pedido e fazer um vídeo de amostra</td><td data-label="Fundamento jurídico">A seu pedido, antes de um contrato</td><td data-label="Conservação">No máximo 12 meses se não houver encomenda</td></tr>
+        <tr><td data-label="Dados">E-mail, mensagens de WhatsApp e número de telefone, se nos contactar por essa via</td><td data-label="Finalidade">Contacto sobre o seu pedido ou encomenda</td><td data-label="Fundamento jurídico">A seu pedido, ou execução do contrato</td><td data-label="Conservação">Enquanto durar o contacto e, depois, no máximo 12 meses</td></tr>
+        <tr><td data-label="Dados">Fotografias que nos envia</td><td data-label="Finalidade">Fazer o vídeo</td><td data-label="Fundamento jurídico">Execução do contrato</td><td data-label="Conservação">Até 3 meses após a entrega, depois são apagadas</td></tr>
+        <tr><td data-label="Dados">Nome, dados da empresa e faturas</td><td data-label="Finalidade">Contabilidade</td><td data-label="Fundamento jurídico">Obrigação legal</td><td data-label="Conservação">7 anos (obrigação fiscal neerlandesa de conservação)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Não pedimos mais do que o necessário. A empresa e a mensagem são opcionais no formulário. Não criamos perfis nem utilizamos os seus dados para publicidade.</p>
+
+  <h2>Quem mais trata os seus dados</h2>
+  <p>Não vendemos nada a terceiros. Para o nosso trabalho, utilizamos estes serviços:</p>
+  <ul>
+    <li><strong>Vercel</strong> (alojamento deste website). Em cada visita, o servidor recebe dados técnicos como o seu endereço IP, para mostrar e proteger o website, e para contar as visitas de forma anónima (ver abaixo).</li>
+    <li><strong>Google (Gmail)</strong> para o e-mail.</li>
+    <li><strong>WhatsApp (Meta)</strong>, apenas se nos contactar por WhatsApp.</li>
+    <li><strong>Higgsfield</strong>, o serviço de IA com que transformamos as suas fotografias em vídeo. Para isso, as suas fotografias são carregadas nesse serviço.</li>
+    {site.formEndpoint && <li><strong>Formspree</strong>, que reencaminha o formulário de contacto para o nosso e-mail.</li>}
+  </ul>
+  <p>Alguns destes fornecedores estão sediados fora do Espaço Económico Europeu. Nesse caso, a transferência baseia-se nas garantias exigidas pelo Regulamento Geral sobre a Proteção de Dados (RGPD), como o EU-US Data Privacy Framework ou as cláusulas contratuais-tipo.</p>
+
+  <h2>Cookies e rastreamento</h2>
+  <p>Este website não utiliza cookies, píxeis publicitários nem outros rastreadores. Contamos as visitas com o Vercel Web Analytics, sem cookies: regista a página, o website de onde vem, o país, o navegador, o sistema operativo e o tipo de dispositivo. O seu endereço IP não é guardado, e não pode ser reconhecido noutros websites nem noutro dia. O Vercel Speed Insights mede, da mesma forma anónima, a rapidez com que as páginas carregam. Os tipos de letra e os vídeos estão alojados no nosso próprio servidor. Consulte a <a href={pagePath('pt', 'cookies')}>política de cookies</a>.</p>
+
+  <h2>Newsletter</h2>
+  <p>Não enviamos newsletter nem e-mails de marketing. Se isso mudar um dia, será apenas se o próprio subscrever, com uma ligação para cancelar a subscrição em cada e-mail.</p>
+
+  <h2>Menores</h2>
+  <p>Os nossos serviços destinam-se a empresas e não a menores de 16 anos. Não recolhemos conscientemente dados de menores. Se considerar que tal aconteceu, envie-nos um e-mail e apagaremos esses dados.</p>
+
+  <h2>Os seus direitos</h2>
+  <p>Pode aceder aos seus dados, corrigi-los ou pedir que sejam apagados. Pode também opor-se ao tratamento, pedir a sua limitação ou receber os seus dados num formato de ficheiro habitual.</p>
+  <ul>
+    <li><a href={deleteMail}>Pedir o apagamento dos dados</a> (abre um e-mail já redigido)</li>
+    <li><a href={accessMail}>Pedir acesso</a></li>
+  </ul>
+  <p>Pode também escrever diretamente para <a href={`mailto:${site.email}`}>{site.email}</a>. Respondemos no prazo de um mês, como exige o RGPD. Os dados que temos de conservar por lei, como as faturas, só são apagados depois desse prazo.</p>
+  <p>Não está satisfeito com a forma como tratamos os seus dados? Pode apresentar uma reclamação à autoridade neerlandesa de proteção de dados, a <a href="https://autoriteitpersoonsgegevens.nl/en" rel="noopener">Autoriteit Persoonsgegevens</a>, ou à autoridade do seu próprio país, como a CNPD.</p>
+
+  <h2>Alterações</h2>
+  <p>Se alguma coisa mudar na forma como tratamos os dados, atualizamos esta política. A data da última alteração aparece no topo.</p>

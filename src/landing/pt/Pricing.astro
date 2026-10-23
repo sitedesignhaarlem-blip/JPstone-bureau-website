@@ -1,0 +1,65 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pricePerVideo } from '../../data/pricing';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'pt';
+const faq = [q.volume, q.vat, q.payment, q.revisions, q.referral, q.sample];
+// 'pt-PT' so the amounts read "1080 €" (European Portuguese), not "€ 1.080" (Brazilian default of 'pt').
+const money = new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+const examples = [1, 5, 12, 20, 50, 100].map((n) => ({ n, per: money.format(pricePerVideo(n)), total: money.format(n * pricePerVideo(n)) }));
+---
+<Landing
+  lang={lang}
+  page="pricing"
+  title="Preços: de 100 € a 50 € por vídeo · Still to Film"
+  description="Um vídeo custa 100 €; a partir de 5 vídeos, 95 € por vídeo, e menos 5 € a cada 5 vídeos até 50 €. Dois formatos e 2 revisões incluídos. IVA incluído."
+  eyebrow="Preços"
+  h1="Preços: de 100 € a 50 € por vídeo"
+  summary="Um vídeo da Still to Film custa 100 € se encomendar apenas um, e 95 € por vídeo a partir de 5 vídeos. Depois, o preço por vídeo desce 5 € a cada 5 vídeos, até um mínimo de 50 €; os preços incluem IVA, os dois formatos e duas rondas de revisão."
+  faqTitle="Perguntas sobre preços"
+  faqItems={faq}
+  service
+  related={['yacht', 'hotel', 'faq']}
+>
+  <h2>A tabela de preços</h2>
+  <p>O preço por vídeo depende do número de vídeos da encomenda. O mesmo preço aplica-se a todos os vídeos dessa encomenda.</p>
+  <PriceTable lang={lang} />
+  <p>Também pode experimentar os valores na <a href={pagePath(lang, 'home', '#packages-title')}>calculadora da página inicial</a>.</p>
+
+  <h2>O que inclui cada vídeo?</h2>
+  <ul>
+    <li>Um vídeo de visita de 60 a 90 segundos feito com as suas fotografias.</li>
+    <li>Os dois formatos: 16:9 para sites e plataformas de anúncios, 9:16 para Reels, TikTok e Stories, em ficheiros MP4.</li>
+    <li>Uma verificação feita por uma pessoa antes da entrega, para que o vídeo mostre apenas o que está nas suas fotografias.</li>
+    <li>Duas rondas de revisão.</li>
+    <li>Utilização ilimitada no seu próprio marketing: site, anúncios, redes sociais e publicidade.</li>
+  </ul>
+
+  <h2>O que conta como revisão e o que é um vídeo novo?</h2>
+  <p>Uma revisão é uma alteração com as mesmas fotografias e a mesma abordagem: outra ordem de planos, um movimento mais lento, menos um clipe, outro início ou outro fim. Cada vídeo inclui duas rondas de revisão.</p>
+  <p>Fotografias novas, ou uma abordagem diferente para o vídeo, contam como um vídeo novo. O mesmo acontece quando remodela um quarto ou muda as fotografias de um iate e quer um filme atualizado.</p>
+
+  <h2>Exemplos de totais</h2>
+  <div class="table-wrap" role="region" aria-label="Exemplos de totais" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Vídeos</th><th scope="col">Preço por vídeo</th><th scope="col">Total, IVA incluído</th></tr></thead>
+      <tbody>
+        {examples.map((e) => (
+          <tr><td data-label="Vídeos">{e.n}</td><td data-label="Preço por vídeo">{e.per}</td><td data-label="Total">{e.total}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Mais de 100 vídeos?</h2>
+  <p>Para encomendas de mais de 100 vídeos, preparamos um orçamento. O mesmo vale para trabalho contínuo: até 100 vídeos por mês, nos dois formatos, cancelável todos os meses.</p>
+
+  <h2>Recomende-nos e receba um vídeo grátis</h2>
+  <p>Conhece outra empresa de charter, um hotel ou um anfitrião de alojamento local a quem isto possa ser útil? Se fizer uma encomenda depois da sua recomendação, recebe um vídeo grátis na sua próxima encomenda. Sem limite e sem burocracia: basta que mencione o seu nome quando nos contactar.</p>
+
+  <h2>Comece com um vídeo de amostra grátis</h2>
+  <p>Antes de encomendar, fazemos um vídeo de amostra grátis com as fotografias do seu próprio anúncio: uma pré-visualização curta de 15 a 25 segundos com alguns planos, para que veja o estilo e a qualidade. O vídeo completo que encomenda tem 60 a 90 segundos. Sem compromisso e sem fatura. Só precisamos da ligação para o seu anúncio.</p>
+</Landing>

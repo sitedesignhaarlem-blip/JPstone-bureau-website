@@ -1,7 +1,7 @@
 ---
 // Packages as a calm list: name, who it's for, what's included, starting price per video.
 import Text from './Text.astro';
-import { hasPage, pagePath, useTranslations, type Locale } from '../i18n';
+import { hasPage, htmlLang, pagePath, useTranslations, type Locale } from '../i18n';
 import { pricePerVideo } from '../data/pricing';
 
 interface Props {
@@ -11,7 +11,7 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const p = t.packages;
 // Server-rendered starting value, so the total is right even before the script runs.
-const money = new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+const money = new Intl.NumberFormat(htmlLang[lang], { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
 const start = 5;
 const startPrice = money.format(pricePerVideo(start));
 const startTotal = money.format(pricePerVideo(start) * start);
@@ -34,7 +34,7 @@ const startTotal = money.format(pricePerVideo(start) * start);
         </li>
       ))}
     </ul>
-    <div class="calc" data-calc data-locale={lang}>
+    <div class="calc" data-calc data-locale={htmlLang[lang]}>
       <h3 class="calc-title">{t.calc.title}</h3>
       <div class="calc-row">
         <label for="calc-count">{t.calc.label}</label>

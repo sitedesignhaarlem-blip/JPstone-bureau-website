@@ -69,6 +69,17 @@ export const insightsUI: Record<Locale, InsightsUI> = {
     all: 'Todos los artículos',
     read: 'Leer el artículo',
   },
+  pt: {
+    name: 'Guias',
+    title: 'Guias: vídeo para aluguer de iates e hotéis · Still to Film',
+    description: 'Artigos práticos sobre vídeo de visita para aluguer de iates, hotéis e alojamento local: que fotos funcionam, o que mostrar e onde o usar.',
+    h1: 'Guias',
+    lead: 'Respostas práticas sobre vídeos de visita feitos com fotos de anúncios: que fotos funcionam, o que mostrar e onde usar o resultado.',
+    minutes: '{n} min de leitura',
+    published: 'Publicado',
+    all: 'Todos os artigos',
+    read: 'Ler o artigo',
+  },
   hr: {
     name: 'Savjeti',
     title: 'Savjeti: video za charter jahti i hotele · Still to Film',

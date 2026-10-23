@@ -1,0 +1,55 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'pt';
+const faq = [q.access, q.fleet, q.photos, q.owns, q.sample];
+---
+<Landing
+  lang={lang}
+  page="yacht"
+  title="Vídeo para charter de iates, sem filmagens · Still to Film"
+  description="Transformamos as fotografias do anúncio do seu iate num vídeo de visita de 60 a 90 segundos. Sem filmagens a bordo, em 16:9 e 9:16. De 50 € a 100 € por vídeo."
+  eyebrow="Para charter de iates"
+  h1="Vídeo para charter de iates, a partir das fotografias do seu anúncio"
+  summary="A Still to Film transforma as fotografias que já tem no anúncio do seu iate num vídeo de visita de 60 a 90 segundos, sem dia de filmagem e sem equipa a bordo. Recebe cada vídeo em 16:9 e 9:16, uma pessoa verifica-o antes da entrega e custa de 50 € a 100 € consoante o volume."
+  faqTitle="Perguntas de empresas de charter"
+  faqItems={faq}
+  service
+  related={['hotel', 'aiVideo', 'pricing']}
+>
+  <h2>Porque é tão difícil filmar uma frota de charter?</h2>
+  <p>Um dia de filmagem exige que o iate esteja na marina, limpo e vazio, com bom tempo e com uma equipa a bordo durante o dia inteiro. Na época alta, a maioria dos iates está a navegar com clientes, por isso encontrar um dia livre é difícil. Para uma frota, isso significa uma filmagem por iate, espalhada ao longo de meses.</p>
+  <p>A maioria das empresas de charter já tem boas fotografias de cada iate: exterior, convés, salão, cozinha e cabines. Partimos dessas fotografias. Não é preciso organizar nada à volta do barco, e ninguém tem de subir a bordo.</p>
+
+  <h2>Como funciona?</h2>
+  <ol>
+    <li><strong>Envia-nos a ligação</strong> do anúncio, ou as fotografias.</li>
+    <li><strong>Fazemos o filme.</strong> Escolhemos as fotografias, a ordem e os movimentos de câmara, e usamos IA para transformar as imagens fixas num movimento calmo.</li>
+    <li><strong>Uma pessoa verifica-o.</strong> Vemos cada vídeo do início ao fim antes de lho mostrarmos. Se algo não corresponder às suas fotografias, corrigimos ou retiramos.</li>
+    <li><strong>Dá-nos a sua opinião.</strong> Inclui duas rondas de revisão.</li>
+    <li><strong>Publica.</strong> Recebe ficheiros MP4 em 16:9 e 9:16.</li>
+  </ol>
+  <p>Não precisa de software, prompts nem conta. Mais detalhes na página <a href={pagePath(lang, 'how')}>como funciona</a>.</p>
+
+  <h2>O que recebe?</h2>
+  <ul>
+    <li>Um vídeo de visita de 60 a 90 segundos por iate.</li>
+    <li>16:9 para o seu site e para plataformas de anúncios, e 9:16 para Instagram Reels, TikTok e Stories. Os dois formatos estão incluídos.</li>
+    <li>Duas rondas de revisão por vídeo.</li>
+    <li>Um estilo calmo e coerente para toda a frota.</li>
+    <li>Utilização ilimitada no seu próprio marketing: site, anúncios, redes sociais e publicidade.</li>
+  </ul>
+
+  <h2>O que o vídeo pode e não pode mostrar?</h2>
+  <p>O vídeo só pode mostrar o que está nas suas fotografias. Se tiver fotografias do iate a navegar, fundeado, no convés, no salão, na cozinha e nas cabines, tudo isso pode ganhar movimento. Se o flybridge ou uma cabine nunca foi fotografado, não aparecerá no filme. Não acrescentamos pessoas, vistas nem elementos que não existam.</p>
+  <p>A qualidade das fotografias define a qualidade do filme. Fotografias nítidas, bem iluminadas e em alta resolução funcionam melhor, e os ficheiros originais do seu fotógrafo dão melhor resultado do que imagens guardadas a partir de um site.</p>
+  <p>Na <a href={pagePath(lang, 'library')}>biblioteca</a> pode ver clipes feitos com as fotografias do anúncio de um catamarã a motor, e na <a href={pagePath(lang, 'home')}>página inicial</a> pode comparar a fotografia com o vídeo.</p>
+
+  <h2>Quanto custa?</h2>
+  <p>O preço por vídeo depende de quantos vídeos encomenda de uma vez. Um único vídeo custa 100 €. A partir de 5 vídeos são 95 € por vídeo, e o preço desce 5 € a cada 5 vídeos, até um mínimo de 50 € por vídeo.</p>
+  <PriceTable lang={lang} />
+  <p>Por exemplo, uma frota de 12 iates custa 12 × 90 € = 1080 €, IVA incluído. Antes de decidir, fazemos um vídeo de amostra grátis com as fotografias do seu próprio anúncio.</p>
+</Landing>

@@ -1,0 +1,44 @@
+---
+import { site } from '../../data/site';
+---
+  <p>Estas condições aplicam-se a cada orçamento, vídeo de amostra e encomenda da {site.name}. Destinam-se a clientes profissionais. Se o orçamento disser algo diferente, prevalece o orçamento.</p>
+
+  <h2>1. Vídeo de amostra gratuito</h2>
+  <p>O vídeo de amostra é uma pré-visualização curta de 15 a 25 segundos, com alguns planos feitos a partir das suas fotografias. Um vídeo encomendado tem 60 a 90 segundos. O vídeo de amostra é gratuito e sem compromisso. Não fica obrigado a nada e não enviamos fatura. Pode ver o vídeo de amostra e partilhá-lo dentro da sua empresa. Publicá-lo conta como encomenda.</p>
+
+  <h2>2. Orçamento e preços</h2>
+  <p>Recebe antecipadamente um orçamento com o preço total. Nele consta o que recebe: número de vídeos, duração, formatos e revisões. Os preços incluem IVA, e isso é sempre indicado. Não são acrescentados custos que não constem do orçamento. Se mais tarde quiser algo mais, recebe primeiro um preço e decide.</p>
+  <p>Um orçamento é válido durante 30 dias.</p>
+
+  <h2>3. As suas fotografias</h2>
+  <p>Fornece as fotografias, ou o link do seu anúncio. Confirma que pode utilizar essas fotografias para um vídeo e que as pessoas reconhecíveis nelas deram o seu consentimento. Se recebermos uma reclamação por não ser esse o caso, a responsabilidade é sua.</p>
+
+  <h2>4. Feito com IA</h2>
+  <p>Fazemos os vídeos com software de IA, a partir das suas fotografias. O vídeo mostra o seu iate ou hotel tal como nas fotografias, mas os movimentos de câmara e as imagens intermédias são gerados pelo software. Podem existir pequenas diferenças; corrigimo-las dentro das revisões. Se publicar o vídeo, recomendamos que indique que foi feito com IA.</p>
+
+  <h2>5. Entrega e revisões</h2>
+  <p>O prazo de entrega consta do orçamento. Recebe o vídeo em MP4, em 16:9 e/ou 9:16, conforme acordado.</p>
+  <p>Cada vídeo inclui 2 rondas de revisão. Uma revisão é uma alteração dentro do mesmo conceito e com as mesmas fotografias. Fotografias novas ou um conceito diferente constituem uma nova encomenda.</p>
+
+  <h2>6. Pagamento</h2>
+  <p>Faturamos após a entrega e o pagamento é feito por transferência bancária. O prazo de pagamento é de 14 dias. Em encomendas maiores podemos pedir um adiantamento; nesse caso, isso consta do orçamento.</p>
+
+  <h2 id="cancellation">7. Cancelamento e reembolso</h2>
+  <ul>
+    <li><strong>Antes de começarmos:</strong> cancela sem custos.</li>
+    <li><strong>Se já estivermos a trabalhar:</strong> paga a parte já feita, proporcionalmente ao orçamento. Indicamos-lhe o montante antecipadamente.</li>
+    <li><strong>Após a entrega:</strong> se o vídeo não corresponder ao orçamento e não conseguirmos resolver isso dentro das revisões, reembolsamos o que pagou por esse vídeo.</li>
+    <li>Um eventual adiantamento é reembolsado, deduzida a parte já feita.</li>
+  </ul>
+  <p>Efetuamos os reembolsos no prazo de 14 dias para a conta a partir da qual pagou. Para cancelar ou pedir um reembolso, envie um e-mail para <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+
+  <h2>8. Direitos de utilização</h2>
+  <p>Após o pagamento, pode utilizar o vídeo sem limites para o seu próprio marketing: website, anúncios, redes sociais e publicidade. Não pode revendê-lo como vídeo autónomo. Só mostramos o vídeo no nosso portefólio ou neste website se o autorizar.</p>
+
+  <h2>9. Responsabilidade</h2>
+  <p>A nossa responsabilidade está limitada ao montante da encomenda em causa. Não respondemos por danos indiretos, como reservas perdidas. Isto não se aplica em caso de dolo ou negligência grave.</p>
+
+  <h2>10. Lei aplicável e litígios</h2>
+  <p>Estas condições regem-se pelo direito neerlandês. Se não chegarmos a acordo, decide o tribunal competente nos Países Baixos.</p>
+
+  <p class="note">Dados da empresa: {site.name}{site.address && ` · ${site.address}`}{site.kvk && ` · KvK ${site.kvk}`}{site.vat && ` · IVA ${site.vat}`}</p>

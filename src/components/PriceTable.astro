@@ -1,14 +1,14 @@
 ---
 // The full price ladder, built from the same function as the calculator on the home page.
 import { MIN_PRICE, STEP, pricePerVideo } from '../data/pricing';
-import { useTranslations, type Locale } from '../i18n';
+import { htmlLang, useTranslations, type Locale } from '../i18n';
 
 interface Props {
   lang: Locale;
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang).landing;
-const money = new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+const money = new Intl.NumberFormat(htmlLang[lang], { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
 // One row per price step: 1–4, 5–9, … until the minimum price, which runs to 100 videos.
 const rows: { from: number; to: number }[] = [];
 for (let from = 1; from <= 100; ) {

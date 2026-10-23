@@ -7,5 +7,6 @@ export const themeUI: Record<Locale, { dark: string; more: string }> = {
   de: { dark: 'Dunkelmodus', more: 'Zum nächsten Abschnitt scrollen' },
   fr: { dark: 'Mode sombre', more: 'Faire défiler vers la section suivante' },
   es: { dark: 'Modo oscuro', more: 'Desplázate a la siguiente sección' },
+  pt: { dark: 'Modo escuro', more: 'Deslocar para a secção seguinte' },
   hr: { dark: 'Tamni način', more: 'Pomaknite se na sljedeći dio' },
 };

@@ -1,0 +1,67 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { pagePath } from '../../i18n';
+import { q } from './faq';
+
+const lang = 'pt';
+const faq = [q.ai, q.limits, q.skills, q.photos];
+---
+<Landing
+  lang={lang}
+  page="aiVideo"
+  title="Vídeo com IA a partir de fotografias, explicado · Still to Film"
+  description="Como a IA transforma as fotografias de um anúncio num vídeo de visita, quanto custa, o que pode mostrar e como uma pessoa o verifica antes da entrega."
+  eyebrow="Explicado"
+  h1="Vídeo com IA a partir das fotografias do anúncio: como funciona, quanto custa e o que esperar"
+  summary="O vídeo com IA a partir de fotografias usa software para acrescentar movimento de câmara e fotogramas intermédios a imagens fixas, de modo que as fotografias de um anúncio se transformam num pequeno filme de visita. A Still to Film faz tudo por si: envia-nos as fotografias, fazemos um vídeo de 60 a 90 segundos e uma pessoa verifica cada vídeo antes da entrega."
+  faqTitle="Perguntas sobre o vídeo com IA"
+  faqItems={faq}
+  service
+  related={['yacht', 'hotel', 'pricing']}
+>
+  <h2>O que é o vídeo com IA a partir de fotografias?</h2>
+  <p>Uma fotografia é um momento visto de um único ponto. O software de vídeo com IA pega nessa fotografia e gera os fotogramas à sua volta: um avanço lento para dentro de um quarto, uma panorâmica por um convés, uma rotação em direção a uma janela. Umas atrás das outras, as fotografias transformam-se num pequeno filme que dá a sensação de percorrer o espaço.</p>
+  <p>O software não filma nada. Cada fotograma vem do que está nas fotografias, e essa é ao mesmo tempo a sua força e o seu limite.</p>
+
+  <h2>Como funciona, passo a passo?</h2>
+  <ol>
+    <li><strong>Escolher as fotografias.</strong> Nem todas as fotografias funcionam em movimento. Escolhemos as que são nítidas e mostram bem o espaço, e decidimos a ordem da visita.</li>
+    <li><strong>Escolher os movimentos.</strong> Para cada fotografia escolhemos um movimento de câmara adequado: lento e estável, nunca rápido nem estonteante.</li>
+    <li><strong>Gerar os clipes.</strong> A IA transforma cada fotografia num clipe curto. Algumas tentativas saem mal; descartamo-las e fazemo-las de novo.</li>
+    <li><strong>Montagem.</strong> Juntamos os clipes num filme de 60 a 90 segundos, em 16:9 e 9:16.</li>
+    <li><strong>Verificação.</strong> Uma pessoa vê o vídeo completo antes de lho mostrarmos (explicamos mais abaixo).</li>
+  </ol>
+
+  <h2>Feito por nós ou por conta própria?</h2>
+  <p>Há ferramentas que permitem carregar fotografias e gerar o vídeo por conta própria. Podem sair mais baratas se tiver tempo e quiser aprender a usá-las. A diferença está em quem faz o trabalho e quem o verifica.</p>
+  <div class="table-wrap" role="region" aria-label="Comparação: ferramenta de vídeo com IA por conta própria e Still to Film" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Tema</th><th scope="col">Ferramenta de vídeo com IA por conta própria</th><th scope="col">Still to Film</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Tema">Conhecimentos necessários</td><td data-label="Ferramenta por conta própria">Aprende a ferramenta e escreve os prompts</td><td data-label="Still to Film">Nenhuns: envia-nos uma ligação ou as fotografias</td></tr>
+        <tr><td data-label="Tema">Escolher fotografias e movimentos</td><td data-label="Ferramenta por conta própria">Por si</td><td data-label="Still to Film">Nós</td></tr>
+        <tr><td data-label="Tema">Tentativas falhadas</td><td data-label="Ferramenta por conta própria">Deteta-as e tenta de novo</td><td data-label="Still to Film">Descartamo-las antes de ver o que quer que seja</td></tr>
+        <tr><td data-label="Tema">Controlo de qualidade</td><td data-label="Ferramenta por conta própria">Depende de si</td><td data-label="Still to Film">Uma pessoa vê cada vídeo do início ao fim</td></tr>
+        <tr><td data-label="Tema">Formatos</td><td data-label="Ferramenta por conta própria">Depende da ferramenta</td><td data-label="Still to Film">16:9 e 9:16, ambos incluídos</td></tr>
+        <tr><td data-label="Tema">Alterações</td><td data-label="Ferramenta por conta própria">Refaz por si</td><td data-label="Still to Film">Duas rondas de revisão incluídas</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Quais são os limites?</h2>
+  <ul>
+    <li><strong>Só mostra o que está nas fotografias.</strong> Uma divisão, uma vista ou um pormenor que nunca foi fotografado não pode aparecer no filme.</li>
+    <li><strong>Os movimentos calmos funcionam melhor.</strong> Movimentos de câmara rápidos ou grandes mudanças de ângulo obrigam a IA a adivinhar, e o que adivinha pode sair mal. Por isso mantemos o movimento lento de propósito.</li>
+    <li><strong>Sem pessoas nem som ambiente.</strong> O filme mostra os espaços, não hóspedes nem tripulação, e não tem som gravado.</li>
+    <li><strong>A qualidade das fotografias conta.</strong> Fotografias desfocadas, escuras ou de baixa resolução dão um filme mais pobre. Os ficheiros originais do seu fotógrafo funcionam melhor.</li>
+  </ul>
+
+  <h2>Como funciona a verificação de qualidade?</h2>
+  <p>Antes da entrega, uma pessoa vê cada vídeo do início ao fim e compara-o com as fotografias. Procuramos tudo o que não corresponda: pormenores que mudam de forma, linhas que se curvam, objetos que aparecem ou desaparecem, movimentos que não parecem naturais. Se algo falhar, refazemos esse clipe ou retiramo-lo. Só depois vê o vídeo, e ainda tem duas rondas de revisão.</p>
+
+  <h2>Quando é melhor um dia de filmagem?</h2>
+  <p>O vídeo com IA a partir de fotografias não serve para tudo. Um dia de filmagem é a melhor opção se quiser pessoas na imagem, som real, uma entrevista, planos de drone de locais de que não tem fotografias, ou espaços que nunca foram fotografados. Se já tem boas fotografias e quer visitas calmas para cada anúncio, o vídeo com IA cumpre sem passar um dia no local.</p>
+
+  <h2>Quanto custa?</h2>
+  <p>Um único vídeo custa 100 €, IVA incluído. A partir de 5 vídeos, o preço por vídeo desce 5 € a cada 5 vídeos, até um mínimo de 50 €. Consulte a <a href={pagePath(lang, 'pricing')}>tabela de preços</a> completa, ou comece com um vídeo de amostra grátis feito com as suas próprias fotografias.</p>
+</Landing>

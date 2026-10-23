@@ -6,7 +6,7 @@ import path from 'node:path';
 
 const DIST = 'dist';
 const SITE = 'https://stilltofilm.com';
-const LANGS = ['en', 'nl', 'de', 'fr', 'es', 'hr', 'x-default'];
+const LANGS = ['en', 'nl', 'de', 'fr', 'es', 'hr', 'pt', 'x-default'];
 const pages = [];
 (function walk(dir) {
   for (const f of fs.readdirSync(dir)) {

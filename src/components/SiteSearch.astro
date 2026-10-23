@@ -12,6 +12,7 @@ import { groups as de } from '../landing/de/faq';
 import { groups as fr } from '../landing/fr/faq';
 import { groups as es } from '../landing/es/faq';
 import { groups as hr } from '../landing/hr/faq';
+import { groups as pt } from '../landing/pt/faq';
 
 interface Props {
   lang: Locale;
@@ -19,7 +20,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const s = searchUI[lang];
-const faqGroups = { en, nl, de, fr, es, hr }[lang];
+const faqGroups = { en, nl, de, fr, es, hr, pt }[lang];
 
 const pageLabel: Record<PageId, string> = {
   home: t.nav.home, library: t.nav.library, how: t.nav.how, contact: t.nav.contact,

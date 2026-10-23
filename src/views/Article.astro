@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import SiteNav from '../components/SiteNav.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { SITE_URL } from '../data/site';
-import { hreflang, pagePath, useTranslations } from '../i18n';
+import { hreflang, htmlLang, pagePath, useTranslations } from '../i18n';
 import { articleAlternates, articlePath, articlesFor, insightsBase, type Article } from '../insights';
 import { insightsUI } from '../insights/ui';
 
@@ -18,7 +18,7 @@ const u = insightsUI[lang];
 const Body = a.Body;
 const abs = (p: string) => new URL(p, SITE_URL).href;
 const alternates = articleAlternates(a.id);
-const date = new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(a.date));
+const date = new Intl.DateTimeFormat(htmlLang[lang], { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(a.date));
 const others = articlesFor(lang).filter((x) => x.id !== a.id).slice(0, 3);
 const schema = [
   {
