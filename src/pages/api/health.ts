@@ -2,6 +2,7 @@
 // of the variables it found, what is wrong with them, and whether the database answers. Never keys or customer data.
 import type { APIRoute } from 'astro';
 import { adminClient, configProblem, envSource, portalReady } from '../../lib/supabase';
+import { bank } from '../../lib/bank';
 
 export const prerender = false;
 
@@ -19,5 +20,6 @@ export const GET: APIRoute = async () => {
       database = `could not reach Supabase: ${(e as Error).message}`;
     }
   }
-  return Response.json({ portalReady, problem: configProblem, database, ...envSource() }, { headers: { 'Cache-Control': 'no-store' } });
+  const bankSet = !bank().iban.startsWith('[TODO');
+  return Response.json({ portalReady, problem: configProblem, database, bankDetails: bankSet ? 'set' : 'missing (BANK_IBAN)', ...envSource() }, { headers: { 'Cache-Control': 'no-store' } });
 };

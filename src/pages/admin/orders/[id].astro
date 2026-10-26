@@ -4,7 +4,7 @@
 export const prerender = false;
 import Portal from '../../../layouts/Portal.astro';
 import { adminClient, currentEmail, isAdmin, portalReady, signedVideoUrl } from '../../../lib/supabase';
-import { site } from '../../../data/site';
+import { bank as bankDetails } from '../../../lib/bank';
 import { euro, paymentReference, type Feedback, type Order, type OrderStatus, type Payment, type Video } from '../../../lib/orders';
 
 const email = await currentEmail(Astro.request, Astro.cookies);
@@ -69,7 +69,8 @@ const videos = await Promise.all(videoList.map(async (v) => ({
   notes: ((notes ?? []) as Feedback[]).filter((n) => n.video_id === v.id),
 })));
 const loginLink = new URL(`/account/login/?lang=${order.lang}`, Astro.url).href;
-const bank = `${site.bank.holder}, IBAN ${site.bank.iban}, ${order.lang === 'nl' ? 'omschrijving' : 'reference'} "${paymentReference(order)}"`;
+const account = bankDetails();
+const bank = `${account.holder}, IBAN ${account.iban}, ${order.lang === 'nl' ? 'omschrijving' : 'reference'} "${paymentReference(order)}"`;
 const message = order.lang === 'nl'
   ? `Je bestelling bij Still to Film staat klaar. Log in met ${order.customer_email} via ${loginLink}\nBetalen per bankoverschrijving: ${bank}.`
   : `Your Still to Film order is ready. Log in with ${order.customer_email} at ${loginLink}\nPayment by bank transfer: ${bank}.`;

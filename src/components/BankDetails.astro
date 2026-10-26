@@ -1,6 +1,6 @@
 ---
 // Bank transfer details with the amount and the reference, for the order confirmation and the account.
-import { site } from '../data/site';
+import { bank } from '../lib/bank';
 import { euro } from '../lib/orders';
 import { portalUI } from '../i18n/portal';
 
@@ -12,10 +12,11 @@ interface Props {
 const { lang, amountCents, reference } = Astro.props;
 const b = portalUI[lang].bank;
 const todo = (v: string) => v.startsWith('[TODO');
+const account = bank();
 const rows = [
-  [b.holder, site.bank.holder],
-  [b.iban, site.bank.iban],
-  [b.bic, site.bank.bic],
+  [b.holder, account.holder],
+  [b.iban, account.iban],
+  [b.bic, account.bic],
   [b.amount, euro(amountCents, lang === 'nl' ? 'nl' : 'en-GB')],
   [b.reference, reference],
 ];

@@ -18,7 +18,8 @@ export const site = {
   // TODO: e.g. https://formspree.io/f/xxxxxxx. Until set, the form opens the visitor's mail app instead.
   formEndpoint: '',
   // Bank account for payments by bank transfer, shown on the order confirmation and in the client
-  // account. TODO(owner): fill in your business account before people can order.
+  // account. Easiest: set BANK_HOLDER, BANK_IBAN and BANK_BIC in Vercel (see src/lib/bank.ts); these
+  // values are only the fallback. TODO(owner): fill in before people can order.
   bank: {
     holder: '[TODO: name of the account holder]',
     iban: '[TODO: IBAN]',

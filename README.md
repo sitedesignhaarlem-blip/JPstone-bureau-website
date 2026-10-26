@@ -105,7 +105,7 @@ Het vergrootglas in het menu (`src/components/SiteSearch.astro`) geeft suggestie
 
 **Betalen** gaat alleen per bankoverschrijving. Regel (`src/lib/orders.ts`, `SPLIT_FROM_CENTS`): onder €1.000 incl. btw alles vooraf; vanaf €1.000 50% bij bestelling en 50% na oplevering. Het restbedrag verschijnt pas als jij de status op `delivered` zet. **Facturen** maak je zelf (je boekhoudprogramma); er is een plek voor een factuurlink per betaling (`invoice_url`).
 
-**Vul je bankgegevens in** in `src/data/site.ts` (`bank`). Tot die tijd staat er een oranje [TODO] op de bevestigingspagina.
+**Bankgegevens** zet je in Vercel → Environment Variables: `BANK_HOLDER` (ten name van), `BANK_IBAN` en `BANK_BIC`, daarna Redeploy. Zo wissel je later van rekening zonder code. Zonder die variabelen gelden de waarden in `src/data/site.ts` (nu een oranje [TODO]). Let op: de site toont altijd de huidige rekening, ook bij oudere bestellingen.
 
 **Werkwijze per bestelling**
 1. Nieuwe bestelling (via /order/ of door jou aangemaakt) staat op `awaiting_payment`. Je ziet hem op /admin/.
