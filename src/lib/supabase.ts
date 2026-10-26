@@ -26,7 +26,23 @@ const anon = pick([
 const service = pick([['SUPABASE_SERVICE_ROLE_KEY', env.SUPABASE_SERVICE_ROLE_KEY], ['SUPABASE_SECRET_KEY', env.SUPABASE_SECRET_KEY]], ['SUPABASE_SERVICE_ROLE_KEY', 'SUPABASE_SECRET_KEY']);
 // Forgive common copy-paste slips: spaces, quotes, a trailing slash or /rest/v1 after the URL.
 const clean = (v?: string) => v?.trim().replace(/^["']|["']$/g, '').trim();
-const SUPABASE_URL = clean(url?.[1])?.replace(/\/rest\/v1\/?$/, '').replace(/\/+$/, '');
+/**
+ * The Project URL, also when another Supabase address was pasted: the dashboard link
+ * (supabase.com/dashboard/project/<ref>), a database connection string, the project host without
+ * https://, or just the project ref.
+ */
+function projectUrl(raw?: string): string | undefined {
+  const v = clean(raw);
+  if (!v) return v;
+  const ref = v.match(/supabase\.com\/dashboard\/project\/([a-z0-9]{15,30})/i)?.[1]
+    ?? v.match(/@db\.([a-z0-9]{15,30})\.supabase\.co/i)?.[1]
+    ?? v.match(/postgres\.([a-z0-9]{15,30})[:@]/i)?.[1]
+    ?? v.match(/^([a-z0-9]{20})$/i)?.[1];
+  if (ref) return `https://${ref.toLowerCase()}.supabase.co`;
+  const withScheme = /^[a-z0-9-]+\.supabase\.(co|in)/i.test(v) ? `https://${v}` : v;
+  return withScheme.replace(/\/(rest|auth)\/v1\/?.*$/, '').replace(/\/+$/, '');
+}
+const SUPABASE_URL = projectUrl(url?.[1]);
 const SUPABASE_ANON_KEY = clean(anon?.[1]);
 const SUPABASE_SERVICE_ROLE_KEY = clean(service?.[1]);
 
@@ -36,7 +52,12 @@ function findProblem(): string | null {
   const local = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(SUPABASE_URL); // for testing with a local Supabase
   if (!local && !/^https:\/\/[a-z0-9-]+\.supabase\.(co|in)$/i.test(SUPABASE_URL)) {
     if (/^(sb_|eyJ)/.test(SUPABASE_URL)) return `${url![0]} contains a key, not the Project URL (https://<project>.supabase.co).`;
-    return `${url![0]} is not a Project URL like https://<project>.supabase.co.`;
+    // Say what kind of value it is, never the value itself (a connection string holds a password).
+    const kind = /^postgres(ql)?:/i.test(SUPABASE_URL) ? 'a database connection string'
+      : /supabase\.com/i.test(SUPABASE_URL) ? 'a supabase.com page link'
+      : /^https?:\/\//i.test(SUPABASE_URL) ? `a link to ${SUPABASE_URL.replace(/^https?:\/\//i, "").split("/")[0]}`
+      : 'not a link';
+    return `${url![0]} is ${kind}, not the Project URL. Use https://<project>.supabase.co (Supabase → Project Settings → Data API → Project URL).`;
   }
   if (/\s/.test(SUPABASE_ANON_KEY) || /\s/.test(SUPABASE_SERVICE_ROLE_KEY)) return 'One of the keys contains a space or line break.';
   if (SUPABASE_ANON_KEY.startsWith('sb_secret_')) return `${anon![0]} holds the secret key; it should hold the publishable (anon) key.`;
