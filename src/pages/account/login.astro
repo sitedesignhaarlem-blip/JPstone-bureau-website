@@ -3,6 +3,7 @@
 // Failed attempts are limited per e-mail address and per IP address (src/lib/ratelimit.ts).
 export const prerender = false;
 import Portal from '../../layouts/Portal.astro';
+import ResendButton from '../../components/ResendButton.astro';
 import { currentEmail, portalReady, safeNext, userClient } from '../../lib/supabase';
 import { clearAttempts, isLimited, limits, recordAttempt } from '../../lib/ratelimit';
 import { clientIp, isEmail } from '../../lib/request';
@@ -17,6 +18,8 @@ let mode: 'password' | 'code' = Astro.url.searchParams.get('mode') === 'code' ? 
 let step: 'email' | 'code' = 'email';
 let email = '';
 let error = Astro.url.searchParams.get('error') === 'link' ? l.linkFailed : '';
+let unconfirmed = false;
+let resent = false;
 
 if (portalReady) {
   if (await currentEmail(Astro.request, Astro.cookies)) return Astro.redirect(next);
@@ -38,10 +41,13 @@ if (portalReady) {
           return Astro.redirect(next);
         }
         await recordAttempt(keys);
-        error = e.code === 'email_not_confirmed' ? l.unconfirmed : l.wrong;
+        unconfirmed = e.code === 'email_not_confirmed';
+        error = unconfirmed ? l.unconfirmed : l.wrong;
       }
     } else if (action === 'send') {
       mode = 'code';
+      const again = form.get('resend') === '1';
+      if (again) step = 'code';
       const keys = [limits.codeEmail(email), limits.codeIp(ip)];
       if (await isLimited(keys)) error = l.locked;
       else {
@@ -50,8 +56,12 @@ if (portalReady) {
           email,
           options: { emailRedirectTo: new URL('/account/auth/callback/', Astro.url).href, shouldCreateUser: true },
         });
-        if (e) error = l.error;
-        else step = 'code';
+        if (e?.status === 429 || e?.code === 'over_email_send_rate_limit') error = l.wait;
+        else if (e) error = l.error;
+        else {
+          step = 'code';
+          resent = again;
+        }
       }
     } else if (action === 'verify') {
       mode = 'code';
@@ -107,7 +117,7 @@ const q = (extra: string) => `?lang=${lang}${next !== '/account/' ? `&next=${enc
         </form>
       ) : (
         <form class="card" method="post">
-          <p>{fill(l.sent, { email })}</p>
+          <p>{fill(resent ? l.resent : l.sent, { email })}</p>
           <div class="field">
             <label for="code">{l.code}</label>
             <input id="code" name="code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9 ]{6,10}" required autofocus />
@@ -120,6 +130,8 @@ const q = (extra: string) => `?lang=${lang}${next !== '/account/' ? `&next=${enc
           </div>
         </form>
       )}
+      {mode === 'code' && step === 'code' && <ResendButton email={email} kind="code" label={l.resend} wait={l.waitButton} cooldown={error !== l.locked} />}
+      {unconfirmed && <ResendButton action={`/account/register/?lang=${lang}`} email={email} kind="confirm" label={l.resendConfirm} wait={l.waitButton} cooldown={false} />}
       <div class="alt">
         <p>{l.noAccount} <a href={`/account/register/${q('')}`}>{l.register}</a></p>
         <p>{mode === 'password'

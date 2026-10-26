@@ -15,6 +15,8 @@ export const limits = {
   codeIp: (ip: string): Limit => ({ key: `code:ip:${ip}`, max: 10, minutes: 15 }),
   verifyEmail: (email: string): Limit => ({ key: `verify:email:${email}`, max: 5, minutes: 15 }),
   signupIp: (ip: string): Limit => ({ key: `signup:ip:${ip}`, max: 5, minutes: 60 }),
+  resendEmail: (email: string): Limit => ({ key: `resend:email:${email}`, max: 3, minutes: 15 }),
+  resendIp: (ip: string): Limit => ({ key: `resend:ip:${ip}`, max: 10, minutes: 15 }),
   resetEmail: (email: string): Limit => ({ key: `reset:email:${email}`, max: 3, minutes: 60 }),
   resetIp: (ip: string): Limit => ({ key: `reset:ip:${ip}`, max: 10, minutes: 60 }),
 };

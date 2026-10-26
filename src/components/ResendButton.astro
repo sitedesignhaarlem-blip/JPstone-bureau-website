@@ -1,0 +1,44 @@
+---
+// "Send again" button for a login code or a confirmation e-mail. It stays disabled for a minute after
+// an e-mail was sent (Supabase allows one per minute), with a countdown; the server limits it as well.
+interface Props {
+  action?: string; // where to post; the current page by default
+  email: string;
+  kind: 'code' | 'confirm';
+  label: string;
+  /** Countdown text, with {s} for the seconds. */
+  wait: string;
+  /** Start the countdown right away (an e-mail was just sent). */
+  cooldown?: boolean;
+}
+const { action, email, kind, label, wait, cooldown = true } = Astro.props;
+---
+<form method="post" action={action} class="resend" data-resend data-wait={wait} data-label={label} data-cooldown={cooldown ? '60' : '0'}>
+  <input type="hidden" name="email" value={email} />
+  <input type="hidden" name="action" value={kind === 'code' ? 'send' : 'resend'} />
+  <input type="hidden" name="resend" value="1" />
+  <button class="button button--secondary button--small" type="submit">{label}</button>
+</form>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-resend]').forEach((form) => {
+    const button = form.querySelector('button')!;
+    let left = Number(form.dataset.cooldown);
+    const tick = () => {
+      if (left > 0) {
+        button.disabled = true;
+        button.textContent = (form.dataset.wait ?? '').replace('{s}', String(left));
+        left--;
+        setTimeout(tick, 1000);
+      } else {
+        button.disabled = false;
+        button.textContent = form.dataset.label ?? '';
+      }
+    };
+    tick();
+  });
+</script>
+
+<style>
+  .resend button:disabled { opacity: 0.55; cursor: default; }
+</style>

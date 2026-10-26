@@ -3,6 +3,7 @@
 // works only after the address is confirmed, so nobody can see orders for an address they don't own.
 export const prerender = false;
 import Portal from '../../layouts/Portal.astro';
+import ResendButton from '../../components/ResendButton.astro';
 import { pagePath } from '../../i18n';
 import { currentEmail, portalReady, userClient } from '../../lib/supabase';
 import { isLimited, limits, recordAttempt } from '../../lib/ratelimit';
@@ -15,6 +16,7 @@ const p = portalUI[lang];
 const r = p.register;
 let error = '';
 let sentTo = '';
+let resent = false;
 const values = { name: '', company: '', email: '' };
 
 if (portalReady) {
@@ -27,7 +29,23 @@ if (portalReady) {
     values.email = str('email', 200).toLowerCase();
     const password = String(form.get('password') ?? '');
     const ip = clientIp(Astro);
-    if (str('website', 200)) {
+    if (form.get('action') === 'resend') {
+      // Send the confirmation e-mail again. Same answer whether or not the address has an account.
+      const keys = [limits.resendEmail(values.email), limits.resendIp(ip)];
+      if (!isEmail(values.email)) error = r.error;
+      else if (await isLimited(keys)) error = p.login.locked;
+      else {
+        await recordAttempt(keys);
+        const { error: e } = await userClient(Astro.request, Astro.cookies).auth.resend({
+          type: 'signup',
+          email: values.email,
+          options: { emailRedirectTo: new URL('/account/auth/callback/?flow=confirm', Astro.url).href },
+        });
+        sentTo = values.email;
+        if (e?.status === 429 || e?.code === 'over_email_send_rate_limit') error = p.login.wait;
+        else resent = true;
+      }
+    } else if (str('website', 200)) {
       sentTo = values.email; // honeypot: bots get the normal answer, nothing is created
     } else if (await isLimited([limits.signupIp(ip)])) {
       error = p.login.locked;
@@ -60,7 +78,14 @@ const [termsB, termsC] = rest.split('{privacy}');
 ---
 <Portal lang={lang} title={r.title} path="/account/register/">
   <h1>{r.title}</h1>
-  {!portalReady ? <p class="notice">{p.notReady}</p> : sentTo ? <p class="notice" role="status">{fill(r.sent, { email: sentTo })}</p> : (
+  {!portalReady ? <p class="notice">{p.notReady}</p> : sentTo ? (
+    <div class="sent">
+      {error && <p class="notice notice--error" role="alert">{error}</p>}
+      <p class="notice" role="status">{fill(resent ? r.resent : r.sent, { email: sentTo })}</p>
+      <p class="muted">{r.noMail}</p>
+      <ResendButton email={sentTo} kind="confirm" label={p.login.resendConfirm} wait={p.login.waitButton} />
+    </div>
+  ) : (
     <>
       {error && <p class="notice notice--error" role="alert">{error}</p>}
       <form class="card" method="post">
@@ -87,6 +112,7 @@ const [termsB, termsC] = rest.split('{privacy}');
 </Portal>
 
 <style>
+  .sent { display: grid; gap: var(--space-3); justify-items: start; }
   .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
   .consent { display: flex; gap: var(--space-3); align-items: flex-start; font-size: var(--step-small); cursor: pointer; }
   .consent input { margin-top: 0.2rem; width: 1.1rem; height: 1.1rem; accent-color: var(--accent); flex: none; }
