@@ -6,11 +6,38 @@ import { createServerClient, parseCookieHeader } from '@supabase/ssr';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import * as env from 'astro:env/server';
 
-// Set by hand or by the Supabase integration in Vercel, which uses other names depending on its version.
-const SUPABASE_URL = env.SUPABASE_URL || env.NEXT_PUBLIC_SUPABASE_URL;
-const SUPABASE_ANON_KEY = env.SUPABASE_ANON_KEY || env.SUPABASE_PUBLISHABLE_KEY || env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-const SUPABASE_SERVICE_ROLE_KEY = env.SUPABASE_SERVICE_ROLE_KEY || env.SUPABASE_SECRET_KEY;
+// Set by hand or by the Supabase integration in Vercel. The integration uses other names depending on
+// its version, and may add a prefix (e.g. STORAGE_SUPABASE_URL), so any variable ending in the usual
+// name is accepted too. envSource() says which names were used, never the values.
+const runtime: Record<string, string | undefined> = typeof process !== 'undefined' ? process.env : {};
+function pick(direct: [string, string | undefined][], suffixes: string[]): [string, string] | null {
+  for (const [name, value] of direct) if (value) return [name, value];
+  for (const suffix of suffixes) {
+    const name = Object.keys(runtime).sort().find((k) => k.endsWith(suffix) && runtime[k]);
+    if (name) return [name, runtime[name]!];
+  }
+  return null;
+}
+const url = pick([['SUPABASE_URL', env.SUPABASE_URL], ['NEXT_PUBLIC_SUPABASE_URL', env.NEXT_PUBLIC_SUPABASE_URL]], ['SUPABASE_URL']);
+const anon = pick([
+  ['SUPABASE_ANON_KEY', env.SUPABASE_ANON_KEY], ['SUPABASE_PUBLISHABLE_KEY', env.SUPABASE_PUBLISHABLE_KEY],
+  ['NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY', env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY], ['NEXT_PUBLIC_SUPABASE_ANON_KEY', env.NEXT_PUBLIC_SUPABASE_ANON_KEY],
+], ['SUPABASE_ANON_KEY', 'SUPABASE_PUBLISHABLE_KEY']);
+const service = pick([['SUPABASE_SERVICE_ROLE_KEY', env.SUPABASE_SERVICE_ROLE_KEY], ['SUPABASE_SECRET_KEY', env.SUPABASE_SECRET_KEY]], ['SUPABASE_SERVICE_ROLE_KEY', 'SUPABASE_SECRET_KEY']);
+const SUPABASE_URL = url?.[1];
+const SUPABASE_ANON_KEY = anon?.[1];
+const SUPABASE_SERVICE_ROLE_KEY = service?.[1];
 const ADMIN_EMAILS = env.ADMIN_EMAILS;
+
+/** Which variable names the portal found (names only), for /api/health/. */
+export const envSource = () => ({
+  url: url?.[0] ?? null,
+  anonKey: anon?.[0] ?? null,
+  serviceKey: service?.[0] ?? null,
+  adminEmails: Boolean(ADMIN_EMAILS),
+  // Names of all variables that mention Supabase, so a missing one is easy to spot. No values.
+  supabaseVariables: Object.keys(runtime).filter((k) => /SUPABASE/i.test(k)).sort(),
+});
 
 export const portalReady = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY && SUPABASE_SERVICE_ROLE_KEY);
 
