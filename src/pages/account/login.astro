@@ -1,74 +1,136 @@
 ---
-// Login with a one-time code by e-mail (Supabase). Step 1: e-mail address. Step 2: the 6-digit code.
-// The e-mail also has a link (see /account/auth/callback/); the code works on any device.
+// Log in with e-mail and password, or with a one-time code by e-mail (?mode=code).
+// Failed attempts are limited per e-mail address and per IP address (src/lib/ratelimit.ts).
 export const prerender = false;
 import Portal from '../../layouts/Portal.astro';
-import { currentEmail, portalReady, userClient } from '../../lib/supabase';
+import { currentEmail, portalReady, safeNext, userClient } from '../../lib/supabase';
+import { clearAttempts, isLimited, limits, recordAttempt } from '../../lib/ratelimit';
+import { clientIp, isEmail } from '../../lib/request';
 import { fill, portalLang, portalUI } from '../../i18n/portal';
 
 const lang = portalLang(Astro.url, Astro.request, Astro.cookies.get('lang')?.value);
 if (Astro.url.searchParams.get('lang')) Astro.cookies.set('lang', lang, { path: '/', maxAge: 31536000, sameSite: 'lax' as const });
 const p = portalUI[lang];
-
+const l = p.login;
+const next = safeNext(Astro.url.searchParams.get('next'));
+let mode: 'password' | 'code' = Astro.url.searchParams.get('mode') === 'code' ? 'code' : 'password';
 let step: 'email' | 'code' = 'email';
 let email = '';
-let error = Astro.url.searchParams.get('error') === 'link' ? p.login.linkFailed : '';
+let error = Astro.url.searchParams.get('error') === 'link' ? l.linkFailed : '';
 
 if (portalReady) {
-  if (await currentEmail(Astro.request, Astro.cookies)) return Astro.redirect('/account/');
+  if (await currentEmail(Astro.request, Astro.cookies)) return Astro.redirect(next);
   if (Astro.request.method === 'POST') {
     const form = await Astro.request.formData();
+    const action = String(form.get('action') ?? '');
     email = String(form.get('email') ?? '').trim().toLowerCase();
+    const ip = clientIp(Astro);
     const supabase = userClient(Astro.request, Astro.cookies);
-    if (form.get('action') === 'send' && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-      const { error: e } = await supabase.auth.signInWithOtp({
-        email,
-        options: { emailRedirectTo: new URL('/account/auth/callback/', Astro.url).href, shouldCreateUser: true },
-      });
-      if (e) error = p.login.error;
-      else step = 'code';
-    } else if (form.get('action') === 'verify') {
-      const token = String(form.get('code') ?? '').replace(/\D/g, '');
-      const { error: e } = await supabase.auth.verifyOtp({ email, token, type: 'email' });
-      if (!e) return Astro.redirect('/account/');
-      error = p.login.invalid;
+    if (!isEmail(email)) {
+      error = l.wrong;
+    } else if (action === 'password') {
+      const keys = [limits.loginEmail(email), limits.loginIp(ip)];
+      if (await isLimited(keys)) error = l.locked;
+      else {
+        const { error: e } = await supabase.auth.signInWithPassword({ email, password: String(form.get('password') ?? '') });
+        if (!e) {
+          await clearAttempts(limits.loginEmail(email));
+          return Astro.redirect(next);
+        }
+        await recordAttempt(keys);
+        error = e.code === 'email_not_confirmed' ? l.unconfirmed : l.wrong;
+      }
+    } else if (action === 'send') {
+      mode = 'code';
+      const keys = [limits.codeEmail(email), limits.codeIp(ip)];
+      if (await isLimited(keys)) error = l.locked;
+      else {
+        await recordAttempt(keys);
+        const { error: e } = await supabase.auth.signInWithOtp({
+          email,
+          options: { emailRedirectTo: new URL('/account/auth/callback/', Astro.url).href, shouldCreateUser: true },
+        });
+        if (e) error = l.error;
+        else step = 'code';
+      }
+    } else if (action === 'verify') {
+      mode = 'code';
       step = 'code';
-    } else {
-      error = p.login.error;
+      const keys = [limits.verifyEmail(email), limits.loginIp(ip)];
+      if (await isLimited(keys)) error = l.locked;
+      else {
+        const token = String(form.get('code') ?? '').replace(/\D/g, '');
+        const { error: e } = await supabase.auth.verifyOtp({ email, token, type: 'email' });
+        if (!e) {
+          await clearAttempts(limits.verifyEmail(email));
+          return Astro.redirect(next);
+        }
+        await recordAttempt(keys);
+        error = l.invalid;
+      }
     }
   }
 }
+const q = (extra: string) => `?lang=${lang}${next !== '/account/' ? `&next=${encodeURIComponent(next)}` : ''}${extra}`;
 ---
-<Portal lang={lang} title={p.login.title} path="/account/login/">
-  <h1>{p.login.title}</h1>
+<Portal lang={lang} title={l.title} path="/account/login/">
+  <h1>{l.title}</h1>
   {!portalReady ? <p class="notice">{p.notReady}</p> : (
     <>
       {error && <p class="notice notice--error" role="alert">{error}</p>}
-      {step === 'email' ? (
+      {mode === 'password' ? (
         <form class="card" method="post">
-          <p class="muted">{p.login.lead}</p>
+          <p class="muted">{l.lead}</p>
           <div class="field">
-            <label for="email">{p.login.email}</label>
-            <input id="email" name="email" type="email" autocomplete="email" required value={email} />
+            <label for="email">{l.email}</label>
+            <input id="email" name="email" type="email" autocomplete="username" required value={email} maxlength="200" />
+          </div>
+          <div class="field">
+            <label for="password">{l.password}</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" required maxlength="200" />
+          </div>
+          <input type="hidden" name="action" value="password" />
+          <div class="actions">
+            <button class="button" type="submit">{l.submit}</button>
+            <a class="link-small" href={`/account/forgot/${q('')}`}>{l.forgot}</a>
+          </div>
+        </form>
+      ) : step === 'email' ? (
+        <form class="card" method="post">
+          <p class="muted">{l.codeLead}</p>
+          <div class="field">
+            <label for="email">{l.email}</label>
+            <input id="email" name="email" type="email" autocomplete="email" required value={email} maxlength="200" />
           </div>
           <input type="hidden" name="action" value="send" />
-          <p><button class="button" type="submit">{p.login.send}</button></p>
+          <div><button class="button" type="submit">{l.send}</button></div>
         </form>
       ) : (
         <form class="card" method="post">
-          <p>{fill(p.login.sent, { email })}</p>
+          <p>{fill(l.sent, { email })}</p>
           <div class="field">
-            <label for="code">{p.login.code}</label>
+            <label for="code">{l.code}</label>
             <input id="code" name="code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9 ]{6,10}" required autofocus />
           </div>
           <input type="hidden" name="email" value={email} />
           <input type="hidden" name="action" value="verify" />
           <div class="actions">
-            <button class="button" type="submit">{p.login.verify}</button>
-            <a class="button button--secondary" href="/account/login/">{p.login.other}</a>
+            <button class="button" type="submit">{l.verify}</button>
+            <a class="button button--secondary" href={`/account/login/${q('&mode=code')}`}>{l.other}</a>
           </div>
         </form>
       )}
+      <div class="alt">
+        <p>{l.noAccount} <a href={`/account/register/${q('')}`}>{l.register}</a></p>
+        <p>{mode === 'password'
+          ? <a href={`/account/login/${q('&mode=code')}`}>{l.withCode}</a>
+          : <a href={`/account/login/${q('')}`}>{l.withPassword}</a>}</p>
+      </div>
     </>
   )}
 </Portal>
+
+<style>
+  .alt { display: grid; gap: var(--space-2); }
+  .link-small { font-size: var(--step-small); }
+</style>

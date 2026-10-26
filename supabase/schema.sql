@@ -61,6 +61,16 @@ create table if not exists public.feedback (
 );
 create index if not exists feedback_video_idx on public.feedback (video_id);
 
+-- Login, sign-up and reset attempts, to limit guessing (see src/lib/ratelimit.ts). Keys are hashed.
+create table if not exists public.auth_attempts (
+  id bigint generated always as identity primary key,
+  key text not null,
+  created_at timestamptz not null default now()
+);
+create index if not exists auth_attempts_key_idx on public.auth_attempts (key, created_at);
+-- No policies: only the server (service key) can read or write it.
+alter table public.auth_attempts enable row level security;
+
 alter table public.orders enable row level security;
 alter table public.payments enable row level security;
 alter table public.videos enable row level security;

@@ -23,12 +23,32 @@ export function adminClient(): SupabaseClient {
   return admin;
 }
 
-/** The logged-in user's e-mail, checked with Supabase (not just read from the cookie). */
+/** The logged-in user's e-mail, checked with Supabase (not just read from the cookie). Only once the address is confirmed. */
 export async function currentEmail(request: Request, cookies: AstroCookies): Promise<string | null> {
+  return (await currentUser(request, cookies))?.email ?? null;
+}
+
+export async function currentUser(request: Request, cookies: AstroCookies): Promise<{ email: string; name: string } | null> {
   if (!portalReady) return null;
   const { data } = await userClient(request, cookies).auth.getUser();
-  return data.user?.email?.toLowerCase() ?? null;
+  const user = data.user;
+  if (!user?.email || !user.email_confirmed_at) return null;
+  return { email: user.email.toLowerCase(), name: String(user.user_metadata?.name ?? '') };
 }
+
+/**
+ * Checks an e-mail and password without logging in (no cookies are set), e.g. to confirm the current
+ * password before changing it.
+ */
+export async function passwordIsCorrect(email: string, password: string): Promise<boolean> {
+  const client = createClient(SUPABASE_URL!, SUPABASE_ANON_KEY!, { auth: { persistSession: false, autoRefreshToken: false } });
+  const { error } = await client.auth.signInWithPassword({ email, password });
+  if (!error) await client.auth.signOut({ scope: 'local' });
+  return !error;
+}
+
+/** Only paths inside the account may be used to send someone on after logging in. */
+export const safeNext = (next: string | null) => (next && /^\/account\/[\w/-]*$/.test(next) ? next : '/account/');
 
 export function isAdmin(email: string | null): boolean {
   if (!email) return false;

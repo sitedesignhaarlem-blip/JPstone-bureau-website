@@ -1,4 +1,5 @@
-// The link in the login e-mail lands here. Exchanges it for a session, then opens the account.
+// Links in the e-mails land here (login link, address confirmation, password reset). Exchanges the
+// link for a session. ?flow=confirm shows a welcome; ?flow=reset opens the new-password page.
 import type { APIRoute } from 'astro';
 import type { EmailOtpType } from '@supabase/supabase-js';
 import { portalReady, userClient } from '../../../lib/supabase';
@@ -16,5 +17,12 @@ export const GET: APIRoute = async ({ url, request, cookies, redirect }) => {
     : tokenHash && type
       ? await supabase.auth.verifyOtp({ token_hash: tokenHash, type })
       : { error: new Error('missing code') };
-  return redirect(error ? '/account/login/?error=link' : '/account/');
+  if (error) return redirect('/account/login/?error=link');
+  const flow = url.searchParams.get('flow');
+  if (flow === 'reset') {
+    // Lets /account/password/ skip the current password, for 15 minutes.
+    cookies.set('pw_reset', '1', { path: '/account/', maxAge: 900, httpOnly: true, secure: true, sameSite: 'lax' });
+    return redirect('/account/password/');
+  }
+  return redirect(flow === 'confirm' ? '/account/?welcome=1' : '/account/');
 };

@@ -1,0 +1,93 @@
+---
+// Create an account with e-mail and password. Supabase sends a confirmation e-mail; the account
+// works only after the address is confirmed, so nobody can see orders for an address they don't own.
+export const prerender = false;
+import Portal from '../../layouts/Portal.astro';
+import { pagePath } from '../../i18n';
+import { currentEmail, portalReady, userClient } from '../../lib/supabase';
+import { isLimited, limits, recordAttempt } from '../../lib/ratelimit';
+import { passwordProblem, PASSWORD_MAX } from '../../lib/password';
+import { clientIp, isEmail } from '../../lib/request';
+import { fill, portalLang, portalUI } from '../../i18n/portal';
+
+const lang = portalLang(Astro.url, Astro.request, Astro.cookies.get('lang')?.value);
+const p = portalUI[lang];
+const r = p.register;
+let error = '';
+let sentTo = '';
+const values = { name: '', company: '', email: '' };
+
+if (portalReady) {
+  if (await currentEmail(Astro.request, Astro.cookies)) return Astro.redirect('/account/');
+  if (Astro.request.method === 'POST') {
+    const form = await Astro.request.formData();
+    const str = (k: string, max: number) => String(form.get(k) ?? '').trim().slice(0, max);
+    values.name = str('name', 120);
+    values.company = str('company', 120);
+    values.email = str('email', 200).toLowerCase();
+    const password = String(form.get('password') ?? '');
+    const ip = clientIp(Astro);
+    if (str('website', 200)) {
+      sentTo = values.email; // honeypot: bots get the normal answer, nothing is created
+    } else if (await isLimited([limits.signupIp(ip)])) {
+      error = p.login.locked;
+    } else if (!values.name || !isEmail(values.email) || form.get('terms') !== 'yes') {
+      error = r.error;
+    } else {
+      const problem = await passwordProblem(password, String(form.get('repeat') ?? ''), values.email);
+      if (problem) error = p.pwProblem[problem];
+      else {
+        await recordAttempt([limits.signupIp(ip)]);
+        const { error: e } = await userClient(Astro.request, Astro.cookies).auth.signUp({
+          email: values.email,
+          password,
+          options: {
+            emailRedirectTo: new URL('/account/auth/callback/?flow=confirm', Astro.url).href,
+            data: { name: values.name, company: values.company, lang },
+          },
+        });
+        // Supabase answers the same whether or not the address already has an account, so this page
+        // never tells anyone which addresses are registered.
+        if (e && e.code === 'weak_password') error = p.pwProblem.short;
+        else if (e && e.code !== 'user_already_exists') error = p.login.error;
+        else sentTo = values.email;
+      }
+    }
+  }
+}
+const [termsA, rest] = r.terms.split('{link}');
+const [termsB, termsC] = rest.split('{privacy}');
+---
+<Portal lang={lang} title={r.title} path="/account/register/">
+  <h1>{r.title}</h1>
+  {!portalReady ? <p class="notice">{p.notReady}</p> : sentTo ? <p class="notice" role="status">{fill(r.sent, { email: sentTo })}</p> : (
+    <>
+      {error && <p class="notice notice--error" role="alert">{error}</p>}
+      <form class="card" method="post">
+        <p class="muted">{r.lead}</p>
+        <div class="field"><label for="name">{r.name}</label><input id="name" name="name" autocomplete="name" required maxlength="120" value={values.name} /></div>
+        <div class="field"><label for="company">{r.company}</label><input id="company" name="company" autocomplete="organization" maxlength="120" value={values.company} /></div>
+        <div class="field"><label for="email">{p.login.email}</label><input id="email" name="email" type="email" autocomplete="username" required maxlength="200" value={values.email} /></div>
+        <div class="field">
+          <label for="password">{r.password}</label>
+          <input id="password" name="password" type="password" autocomplete="new-password" required minlength="10" maxlength={PASSWORD_MAX} aria-describedby="pw-hint" />
+          <p id="pw-hint" class="muted hint">{r.passwordHint}</p>
+        </div>
+        <div class="field"><label for="repeat">{r.repeat}</label><input id="repeat" name="repeat" type="password" autocomplete="new-password" required minlength="10" maxlength={PASSWORD_MAX} /></div>
+        <div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off" /></div>
+        <label class="consent">
+          <input type="checkbox" name="terms" value="yes" required />
+          <span>{termsA}<a href={pagePath(lang, 'terms')} target="_blank">{r.termsLink}</a>{termsB}<a href={pagePath(lang, 'privacy')} target="_blank">{r.privacyLink}</a>{termsC}</span>
+        </label>
+        <div><button class="button" type="submit">{r.submit}</button></div>
+      </form>
+      <p>{r.haveAccount} <a href={`/account/login/?lang=${lang}`}>{p.loginLink}</a></p>
+    </>
+  )}
+</Portal>
+
+<style>
+  .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+  .consent { display: flex; gap: var(--space-3); align-items: flex-start; font-size: var(--step-small); cursor: pointer; }
+  .consent input { margin-top: 0.2rem; width: 1.1rem; height: 1.1rem; accent-color: var(--accent); flex: none; }
+</style>

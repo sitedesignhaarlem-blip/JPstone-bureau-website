@@ -21,7 +21,8 @@ if (email) {
 const date = (iso: string) => new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(iso));
 ---
 <Portal lang={lang} title={p.title} path="/account/" email={email} admin={isAdmin(email)}>
-  <h1>{p.orders}</h1>
+  {Astro.url.searchParams.get('welcome') && <p class="notice" role="status">{p.account.welcome}</p>}
+  <div class="row"><h1>{p.orders}</h1>{email && <a href="/account/password/">{p.account.changePassword}</a>}</div>
   {!portalReady && <p class="notice">{p.notReady}</p>}
   {email && orders.length === 0 && <p class="notice">{p.noOrders}</p>}
   {orders.length > 0 && (

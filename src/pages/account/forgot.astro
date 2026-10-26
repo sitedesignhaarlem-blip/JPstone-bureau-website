@@ -1,0 +1,45 @@
+---
+// Forgot password: Supabase e-mails a one-time link that opens /account/password/.
+// The answer is always the same, so the page doesn't reveal which addresses have an account.
+export const prerender = false;
+import Portal from '../../layouts/Portal.astro';
+import { portalReady, userClient } from '../../lib/supabase';
+import { isLimited, limits, recordAttempt } from '../../lib/ratelimit';
+import { clientIp, isEmail } from '../../lib/request';
+import { fill, portalLang, portalUI } from '../../i18n/portal';
+
+const lang = portalLang(Astro.url, Astro.request, Astro.cookies.get('lang')?.value);
+const p = portalUI[lang];
+const f = p.forgot;
+let sentTo = '';
+let error = '';
+
+if (portalReady && Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  const email = String(form.get('email') ?? '').trim().toLowerCase();
+  const keys = [limits.resetEmail(email), limits.resetIp(clientIp(Astro))];
+  if (!isEmail(email)) error = p.register.error;
+  else if (await isLimited(keys)) error = p.login.locked;
+  else {
+    await recordAttempt(keys);
+    await userClient(Astro.request, Astro.cookies).auth.resetPasswordForEmail(email, {
+      redirectTo: new URL('/account/auth/callback/?flow=reset', Astro.url).href,
+    });
+    sentTo = email;
+  }
+}
+---
+<Portal lang={lang} title={f.title} path="/account/forgot/">
+  <h1>{f.title}</h1>
+  {!portalReady ? <p class="notice">{p.notReady}</p> : sentTo ? <p class="notice" role="status">{fill(f.sent, { email: sentTo })}</p> : (
+    <>
+      {error && <p class="notice notice--error" role="alert">{error}</p>}
+      <form class="card" method="post">
+        <p class="muted">{f.lead}</p>
+        <div class="field"><label for="email">{p.login.email}</label><input id="email" name="email" type="email" autocomplete="username" required maxlength="200" /></div>
+        <div><button class="button" type="submit">{f.submit}</button></div>
+      </form>
+    </>
+  )}
+  <p><a href={`/account/login/?lang=${lang}`}>{p.loginLink}</a></p>
+</Portal>

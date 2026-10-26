@@ -98,7 +98,9 @@ Het vergrootglas in het menu (`src/components/SiteSearch.astro`) geeft suggestie
 ## Bestellen, klantportaal en betalen
 
 - **/order/** – bezoekers bestellen zelf: aantal video's kiezen (prijs volgt de staffel, max. 100; daarboven offerte), gegevens invullen, akkoord met de voorwaarden. Daarna zien ze het bedrag en de bankgegevens met de omschrijving `Still to Film #<nummer>`.
-- **/account/** – klanten loggen in met een code van 6 cijfers per e-mail (geen wachtwoord). Ze zien hun bestelling, de bankgegevens, klikken "Ik heb overgemaakt", bekijken hun video's, geven feedback of vragen een revisie aan, en downloaden zodra alles betaald is.
+- **/account/register/** – iedereen kan een account aanmaken met naam, e-mail en wachtwoord. Het account werkt pas na bevestiging via de link in de e-mail, zodat niemand bestellingen ziet van een adres dat niet van hem is.
+- **/account/login/** – inloggen met wachtwoord, of met een code van 6 cijfers per e-mail. **/account/forgot/** stuurt een link om een nieuw wachtwoord te kiezen; **/account/password/** wijzigt het wachtwoord.
+- **/account/** – klanten zien hun bestelling, de bankgegevens, klikken "Ik heb overgemaakt", bekijken hun video's, geven feedback of vragen een revisie aan, en downloaden zodra alles betaald is.
 - **/admin/** – jij: bestellingen bekijken of zelf aanmaken (na een offerte), betalingen bevestigen met "Betaling ontvangen", video's uploaden, nieuwe versies, reageren, status wijzigen.
 
 **Betalen** gaat alleen per bankoverschrijving. Regel (`src/lib/orders.ts`, `SPLIT_FROM_CENTS`): onder €1.000 incl. btw alles vooraf; vanaf €1.000 50% bij bestelling en 50% na oplevering. Het restbedrag verschijnt pas als jij de status op `delivered` zet. **Facturen** maak je zelf (je boekhoudprogramma); er is een plek voor een factuurlink per betaling (`invoice_url`).
@@ -113,11 +115,21 @@ Het vergrootglas in het menu (`src/components/SiteSearch.astro`) geeft suggestie
 
 Let op: er gaan nog geen automatische e-mails uit bij een nieuwe bestelling. Kijk dus regelmatig op /admin/, of laat me e-mailmeldingen toevoegen (bijv. met Resend).
 
+**Beveiliging van de accounts**
+- Wachtwoorden bewaren we niet: Supabase slaat alleen een versleutelde hash op (bcrypt). Wij, en de site, kunnen ze niet zien.
+- Wachtwoord: minstens 10 tekens, niet (een deel van) het e-mailadres, en niet een wachtwoord dat in bekende datalekken voorkomt (controle via Have I Been Pwned; alleen de eerste 5 tekens van een hash gaan de deur uit).
+- Pogingen worden beperkt (`src/lib/ratelimit.ts`): 5 foute wachtwoorden per e-mailadres per 15 minuten, 30 per IP-adres; daarna 15 minuten blokkade, ook voor het juiste wachtwoord. Ook codes, registraties en resetlinks hebben een limiet. Supabase heeft daarbovenop eigen limieten.
+- Foutmeldingen verraden niet of een e-mailadres een account heeft (inloggen, registreren en wachtwoord vergeten geven steeds hetzelfde antwoord).
+- Wachtwoord wijzigen vraagt het huidige wachtwoord en logt alle andere apparaten uit. Sessiecookies zijn `httpOnly`, `secure` en `sameSite=lax`; formulieren van andere sites worden geweigerd (Astro `checkOrigin`). Registratieformulier heeft een onzichtbaar veld tegen bots.
+- /admin/ werkt alleen voor bevestigde adressen in `ADMIN_EMAILS`. Gebruik daar een sterk, uniek wachtwoord.
+
 **Eenmalig instellen**
 1. **Supabase** (supabase.com, gratis): maak een project in regio Frankfurt of Ierland.
    - SQL Editor → plak `supabase/schema.sql` → Run.
-   - Authentication → URL Configuration: Site URL `https://stilltofilm.com`, Redirect URL `https://stilltofilm.com/account/auth/callback/`.
-   - Authentication → Email Templates → **Magic Link**: zet de code erin, bijv. `<p>Je code: <strong>{{ .Token }}</strong></p><p>Of klik: <a href="{{ .ConfirmationURL }}">inloggen</a></p>`.
+   - Authentication → URL Configuration: Site URL `https://stilltofilm.com`, Redirect URL `https://stilltofilm.com/account/auth/callback/**`.
+   - Authentication → Sign In / Providers → Email: **Confirm email aan**, **Secure password change uit** (de site vraagt zelf het huidige wachtwoord), minimale wachtwoordlengte **10**.
+   - Authentication → Email Templates → **Magic Link**: zet de code erin, bijv. `<p>Je code: <strong>{{ .Token }}</strong></p><p>Of klik: <a href="{{ .ConfirmationURL }}">inloggen</a></p>`. Pas ook **Confirm signup** en **Reset password** aan naar je eigen tekst (Nederlands/Engels).
+   - **Eigen e-mailserver (SMTP) is nodig voor de livegang**: zonder stuurt Supabase maar een paar e-mails per uur, en dan krijgen nieuwe klanten hun bevestigingsmail niet. Bijv. Resend (gratis tot 3000/maand): Authentication → SMTP.
    - Project Settings → API: kopieer URL, `anon` key en `service_role` key.
    - Het gratis plan staat bestanden tot 50 MB toe en 1 GB opslag in totaal. Comprimeer video's (bijv. met `scripts/encode-media.sh`) of neem Pro als je meer nodig hebt. Supabase stuurt standaard maar een paar e-mails per uur; stel later eigen SMTP in (Authentication → SMTP).
 2. **Vercel** → Settings → Environment Variables: zet de vier waarden uit `.env.example` (Supabase-URL, de twee keys en `ADMIN_EMAILS`) en deploy opnieuw.

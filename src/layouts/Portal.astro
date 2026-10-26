@@ -25,7 +25,7 @@ const other = lang === 'en' ? 'nl' : 'en';
     <div class="wrap p-head-inner">
       <a class="p-brand" href={pagePath(lang, 'home')}><LogoMark />{site.name}</a>
       <div class="p-right">
-        {email && <a href="/account/">{p.title}</a>}
+        {email ? <a href="/account/">{p.title}</a> : <a href={`/account/login/?lang=${lang}`}>{p.loginLink}</a>}
         {admin && <a href="/admin/">Admin</a>}
         <a href={`?lang=${other}`} hreflang={other} lang={other}>{other.toUpperCase()}</a>
         <ThemeToggle lang={lang} />
