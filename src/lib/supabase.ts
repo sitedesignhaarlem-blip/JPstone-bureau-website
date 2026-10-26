@@ -131,9 +131,10 @@ export async function passwordIsCorrect(email: string, password: string): Promis
 /** Only paths inside the account may be used to send someone on after logging in. */
 export const safeNext = (next: string | null) => (next && /^\/account\/[\w/-]*$/.test(next) ? next : '/account/');
 
+export const adminEmails = () => (ADMIN_EMAILS ?? '').split(',').map((e) => e.trim().toLowerCase()).filter(Boolean);
+
 export function isAdmin(email: string | null): boolean {
-  if (!email) return false;
-  return (ADMIN_EMAILS ?? '').split(',').map((e) => e.trim().toLowerCase()).filter(Boolean).includes(email);
+  return Boolean(email) && adminEmails().includes(email!);
 }
 
 /** A link to a video file that works for one hour. With `download`, the browser saves the file. */

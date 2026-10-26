@@ -3,6 +3,7 @@
 import type { APIRoute } from 'astro';
 import { adminClient, configProblem, envSource, portalReady } from '../../lib/supabase';
 import { bank } from '../../lib/bank';
+import { mailReady, notifyAddress } from '../../lib/mail';
 
 export const prerender = false;
 
@@ -21,5 +22,5 @@ export const GET: APIRoute = async () => {
     }
   }
   const bankSet = !bank().iban.startsWith('[TODO');
-  return Response.json({ portalReady, problem: configProblem, database, bankDetails: bankSet ? 'set' : 'missing (BANK_IBAN)', ...envSource() }, { headers: { 'Cache-Control': 'no-store' } });
+  return Response.json({ portalReady, problem: configProblem, database, bankDetails: bankSet ? 'set' : 'missing (BANK_IBAN)', email: mailReady ? `on (notices to ${notifyAddress().replace(/^(.).*(@.*)$/, '$1…$2')})` : 'off (RESEND_API_KEY missing)', ...envSource() }, { headers: { 'Cache-Control': 'no-store' } });
 };

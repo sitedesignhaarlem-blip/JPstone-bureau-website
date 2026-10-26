@@ -2,10 +2,11 @@
 import type { APIRoute } from 'astro';
 import { adminClient, currentEmail, portalReady } from '../../lib/supabase';
 import { canPay, type Order, type Payment } from '../../lib/orders';
+import { sendPaymentReportedNotice } from '../../lib/emails';
 
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request, cookies, redirect }) => {
+export const POST: APIRoute = async ({ request, cookies, redirect, url }) => {
   if (!portalReady) return new Response('Not configured', { status: 503 });
   const email = await currentEmail(request, cookies);
   if (!email) return redirect('/account/login/', 303);
@@ -18,6 +19,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   const { data: all } = await db.from('payments').select('*').eq('order_id', order.id);
   if (!payment.reported_at && canPay(order, payment, (all ?? []) as Payment[])) {
     await db.from('payments').update({ reported_at: new Date().toISOString() }).eq('id', payment.id);
+    await sendPaymentReportedNotice(order, payment, url.origin);
   }
   return redirect(`/account/orders/${order.id}/?reported=1`, 303);
 };

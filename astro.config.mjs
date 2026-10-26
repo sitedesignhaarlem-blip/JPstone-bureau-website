@@ -24,6 +24,10 @@ export default defineConfig({
       NEXT_PUBLIC_SUPABASE_ANON_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
       SUPABASE_SECRET_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
       ADMIN_EMAILS: envField.string({ context: 'server', access: 'secret', optional: true }),
+      // E-mail through Resend (see src/lib/mail.ts).
+      RESEND_API_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
+      MAIL_FROM: envField.string({ context: 'server', access: 'secret', optional: true }),
+      ORDER_NOTIFY_EMAIL: envField.string({ context: 'server', access: 'secret', optional: true }),
       // Bank details shown to customers (see src/lib/bank.ts).
       BANK_HOLDER: envField.string({ context: 'server', access: 'secret', optional: true }),
       BANK_IBAN: envField.string({ context: 'server', access: 'secret', optional: true }),

@@ -113,7 +113,11 @@ Het vergrootglas in het menu (`src/components/SiteSearch.astro`) geeft suggestie
 3. Upload de video's (16:9 en 9:16) op de bestelpagina. De klant beoordeelt ze en geeft feedback; een nieuwe versie upload je bij dezelfde video.
 4. Klaar → status `delivered`. Bij 50/50 ziet de klant dan het restbedrag met de bankgegevens. Na volledige betaling kan de klant downloaden; zet de status op `completed`.
 
-Let op: er gaan nog geen automatische e-mails uit bij een nieuwe bestelling. Kijk dus regelmatig op /admin/, of laat me e-mailmeldingen toevoegen (bijv. met Resend).
+**E-mails (Resend):** bij een bestelling krijgt de klant een orderbevestiging met bedragen en bankgegevens, en jij een mail "Nieuwe bestelling #…". Klikt een klant "Ik heb overgemaakt", dan krijg jij ook een mail. Instellen:
+1. Maak een account op resend.com. **Domains → Add domain** `stilltofilm.com` en zet de DNS-records die Resend toont bij je domeinbeheerder. Pas daarna kunnen mails naar klanten.
+2. **API Keys → Create** (Sending access) en zet hem in Vercel als `RESEND_API_KEY`. Optioneel: `MAIL_FROM` (standaard `Still to Film <bestellingen@stilltofilm.com>`) en `ORDER_NOTIFY_EMAIL` (standaard het eerste adres in `ADMIN_EMAILS`). Redeploy.
+3. Gebruik dezelfde Resend ook voor de inlogmails van Supabase: Authentication → Emails → SMTP Settings (host `smtp.resend.com`, poort 465, gebruiker `resend`, wachtwoord = de API key).
+Op `/api/health/` zie je bij `"email"` of het aan staat. Zonder sleutel werkt alles gewoon, alleen zonder mails.
 
 **Beveiliging van de accounts**
 - Wachtwoorden bewaren we niet: Supabase slaat alleen een versleutelde hash op (bcrypt). Wij, en de site, kunnen ze niet zien.

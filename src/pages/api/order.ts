@@ -1,11 +1,12 @@
 // The order form posts here. The price is always computed here from the ladder, never taken from the form.
 import type { APIRoute } from 'astro';
 import { adminClient, portalReady } from '../../lib/supabase';
-import { MAX_ONLINE_VIDEOS, orderTotalCents, paymentSchedule } from '../../lib/orders';
+import { MAX_ONLINE_VIDEOS, orderTotalCents, paymentSchedule, type Order, type Payment } from '../../lib/orders';
+import { sendNewOrderNotice, sendOrderConfirmation } from '../../lib/emails';
 
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request, redirect }) => {
+export const POST: APIRoute = async ({ request, redirect, url }) => {
   if (!portalReady) return new Response('Not configured', { status: 503 });
   const f = await request.formData();
   const lang = f.get('lang') === 'nl' ? 'nl' : 'en';
@@ -34,8 +35,13 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     lang,
     listing_url: listing || null,
     note: str('note', 2000) || null,
-  }).select('id').single();
+  }).select('*').single<Order>();
   if (error || !order) return redirect(`/order/?error=1&lang=${lang}&videos=${count}`, 303);
-  await db.from('payments').insert(paymentSchedule(total).map((p) => ({ ...p, order_id: order.id })));
+  const { data: payments } = await db.from('payments').insert(paymentSchedule(total).map((p) => ({ ...p, order_id: order.id }))).select('*');
+  // Confirmation to the customer and a notice to you. Never blocks the order if mail fails.
+  await Promise.all([
+    sendOrderConfirmation(order, (payments ?? []) as Payment[], url.origin),
+    sendNewOrderNotice(order, url.origin),
+  ]);
   return redirect(`/order/done/?order=${order.id}&lang=${lang}`, 303);
 };
