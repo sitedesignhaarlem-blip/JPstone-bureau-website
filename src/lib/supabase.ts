@@ -60,6 +60,11 @@ function findProblem(): string | null {
     return `${url![0]} is ${kind}, not the Project URL. Use https://<project>.supabase.co (Supabase → Project Settings → Data API → Project URL).`;
   }
   if (/\s/.test(SUPABASE_ANON_KEY) || /\s/.test(SUPABASE_SERVICE_ROLE_KEY)) return 'One of the keys contains a space or line break.';
+  // A placeholder (sb_secret_…) or a shortened copy: keys only contain plain ASCII characters.
+  for (const [name, value] of [[anon![0], SUPABASE_ANON_KEY], [service![0], SUPABASE_SERVICE_ROLE_KEY]] as const) {
+    if (/[^\x21-\x7e]/.test(value)) return `${name} contains "…" or another special character: it is an example or a shortened key, not the full key. Copy the whole key from Supabase → Project Settings → API Keys.`;
+    if (value.length < 30) return `${name} is too short (${value.length} characters) to be a real key. Copy the whole key from Supabase → Project Settings → API Keys.`;
+  }
   if (SUPABASE_ANON_KEY.startsWith('sb_secret_')) return `${anon![0]} holds the secret key; it should hold the publishable (anon) key.`;
   if (SUPABASE_SERVICE_ROLE_KEY.startsWith('sb_publishable_')) return `${service![0]} holds the publishable key; it should hold the secret (service_role) key.`;
   if (SUPABASE_ANON_KEY === SUPABASE_SERVICE_ROLE_KEY) return 'The anon key and the service key are the same; the service key should be the secret one.';
