@@ -24,9 +24,27 @@ const anon = pick([
   ['NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY', env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY], ['NEXT_PUBLIC_SUPABASE_ANON_KEY', env.NEXT_PUBLIC_SUPABASE_ANON_KEY],
 ], ['SUPABASE_ANON_KEY', 'SUPABASE_PUBLISHABLE_KEY']);
 const service = pick([['SUPABASE_SERVICE_ROLE_KEY', env.SUPABASE_SERVICE_ROLE_KEY], ['SUPABASE_SECRET_KEY', env.SUPABASE_SECRET_KEY]], ['SUPABASE_SERVICE_ROLE_KEY', 'SUPABASE_SECRET_KEY']);
-const SUPABASE_URL = url?.[1];
-const SUPABASE_ANON_KEY = anon?.[1];
-const SUPABASE_SERVICE_ROLE_KEY = service?.[1];
+// Forgive common copy-paste slips: spaces, quotes, a trailing slash or /rest/v1 after the URL.
+const clean = (v?: string) => v?.trim().replace(/^["']|["']$/g, '').trim();
+const SUPABASE_URL = clean(url?.[1])?.replace(/\/rest\/v1\/?$/, '').replace(/\/+$/, '');
+const SUPABASE_ANON_KEY = clean(anon?.[1]);
+const SUPABASE_SERVICE_ROLE_KEY = clean(service?.[1]);
+
+/** What is wrong with the settings, in plain words, or null. Never includes the values themselves. */
+function findProblem(): string | null {
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY || !SUPABASE_SERVICE_ROLE_KEY) return null; // reported as missing
+  const local = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(SUPABASE_URL); // for testing with a local Supabase
+  if (!local && !/^https:\/\/[a-z0-9-]+\.supabase\.(co|in)$/i.test(SUPABASE_URL)) {
+    if (/^(sb_|eyJ)/.test(SUPABASE_URL)) return `${url![0]} contains a key, not the Project URL (https://<project>.supabase.co).`;
+    return `${url![0]} is not a Project URL like https://<project>.supabase.co.`;
+  }
+  if (/\s/.test(SUPABASE_ANON_KEY) || /\s/.test(SUPABASE_SERVICE_ROLE_KEY)) return 'One of the keys contains a space or line break.';
+  if (SUPABASE_ANON_KEY.startsWith('sb_secret_')) return `${anon![0]} holds the secret key; it should hold the publishable (anon) key.`;
+  if (SUPABASE_SERVICE_ROLE_KEY.startsWith('sb_publishable_')) return `${service![0]} holds the publishable key; it should hold the secret (service_role) key.`;
+  if (SUPABASE_ANON_KEY === SUPABASE_SERVICE_ROLE_KEY) return 'The anon key and the service key are the same; the service key should be the secret one.';
+  return null;
+}
+export const configProblem = findProblem();
 const ADMIN_EMAILS = env.ADMIN_EMAILS;
 
 /** Which variable names the portal found (names only), for /api/health/. */
@@ -39,7 +57,7 @@ export const envSource = () => ({
   supabaseVariables: Object.keys(runtime).filter((k) => /SUPABASE/i.test(k)).sort(),
 });
 
-export const portalReady = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY && SUPABASE_SERVICE_ROLE_KEY);
+export const portalReady = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY && SUPABASE_SERVICE_ROLE_KEY) && !configProblem;
 
 export function userClient(request: Request, cookies: AstroCookies): SupabaseClient {
   return createServerClient(SUPABASE_URL!, SUPABASE_ANON_KEY!, {
@@ -63,8 +81,12 @@ export async function currentEmail(request: Request, cookies: AstroCookies): Pro
 
 export async function currentUser(request: Request, cookies: AstroCookies): Promise<{ email: string; name: string } | null> {
   if (!portalReady) return null;
-  const { data } = await userClient(request, cookies).auth.getUser();
-  const user = data.user;
+  let user;
+  try {
+    ({ data: { user } } = await userClient(request, cookies).auth.getUser());
+  } catch {
+    return null; // Supabase unreachable: treat as logged out rather than crashing the page
+  }
   if (!user?.email || !user.email_confirmed_at) return null;
   return { email: user.email.toLowerCase(), name: String(user.user_metadata?.name ?? '') };
 }
