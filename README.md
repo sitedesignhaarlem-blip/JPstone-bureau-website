@@ -114,9 +114,9 @@ Het vergrootglas in het menu (`src/components/SiteSearch.astro`) geeft suggestie
 4. Klaar → status `delivered`. Bij 50/50 ziet de klant dan het restbedrag met de bankgegevens. Na volledige betaling kan de klant downloaden; zet de status op `completed`.
 
 **E-mails (Resend):** bij een bestelling krijgt de klant een orderbevestiging met bedragen en bankgegevens, en jij een mail "Nieuwe bestelling #…". Klikt een klant "Ik heb overgemaakt", dan krijg jij ook een mail. Instellen:
-1. Maak een account op resend.com. **Domains → Add domain** `stilltofilm.com` en zet de DNS-records die Resend toont bij je domeinbeheerder. Pas daarna kunnen mails naar klanten.
-2. **API Keys → Create** (Sending access) en zet hem in Vercel als `RESEND_API_KEY`. Optioneel: `MAIL_FROM` (standaard `Still to Film <bestellingen@stilltofilm.com>`) en `ORDER_NOTIFY_EMAIL` (standaard het eerste adres in `ADMIN_EMAILS`). Redeploy.
-3. Gebruik dezelfde Resend ook voor de inlogmails van Supabase: Authentication → Emails → SMTP Settings (host `smtp.resend.com`, poort 465, gebruiker `resend`, wachtwoord = de API key).
+1. Maak een account op resend.com. **Domains → Add domain** `mail.stilltofilm.com` (een subdomein, zoals Resend aanraadt: de verzendreputatie staat dan los van je hoofddomein) en zet de DNS-records die Resend toont bij je domeinbeheerder. Pas daarna kunnen mails naar klanten. Antwoorden van klanten gaan naar je gewone e-mailadres.
+2. **API Keys → Create** (Sending access) en zet hem in Vercel als `RESEND_API_KEY`. Optioneel: `MAIL_FROM` (standaard `Still to Film <bestellingen@mail.stilltofilm.com>`) en `ORDER_NOTIFY_EMAIL` (standaard het eerste adres in `ADMIN_EMAILS`). Redeploy.
+3. Gebruik dezelfde Resend ook voor de inlogmails van Supabase: Authentication → Emails → SMTP Settings (host `smtp.resend.com`, poort 465, gebruiker `resend`, wachtwoord = de API key, afzender bijv. `noreply@mail.stilltofilm.com`).
 Op `/api/health/` zie je bij `"email"` of het aan staat. Zonder sleutel werkt alles gewoon, alleen zonder mails.
 
 **Beveiliging van de accounts**

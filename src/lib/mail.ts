@@ -5,8 +5,11 @@ import { adminEmails } from './supabase';
 import { site } from '../data/site';
 
 export const mailReady = Boolean(RESEND_API_KEY);
-/** Sender; the domain must be verified in Resend (Domains). */
-const from = () => MAIL_FROM?.trim() || `${site.name} <bestellingen@stilltofilm.com>`;
+/**
+ * Sender. Sent from the subdomain mail.stilltofilm.com (verified in Resend → Domains), so the sending
+ * reputation stays apart from the main domain. Replies go to site.email.
+ */
+const from = () => MAIL_FROM?.trim() || `${site.name} <bestellingen@mail.stilltofilm.com>`;
 /** Who gets the "new order" and "payment reported" e-mails. */
 export const notifyAddress = () => ORDER_NOTIFY_EMAIL?.trim() || adminEmails()[0] || site.email;
 
