@@ -1,0 +1,120 @@
+---
+// Order form: the visitor picks the number of videos, the price follows the ladder, and the order is
+// stored in Supabase. Payment is by bank transfer (see /order/done/). English and Dutch.
+export const prerender = false;
+import Portal from '../../layouts/Portal.astro';
+import { site } from '../../data/site';
+import { pricePerVideo } from '../../data/pricing';
+import { pagePath } from '../../i18n';
+import { currentEmail, isAdmin, portalReady } from '../../lib/supabase';
+import { MAX_ONLINE_VIDEOS, SPLIT_FROM_CENTS } from '../../lib/orders';
+import { fill, portalLang, portalUI } from '../../i18n/portal';
+
+const lang = portalLang(Astro.url, Astro.request, Astro.cookies.get('lang')?.value);
+if (Astro.url.searchParams.get('lang')) Astro.cookies.set('lang', lang, { path: '/', maxAge: 31536000, sameSite: 'lax' as const });
+const p = portalUI[lang];
+const o = p.order;
+const email = await currentEmail(Astro.request, Astro.cookies);
+const start = Math.min(MAX_ONLINE_VIDEOS, Math.max(1, Math.floor(Number(Astro.url.searchParams.get('videos')) || 1)));
+// Prices per number of videos for the live total, so the script needs no copy of the ladder.
+const ladder = Array.from({ length: MAX_ONLINE_VIDEOS }, (_, i) => pricePerVideo(i + 1));
+const termsHref = pagePath(lang, 'terms');
+const [termsBefore, termsAfter] = o.terms.split('{link}');
+const mailBody = lang === 'nl' ? "Aantal video's:\nLink naar listing:\nBedrijf:\n" : 'Number of videos:\nLink to listing:\nCompany:\n';
+---
+<Portal lang={lang} title={o.title} path="/order/" email={email} admin={isAdmin(email)}>
+  <h1>{o.title}</h1>
+  <p class="lead muted">{o.lead}</p>
+  {Astro.url.searchParams.get('error') && <p class="notice notice--error" role="alert">{o.error}</p>}
+
+  {!portalReady ? (
+    <div class="card">
+      <p>{o.notReady}</p>
+      <div><a class="button" href={`mailto:${site.email}?subject=${encodeURIComponent(o.title)}&body=${encodeURIComponent(mailBody)}`}>{o.mail}</a></div>
+    </div>
+  ) : (
+    <form class="card order" method="post" action="/api/order/" data-order
+      data-ladder={JSON.stringify(ladder)} data-split={SPLIT_FROM_CENTS} data-locale={lang === 'nl' ? 'nl' : 'en-GB'}
+      data-full={o.scheduleFull} data-splittext={o.scheduleSplit}>
+      <input type="hidden" name="lang" value={lang} />
+      <div class="field">
+        <label for="o-count">{o.count}</label>
+        <input id="o-count" name="videos_count" type="number" min="1" max={MAX_ONLINE_VIDEOS} value={start} required aria-describedby="o-count-hint" />
+        <p id="o-count-hint" class="muted hint">{fill(o.countHint, { max: MAX_ONLINE_VIDEOS })}</p>
+      </div>
+      <dl class="sum" aria-live="polite">
+        <div><dt>{o.perVideo}</dt><dd data-per></dd></div>
+        <div><dt>{o.total}</dt><dd data-total></dd></div>
+        <div><dt>{o.schedule}</dt><dd data-schedule></dd></div>
+      </dl>
+      <div class="field">
+        <label for="o-name">{o.name}</label>
+        <input id="o-name" name="name" autocomplete="name" required maxlength="120" />
+      </div>
+      <div class="field">
+        <label for="o-email">{o.email}</label>
+        <input id="o-email" name="email" type="email" autocomplete="email" required maxlength="200" value={email ?? ''} aria-describedby="o-email-hint" />
+        <p id="o-email-hint" class="muted hint">{o.emailHint}</p>
+      </div>
+      <div class="field">
+        <label for="o-company">{o.company}</label>
+        <input id="o-company" name="company" autocomplete="organization" maxlength="120" />
+      </div>
+      <div class="field">
+        <label for="o-what">{o.what}</label>
+        <input id="o-what" name="title" maxlength="160" placeholder={o.whatPlaceholder} />
+      </div>
+      <div class="field">
+        <label for="o-listing">{o.listing}</label>
+        <input id="o-listing" name="listing_url" type="url" inputmode="url" maxlength="500" placeholder="https://" />
+      </div>
+      <div class="field">
+        <label for="o-note">{o.note}</label>
+        <textarea id="o-note" name="note" rows="3" maxlength="2000"></textarea>
+      </div>
+      {/* Left empty by people; bots fill it in. */}
+      <div class="hp" aria-hidden="true"><label for="o-website">Website</label><input id="o-website" name="website" tabindex="-1" autocomplete="off" /></div>
+      <label class="consent">
+        <input type="checkbox" name="terms" value="yes" required />
+        <span>{termsBefore}<a href={termsHref} target="_blank">{o.termsLink}</a>{termsAfter}</span>
+      </label>
+      <p><button class="button" type="submit">{o.submit}</button></p>
+    </form>
+  )}
+  <p class="muted"><a href={pagePath(lang, 'contact')}>{o.sample}</a></p>
+</Portal>
+
+<script>
+  // Live price: the same ladder as on the pricing page, computed on the server for the real order.
+  const form = document.querySelector<HTMLFormElement>('[data-order]');
+  if (form) {
+    const d = form.dataset;
+    const ladder: number[] = JSON.parse(d.ladder ?? '[]');
+    const money = (n: number) => new Intl.NumberFormat(d.locale, { style: 'currency', currency: 'EUR', minimumFractionDigits: n % 1 ? 2 : 0 }).format(n);
+    const input = form.querySelector<HTMLInputElement>('#o-count')!;
+    const out = (k: string) => form.querySelector<HTMLElement>(`[data-${k}]`)!;
+    const update = () => {
+      const n = Math.min(ladder.length, Math.max(1, Math.floor(Number(input.value) || 1)));
+      const per = ladder[n - 1];
+      const total = per * n;
+      out('per').textContent = money(per);
+      out('total').textContent = money(total);
+      const deposit = Math.floor(total * 100 / 2) / 100;
+      out('schedule').textContent = total * 100 < Number(d.split) ? d.full ?? ''
+        : (d.splittext ?? '').replace('{deposit}', money(deposit)).replace('{balance}', money(total - deposit));
+    };
+    input.addEventListener('input', update);
+    update();
+  }
+</script>
+
+<style>
+  .order { gap: var(--space-5); }
+  .sum { display: grid; gap: var(--space-2); margin: 0; padding: var(--space-4); border-radius: 12px; background: var(--bg-alt); }
+  .sum div { display: flex; justify-content: space-between; gap: var(--space-4); }
+  .sum dt { color: var(--fg-muted); }
+  .sum dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+  .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+  .consent { display: flex; gap: var(--space-3); align-items: flex-start; font-size: var(--step-small); cursor: pointer; }
+  .consent input { margin-top: 0.2rem; width: 1.1rem; height: 1.1rem; accent-color: var(--accent); flex: none; }
+</style>

@@ -44,7 +44,7 @@ export const q = {
   },
   payment: {
     q: 'Wann bezahle ich?',
-    a: "Aufträge unter 1.000 € zahlen Sie vollständig bei der Bestellung. Ab 1.000 € zahlen Sie 50 % bei der Bestellung und 50 % nach der Lieferung. Sie zahlen online in Ihrem Kundenkonto per iDEAL, Karte oder Bancontact oder per Banküberweisung und erhalten für jede Zahlung eine Rechnung.",
+    a: "Aufträge unter 1.000 € zahlen Sie vollständig per Banküberweisung, bevor wir beginnen. Ab 1.000 € zahlen Sie 50 % per Banküberweisung bei der Bestellung und 50 % nach der Lieferung. Für jede Zahlung erhalten Sie eine Rechnung.",
   },
   volume: {
     q: 'Wie funktioniert der Mengenpreis?',

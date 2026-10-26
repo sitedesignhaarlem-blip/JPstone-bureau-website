@@ -1,0 +1,41 @@
+---
+// Bank transfer details with the amount and the reference, for the order confirmation and the account.
+import { site } from '../data/site';
+import { euro } from '../lib/orders';
+import { portalUI } from '../i18n/portal';
+
+interface Props {
+  lang: 'en' | 'nl';
+  amountCents: number;
+  reference: string;
+}
+const { lang, amountCents, reference } = Astro.props;
+const b = portalUI[lang].bank;
+const todo = (v: string) => v.startsWith('[TODO');
+const rows = [
+  [b.holder, site.bank.holder],
+  [b.iban, site.bank.iban],
+  [b.bic, site.bank.bic],
+  [b.amount, euro(amountCents, lang === 'nl' ? 'nl' : 'en-GB')],
+  [b.reference, reference],
+];
+---
+<div class="bank">
+  <p class="bank-title">{b.title}</p>
+  <dl>
+    {rows.map(([label, value]) => (
+      <div><dt>{label}</dt><dd class:list={{ todo: todo(value) }}>{value}</dd></div>
+    ))}
+  </dl>
+  <p class="muted hint">{b.note}</p>
+</div>
+
+<style>
+  .bank { display: grid; gap: var(--space-3); padding: var(--space-4); border: 1px solid var(--line); border-radius: 12px; }
+  .bank-title { font-weight: 600; }
+  dl { display: grid; gap: var(--space-2); margin: 0; }
+  dl div { display: grid; grid-template-columns: 8rem 1fr; gap: var(--space-3); }
+  dt { color: var(--fg-muted); }
+  dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+  .todo { color: var(--todo); }
+</style>

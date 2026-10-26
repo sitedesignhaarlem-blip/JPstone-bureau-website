@@ -1,11 +1,11 @@
 ---
-// One order: what was ordered, the payments (with pay buttons), the videos with preview,
+// One order: what was ordered, the payments (bank transfer details), the videos with preview,
 // feedback and approval, and downloads once everything is paid.
 export const prerender = false;
 import Portal from '../../../layouts/Portal.astro';
+import BankDetails from '../../../components/BankDetails.astro';
 import { currentEmail, isAdmin, portalReady, signedVideoUrl, userClient } from '../../../lib/supabase';
-import { paymentsReady, stripe } from '../../../lib/stripe';
-import { canPay, euro, fullyPaid, recordCheckout, type Feedback, type Order, type Payment, type Video } from '../../../lib/orders';
+import { canPay, euro, fullyPaid, paymentReference, type Feedback, type Order, type Payment, type Video } from '../../../lib/orders';
 import { fill, portalLang, portalUI } from '../../../i18n/portal';
 
 const lang = portalLang(Astro.url, Astro.request, Astro.cookies.get('lang')?.value);
@@ -17,19 +17,6 @@ const path = `/account/orders/${id}/`;
 const email = await currentEmail(Astro.request, Astro.cookies);
 if (!portalReady || !email) return Astro.redirect('/account/login/');
 const db = userClient(Astro.request, Astro.cookies);
-
-// Back from Stripe: record the payment right away, so the page is up to date even before the webhook.
-const sessionId = Astro.url.searchParams.get('session_id');
-let payMessage = Astro.url.searchParams.get('pay') === 'cancelled' ? p.cancelledPay : '';
-if (sessionId && paymentsReady) {
-  try {
-    const session = await stripe().checkout.sessions.retrieve(sessionId);
-    if (session.metadata?.order_id === id) {
-      await recordCheckout(session);
-      payMessage = session.payment_status === 'paid' ? p.thanks : p.pending;
-    }
-  } catch { /* an unknown session id is ignored */ }
-}
 
 const { data: order } = await db.from('orders').select('*').eq('id', id).maybeSingle<Order>();
 let payments: Payment[] = [];
@@ -55,6 +42,7 @@ if (order) {
   }));
 }
 const saved = Astro.url.searchParams.get('saved') === '1';
+const date = (iso: string) => new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long' }).format(new Date(iso));
 const time = (iso: string) => new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }).format(new Date(iso));
 ---
 <Portal lang={lang} title={order ? `${p.order} #${order.number}` : p.order} path={path} email={email} admin={isAdmin(email)}>
@@ -65,7 +53,7 @@ const time = (iso: string) => new Intl.DateTimeFormat(locale, { day: 'numeric', 
         <h1>{p.order} #{order.number}</h1>
         <span class="badge">{p.status[order.status]}</span>
       </div>
-      {payMessage && <p class="notice" role="status">{payMessage}</p>}
+      {Astro.url.searchParams.get('reported') && <p class="notice" role="status">{p.reportedNotice}</p>}
       {saved && <p class="notice" role="status">{p.saved}</p>}
 
       <section class="card" aria-labelledby="sum">
@@ -78,26 +66,32 @@ const time = (iso: string) => new Intl.DateTimeFormat(locale, { day: 'numeric', 
         <h2 id="pay">{p.payments}</h2>
         <ul class="list" role="list">
           {payments.map((pay) => (
-            <li class="row">
-              <span>{p.kind[pay.kind]} · {euro(pay.amount_cents, locale)}</span>
-              {pay.status === 'paid' ? (
-                <span class="actions">
-                  <span class="badge badge--ok">{p.paid}</span>
-                  {pay.invoice_url && <a href={pay.invoice_url} rel="noopener" target="_blank">{p.invoice}</a>}
-                </span>
-              ) : canPay(order, pay, payments) && paymentsReady ? (
-                <form method="post" action="/api/checkout/">
-                  <input type="hidden" name="payment_id" value={pay.id} />
-                  <input type="hidden" name="lang" value={lang} />
-                  <button class="button button--small" type="submit">{fill(p.pay, { amount: euro(pay.amount_cents, locale) })}</button>
-                </form>
-              ) : (
-                <span class="muted">{pay.kind === 'balance' ? p.payLater : p.open}</span>
+            <li class="pay">
+              <div class="row">
+                <span>{p.kind[pay.kind]} · {euro(pay.amount_cents, locale)}</span>
+                {pay.status === 'paid' ? (
+                  <span class="actions">
+                    <span class="badge badge--ok">{p.paid}</span>
+                    {pay.invoice_url && <a href={pay.invoice_url} rel="noopener" target="_blank">{p.invoice}</a>}
+                  </span>
+                ) : pay.reported_at ? (
+                  <span class="muted">{fill(p.reported, { date: date(pay.reported_at) })}</span>
+                ) : !canPay(order, pay, payments) ? (
+                  <span class="muted">{pay.kind === 'balance' ? p.payLater : p.open}</span>
+                ) : null}
+              </div>
+              {pay.status === 'open' && !pay.reported_at && canPay(order, pay, payments) && (
+                <>
+                  <BankDetails lang={lang} amountCents={pay.amount_cents} reference={paymentReference(order)} />
+                  <form method="post" action="/api/payment-reported/">
+                    <input type="hidden" name="payment_id" value={pay.id} />
+                    <button class="button button--small button--secondary" type="submit">{fill(p.reportPaid, { amount: euro(pay.amount_cents, locale) })}</button>
+                  </form>
+                </>
               )}
             </li>
           ))}
         </ul>
-        <p class="muted hint">{p.payNote}</p>
       </section>
 
       <section aria-labelledby="vids" class="vids">
@@ -169,4 +163,5 @@ const time = (iso: string) => new Intl.DateTimeFormat(locale, { day: 'numeric', 
   .note { display: grid; gap: var(--space-1); padding: var(--space-3); border-radius: 12px; background: var(--bg-alt); }
   .note--studio { border-left: 3px solid var(--accent); }
   .fb { display: grid; gap: var(--space-3); }
+  .pay { display: grid; gap: var(--space-3); }
 </style>

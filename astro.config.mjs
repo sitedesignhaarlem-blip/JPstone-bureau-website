@@ -6,8 +6,8 @@ import { SITE_URL } from './src/data/site.ts';
 // English is the default at /, the others under /nl/, /de/, /fr/, /es/, /hr/, /pt/.
 export default defineConfig({
   site: SITE_URL,
-  // Every page is built ahead of time, except the client portal (/account/), the admin pages
-  // (/admin/) and the API routes (/api/), which run on Vercel on each request (prerender = false).
+  // Every page is built ahead of time, except the order form (/order/), the client portal
+  // (/account/), the admin pages (/admin/) and the API routes (/api/), which run on Vercel on each request (prerender = false).
   output: 'static',
   adapter: vercel(),
   // Keys for the portal, set in Vercel (Settings → Environment Variables). All optional: without
@@ -17,8 +17,6 @@ export default defineConfig({
       SUPABASE_URL: envField.string({ context: 'server', access: 'secret', optional: true }),
       SUPABASE_ANON_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
       SUPABASE_SERVICE_ROLE_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
-      STRIPE_SECRET_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
-      STRIPE_WEBHOOK_SECRET: envField.string({ context: 'server', access: 'secret', optional: true }),
       ADMIN_EMAILS: envField.string({ context: 'server', access: 'secret', optional: true }),
     },
   },
@@ -38,8 +36,7 @@ export default defineConfig({
         "media-src 'self' https://*.supabase.co",
         "font-src 'self'",
         "connect-src 'self' https://formspree.io https://*.supabase.co",
-        // Stripe: the pay button posts to /api/checkout, which redirects to Stripe's payment page.
-        "form-action 'self' mailto: https://formspree.io https://checkout.stripe.com",
+        "form-action 'self' mailto: https://formspree.io",
         "base-uri 'self'",
         "object-src 'none'",
         'upgrade-insecure-requests',

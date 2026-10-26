@@ -44,7 +44,7 @@ export const q = {
   },
   payment: {
     q: 'Wanneer betaal ik?',
-    a: "Opdrachten onder €1.000 betaal je volledig bij het bestellen. Vanaf €1.000 betaal je 50% bij het bestellen en 50% na oplevering. Je betaalt online in je klantaccount met iDEAL, creditcard of Bancontact, of per bankoverschrijving, en je krijgt voor elke betaling een factuur.",
+    a: "Opdrachten onder €1.000 betaal je volledig per bankoverschrijving voordat we beginnen. Vanaf €1.000 betaal je 50% per bankoverschrijving bij bestelling en 50% na oplevering. Voor elke betaling krijg je een factuur.",
   },
   volume: {
     q: 'Hoe werkt de staffelprijs?',

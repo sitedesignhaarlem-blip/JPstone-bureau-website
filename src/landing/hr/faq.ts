@@ -44,7 +44,7 @@ export const q = {
   },
   payment: {
     q: 'Kada plaćam?',
-    a: "Narudžbe ispod 1.000 € plaćate u cijelosti pri narudžbi. Od 1.000 € plaćate 50 % pri narudžbi i 50 % nakon isporuke. Plaćate online u svom korisničkom računu karticom, iDEAL-om ili Bancontactom, ili bankovnom doznakom, a za svaku uplatu dobivate račun.",
+    a: "Narudžbe ispod 1.000 € plaćate u cijelosti bankovnom doznakom prije početka rada. Od 1.000 € plaćate 50 % bankovnom doznakom pri narudžbi i 50 % nakon isporuke. Za svaku uplatu dobivate račun.",
   },
   volume: {
     q: 'Kako funkcionira cijena prema količini?',

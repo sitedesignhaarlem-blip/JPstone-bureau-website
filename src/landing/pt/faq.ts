@@ -44,7 +44,7 @@ export const q = {
   },
   payment: {
     q: 'Quando é que pago?',
-    a: "As encomendas abaixo de 1000 € são pagas na totalidade no momento da encomenda. A partir de 1000 € paga 50 % na encomenda e 50 % após a entrega. Paga online na sua área de cliente com iDEAL, cartão ou Bancontact, ou por transferência bancária, e recebe uma fatura por cada pagamento.",
+    a: "As encomendas abaixo de 1000 € são pagas na totalidade por transferência bancária antes de começarmos. A partir de 1000 € paga 50 % por transferência na encomenda e 50 % após a entrega. Recebe uma fatura por cada pagamento.",
   },
   volume: {
     q: 'Como funciona o preço por volume?',

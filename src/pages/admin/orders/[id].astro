@@ -1,10 +1,11 @@
 ---
 // Admin: one order. Change the status, upload videos (new or a new version), reply to feedback,
-// mark a payment as paid (e.g. a bank transfer), and copy the login link for the customer.
+// confirm bank transfers, and copy the login link and payment details for the customer.
 export const prerender = false;
 import Portal from '../../../layouts/Portal.astro';
 import { adminClient, currentEmail, isAdmin, portalReady, signedVideoUrl } from '../../../lib/supabase';
-import { euro, type Feedback, type Order, type OrderStatus, type Payment, type Video } from '../../../lib/orders';
+import { site } from '../../../data/site';
+import { euro, paymentReference, type Feedback, type Order, type OrderStatus, type Payment, type Video } from '../../../lib/orders';
 
 const email = await currentEmail(Astro.request, Astro.cookies);
 if (!portalReady || !email) return Astro.redirect('/account/login/');
@@ -68,9 +69,10 @@ const videos = await Promise.all(videoList.map(async (v) => ({
   notes: ((notes ?? []) as Feedback[]).filter((n) => n.video_id === v.id),
 })));
 const loginLink = new URL(`/account/login/?lang=${order.lang}`, Astro.url).href;
+const bank = `${site.bank.holder}, IBAN ${site.bank.iban}, ${order.lang === 'nl' ? 'omschrijving' : 'reference'} "${paymentReference(order)}"`;
 const message = order.lang === 'nl'
-  ? `Je bestelling bij Still to Film staat klaar. Log in met ${order.customer_email} via ${loginLink}`
-  : `Your Still to Film order is ready. Log in with ${order.customer_email} at ${loginLink}`;
+  ? `Je bestelling bij Still to Film staat klaar. Log in met ${order.customer_email} via ${loginLink}\nBetalen per bankoverschrijving: ${bank}.`
+  : `Your Still to Film order is ready. Log in with ${order.customer_email} at ${loginLink}\nPayment by bank transfer: ${bank}.`;
 ---
 <Portal lang="nl" title={`Admin #${order.number}`} path={here} email={email} admin>
   <p><a href="/admin/">← Alle bestellingen</a></p>
@@ -80,7 +82,9 @@ const message = order.lang === 'nl'
   <section class="card">
     <h2>Klant</h2>
     <p>{order.customer_name} {order.company && `· ${order.company}`}<br />{order.customer_email} · taal {order.lang}</p>
-    <p>{order.videos_count} video's · {euro(order.total_cents, 'nl')} incl. btw</p>
+    <p>{order.videos_count} video's · {euro(order.total_cents, 'nl')} incl. btw · omschrijving bij betaling: <strong>{paymentReference(order)}</strong></p>
+    {order.listing_url && <p>Listing: <a href={order.listing_url} target="_blank" rel="noopener noreferrer">{order.listing_url}</a></p>}
+    {order.note && <p class="muted">Notitie: {order.note}</p>}
     <div class="field">
       <label for="msg">Bericht voor de klant (kopiëren naar e-mail of WhatsApp)</label>
       <textarea id="msg" rows="3" readonly>{message}</textarea>
@@ -101,12 +105,13 @@ const message = order.lang === 'nl'
     <ul class="list" role="list">
       {payments.map((p) => (
         <li class="row">
-          <span>{p.kind} · {euro(p.amount_cents, 'nl')} · {p.status}{p.paid_at && ` op ${new Date(p.paid_at).toLocaleDateString('nl')}`}</span>
+          <span>{p.kind} · {euro(p.amount_cents, 'nl')} · {p.status}{p.paid_at && ` op ${new Date(p.paid_at).toLocaleDateString('nl')}`}
+            {p.status === 'open' && p.reported_at && <span class="badge">klant meldt betaald op {new Date(p.reported_at).toLocaleDateString('nl')}</span>}</span>
           <span class="actions">
             {p.invoice_url && <a href={p.invoice_url} target="_blank" rel="noopener">Factuur</a>}
             {p.status === 'open' && (
               <form method="post"><input type="hidden" name="action" value="paid" /><input type="hidden" name="payment_id" value={p.id} />
-                <button class="button button--small button--secondary" type="submit">Markeer als betaald (overschrijving)</button></form>
+                <button class="button button--small button--secondary" type="submit">Betaling ontvangen</button></form>
             )}
           </span>
         </li>

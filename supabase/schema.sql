@@ -15,6 +15,7 @@ create table if not exists public.orders (
   status text not null default 'awaiting_payment'
     check (status in ('awaiting_payment', 'in_production', 'in_review', 'delivered', 'completed', 'cancelled')),
   lang text not null default 'en',
+  listing_url text,
   note text,
   created_at timestamptz not null default now()
 );
@@ -23,11 +24,13 @@ create index if not exists orders_email_idx on public.orders (lower(customer_ema
 create table if not exists public.payments (
   id uuid primary key default gen_random_uuid(),
   order_id uuid not null references public.orders (id) on delete cascade,
-  -- full: the whole amount up front (orders under €1000). deposit + balance: 50% up front, 50% after delivery.
+  -- Paid by bank transfer. full: the whole amount before work starts (orders under €1000).
+  -- deposit + balance: 50% when ordering, 50% after delivery.
   kind text not null check (kind in ('full', 'deposit', 'balance')),
   amount_cents integer not null check (amount_cents > 0),
   status text not null default 'open' check (status in ('open', 'paid')),
-  stripe_session_id text,
+  -- Set when the customer clicks "I have transferred it"; you confirm with "mark as paid".
+  reported_at timestamptz,
   invoice_url text,
   paid_at timestamptz,
   created_at timestamptz not null default now()

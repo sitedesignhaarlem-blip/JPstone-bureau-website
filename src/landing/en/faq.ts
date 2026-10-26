@@ -44,7 +44,7 @@ export const q = {
   },
   payment: {
     q: 'When do I pay?',
-    a: "Orders under €1,000 are paid in full when you order. From €1,000 you pay 50% when you order and 50% after delivery. You pay online in your client account with iDEAL, card or Bancontact, or by bank transfer, and you get an invoice for every payment.",
+    a: "Orders under €1,000 are paid in full by bank transfer before we start. From €1,000 you pay 50% by bank transfer when you order and 50% after delivery. You get an invoice for every payment.",
   },
   volume: {
     q: 'How does the volume price work?',

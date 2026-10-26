@@ -1,0 +1,54 @@
+---
+// After ordering: the order number, the amount to transfer now, and the bank details.
+// Reached with the order's id (a long random code), so it shows nothing personal beyond the amounts.
+export const prerender = false;
+import Portal from '../../../layouts/Portal.astro';
+import BankDetails from '../../../components/BankDetails.astro';
+import { adminClient, currentEmail, portalReady } from '../../../lib/supabase';
+import { euro, paymentReference, type Order, type Payment } from '../../../lib/orders';
+import { fill, portalLang, portalUI } from '../../../i18n/portal';
+
+const lang = portalLang(Astro.url, Astro.request, Astro.cookies.get('lang')?.value);
+const p = portalUI[lang];
+const d = p.done;
+const id = Astro.url.searchParams.get('order') ?? '';
+const email = await currentEmail(Astro.request, Astro.cookies);
+let order: Order | null = null;
+let first: Payment | undefined;
+let payments: Payment[] = [];
+if (portalReady && /^[0-9a-f-]{36}$/i.test(id)) {
+  const db = adminClient();
+  const { data } = await db.from('orders').select('*').eq('id', id).maybeSingle<Order>();
+  order = data;
+  if (order) {
+    const { data: pays } = await db.from('payments').select('*').eq('order_id', id).order('created_at');
+    payments = (pays ?? []) as Payment[];
+    first = payments.find((x) => x.kind !== 'balance');
+  }
+}
+const locale = lang === 'nl' ? 'nl' : 'en-GB';
+---
+<Portal lang={lang} title={d.title} path="/order/done/" email={email}>
+  <h1>{d.title}</h1>
+  {!order || !first ? <p class="notice">{d.missing}</p> : (
+    <>
+      <p class="lead">{fill(d.lead, { number: order.number })}</p>
+      <section class="card">
+        <ul class="list" role="list">
+          {payments.map((pay) => <li class="row"><span>{p.kind[pay.kind]}</span><strong>{euro(pay.amount_cents, locale)}</strong></li>)}
+          <li class="row"><span>{p.total}</span><strong>{euro(order.total_cents, locale)}</strong></li>
+        </ul>
+        <BankDetails lang={lang} amountCents={first.amount_cents} reference={paymentReference(order)} />
+      </section>
+      <section class="card">
+        <h2>{d.next}</h2>
+        <ol class="steps">{d.steps.map((s) => <li>{fill(s, { email: order!.customer_email })}</li>)}</ol>
+        <div><a class="button" href={`/account/login/?lang=${lang}`}>{d.login}</a></div>
+      </section>
+    </>
+  )}
+</Portal>
+
+<style>
+  .steps { padding-left: 1.25rem; display: grid; gap: var(--space-2); }
+</style>

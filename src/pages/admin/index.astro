@@ -4,7 +4,7 @@
 export const prerender = false;
 import Portal from '../../layouts/Portal.astro';
 import { adminClient, currentEmail, isAdmin, portalReady } from '../../lib/supabase';
-import { euro, paymentSchedule, SPLIT_FROM_CENTS, type Order } from '../../lib/orders';
+import { euro, orderTotalCents, paymentSchedule, SPLIT_FROM_CENTS, type Order } from '../../lib/orders';
 import { pricePerVideo } from '../../data/pricing';
 
 const email = await currentEmail(Astro.request, Astro.cookies);
@@ -17,7 +17,7 @@ if (Astro.request.method === 'POST') {
   const f = await Astro.request.formData();
   const count = Math.max(1, Math.floor(Number(f.get('videos_count')) || 0));
   const totalInput = String(f.get('total') ?? '').replace(',', '.').trim();
-  const total_cents = totalInput ? Math.round(Number(totalInput) * 100) : count * pricePerVideo(count) * 100;
+  const total_cents = totalInput ? Math.round(Number(totalInput) * 100) : orderTotalCents(count);
   const customer_email = String(f.get('customer_email') ?? '').trim().toLowerCase();
   if (!customer_email.includes('@') || !Number.isFinite(total_cents) || total_cents <= 0) {
     error = 'Check the e-mail address and the amount.';
@@ -59,7 +59,7 @@ const ladder = [1, 5, 10, 20].map((n) => `${n} → ${euro(n * pricePerVideo(n) *
       <div class="field">
         <label for="to">Totaal in euro incl. btw (leeg = staffelprijs)</label>
         <input id="to" name="total" inputmode="decimal" aria-describedby="toh" />
-        <p id="toh" class="muted hint">Staffel: {ladder}. Vanaf {euro(SPLIT_FROM_CENTS, 'nl')} wordt het 50% vooraf en 50% na oplevering, daaronder alles vooraf.</p>
+        <p id="toh" class="muted hint">Staffel: {ladder}. Vanaf {euro(SPLIT_FROM_CENTS, 'nl')} wordt het 50% bij bestelling en 50% na oplevering, daaronder alles vooraf. Klanten kunnen ook zelf bestellen op /order/.</p>
       </div>
       <div class="field"><label for="la">Taal van de klant</label><select id="la" name="lang"><option value="nl">Nederlands</option><option value="en">Engels (en andere talen)</option></select></div>
       <div class="field"><label for="no">Notitie voor de klant (optioneel)</label><textarea id="no" name="note" rows="2"></textarea></div>

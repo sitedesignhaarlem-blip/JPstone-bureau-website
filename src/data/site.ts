@@ -17,4 +17,11 @@ export const site = {
   whatsapp: 'https://wa.me/31657249607',
   // TODO: e.g. https://formspree.io/f/xxxxxxx. Until set, the form opens the visitor's mail app instead.
   formEndpoint: '',
+  // Bank account for payments by bank transfer, shown on the order confirmation and in the client
+  // account. TODO(owner): fill in your business account before people can order.
+  bank: {
+    holder: '[TODO: name of the account holder]',
+    iban: '[TODO: IBAN]',
+    bic: '[TODO: BIC]',
+  },
 };

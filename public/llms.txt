@@ -27,8 +27,9 @@ Still to Film is a small studio based in the Netherlands. We work for yacht char
 - EUR 95 per video from 5 videos.
 - The price per video drops by EUR 5 for every 5 videos, down to a minimum of EUR 50 per video.
 - More than 100 videos: custom quote.
-- Payment: orders under EUR 1,000 are paid in full when ordering; from EUR 1,000, 50% when ordering and 50% after delivery. Online in the client account (iDEAL, card or Bancontact via Stripe) or by bank transfer. An invoice for every payment.
-- Client account: customers log in with a one-time e-mail code to pay, watch and download their videos, and give feedback or request revisions.
+- Payment: by bank transfer. Orders under EUR 1,000 (incl. VAT) are paid in full before work starts; from EUR 1,000, 50% when ordering and 50% after delivery. An invoice for every payment.
+- Ordering: online at https://stilltofilm.com/order/ (choose the number of videos; the price follows the ladder) or by quote.
+- Client account: customers log in with a one-time e-mail code to see their order, watch and download their videos, and give feedback or request revisions.
 - Referral: one free video on the next order for every company a customer refers that places an order.
 - Usage: unlimited use for the customer's own marketing (website, listings, social media, advertising). No resale as a standalone video.
 

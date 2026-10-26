@@ -59,7 +59,7 @@ for (const file of pages) {
   // internal links resolve to a built file
   for (const href of get(html, /href="(\/[^"#?]*)/g)) {
     // The client portal runs on the server, so it has no built file.
-    if (/^\/(account|admin|api)\//.test(href)) continue;
+    if (/^\/(order|account|admin|api)\//.test(href)) continue;
     const target = path.join(DIST, href.endsWith('/') ? href + 'index.html' : href);
     if (!fs.existsSync(target)) err(`broken link ${href}`);
   }
