@@ -1,0 +1,38 @@
+---
+// Home page block that invites clients to create an account, order online or log in.
+import { accountUI, portalLangFor } from '../i18n/account';
+import type { Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const a = accountUI[lang];
+const q = `?lang=${portalLangFor(lang)}`;
+---
+<section class="section account-cta" aria-labelledby="account-title">
+  <div class="wrap account-inner">
+    <div class="account-text">
+      <p class="eyebrow">{a.eyebrow}</p>
+      <h2 id="account-title">{a.title}</h2>
+      <p class="lead muted">{a.lead}</p>
+    </div>
+    <div class="account-actions">
+      <a class="button" href={`/account/register/${q}`} rel="nofollow">{a.create}</a>
+      <a class="button button--secondary" href={`/order/${q}`} rel="nofollow">{a.order}</a>
+      <p class="muted account-login">{a.have} <a href={`/account/login/${q}`} rel="nofollow">{a.login}</a></p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .account-inner { display: grid; gap: var(--space-6); }
+  .account-text { display: grid; gap: var(--space-4); max-width: 40rem; }
+  .account-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-4); }
+  .account-login { width: 100%; font-size: var(--step-small); }
+  @media (min-width: 60rem) {
+    .account-inner { grid-template-columns: 1fr auto; align-items: end; }
+    .account-actions { justify-content: flex-end; max-width: 26rem; }
+    .account-login { text-align: right; }
+  }
+</style>

@@ -4,6 +4,7 @@ import { site } from '../data/site';
 import { hasPage, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
 import { insightLocales, insightsBase } from '../insights';
 import { insightsUI } from '../insights/ui';
+import { accountUI, portalLangFor } from '../i18n/account';
 
 interface Props {
   lang: Locale;
@@ -11,9 +12,6 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const year = new Date().getFullYear();
-// Order form (/order/) and client portal (/account/), both in English and Dutch.
-const orderLabel: Record<Locale, string> = { en: 'Order online', nl: 'Online bestellen', de: 'Online bestellen', fr: 'Commander en ligne', es: 'Pedir en línea', hr: 'Naruči online', pt: 'Encomendar online' };
-const accountLabel: Record<Locale, string> = { en: 'Client login', nl: 'Inloggen voor klanten', de: 'Kunden-Login', fr: 'Espace client', es: 'Acceso clientes', hr: 'Prijava za klijente', pt: 'Área de cliente' };
 const services = (['yacht', 'hotel', 'rental', 'aiVideo', 'versus', 'pricing', 'faq'] as PageId[]).filter((p) => hasPage(lang, p));
 ---
 <footer class="footer">
@@ -27,8 +25,8 @@ const services = (['yacht', 'hotel', 'rental', 'aiVideo', 'versus', 'pricing', '
       <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
       <li><a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a></li>
       <li><a href={site.whatsapp} rel="noopener">WhatsApp</a></li>
-      <li><a href={`/order/?lang=${lang === 'nl' ? 'nl' : 'en'}`} rel="nofollow">{orderLabel[lang]}</a></li>
-      <li><a href={`/account/login/?lang=${lang === 'nl' ? 'nl' : 'en'}`} rel="nofollow">{accountLabel[lang]}</a></li>
+      <li><a href={`/order/?lang=${portalLangFor(lang)}`} rel="nofollow">{accountUI[lang].order}</a></li>
+      <li><a href={`/account/login/?lang=${portalLangFor(lang)}`} rel="nofollow">{accountUI[lang].nav}</a></li>
     </ul>
     {services.length > 0 && (
       <nav class="footer-links" aria-label={t.landing.services}>

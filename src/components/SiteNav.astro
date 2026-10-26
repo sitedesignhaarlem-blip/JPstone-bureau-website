@@ -2,6 +2,7 @@
 import LogoMark from './LogoMark.astro';
 import SiteSearch from './SiteSearch.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import { accountUI, portalLangFor } from '../i18n/account';
 import { hasPage, locales, localeNames, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
 
 interface Props {
@@ -48,6 +49,7 @@ const langHref = (l: Locale) => langLinks ? (langLinks[l] ?? pagePath(l, 'home')
           ))}
         </ul>
       </details>
+      <a class="nav-login" href={`/account/login/?lang=${portalLangFor(lang)}`} title={accountUI[lang].nav} rel="nofollow">{accountUI[lang].button}</a>
     </div>
   </nav>
 </header>
@@ -78,6 +80,11 @@ const langHref = (l: Locale) => langLinks ? (langLinks[l] ?? pagePath(l, 'home')
   a[aria-current='page'] { font-weight: 600; }
   .nav-brand { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.875rem; opacity: 1; white-space: nowrap; }
   .nav-links a { white-space: nowrap; }
+  .nav-login {
+    display: inline-flex; align-items: center; padding: 0.45rem 1.1rem; border-radius: var(--radius-pill);
+    background: var(--accent); color: var(--on-accent); opacity: 1; font-size: 0.875rem; font-weight: 600; white-space: nowrap;
+  }
+  .nav-login:hover { background: var(--accent-hover); opacity: 1; }
 
   .lang { position: relative; }
   .lang summary {
@@ -99,7 +106,7 @@ const langHref = (l: Locale) => langLinks ? (langLinks[l] ?? pagePath(l, 'home')
   /* Phones: name and language on the first row, the page links on a second row. */
   @media (max-width: 48rem) {
     .nav-inner {
-      display: grid; grid-template-columns: 1fr auto auto auto; grid-template-areas: 'brand search theme lang' 'links links links links';
+      display: grid; grid-template-columns: 1fr auto auto auto auto; grid-template-areas: 'brand search theme lang login' 'links links links links links';
       column-gap: var(--space-2);
       row-gap: 0; padding-top: var(--space-2);
     }
@@ -108,11 +115,17 @@ const langHref = (l: Locale) => langLinks ? (langLinks[l] ?? pagePath(l, 'home')
     .lang { grid-area: lang; }
     .nav-right > :global(.search) { grid-area: search; }
     .nav-right > :global(.theme-toggle) { grid-area: theme; }
+    .nav-login { grid-area: login; padding: 0.4rem 0.85rem; font-size: 0.8125rem; }
     .nav-links {
       grid-area: links; gap: var(--space-5); overflow-x: auto; scrollbar-width: none;
       padding-block: var(--space-2); margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter);
     }
     .nav-links::-webkit-scrollbar { display: none; }
+  }
+  /* Very small phones (320–360px): a bit tighter, so the log-in button still fits on the first row. */
+  @media (max-width: 23rem) {
+    .nav-inner { column-gap: var(--space-1); }
+    .nav-login { padding: 0.35rem 0.65rem; font-size: 0.75rem; }
     .nav-links a { display: inline-block; padding-block: var(--space-1); }
   }
 </style>

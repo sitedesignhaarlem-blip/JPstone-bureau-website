@@ -103,9 +103,11 @@ const formAction = site.formEndpoint || `mailto:${site.email}?subject=${encodeUR
   .booking :global(.booking-title) { font-size: var(--step-h3); line-height: 1.14; }
   .booking .button { margin-top: var(--space-2); }
   .contact { display: grid; gap: var(--space-8); }
+  /* Grid items may shrink below their content, so the long e-mail address wraps on small phones. */
+  .contact > * { min-width: 0; }
   .contact-intro { display: grid; gap: var(--space-4); align-content: start; }
   .contact-direct { display: grid; gap: var(--space-3); padding: 0; margin: var(--space-4) 0 0; list-style: none; }
-  .contact-direct li { display: grid; grid-template-columns: 6rem 1fr; gap: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--line); }
+  .contact-direct li { display: grid; grid-template-columns: 6rem minmax(0, 1fr); overflow-wrap: anywhere; gap: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--line); }
   .contact-form { display: grid; gap: var(--space-5); padding: var(--space-5); background: var(--bg); border-radius: var(--radius); }
   .field { display: grid; gap: var(--space-2); }
   .field label { font-size: var(--step-small); font-weight: 600; }
