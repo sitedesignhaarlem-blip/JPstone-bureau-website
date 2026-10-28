@@ -42,6 +42,7 @@ const date = (iso: string) => new Intl.DateTimeFormat(locale, { day: 'numeric', 
       ))}
     </ul>
   )}
+  {email && <p class="muted">{p.account.referral}</p>}
 </Portal>
 
 <style>

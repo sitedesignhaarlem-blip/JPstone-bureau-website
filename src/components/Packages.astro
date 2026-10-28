@@ -3,6 +3,8 @@
 import Text from './Text.astro';
 import { hasPage, htmlLang, pagePath, useTranslations, type Locale } from '../i18n';
 import { pricePerVideo } from '../data/pricing';
+import { EARLY_BIRD, earlyBirdDate } from '../data/promo';
+import { promoUI } from '../i18n/promo';
 
 interface Props {
   lang: Locale;
@@ -15,6 +17,10 @@ const money = new Intl.NumberFormat(htmlLang[lang], { style: 'currency', currenc
 const start = 5;
 const startPrice = money.format(pricePerVideo(start));
 const startTotal = money.format(pricePerVideo(start) * start);
+const pr = promoUI[lang];
+const fill = (text: string) => text.replace('{p}', String(EARLY_BIRD.percent)).replace('{date}', earlyBirdDate(htmlLang[lang]));
+// The package with the best price per video is marked as our recommendation (an advice, not a sales figure).
+const recommended = 1;
 ---
 <section class="section section--alt packages" aria-labelledby="packages-title">
   <div class="wrap">
@@ -23,9 +29,9 @@ const startTotal = money.format(pricePerVideo(start) * start);
       <p class="lead muted">{p.lead}</p>
     </div>
     <ul class="package-list" role="list">
-      {p.items.map((item) => (
+      {p.items.map((item, i) => (
         <li class="package">
-          <h3>{item.name}</h3>
+          <h3>{item.name}{i === recommended && <span class="badge">{pr.badge}</span>}</h3>
           <div class="package-text">
             <p>{item.for}</p>
             <p class="muted"><Text text={item.includes} /></p>
@@ -34,7 +40,8 @@ const startTotal = money.format(pricePerVideo(start) * start);
         </li>
       ))}
     </ul>
-    <div class="calc" data-calc data-locale={htmlLang[lang]}>
+    <div class="calc" data-calc data-locale={htmlLang[lang]} data-eb-pct={EARLY_BIRD.percent} data-eb-until={EARLY_BIRD.until}
+      data-savings={pr.savings} data-nudge={pr.nudge}>
       <h3 class="calc-title">{t.calc.title}</h3>
       <div class="calc-row">
         <label for="calc-count">{t.calc.label}</label>
@@ -43,7 +50,18 @@ const startTotal = money.format(pricePerVideo(start) * start);
       <input id="calc-count" type="range" min="1" max="100" value="5" step="1" data-calc-range />
       <p class="calc-per"><span class="muted">{t.calc.perVideo}</span> <strong data-calc-per>{startPrice}</strong></p>
       <p class="calc-total"><span class="muted">{t.calc.total}</span> <strong data-calc-total>{startTotal}</strong></p>
+      {/* Shown by the script while the early-bird discount runs. */}
+      <div class="calc-early" data-calc-early hidden>
+        <p><span class="muted">{fill(pr.early)}</span> <strong data-calc-discount></strong></p>
+        <p class="calc-total"><span class="muted">{pr.withDiscount}</span> <strong data-calc-final></strong></p>
+        <p class="calc-note muted">{fill(pr.terms)}</p>
+      </div>
+      <p class="calc-hint" data-calc-savings></p>
+      <p class="calc-hint" data-calc-nudge></p>
       <p class="calc-note muted">{t.calc.note} {t.calc.more}</p>
+      <ul class="reassure" role="list">
+        {pr.reassure.map((r) => <li><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>{r}</li>)}
+      </ul>
     </div>
     <p class="packages-note">{p.note} <a class="link-more" href={pagePath(lang, 'contact')}>{t.hero.cta}</a></p>
     {hasPage(lang, 'pricing') && <p class="packages-note"><a class="link-more" href={pagePath(lang, 'pricing')}>{t.landing.fullPricing}</a></p>}
@@ -59,12 +77,37 @@ const startTotal = money.format(pricePerVideo(start) * start);
     const count = calc.querySelector<HTMLElement>('[data-calc-count]')!;
     const total = calc.querySelector<HTMLElement>('[data-calc-total]')!;
     const per = calc.querySelector<HTMLElement>('[data-calc-per]')!;
-    const money = new Intl.NumberFormat(calc.dataset.locale, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+    const d = calc.dataset;
+    const money = new Intl.NumberFormat(d.locale, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+    const cents = new Intl.NumberFormat(d.locale, { style: 'currency', currency: 'EUR', maximumFractionDigits: 2 });
+    const fmt = (x: number) => (Number.isInteger(x) ? money : cents).format(x);
+    const pct = Number(d.ebPct);
+    const early = pct > 0 && Date.now() < Date.parse(d.ebUntil ?? '');
+    const earlyBox = calc.querySelector<HTMLElement>('[data-calc-early]')!;
+    const discount = calc.querySelector<HTMLElement>('[data-calc-discount]')!;
+    const final = calc.querySelector<HTMLElement>('[data-calc-final]')!;
+    const savings = calc.querySelector<HTMLElement>('[data-calc-savings]')!;
+    const nudge = calc.querySelector<HTMLElement>('[data-calc-nudge]')!;
+    earlyBox.hidden = !early;
     const update = () => {
       const n = Number(range.value);
+      const price = pricePerVideo(n);
+      const sum = price * n;
       count.textContent = range.value;
-      per.textContent = money.format(pricePerVideo(n));
-      total.textContent = money.format(pricePerVideo(n) * n);
+      per.textContent = money.format(price);
+      total.textContent = money.format(sum);
+      if (early) {
+        const off = Math.round(sum * pct) / 100;
+        discount.textContent = '− ' + fmt(off);
+        final.textContent = fmt(sum - off);
+      }
+      // What the staffel saves compared with single videos at the full price.
+      const saved = (pricePerVideo(1) - price) * n;
+      savings.textContent = saved > 0 ? (d.savings ?? '').replace('{amount}', money.format(saved)) : '';
+      // The next step down in price, if there is one.
+      const next = (Math.floor(n / 5) + 1) * 5;
+      nudge.textContent = next <= Number(range.max) && pricePerVideo(next) < price
+        ? (d.nudge ?? '').replace('{count}', String(next)).replace('{price}', money.format(pricePerVideo(next))) : '';
     };
     range.addEventListener('input', update);
     update();
@@ -81,6 +124,18 @@ const startTotal = money.format(pricePerVideo(start) * start);
   .calc-total { font-size: var(--step-lead); }
   .calc-total strong { font-size: var(--step-h3); font-variant-numeric: tabular-nums; }
   .calc-note { font-size: var(--step-small); }
+  .calc-early { display: grid; gap: var(--space-2); padding-top: var(--space-3); border-top: 1px solid var(--line); }
+  .calc-early[hidden] { display: none; }
+  .calc-early strong { font-variant-numeric: tabular-nums; }
+  .calc-hint { font-size: var(--step-small); color: var(--accent); font-weight: 600; }
+  .calc-hint:empty { display: none; }
+  .reassure { display: grid; gap: var(--space-1); padding: 0; margin: var(--space-2) 0 0; list-style: none; font-size: var(--step-small); }
+  .reassure li { display: flex; align-items: center; gap: var(--space-2); }
+  .reassure svg { color: var(--accent); flex: none; }
+  .badge {
+    display: inline-block; margin-left: var(--space-2); padding: 0.1rem 0.55rem; vertical-align: middle;
+    border-radius: var(--radius-pill); background: var(--accent); color: var(--on-accent); font-size: 0.75rem; font-weight: 600;
+  }
   .packages-head { display: grid; gap: var(--space-3); margin-bottom: var(--space-7); }
   .package-list { padding: 0; margin: 0; list-style: none; border-bottom: 1px solid var(--line); }
   .package { display: grid; gap: var(--space-2); padding-block: var(--space-5); border-top: 1px solid var(--line); }

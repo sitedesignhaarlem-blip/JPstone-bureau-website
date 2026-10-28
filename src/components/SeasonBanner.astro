@@ -1,10 +1,13 @@
 ---
-// Thin season message above the menu. All four texts are in the page; the <head> script in Base.astro
+// Thin season message above the menu. All texts (four seasons plus the early-bird discount) are in the page; the <head> script in Base.astro
 // sets <html data-season="winter|spring|summer|autumn"> from today's date, and CSS shows the bar and
 // the matching text, so it is right from the first paint and needs no new deploy. Closing hides it
 // until the next season's message (remembered in this browser only; see the cookie policy).
 import { SEASON_BANNER } from '../data/season';
 import { seasonUI, type Period } from '../i18n/season';
+import { promoUI } from '../i18n/promo';
+import { EARLY_BIRD, earlyBirdDate } from '../data/promo';
+import { htmlLang } from '../i18n';
 import { portalLangFor } from '../i18n/account';
 import type { Locale } from '../i18n';
 
@@ -14,12 +17,15 @@ interface Props {
 const { lang } = Astro.props;
 const s = seasonUI[lang];
 const periods: Period[] = ['winter', 'spring', 'summer', 'autumn'];
+// During the early-bird discount (October until its end date) this text replaces the winter one.
+const earlyText = promoUI[lang].banner.replace('{p}', String(EARLY_BIRD.percent)).replace('{date}', earlyBirdDate(htmlLang[lang]));
 ---
 {SEASON_BANNER && (
   <aside class="season" aria-label={s.label} data-season-bar>
     <div class="wrap season-inner">
       <p class="season-text">
         {periods.map((p) => <span class="season-msg" data-period={p}>{s.periods[p]}</span>)}
+        {EARLY_BIRD.percent > 0 && <span class="season-msg" data-period="earlybird">{earlyText}</span>}
         <a class="season-cta" href={`/order/?lang=${portalLangFor(lang)}`} rel="nofollow">{s.cta} ›</a>
       </p>
       <button class="season-close" type="button" aria-label={s.close} title={s.close} data-season-close>
@@ -47,7 +53,8 @@ const periods: Period[] = ['winter', 'spring', 'summer', 'autumn'];
   :global(:root[data-season='winter']) .season-msg[data-period='winter'],
   :global(:root[data-season='spring']) .season-msg[data-period='spring'],
   :global(:root[data-season='summer']) .season-msg[data-period='summer'],
-  :global(:root[data-season='autumn']) .season-msg[data-period='autumn'] { display: inline; }
+  :global(:root[data-season='autumn']) .season-msg[data-period='autumn'],
+  :global(:root[data-season='earlybird']) .season-msg[data-period='earlybird'] { display: inline; }
   .season-inner { display: flex; align-items: center; justify-content: center; gap: var(--space-3); padding-block: 0.6rem; }
   .season-text { margin: 0; text-align: center; max-width: none; }
   .season-cta { margin-left: var(--space-2); color: var(--accent-on-dark); font-weight: 600; white-space: nowrap; }

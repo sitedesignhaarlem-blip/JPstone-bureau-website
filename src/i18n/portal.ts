@@ -74,7 +74,7 @@ const en = {
     mismatch: 'The two passwords are not the same.',
     same: 'Choose a password that is different from your current one.',
   },
-  account: { changePassword: 'Change password', welcome: 'Your e-mail address is confirmed. Welcome!' },
+  account: { changePassword: 'Change password', welcome: 'Your e-mail address is confirmed. Welcome!', referral: 'Tip: refer another company. When they order, you get one free video on your next order.' },
   loginLink: 'Log in',
   logout: 'Log out',
   loggedInAs: 'Logged in as',
@@ -156,6 +156,7 @@ const en = {
     notReady: 'Online ordering is not available yet. Send us an e-mail with the number of videos and a link to your listing, and we will send you a quote.',
     mail: 'Order by e-mail',
     sample: 'Not sure yet? Ask for a free sample first.',
+    capacity: 'We make up to 2 videos a day. February and March are busy, so book in time.',
   },
   done: {
     title: 'Thank you for your order',
@@ -247,7 +248,7 @@ const nl: PortalUI = {
     mismatch: 'De twee wachtwoorden zijn niet hetzelfde.',
     same: 'Kies een ander wachtwoord dan je huidige.',
   },
-  account: { changePassword: 'Wachtwoord wijzigen', welcome: 'Je e-mailadres is bevestigd. Welkom!' },
+  account: { changePassword: 'Wachtwoord wijzigen', welcome: 'Je e-mailadres is bevestigd. Welkom!', referral: 'Tip: verwijs een ander bedrijf door. Bestelt het, dan krijg je een gratis video bij je volgende bestelling.' },
   loginLink: 'Inloggen',
   logout: 'Uitloggen',
   loggedInAs: 'Ingelogd als',
@@ -329,6 +330,7 @@ const nl: PortalUI = {
     notReady: "Online bestellen kan nog niet. Stuur ons een e-mail met het aantal video's en een link naar je listing, dan sturen we je een offerte.",
     mail: 'Bestellen per e-mail',
     sample: 'Twijfel je nog? Vraag eerst een gratis proefvideo aan.',
+    capacity: "We maken maximaal 2 video's per dag. In februari en maart is het druk, dus reserveer op tijd.",
   },
   done: {
     title: 'Bedankt voor je bestelling',

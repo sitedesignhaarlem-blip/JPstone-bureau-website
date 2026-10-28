@@ -99,6 +99,10 @@ Het vergrootglas in het menu (`src/components/SiteSearch.astro`) geeft suggestie
 
 Bovenaan elke openbare pagina staat een smalle balk die vanzelf meegaat met het seizoen: oktober–januari "bestel vóór 1 februari, video's uiterlijk in maart", februari–april "het seizoen begint bijna", mei–augustus "geen draaidag nodig midden in het seizoen", september "ververs je video's". Teksten (7 talen): `src/i18n/season.ts`. Uitzetten: `SEASON_BANNER = false` in `src/data/season.ts`. Bezoekers kunnen hem wegklikken; hij komt terug bij de volgende seizoenstekst.
 
+## Vroegboekkorting
+
+`src/data/promo.ts`: percentage en einddatum (nu 10% tot 1 januari 2027). De korting staat in de prijscalculator, op het bestelformulier en in de seizoensbalk, en wordt op de server berekend (de browser bepaalt niets). Na de einddatum stopt hij overal vanzelf; `percent: 0` zet hem meteen uit. De kortingsregel komt bovenaan de notitie van de bestelling, zodat jij, de klant en de bevestigingsmail hem zien. Let op: door de korting kan een bestelling onder € 1.000 zakken, dan betaalt de klant alles vooraf. Teksten (7 talen): `src/i18n/promo.ts`.
+
 ## Bestellen, klantportaal en betalen
 
 - **/order/** – bezoekers bestellen zelf: aantal video's kiezen (prijs volgt de staffel, max. 100; daarboven offerte), gegevens invullen, akkoord met de voorwaarden. Daarna zien ze het bedrag en de bankgegevens met de omschrijving `Still to Film #<nummer>`.

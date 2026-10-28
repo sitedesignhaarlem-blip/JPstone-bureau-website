@@ -8,6 +8,8 @@ import { pricePerVideo } from '../../data/pricing';
 import { pagePath } from '../../i18n';
 import { currentEmail, isAdmin, portalReady } from '../../lib/supabase';
 import { MAX_ONLINE_VIDEOS, SPLIT_FROM_CENTS } from '../../lib/orders';
+import { EARLY_BIRD, earlyBirdActive, earlyBirdDate } from '../../data/promo';
+import { promoUI } from '../../i18n/promo';
 import { fill, portalLang, portalUI } from '../../i18n/portal';
 
 const lang = portalLang(Astro.url, Astro.request, Astro.cookies.get('lang')?.value);
@@ -20,6 +22,10 @@ const start = Math.min(MAX_ONLINE_VIDEOS, Math.max(1, Math.floor(Number(Astro.ur
 const ladder = Array.from({ length: MAX_ONLINE_VIDEOS }, (_, i) => pricePerVideo(i + 1));
 const termsHref = pagePath(lang, 'terms');
 const [termsBefore, termsAfter] = o.terms.split('{link}');
+const pr = promoUI[lang];
+const locale = lang === 'nl' ? 'nl' : 'en-GB';
+const early = earlyBirdActive();
+const fillPromo = (text: string) => text.replace('{p}', String(EARLY_BIRD.percent)).replace('{date}', earlyBirdDate(locale));
 const mailBody = lang === 'nl' ? "Aantal video's:\nLink naar listing:\nBedrijf:\n" : 'Number of videos:\nLink to listing:\nCompany:\n';
 ---
 <Portal lang={lang} title={o.title} path="/order/" email={email} admin={isAdmin(email)}>
@@ -35,7 +41,8 @@ const mailBody = lang === 'nl' ? "Aantal video's:\nLink naar listing:\nBedrijf:\
   ) : (
     <form class="card order" method="post" action="/api/order/" data-order
       data-ladder={JSON.stringify(ladder)} data-split={SPLIT_FROM_CENTS} data-locale={lang === 'nl' ? 'nl' : 'en-GB'}
-      data-full={o.scheduleFull} data-splittext={o.scheduleSplit}>
+      data-full={o.scheduleFull} data-splittext={o.scheduleSplit} data-eb-pct={early ? EARLY_BIRD.percent : 0}
+      data-savings={pr.savings} data-nudge={pr.nudge}>
       <input type="hidden" name="lang" value={lang} />
       <div class="field">
         <label for="o-count">{o.count}</label>
@@ -45,8 +52,13 @@ const mailBody = lang === 'nl' ? "Aantal video's:\nLink naar listing:\nBedrijf:\
       <dl class="sum" aria-live="polite">
         <div><dt>{o.perVideo}</dt><dd data-per></dd></div>
         <div><dt>{o.total}</dt><dd data-total></dd></div>
+        {early && <div><dt>{fillPromo(pr.early)}</dt><dd data-discount></dd></div>}
+        {early && <div class="sum-final"><dt>{pr.withDiscount}</dt><dd data-final></dd></div>}
         <div><dt>{o.schedule}</dt><dd data-schedule></dd></div>
       </dl>
+      <p class="hint-line" data-savings-out></p>
+      <p class="hint-line" data-nudge-out></p>
+      {early && <p class="muted hint">{fillPromo(pr.terms)}</p>}
       <div class="field">
         <label for="o-name">{o.name}</label>
         <input id="o-name" name="name" autocomplete="name" required maxlength="120" />
@@ -78,7 +90,13 @@ const mailBody = lang === 'nl' ? "Aantal video's:\nLink naar listing:\nBedrijf:\
         <input type="checkbox" name="terms" value="yes" required />
         <span>{termsBefore}<a href={termsHref} target="_blank">{o.termsLink}</a>{termsAfter}</span>
       </label>
-      <p><button class="button" type="submit">{o.submit}</button></p>
+      <div class="submit">
+        <button class="button" type="submit">{o.submit}</button>
+        <ul class="reassure" role="list">
+          {pr.reassure.map((r) => <li><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>{r}</li>)}
+        </ul>
+        <p class="muted hint">{o.capacity}</p>
+      </div>
     </form>
   )}
   <p class="muted"><a href={pagePath(lang, 'contact')}>{o.sample}</a></p>
@@ -93,12 +111,25 @@ const mailBody = lang === 'nl' ? "Aantal video's:\nLink naar listing:\nBedrijf:\
     const money = (n: number) => new Intl.NumberFormat(d.locale, { style: 'currency', currency: 'EUR', minimumFractionDigits: n % 1 ? 2 : 0 }).format(n);
     const input = form.querySelector<HTMLInputElement>('#o-count')!;
     const out = (k: string) => form.querySelector<HTMLElement>(`[data-${k}]`)!;
+    const pct = Number(d.ebPct);
     const update = () => {
       const n = Math.min(ladder.length, Math.max(1, Math.floor(Number(input.value) || 1)));
       const per = ladder[n - 1];
-      const total = per * n;
+      const base = per * n;
       out('per').textContent = money(per);
-      out('total').textContent = money(total);
+      out('total').textContent = money(base);
+      // Early-bird discount, the same rounding as on the server (whole cents).
+      const off = pct > 0 ? Math.round(base * pct) / 100 : 0;
+      const total = base - off;
+      if (pct > 0) {
+        out('discount').textContent = '− ' + money(off);
+        out('final').textContent = money(total);
+      }
+      const saved = (ladder[0] - per) * n;
+      out('savings-out').textContent = saved > 0 ? (d.savings ?? '').replace('{amount}', money(saved)) : '';
+      const next = (Math.floor(n / 5) + 1) * 5;
+      out('nudge-out').textContent = next <= ladder.length && ladder[next - 1] < per
+        ? (d.nudge ?? '').replace('{count}', String(next)).replace('{price}', money(ladder[next - 1])) : '';
       const deposit = Math.floor(total * 100 / 2) / 100;
       out('schedule').textContent = total * 100 < Number(d.split) ? d.full ?? ''
         : (d.splittext ?? '').replace('{deposit}', money(deposit)).replace('{balance}', money(total - deposit));
@@ -114,6 +145,13 @@ const mailBody = lang === 'nl' ? "Aantal video's:\nLink naar listing:\nBedrijf:\
   .sum div { display: flex; justify-content: space-between; gap: var(--space-4); }
   .sum dt { color: var(--fg-muted); }
   .sum dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+  .sum-final dd, .sum-final dt { font-weight: 700; color: var(--fg); }
+  .hint-line { font-size: var(--step-small); color: var(--accent); font-weight: 600; }
+  .hint-line:empty { display: none; }
+  .submit { display: grid; gap: var(--space-3); justify-items: start; }
+  .reassure { display: grid; gap: var(--space-1); padding: 0; margin: 0; list-style: none; font-size: var(--step-small); }
+  .reassure li { display: flex; align-items: center; gap: var(--space-2); }
+  .reassure svg { color: var(--accent); flex: none; }
   .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
   .consent { display: flex; gap: var(--space-3); align-items: flex-start; font-size: var(--step-small); cursor: pointer; }
   .consent input { margin-top: 0.2rem; width: 1.1rem; height: 1.1rem; accent-color: var(--accent); flex: none; }

@@ -4,6 +4,7 @@ import SpeedInsights from '@vercel/speed-insights/astro';
 import '../styles/tokens.css';
 import '../styles/base.css';
 import { SITE_URL, site } from '../data/site';
+import { EARLY_BIRD } from '../data/promo';
 import { breadcrumbs, faqPage, organization, service, videoObject, website, type FaqItem } from '../data/schema';
 import { localesFor, defaultLocale, htmlLang, hreflang, ogLocale, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
 
@@ -46,7 +47,7 @@ if (page !== 'home' && !path) graph.push(breadcrumbs(lang, page));
 const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
 ---
 <!doctype html>
-<html lang={htmlLang[lang]}>
+<html lang={htmlLang[lang]} data-earlybird={EARLY_BIRD.percent > 0 ? EARLY_BIRD.until : undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -91,7 +92,8 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
       try {
         const now = new Date();
         const m = now.getMonth(); // 0 = January
-        const period = m >= 9 || m === 0 ? 'winter' : m <= 3 ? 'spring' : m <= 7 ? 'summer' : 'autumn';
+        const early = Date.now() < Date.parse(document.documentElement.dataset.earlybird || '');
+        const period = early ? 'earlybird' : m >= 9 || m === 0 ? 'winter' : m <= 3 ? 'spring' : m <= 7 ? 'summer' : 'autumn';
         const key = period + '-' + (m >= 9 ? now.getFullYear() + 1 : now.getFullYear());
         if (localStorage.getItem('seasonClosed') !== key) {
           document.documentElement.dataset.season = period;

@@ -4,6 +4,7 @@ import { bank } from './bank';
 import { esc, notifyAddress, sendMail } from './mail';
 import { euro, paymentReference, type Order, type Payment } from './orders';
 import { site } from '../data/site';
+import { splitEarlyBirdNote } from '../data/promo';
 
 const kindName = {
   en: { full: 'Full amount', deposit: 'Deposit (50%)', balance: 'Balance (50%), after delivery' },
@@ -34,7 +35,9 @@ export async function sendOrderConfirmation(order: Order, payments: Payment[], s
   const doneUrl = new URL(`/order/done/?order=${order.id}&lang=${lang}`, siteUrl).href;
   const accountUrl = new URL(`/account/register/?lang=${lang}`, siteUrl).href;
   const title = nl ? `Bedankt voor je bestelling #${order.number}` : `Thank you for your order #${order.number}`;
+  const { discount } = splitEarlyBirdNote(order.note);
   const amounts: [string, string][] = [
+    ...(discount ? [discount.split(': ') as [string, string]] : []),
     ...payments.map((p) => [kindName[lang][p.kind], euro(p.amount_cents, locale)] as [string, string]),
     [nl ? 'Totaal, incl. btw' : 'Total, incl. VAT', euro(order.total_cents, locale)],
   ];
@@ -54,8 +57,11 @@ export async function sendOrderConfirmation(order: Order, payments: Payment[], s
   const accountText = nl
     ? `Maak een account aan met ${order.customer_email} om je bestelling te volgen en je video's te bekijken.`
     : `Create an account with ${order.customer_email} to follow your order and watch your videos.`;
-  const html = layout(title, `<p>${esc(intro)}</p>${rows(amounts)}<p>${esc(payText)}</p>${rows(bankRows)}<p>${esc(accountText)}</p>${button(accountUrl, nl ? 'Account aanmaken' : 'Create an account')}<p style="font-size:13px;color:#6e6e73">${nl ? 'Je bestelling bekijken' : 'View your order'}: <a href="${esc(doneUrl)}">${esc(doneUrl)}</a></p>`);
-  const text = [title, '', intro, '', ...amounts.map(([k, v]) => `${k}: ${v}`), '', payText, '', ...bankRows.map(([k, v]) => `${k}: ${v}`), '', accountText, accountUrl, '', `${site.name} · ${site.email}`].join('\n');
+  const referral = nl
+    ? 'Tip: verwijs een ander bedrijf door. Bestelt het, dan krijg je een gratis video bij je volgende bestelling.'
+    : 'Tip: refer another company. When they order, you get one free video on your next order.';
+  const html = layout(title, `<p>${esc(intro)}</p>${rows(amounts)}<p>${esc(payText)}</p>${rows(bankRows)}<p>${esc(accountText)}</p>${button(accountUrl, nl ? 'Account aanmaken' : 'Create an account')}<p style="font-size:13px;color:#6e6e73">${esc(referral)}</p><p style="font-size:13px;color:#6e6e73">${nl ? 'Je bestelling bekijken' : 'View your order'}: <a href="${esc(doneUrl)}">${esc(doneUrl)}</a></p>`);
+  const text = [title, '', intro, '', ...amounts.map(([k, v]) => `${k}: ${v}`), '', payText, '', ...bankRows.map(([k, v]) => `${k}: ${v}`), '', accountText, accountUrl, '', referral, '', `${site.name} · ${site.email}`].join('\n');
   return sendMail({ to: order.customer_email, subject: title, html, text });
 }
 

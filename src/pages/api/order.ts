@@ -3,6 +3,7 @@ import type { APIRoute } from 'astro';
 import { adminClient, portalReady } from '../../lib/supabase';
 import { MAX_ONLINE_VIDEOS, orderTotalCents, paymentSchedule, type Order, type Payment } from '../../lib/orders';
 import { sendNewOrderNotice, sendOrderConfirmation } from '../../lib/emails';
+import { earlyBirdActive, earlyBirdDiscount, earlyBirdNote } from '../../data/promo';
 
 export const prerender = false;
 
@@ -23,7 +24,11 @@ export const POST: APIRoute = async ({ request, redirect, url }) => {
     && f.get('terms') === 'yes' && (!listing || /^https?:\/\//i.test(listing));
   if (!valid) return redirect(`/order/?error=1&lang=${lang}&videos=${Number.isInteger(count) ? count : 1}`, 303);
 
-  const total = orderTotalCents(count);
+  // The early-bird discount is applied here too, so the date check happens on the server, not in the browser.
+  const base = orderTotalCents(count);
+  const discount = earlyBirdActive() ? earlyBirdDiscount(base) : 0;
+  const total = base - discount;
+  const note = [discount ? earlyBirdNote(lang, discount, base) : '', str('note', 2000)].filter(Boolean).join('\n');
   const db = adminClient();
   const { data: order, error } = await db.from('orders').insert({
     customer_email: email,
@@ -34,7 +39,7 @@ export const POST: APIRoute = async ({ request, redirect, url }) => {
     total_cents: total,
     lang,
     listing_url: listing || null,
-    note: str('note', 2000) || null,
+    note: note || null,
   }).select('*').single<Order>();
   if (error || !order) return redirect(`/order/?error=1&lang=${lang}&videos=${count}`, 303);
   const { data: payments } = await db.from('payments').insert(paymentSchedule(total).map((p) => ({ ...p, order_id: order.id }))).select('*');

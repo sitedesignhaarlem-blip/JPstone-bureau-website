@@ -7,6 +7,7 @@ import BankDetails from '../../../components/BankDetails.astro';
 import { adminClient, currentEmail, portalReady } from '../../../lib/supabase';
 import { euro, paymentReference, type Order, type Payment } from '../../../lib/orders';
 import { fill, portalLang, portalUI } from '../../../i18n/portal';
+import { splitEarlyBirdNote } from '../../../data/promo';
 
 const lang = portalLang(Astro.url, Astro.request, Astro.cookies.get('lang')?.value);
 const p = portalUI[lang];
@@ -27,6 +28,7 @@ if (portalReady && /^[0-9a-f-]{36}$/i.test(id)) {
   }
 }
 const locale = lang === 'nl' ? 'nl' : 'en-GB';
+const discount = splitEarlyBirdNote(order?.note ?? null).discount?.split(': ');
 ---
 <Portal lang={lang} title={d.title} path="/order/done/" email={email}>
   <h1>{d.title}</h1>
@@ -35,6 +37,7 @@ const locale = lang === 'nl' ? 'nl' : 'en-GB';
       <p class="lead">{fill(d.lead, { number: order.number })}</p>
       <section class="card">
         <ul class="list" role="list">
+          {discount && <li class="row"><span>{discount[0]}</span><strong>{discount[1]}</strong></li>}
           {payments.map((pay) => <li class="row"><span>{p.kind[pay.kind]}</span><strong>{euro(pay.amount_cents, locale)}</strong></li>)}
           <li class="row"><span>{p.total}</span><strong>{euro(order.total_cents, locale)}</strong></li>
         </ul>
