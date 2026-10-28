@@ -87,6 +87,17 @@ const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
           document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#000000');
         }
       } catch {}
+      // Season message (SeasonBanner.astro): which text fits today, unless it was closed this season.
+      try {
+        const now = new Date();
+        const m = now.getMonth(); // 0 = January
+        const period = m >= 9 || m === 0 ? 'winter' : m <= 3 ? 'spring' : m <= 7 ? 'summer' : 'autumn';
+        const key = period + '-' + (m >= 9 ? now.getFullYear() + 1 : now.getFullYear());
+        if (localStorage.getItem('seasonClosed') !== key) {
+          document.documentElement.dataset.season = period;
+          document.documentElement.dataset.seasonKey = key;
+        }
+      } catch {}
       // A new page always opens at the top, unless the link points to a section (#…).
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
       addEventListener('pageshow', () => { if (!location.hash) scrollTo(0, 0); });

@@ -1,0 +1,65 @@
+---
+// Thin season message above the menu. All four texts are in the page; the <head> script in Base.astro
+// sets <html data-season="winter|spring|summer|autumn"> from today's date, and CSS shows the bar and
+// the matching text, so it is right from the first paint and needs no new deploy. Closing hides it
+// until the next season's message (remembered in this browser only; see the cookie policy).
+import { SEASON_BANNER } from '../data/season';
+import { seasonUI, type Period } from '../i18n/season';
+import { portalLangFor } from '../i18n/account';
+import type { Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const s = seasonUI[lang];
+const periods: Period[] = ['winter', 'spring', 'summer', 'autumn'];
+---
+{SEASON_BANNER && (
+  <aside class="season" aria-label={s.label} data-season-bar>
+    <div class="wrap season-inner">
+      <p class="season-text">
+        {periods.map((p) => <span class="season-msg" data-period={p}>{s.periods[p]}</span>)}
+        <a class="season-cta" href={`/order/?lang=${portalLangFor(lang)}`} rel="nofollow">{s.cta} ›</a>
+      </p>
+      <button class="season-close" type="button" aria-label={s.close} title={s.close} data-season-close>
+        <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+      </button>
+    </div>
+  </aside>
+)}
+
+<script>
+  // Close: hide now and remember for this season.
+  document.querySelector('[data-season-close]')?.addEventListener('click', () => {
+    const root = document.documentElement;
+    try { localStorage.setItem('seasonClosed', root.dataset.seasonKey ?? ''); } catch {}
+    delete root.dataset.season;
+  });
+</script>
+
+<style>
+  /* Hidden unless the <head> script picked a season (so also hidden without JavaScript). */
+  .season { display: none; background: var(--dark); color: var(--on-dark); font-size: 0.8125rem; line-height: 1.4; }
+  :global(:root[data-season]) .season { display: block; }
+  :global(:root[data-theme='dark']) .season { border-bottom: 1px solid var(--line); }
+  .season-msg { display: none; }
+  :global(:root[data-season='winter']) .season-msg[data-period='winter'],
+  :global(:root[data-season='spring']) .season-msg[data-period='spring'],
+  :global(:root[data-season='summer']) .season-msg[data-period='summer'],
+  :global(:root[data-season='autumn']) .season-msg[data-period='autumn'] { display: inline; }
+  .season-inner { display: flex; align-items: center; justify-content: center; gap: var(--space-3); padding-block: 0.6rem; }
+  .season-text { margin: 0; text-align: center; max-width: none; }
+  .season-cta { margin-left: var(--space-2); color: var(--accent-on-dark); font-weight: 600; white-space: nowrap; }
+  .season-cta:hover { text-decoration: underline; }
+  .season-close {
+    flex: none; display: inline-flex; align-items: center; justify-content: center; width: 1.75rem; height: 1.75rem;
+    padding: 0; border: 0; border-radius: 50%; background: none; color: var(--on-dark-muted); cursor: pointer;
+  }
+  .season-close:hover { color: var(--on-dark); background: rgb(255 255 255 / 0.1); }
+  .season-close:focus-visible { outline: 2px solid var(--accent-on-dark); outline-offset: 2px; }
+  @media (max-width: 40rem) {
+    .season-inner { align-items: flex-start; }
+    .season-text { text-align: left; }
+  }
+</style>

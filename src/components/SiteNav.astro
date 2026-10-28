@@ -3,6 +3,7 @@ import LogoMark from './LogoMark.astro';
 import SiteSearch from './SiteSearch.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import { accountUI, portalLangFor } from '../i18n/account';
+import SeasonBanner from './SeasonBanner.astro';
 import { hasPage, locales, localeNames, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
 
 interface Props {
@@ -24,6 +25,7 @@ const links: { id: PageId; label: string }[] = [
 // A page that is not translated yet links to the home page of the other language.
 const langHref = (l: Locale) => langLinks ? (langLinks[l] ?? pagePath(l, 'home')) : pagePath(l, page && hasPage(l, page) ? page : 'home');
 ---
+<SeasonBanner lang={lang} />
 <header class="nav">
   <nav class="wrap nav-inner" aria-label={t.nav.label}>
     <a class="nav-brand" href={pagePath(lang, 'home')}><LogoMark />Still to Film</a>

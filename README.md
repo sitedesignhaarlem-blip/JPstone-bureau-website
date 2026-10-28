@@ -95,6 +95,10 @@ Het vergrootglas in het menu (`src/components/SiteSearch.astro`) geeft suggestie
 - **Structured data:** `src/data/schema.ts` (Organization, WebSite, Service, FAQPage, VideoObject, BreadcrumbList). De FAQ-data komt uit dezelfde teksten als de zichtbare FAQ.
 - **Hoofdadres:** `https://stilltofilm.com` (zonder www). De doorverwijzing van www regel je in Vercel onder **Settings → Domains**, niet in `vercel.json`: twee regels die elkaar tegenspreken geven een eindeloze lus (ERR_TOO_MANY_REDIRECTS).
 
+## Seizoensbalk
+
+Bovenaan elke openbare pagina staat een smalle balk die vanzelf meegaat met het seizoen: oktober–januari "bestel vóór 1 februari, video's uiterlijk in maart", februari–april "het seizoen begint bijna", mei–augustus "geen draaidag nodig midden in het seizoen", september "ververs je video's". Teksten (7 talen): `src/i18n/season.ts`. Uitzetten: `SEASON_BANNER = false` in `src/data/season.ts`. Bezoekers kunnen hem wegklikken; hij komt terug bij de volgende seizoenstekst.
+
 ## Bestellen, klantportaal en betalen
 
 - **/order/** – bezoekers bestellen zelf: aantal video's kiezen (prijs volgt de staffel, max. 100; daarboven offerte), gegevens invullen, akkoord met de voorwaarden. Daarna zien ze het bedrag en de bankgegevens met de omschrijving `Still to Film #<nummer>`.
