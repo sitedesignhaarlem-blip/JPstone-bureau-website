@@ -1,0 +1,134 @@
+---
+// The pricing page, the same in every language: Standard vs Premium, the price calculator, the 3D
+// teaser, the questions and a final call to action. Texts: src/i18n/pricing.ts. Numbers:
+// src/data/pricing.config.ts, which also feeds the Offer structured data below.
+import Landing from '../layouts/Landing.astro';
+import PriceCalculator from '../components/PriceCalculator.astro';
+import { PRICING, type Tier } from '../data/pricing.config';
+import { ids } from '../data/schema';
+import { SITE_URL, site } from '../data/site';
+import { htmlLang, pagePath, type Locale } from '../i18n';
+import { fillIn, pricingUI } from '../i18n/pricing';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const ui = pricingUI[lang];
+const cmp = ui.compare;
+const money = new Intl.NumberFormat(htmlLang[lang], { style: 'currency', currency: PRICING.currency, maximumFractionDigits: 0 });
+const tiers = PRICING.tiers;
+const firstPlan = PRICING.monthly.sizes[0];
+const planPrice = (tier: Tier) => money.format(PRICING.monthly.perVideo[tier][firstPlan] * firstPlan);
+const values = {
+  std: money.format(PRICING.oneOff.standard.base),
+  prem: money.format(PRICING.oneOff.premium.base),
+  month: planPrice('standard'),
+  size: firstPlan,
+};
+const list = (items: string[], tier: Tier) => items.map((s) => fillIn(s, { s: tiers[tier].seconds, r: tiers[tier].revisions }));
+
+const sizes = PRICING.monthly.sizes;
+const sizesText = new Intl.ListFormat(htmlLang[lang], { type: 'disjunction' }).format(sizes.map(String));
+const faq = ui.faq.map(({ q, a }) => ({
+  q,
+  a: fillIn(a, {
+    weeks: PRICING.turnaroundWeeks, rs: tiers.standard.revisions, rp: tiers.premium.revisions,
+    sizes: sizesText, price: planPrice('standard'), n: PRICING.monthly.noticeMonths,
+  }),
+}));
+
+// One Offer per tier at its base price, server-rendered so it is there without JavaScript.
+const url = new URL(pagePath(lang, 'pricing'), SITE_URL).href;
+const offers = (['standard', 'premium'] as Tier[]).map((tier) => ({
+  '@type': 'Offer',
+  '@id': `${url}#offer-${tier}`,
+  name: `${tier === 'standard' ? cmp.standardName : cmp.premiumName} video`,
+  description: fillIn(tier === 'standard' ? cmp.standardTag : cmp.premiumTag, {}),
+  url,
+  price: PRICING.oneOff[tier].base,
+  priceCurrency: PRICING.currency,
+  priceSpecification: {
+    '@type': 'UnitPriceSpecification',
+    price: PRICING.oneOff[tier].base,
+    minPrice: PRICING.oneOff[tier].floor,
+    priceCurrency: PRICING.currency,
+    unitText: 'video',
+    valueAddedTaxIncluded: true,
+  },
+  itemOffered: { '@id': `${url}#service` },
+  seller: { '@id': ids.organization },
+}));
+---
+<Landing
+  lang={lang}
+  page="pricing"
+  title={ui.page.title}
+  description={fillIn(ui.page.description, values)}
+  eyebrow={ui.page.eyebrow}
+  h1={ui.page.h1}
+  summary={fillIn(ui.page.summary, values)}
+  faqTitle={ui.page.faqTitle}
+  faqItems={faq}
+  service
+  schema={offers}
+  related={['yacht', 'hotel', 'faq']}
+>
+  <h2>{cmp.title}</h2>
+  <div class="tiers">
+    {(['standard', 'premium'] as Tier[]).map((tier) => (
+      <section class:list={['tier', { 'tier--premium': tier === 'premium' }]} aria-labelledby={`tier-${tier}`}>
+        <h3 id={`tier-${tier}`}>{tier === 'standard' ? cmp.standardName : cmp.premiumName}</h3>
+        <p class="muted">{tier === 'standard' ? cmp.standardTag : cmp.premiumTag}</p>
+        <p class="tier-price"><strong>{money.format(PRICING.oneOff[tier].base)}</strong> <span class="muted">{cmp.perVideo}</span></p>
+        <p class="tier-sub muted">
+          {fillIn(cmp.volume, { price: money.format(PRICING.oneOff[tier].floor) })}<br />
+          {fillIn(cmp.orMonthly, { price: planPrice(tier), n: firstPlan })}
+        </p>
+        {tier === 'premium' && <p class="tier-plus">{cmp.everything}</p>}
+        <ul class="tier-list" role="list">
+          {list(tier === 'standard' ? cmp.standard : cmp.premium, tier).map((item) => (
+            <li><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>{item}</li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+
+  <PriceCalculator lang={lang} />
+
+  <section class="soon" aria-labelledby="soon-title">
+    <p class="soon-badge">{ui.soon.badge}</p>
+    <h2 id="soon-title">{ui.soon.title}</h2>
+    <p>{ui.soon.text}</p>
+    <p><a class="link-more" href={`mailto:${site.email}?subject=${encodeURIComponent(ui.soon.subject)}`}>{ui.soon.cta}</a></p>
+  </section>
+
+  <h2>{ui.referral.title}</h2>
+  <p>{ui.referral.text}</p>
+</Landing>
+
+<style>
+  .tiers { display: grid; gap: var(--space-4); margin-top: var(--space-4); }
+  .tier { display: grid; gap: var(--space-2); align-content: start; padding: var(--space-5); background: var(--bg); border-radius: var(--radius); }
+  .tier--premium { box-shadow: inset 0 0 0 1.5px var(--accent); }
+  :global(.prose) .tier h3 { margin: 0; font-size: var(--step-h3); }
+  .tier-price { margin-top: var(--space-2); }
+  .tier-price strong { font-size: var(--step-h3); font-variant-numeric: tabular-nums; }
+  .tier-sub { font-size: var(--step-small); }
+  .tier-plus { margin-top: var(--space-2); font-weight: 600; font-size: var(--step-small); }
+  :global(.prose) .tier-list { display: grid; gap: var(--space-2); padding: 0; margin: var(--space-2) 0 0; list-style: none; }
+  .tier-list li { display: flex; gap: var(--space-2); align-items: flex-start; }
+  .tier-list svg { flex: none; margin-top: 0.4em; color: var(--accent); }
+
+  .soon { display: grid; gap: var(--space-2); margin-top: var(--space-8); padding: var(--space-5); border: 1px dashed var(--line); border-radius: var(--radius); }
+  :global(.prose) .soon h2 { margin: 0; }
+  .soon-badge {
+    justify-self: start; padding: 0.1rem 0.6rem; border-radius: var(--radius-pill);
+    background: var(--bg); color: var(--fg-muted); font-size: 0.75rem; font-weight: 600;
+  }
+
+  @media (min-width: 40rem) {
+    .tiers { grid-template-columns: 1fr 1fr; }
+  }
+</style>

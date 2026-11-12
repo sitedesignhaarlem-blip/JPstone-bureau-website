@@ -99,9 +99,12 @@ Het vergrootglas in het menu (`src/components/SiteSearch.astro`) geeft suggestie
 
 Bovenaan elke openbare pagina staat een smalle balk die vanzelf meegaat met het seizoen: oktober–januari "bestel vóór 1 februari, video's uiterlijk in maart", februari–april "het seizoen begint bijna", mei–augustus "geen draaidag nodig midden in het seizoen", september "ververs je video's". Teksten (7 talen): `src/i18n/season.ts`. Uitzetten: `SEASON_BANNER = false` in `src/data/season.ts`. Bezoekers kunnen hem wegklikken; hij komt terug bij de volgende seizoenstekst.
 
-## Vroegboekkorting
+## Prijzen en prijscalculator
 
-`src/data/promo.ts`: percentage en einddatum (nu 10% tot 1 januari 2027). De korting staat in de prijscalculator, op het bestelformulier en in de seizoensbalk, en wordt op de server berekend (de browser bepaalt niets). Na de einddatum stopt hij overal vanzelf; `percent: 0` zet hem meteen uit. De kortingsregel komt bovenaan de notitie van de bestelling, zodat jij, de klant en de bevestigingsmail hem zien. Let op: door de korting kan een bestelling onder € 1.000 zakken, dan betaalt de klant alles vooraf. Teksten (7 talen): `src/i18n/promo.ts`.
+Alle bedragen staan in één bestand: `src/data/pricing.config.ts` (Standard en Premium, staffel, bodemprijs, maandplannen, vroegboekkorting, btw, 50/50-grens, doorlooptijd). Pas je daar iets aan, dan volgen de prijspagina, de calculator, de prijstabellen, het bestelformulier en de structured data vanzelf. De rekenregels staan in `src/data/pricing.calc.ts` en worden getest met `npm test`. Teksten (7 talen): `src/i18n/pricing.ts`. De pagina zelf: `src/views/Pricing.astro`. De knop "gratis proefvideo" opent het contactformulier met de gekozen optie en prijs al ingevuld. Klikken in de calculator worden als Vercel Analytics-events geteld (alleen de gekozen opties, niets persoonlijks; custom events vragen een Pro-abonnement bij Vercel).
+
+
+`src/data/pricing.config.ts` (`earlyBird`): percentage en einddatum (nu 10% tot 1 januari 2027). De korting staat in de prijscalculator, op het bestelformulier en in de seizoensbalk, en wordt op de server berekend (de browser bepaalt niets). Na de einddatum stopt hij overal vanzelf; `percent: 0` zet hem meteen uit. De kortingsregel komt bovenaan de notitie van de bestelling, zodat jij, de klant en de bevestigingsmail hem zien. Let op: door de korting kan een bestelling onder € 1.000 zakken, dan betaalt de klant alles vooraf. Teksten (7 talen): `src/i18n/promo.ts`.
 
 ## Bestellen, klantportaal en betalen
 

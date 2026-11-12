@@ -75,6 +75,10 @@ const formAction = site.formEndpoint || `mailto:${site.email}?subject=${encodeUR
   // Messages come from data attributes, so they are in the page's language.
   const form = document.querySelector<HTMLFormElement>('[data-contact]');
   const status = form?.querySelector<HTMLElement>('[data-status]');
+  // Arriving from the price calculator: the chosen option and price are already in the message.
+  const preset = new URLSearchParams(window.location.search).get('message');
+  const textarea = form?.querySelector<HTMLTextAreaElement>('textarea[name="message"]');
+  if (preset && textarea && !textarea.value) textarea.value = preset.slice(0, 1000);
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form.reportValidity()) return;

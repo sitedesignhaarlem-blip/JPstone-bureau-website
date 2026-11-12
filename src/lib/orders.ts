@@ -1,10 +1,11 @@
 // Order rules shared by the order form, the portal and the admin pages. Payment is by bank transfer.
+import { PRICING } from '../data/pricing.config.ts';
 import { pricePerVideo } from '../data/pricing';
 
 /** Orders from this amount are paid 50% when ordering and 50% after delivery; below it, all before we start. */
-export const SPLIT_FROM_CENTS = 100_000;
+export const SPLIT_FROM_CENTS = PRICING.splitPaymentFrom * 100;
 /** More videos than this: we make a quote instead of an online order. */
-export const MAX_ONLINE_VIDEOS = 100;
+export const MAX_ONLINE_VIDEOS = PRICING.oneOff.maxVideos;
 
 export type OrderStatus = 'awaiting_payment' | 'in_production' | 'in_review' | 'delivered' | 'completed' | 'cancelled';
 export type PaymentKind = 'full' | 'deposit' | 'balance';

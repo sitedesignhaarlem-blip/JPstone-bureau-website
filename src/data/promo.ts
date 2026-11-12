@@ -1,10 +1,8 @@
-// Early-bird discount. Orders placed online before `until` (Dutch time) get `percent` off the total.
-// After that date it stops by itself everywhere: the order form, the price calculator and the season
-// message. Set percent to 0 to switch it off. The texts take the date and percentage from here.
-export const EARLY_BIRD = {
-  percent: 10,
-  until: '2027-01-01T00:00:00+01:00',
-};
+// Early-bird discount: the percentage and end date are in pricing.config.ts. Orders placed online
+// before that date get the discount; after it, it stops by itself everywhere.
+import { PRICING } from './pricing.config.ts';
+
+export const EARLY_BIRD = PRICING.earlyBird;
 
 export const earlyBirdActive = (now = Date.now()) => EARLY_BIRD.percent > 0 && now < Date.parse(EARLY_BIRD.until);
 

@@ -1,7 +1,7 @@
 // Structured data (JSON-LD, schema.org) for every page. Base.astro picks the blocks a page needs.
 // Only facts from the site go in here: no ratings, reviews or numbers that are not on the page.
 import { SITE_URL, site } from './site';
-import { MIN_PRICE, BASE_PRICE } from './pricing';
+import { PRICING } from './pricing.config';
 import { hreflang, locales, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
 
 const abs = (path: string) => new URL(path, SITE_URL).href;
@@ -72,13 +72,13 @@ export function service(lang: Locale, page?: { name: string; description: string
     offers: {
       '@type': 'AggregateOffer',
       priceCurrency: 'EUR',
-      lowPrice: MIN_PRICE,
-      highPrice: BASE_PRICE,
+      lowPrice: PRICING.oneOff.standard.floor,
+      highPrice: PRICING.oneOff.premium.base,
       priceSpecification: {
         '@type': 'UnitPriceSpecification',
         priceCurrency: 'EUR',
-        minPrice: MIN_PRICE,
-        maxPrice: BASE_PRICE,
+        minPrice: PRICING.oneOff.standard.floor,
+        maxPrice: PRICING.oneOff.premium.base,
         unitText: 'video',
         valueAddedTaxIncluded: true,
       },

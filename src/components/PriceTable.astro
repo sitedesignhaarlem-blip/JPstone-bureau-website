@@ -1,6 +1,7 @@
 ---
 // The full price ladder, built from the same function as the calculator on the home page.
-import { MIN_PRICE, STEP, pricePerVideo } from '../data/pricing';
+import { pricePerVideo } from '../data/pricing';
+import { PRICING } from '../data/pricing.config';
 import { htmlLang, useTranslations, type Locale } from '../i18n';
 
 interface Props {
@@ -9,11 +10,12 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang).landing;
 const money = new Intl.NumberFormat(htmlLang[lang], { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
-// One row per price step: 1–4, 5–9, … until the minimum price, which runs to 100 videos.
+// One row per price: a range of quantities that share the same price per video.
+const max = PRICING.oneOff.maxVideos;
 const rows: { from: number; to: number }[] = [];
-for (let from = 1; from <= 100; ) {
-  const price = pricePerVideo(from);
-  const to = price === MIN_PRICE ? 100 : Math.ceil((from + 1) / STEP) * STEP - 1;
+for (let from = 1; from <= max; ) {
+  let to = from;
+  while (to < max && pricePerVideo(to + 1) === pricePerVideo(from)) to++;
   rows.push({ from, to });
   from = to + 1;
 }

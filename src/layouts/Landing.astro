@@ -27,14 +27,16 @@ interface Props {
   /** Adds Service structured data. */
   service?: boolean;
   related?: PageId[];
+  /** Extra structured data for this page, such as offers. */
+  schema?: object[];
 }
-const { lang, page, title, description, eyebrow, h1, summary, faqTitle, faqItems = [], showFaq = true, service = false, related = [] } = Astro.props;
+const { lang, page, title, description, eyebrow, h1, summary, faqTitle, faqItems = [], showFaq = true, service = false, related = [], schema = [] } = Astro.props;
 const t = useTranslations(lang);
 const relatedLinks = related.filter((p) => hasPage(lang, p));
 const url = new URL(pagePath(lang, page), SITE_URL).href;
 const webPage = { '@type': 'WebPage', '@id': `${url}#webpage`, url, name: title, description, inLanguage: hreflang[lang], dateModified: CONTENT_UPDATED, isPartOf: { '@id': new URL('/#website', SITE_URL).href } };
 ---
-<Base title={title} description={description} lang={lang} page={page} service={service} faqItems={faqItems} schema={[webPage]}>
+<Base title={title} description={description} lang={lang} page={page} service={service} faqItems={faqItems} schema={[webPage, ...schema]}>
   <SiteNav lang={lang} page={page} />
   <main id="main">
     <header class="section landing-head">

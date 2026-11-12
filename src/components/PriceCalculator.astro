@@ -1,0 +1,271 @@
+---
+// Price calculator: Standard or Premium, one-off or monthly, and the number of videos. The first
+// state (Standard, one-off, 10 videos) is rendered on the server, so the prices are readable without
+// JavaScript; the script then keeps everything up to date with the same functions.
+import { htmlLang, pagePath, type Locale } from '../i18n';
+import { PRICING } from '../data/pricing.config';
+import { earlyBirdActive, nextStep, quote } from '../data/pricing.calc';
+import { earlyBirdDate } from '../data/promo';
+import { fillIn, pricingUI } from '../i18n/pricing';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const c = pricingUI[lang].calc;
+const names = { standard: pricingUI[lang].compare.standardName, premium: pricingUI[lang].compare.premiumName };
+const locale = htmlLang[lang];
+const money = (n: number) =>
+  new Intl.NumberFormat(locale, { style: 'currency', currency: PRICING.currency, minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 }).format(n);
+
+const START = 10;
+const q = quote('standard', 'oneoff', START, Date.now());
+const other = quote('premium', 'oneoff', START, Date.now());
+const early = earlyBirdActive(Date.now());
+const step = nextStep('standard', START);
+const max = PRICING.oneOff.maxVideos;
+// Everything the script needs, in this page's language. Numbers come from the config, not from here.
+const texts = { ...c, names, earlyTerms: fillIn(c.earlyTerms, { date: earlyBirdDate(locale) }), early: fillIn(c.early, { p: PRICING.earlyBird.percent }), planTerms: fillIn(c.planTerms, { n: PRICING.monthly.noticeMonths }), customText: fillIn(c.customText, { max }) };
+---
+<section class="pc" aria-labelledby="pc-title" data-pc data-locale={locale} data-texts={JSON.stringify(texts)}
+  data-contact={pagePath(lang, 'contact')} data-order-lang={lang === 'nl' ? 'nl' : 'en'}>
+  <h2 id="pc-title" class="pc-title">{c.title}</h2>
+  <div class="pc-grid">
+    <form class="pc-controls" data-pc-form>
+      <fieldset class="seg">
+        <legend>{c.tier}</legend>
+        <div class="seg-options">
+          <label><input type="radio" name="tier" value="standard" checked /><span>{names.standard}</span></label>
+          <label><input type="radio" name="tier" value="premium" /><span>{names.premium}</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="seg">
+        <legend>{c.billing}</legend>
+        <div class="seg-options">
+          <label><input type="radio" name="billing" value="oneoff" checked /><span>{c.oneOff}</span></label>
+          <label><input type="radio" name="billing" value="monthly" /><span>{c.monthly}</span></label>
+        </div>
+      </fieldset>
+      <div class="pc-qty" data-show="oneoff">
+        <div class="pc-qty-row">
+          <label for="pc-count">{c.quantity}</label>
+          <input id="pc-count" class="pc-number" type="number" name="count" min="1" max="999" step="1" inputmode="numeric" value={START} />
+        </div>
+        <input class="pc-range" type="range" name="range" min="1" max={max + 1} step="1" value={START} aria-label={c.quantity} aria-valuetext={fillIn(c.videos, { n: START })} />
+        <div class="pc-scale muted" aria-hidden="true"><span>1</span><span>{max}+</span></div>
+      </div>
+      <fieldset class="seg" data-show="monthly" hidden>
+        <legend>{c.perMonth}</legend>
+        <div class="seg-options">
+          {PRICING.monthly.sizes.map((s, i) => (
+            <label><input type="radio" name="size" value={s} checked={i === 0} /><span>{s}</span></label>
+          ))}
+        </div>
+      </fieldset>
+    </form>
+
+    <div class="pc-result">
+      <dl class="pc-lines">
+        <div class="pc-line" data-out-row="perVideo"><dt class="muted">{c.perVideo}</dt><dd data-out="perVideo">{money(q.perVideo)}</dd></div>
+        <div class="pc-line" data-out-row="subtotal" hidden={!early}><dt class="muted">{c.subtotal}</dt><dd data-out="subtotal">{money(q.subtotal)}</dd></div>
+        <div class="pc-line" data-out-row="earlyBird" hidden={!early}><dt class="muted">{texts.early}</dt><dd data-out="earlyBird">− {money(q.earlyBird)}</dd></div>
+        <div class="pc-line pc-total"><dt data-out="totalLabel">{c.total}</dt><dd data-out="total">{money(q.total)}</dd></div>
+      </dl>
+      <p class="pc-excl muted" data-out="excl">{fillIn(c.exclVat, { amount: money(q.totalExclVat) })}</p>
+      <p class="pc-hint" data-out="saved">{q.saved > 0 ? fillIn(c.saved, { amount: money(q.saved) }) : ''}</p>
+      <p class="pc-hint" data-out="nudge">{step ? fillIn(c.nudge, { count: step.count, price: money(step.perVideo) }) : ''}</p>
+      <ul class="pc-terms muted" role="list" data-out="terms">
+        {early && <li>{texts.earlyTerms}</li>}
+        <li>{q.split ? c.paySplit : c.payFull}</li>
+      </ul>
+      <p class="pc-other"><span class="muted" data-out="otherLabel">{fillIn(c.other, { tier: names.premium })}</span> <strong data-out="other">{money(other.total)}</strong></p>
+      <div class="pc-cta">
+        <a class="button" data-out="cta" href={`${pagePath(lang, 'contact')}?message=${encodeURIComponent(fillIn(c.message, { tier: names.standard, billing: c.oneOff, count: fillIn(c.videos, { n: START }), total: money(q.total) }))}`}>{c.cta}</a>
+        <p class="pc-note muted" data-out="note">{fillIn(c.ctaNote, { r: PRICING.tiers.standard.revisions })}</p>
+        <a class="link-more pc-order" data-out="order" href={`/order/?videos=${START}&lang=${lang === 'nl' ? 'nl' : 'en'}`}>{c.order}</a>
+      </div>
+      <p class="visually-hidden" aria-live="polite" data-out="live"></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { track } from '@vercel/analytics';
+  import { PRICING, type Billing, type Tier } from '../data/pricing.config';
+  import { clampCount, earlyBirdActive, nextStep, quote } from '../data/pricing.calc';
+
+  const root = document.querySelector<HTMLElement>('[data-pc]');
+  if (root) {
+    const t = JSON.parse(root.dataset.texts ?? '{}');
+    const form = root.querySelector<HTMLFormElement>('[data-pc-form]')!;
+    const number = form.elements.namedItem('count') as HTMLInputElement;
+    const range = form.elements.namedItem('range') as HTMLInputElement;
+    const out = (k: string) => root.querySelector<HTMLElement>(`[data-out="${k}"]`)!;
+    const row = (k: string) => root.querySelector<HTMLElement>(`[data-out-row="${k}"]`)!;
+    const fill = (s: string, v: Record<string, string | number>) => s.replace(/\{(\w+)\}/g, (m, k) => (k in v ? String(v[k]) : m));
+    const money = (n: number) => new Intl.NumberFormat(root.dataset.locale, {
+      style: 'currency', currency: PRICING.currency, minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2,
+    }).format(n);
+    const max = PRICING.oneOff.maxVideos;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    // Only the values that change get a short fade, so the eye goes to them.
+    const set = (el: HTMLElement, text: string) => {
+      if (el.textContent === text) return;
+      el.textContent = text;
+      if (reduce.matches) return;
+      el.classList.remove('pc-tick');
+      void el.offsetWidth;
+      el.classList.add('pc-tick');
+    };
+
+    const state = () => {
+      const data = new FormData(form);
+      const tier = (data.get('tier') === 'premium' ? 'premium' : 'standard') as Tier;
+      const billing = (data.get('billing') === 'monthly' ? 'monthly' : 'oneoff') as Billing;
+      const count = billing === 'monthly' ? Number(data.get('size')) : clampCount(number.value, 999);
+      return { tier, billing, count };
+    };
+
+    let liveTimer = 0;
+    const render = () => {
+      const { tier, billing, count } = state();
+      const now = Date.now();
+      const q = quote(tier, billing, count, now);
+      const otherTier: Tier = tier === 'standard' ? 'premium' : 'standard';
+      const o = quote(otherTier, billing, count, now);
+      const monthly = billing === 'monthly';
+      const early = !monthly && !q.custom && earlyBirdActive(now);
+
+      root.querySelectorAll<HTMLElement>('[data-show]').forEach((el) => { el.hidden = el.dataset.show !== billing; });
+      row('perVideo').hidden = q.custom;
+      set(out('perVideo'), money(q.perVideo));
+      row('subtotal').hidden = !early;
+      row('earlyBird').hidden = !early;
+      set(out('subtotal'), money(q.subtotal));
+      set(out('earlyBird'), '− ' + money(q.earlyBird));
+      out('totalLabel').textContent = monthly ? t.totalMonth : t.total;
+      set(out('total'), q.custom ? t.custom : money(q.total));
+      out('excl').textContent = q.custom ? '' : fill(t.exclVat, { amount: money(q.totalExclVat) });
+      out('saved').textContent = q.saved > 0 ? fill(t.saved, { amount: money(q.saved) }) : '';
+      const step = monthly || q.custom ? null : nextStep(tier, count);
+      out('nudge').textContent = step ? fill(t.nudge, { count: step.count, price: money(step.perVideo) }) : '';
+
+      const terms: string[] = [];
+      if (q.custom) terms.push(t.customText);
+      else if (monthly) terms.push(t.planTerms, t.noRollover, fill(t.extra, { price: money(q.perVideo) }));
+      else {
+        if (early) terms.push(t.earlyTerms);
+        terms.push(q.split ? t.paySplit : t.payFull);
+      }
+      out('terms').replaceChildren(...terms.map((s) => Object.assign(document.createElement('li'), { textContent: s })));
+
+      out('otherLabel').textContent = fill(t.other, { tier: t.names[otherTier] });
+      set(out('other'), o.custom ? t.custom : money(o.total));
+
+      const countText = monthly ? fill(t.videosMonth, { n: q.count }) : q.count === 1 ? t.videos1 : fill(t.videos, { n: q.count });
+      const total = q.custom ? t.custom : money(q.total);
+      const message = fill(t.message, { tier: t.names[tier], billing: monthly ? t.monthly : t.oneOff, count: countText, total });
+      (out('cta') as HTMLAnchorElement).href = `${root.dataset.contact}?message=${encodeURIComponent(message)}`;
+      out('note').textContent = fill(t.ctaNote, { r: PRICING.tiers[tier].revisions });
+      // Online ordering covers Standard one-off orders; the rest goes through a quote.
+      const order = out('order') as HTMLAnchorElement;
+      order.hidden = tier !== 'standard' || monthly || q.custom;
+      order.href = `/order/?videos=${q.count}&lang=${root.dataset.orderLang}`;
+
+      range.setAttribute('aria-valuetext', count > max ? `${max}+` : fill(t.videos, { n: count }));
+      clearTimeout(liveTimer);
+      liveTimer = window.setTimeout(() => { out('live').textContent = `${countText}: ${total}`; }, 600);
+    };
+
+    // The slider and the number field follow each other; the slider's last step means "more than the maximum".
+    number.addEventListener('input', () => {
+      if (number.value === '') return;
+      range.value = String(Math.min(clampCount(number.value, 999), max + 1));
+      render();
+    });
+    number.addEventListener('change', () => { number.value = String(clampCount(number.value, 999)); render(); });
+    range.addEventListener('input', () => { number.value = range.value; render(); });
+
+    // Analytics: only which options people pick, never anything personal.
+    let countTimer = 0;
+    form.addEventListener('change', (e) => {
+      const el = e.target as HTMLInputElement;
+      if (el.name === 'tier') track('Pricing tier changed', { tier: el.value });
+      if (el.name === 'billing') track('Pricing billing changed', { billing: el.value });
+      render();
+    });
+    form.addEventListener('input', (e) => {
+      const name = (e.target as HTMLInputElement).name;
+      if (name !== 'count' && name !== 'range' && name !== 'size') return;
+      clearTimeout(countTimer);
+      countTimer = window.setTimeout(() => {
+        const s = state();
+        track('Pricing quantity changed', { billing: s.billing, count: s.count });
+      }, 1000);
+    });
+    form.addEventListener('submit', (e) => e.preventDefault());
+    out('cta').addEventListener('click', () => {
+      const s = state();
+      track('Pricing CTA clicked', { tier: s.tier, billing: s.billing, count: s.count });
+    });
+    render();
+  }
+</script>
+
+<style>
+  .pc { display: grid; gap: var(--space-5); margin: var(--space-8) 0; }
+  :global(.prose) .pc-title { margin: 0; }
+  .pc-grid { display: grid; gap: var(--space-5); }
+  .pc-controls, .pc-result { display: grid; gap: var(--space-5); align-content: start; padding: var(--space-5); background: var(--bg); border-radius: var(--radius); min-width: 0; }
+
+  .seg { border: 0; padding: 0; margin: 0; min-width: 0; }
+  .seg legend { font-weight: 600; margin-bottom: var(--space-2); padding: 0; }
+  .seg-options { display: flex; padding: 3px; border-radius: var(--radius-pill); background: var(--bg-alt); }
+  .seg label { flex: 1; position: relative; }
+  .seg input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+  .seg span {
+    display: block; padding: var(--space-2) var(--space-3); border-radius: var(--radius-pill); text-align: center;
+    font-size: var(--step-small); font-weight: 600; color: var(--fg-muted); transition: background-color var(--dur, 0.2s), color var(--dur, 0.2s);
+  }
+  .seg input:checked + span { background: var(--bg); color: var(--fg); box-shadow: 0 1px 3px rgb(0 0 0 / 0.12); }
+  .seg input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .pc-qty { display: grid; gap: var(--space-2); }
+  .pc-qty[hidden], .seg[hidden] { display: none; }
+  .pc-qty-row { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); font-weight: 600; }
+  .pc-number {
+    width: 5.5rem; padding: var(--space-2) var(--space-3); border: 1px solid var(--line); border-radius: 10px;
+    background: var(--bg); color: var(--fg); font: inherit; font-size: var(--step-lead); text-align: right; font-variant-numeric: tabular-nums;
+  }
+  .pc-range { width: 100%; accent-color: var(--accent); min-height: 2.75rem; margin: 0; }
+  .pc-scale { display: flex; justify-content: space-between; font-size: var(--step-small); font-variant-numeric: tabular-nums; }
+
+  .pc-lines { display: grid; gap: var(--space-2); margin: 0; }
+  .pc-line { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); }
+  .pc-line[hidden] { display: none; }
+  .pc-line dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
+  .pc-total { padding-top: var(--space-3); margin-top: var(--space-1); border-top: 1px solid var(--line); font-size: var(--step-lead); font-weight: 600; }
+  .pc-total dd { font-size: var(--step-h3); line-height: 1.1; }
+  .pc-excl { margin-top: calc(-1 * var(--space-4)); text-align: right; font-size: var(--step-small); font-variant-numeric: tabular-nums; }
+  .pc-excl:empty { display: none; }
+  .pc-hint { color: var(--accent); font-weight: 600; font-size: var(--step-small); }
+  .pc-hint:empty { display: none; }
+  .pc-hint + .pc-hint { margin-top: calc(-1 * var(--space-3)); }
+  :global(.prose) .pc-terms { display: grid; gap: var(--space-1); padding: 0; margin: 0; list-style: none; font-size: var(--step-small); }
+  .pc-other { padding-top: var(--space-3); border-top: 1px solid var(--line); font-size: var(--step-small); }
+  .pc-other strong { font-variant-numeric: tabular-nums; }
+  .pc-cta { display: grid; gap: var(--space-3); justify-items: start; }
+  .pc-cta .button { justify-content: center; }
+  .pc-note { font-size: var(--step-small); }
+  .pc-order[hidden] { display: none; }
+
+  .pc-tick { animation: pc-tick 0.28s var(--ease, ease-out); }
+  @keyframes pc-tick { from { opacity: 0.35; transform: translateY(2px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .pc-tick { animation: none; } .seg span { transition: none; } }
+
+  @media (min-width: 44rem) {
+    .pc-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: start; }
+    .pc-result { position: sticky; top: calc(var(--space-6) + 3.5rem); }
+  }
+</style>
