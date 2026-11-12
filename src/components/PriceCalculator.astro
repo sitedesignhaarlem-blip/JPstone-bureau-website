@@ -215,7 +215,7 @@ const texts = { ...c, names, earlyTerms: fillIn(c.earlyTerms, { date: earlyBirdD
 
 <style>
   .pc { display: grid; gap: var(--space-5); margin: var(--space-8) 0; }
-  :global(.prose) .pc-title { margin: 0; }
+  .pc .pc-title { margin: 0; font-size: var(--step-h3); line-height: 1.15; }
   .pc-grid { display: grid; gap: var(--space-5); }
   .pc-controls, .pc-result { display: grid; gap: var(--space-5); align-content: start; padding: var(--space-5); background: var(--bg); border-radius: var(--radius); min-width: 0; }
 
@@ -252,7 +252,7 @@ const texts = { ...c, names, earlyTerms: fillIn(c.earlyTerms, { date: earlyBirdD
   .pc-hint { color: var(--accent); font-weight: 600; font-size: var(--step-small); }
   .pc-hint:empty { display: none; }
   .pc-hint + .pc-hint { margin-top: calc(-1 * var(--space-3)); }
-  :global(.prose) .pc-terms { display: grid; gap: var(--space-1); padding: 0; margin: 0; list-style: none; font-size: var(--step-small); }
+  .pc .pc-terms { display: grid; gap: var(--space-1); padding: 0; margin: 0; list-style: none; font-size: var(--step-small); }
   .pc-other { padding-top: var(--space-3); border-top: 1px solid var(--line); font-size: var(--step-small); }
   .pc-other strong { font-variant-numeric: tabular-nums; }
   .pc-cta { display: grid; gap: var(--space-3); justify-items: start; }
