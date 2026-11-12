@@ -1,4 +1,5 @@
 ---
+import WhatsAppIcon from './WhatsAppIcon.astro';
 import LogoMark from './LogoMark.astro';
 import { site } from '../data/site';
 import { hasPage, pagePath, useTranslations, type Locale, type PageId } from '../i18n';
@@ -12,6 +13,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const year = new Date().getFullYear();
+const waHref = `${site.whatsapp}?text=${encodeURIComponent(t.contact.waHello)}`;
 const services = (['yacht', 'hotel', 'rental', 'aiVideo', 'versus', 'pricing', 'faq'] as PageId[]).filter((p) => hasPage(lang, p));
 ---
 <footer class="footer">
@@ -24,7 +26,7 @@ const services = (['yacht', 'hotel', 'rental', 'aiVideo', 'versus', 'pricing', '
     <ul class="footer-list" role="list">
       <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
       <li><a href={`tel:${site.phoneE164}`}>{site.phoneDisplay}</a></li>
-      <li><a href={site.whatsapp} rel="noopener">WhatsApp</a></li>
+      <li><a class="footer-wa" href={waHref} rel="noopener"><WhatsAppIcon size={16} />WhatsApp</a></li>
       <li><a href={`/order/?lang=${portalLangFor(lang)}`} rel="nofollow">{accountUI[lang].order}</a></li>
       <li><a href={`/account/login/?lang=${portalLangFor(lang)}`} rel="nofollow">{accountUI[lang].nav}</a></li>
     </ul>
@@ -49,10 +51,26 @@ const services = (['yacht', 'hotel', 'rental', 'aiVideo', 'versus', 'pricing', '
       {t.footer.ai} {t.footer.font} <a href="/fonts/OFL.txt">SIL Open Font License</a>.
     </p>
   </div>
+  {site.whatsappButton && (
+    <a class="wa-float" href={waHref} rel="noopener" aria-label={t.contact.waFloat} title={t.contact.waFloat}><WhatsAppIcon size={28} /></a>
+  )}
 </footer>
 
 <style>
-  .footer { background: var(--bg-alt); border-top: 1px solid var(--line); font-size: var(--step-small); }
+  .footer-wa { display: inline-flex; align-items: center; gap: 0.4rem; }
+  .footer-wa :global(.wa-icon) { color: #25d366; }
+  /* Small round WhatsApp button, bottom right on every public page. Off: whatsappButton in src/data/site.ts. */
+  .wa-float {
+    position: fixed; z-index: 40; right: max(1rem, env(safe-area-inset-right)); bottom: max(1rem, env(safe-area-inset-bottom));
+    display: grid; place-items: center; width: 3.25rem; height: 3.25rem; border-radius: 50%;
+    background: #25d366; color: #fff; box-shadow: 0 4px 14px rgb(0 0 0 / 0.22); transition: transform var(--dur) var(--ease);
+  }
+  .wa-float:hover { transform: scale(1.06); text-decoration: none; }
+  .wa-float:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { .wa-float { transition: none; } .wa-float:hover { transform: none; } }
+  @media print { .wa-float { display: none; } }
+  /* Room at the bottom so the round WhatsApp button never covers the last line. */
+  .footer { background: var(--bg-alt); border-top: 1px solid var(--line); font-size: var(--step-small); padding-bottom: 4.5rem; }
   .footer-inner { display: grid; gap: var(--space-5); padding-block: var(--space-7); }
   .footer-name { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; }
   .footer-list { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); padding: 0; margin: 0; list-style: none; }

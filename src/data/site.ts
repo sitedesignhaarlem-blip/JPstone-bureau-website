@@ -15,6 +15,8 @@ export const site = {
   phoneDisplay: '+31 6 57 24 96 07',
   phoneE164: '+31657249607',
   whatsapp: 'https://wa.me/31657249607',
+  // Small round WhatsApp button at the bottom right of every public page. false hides it.
+  whatsappButton: true,
   // TODO: e.g. https://formspree.io/f/xxxxxxx. Until set, the form opens the visitor's mail app instead.
   formEndpoint: '',
   // Bank account for payments by bank transfer, shown on the order confirmation and in the client

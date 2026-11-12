@@ -1,5 +1,6 @@
 ---
 import LogoMark from '../../components/LogoMark.astro';
+import WhatsAppIcon from '../../components/WhatsAppIcon.astro';
 // A personal page for one prospect: their own sample video, the before/after with their photo,
 // and one clear next step. Entries live in src/data/prospects.ts.
 import Base from '../../layouts/Base.astro';
@@ -56,7 +57,7 @@ const title = `${fill(t.prospect.eyebrow)} · ${site.name}`;
         <p class="lead">{t.prospect.price}</p>
         <div class="p-actions">
           <a class="button" href={mail}>{t.prospect.cta}</a>
-          <a class="button button--secondary" href={whatsapp} rel="noopener">{t.prospect.whatsapp}</a>
+          <a class="button button--secondary p-wa" href={whatsapp} rel="noopener"><WhatsAppIcon />{t.prospect.whatsapp}</a>
         </div>
         <p class="muted p-contact">{site.email} · {site.phoneDisplay}</p>
       </div>
@@ -75,6 +76,7 @@ const title = `${fill(t.prospect.eyebrow)} · ${site.name}`;
 </script>
 
 <style>
+  .p-wa { gap: var(--space-2); }
   .p-head { border-bottom: 1px solid var(--line); background: var(--bg); }
   .p-head-inner { display: flex; align-items: center; min-height: 3rem; }
   .p-brand { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--fg); font-weight: 600; font-size: 0.875rem; text-decoration: none; }
