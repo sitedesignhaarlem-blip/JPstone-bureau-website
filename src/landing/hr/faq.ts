@@ -20,7 +20,7 @@ export const q = {
   },
   fleet: {
     q: 'Možete li izraditi videe za cijelu flotu?',
-    a: 'Da. Svaka jahta dobiva vlastiti video u istom mirnom stilu, tako da flota na vašoj web-stranici izgleda ujednačeno. Izrađujemo do 2 videa dnevno, a datum isporuke dogovaramo u ponudi.',
+    a: 'Da. Svaka jahta dobiva vlastiti video u istom mirnom stilu, tako da flota na vašoj web-stranici izgleda ujednačeno. Isporuka traje otprilike 3 tjedna, a Premium videi imaju prednost.',
   },
   roomTypes: {
     q: 'Jedan video za cijeli hotel ili jedan po tipu sobe?',
@@ -48,11 +48,11 @@ export const q = {
   },
   volume: {
     q: 'Kako funkcionira cijena prema količini?',
-    a: 'Jedan video stoji 100 €. Od 5 videa cijena po videu je 95 €, a svakih 5 videa pada za 5 €, sve do 50 € po videu. Za više od 100 videa izrađujemo ponudu.',
+    a: 'Standard video stoji 95 €. Od 10 videa cijena svakih 5 videa pada za 5 €, sve do 50 € po videu. Premium video stoji 149 €, sve do 100 €. Za više od 100 videa izrađujemo ponudu.',
   },
   platforms: {
     q: "Mogu li video koristiti na Airbnbu ili Booking.comu?",
-    a: "Platforme se razlikuju po tome dopuštaju li prijenos videa i gdje, a njihova se pravila mijenjaju, pa provjerite što dopušta vaš oglas. Video uvijek možete koristiti na vlastitoj web-stranici i društvenim mrežama te na svakoj platformi koja dopušta video. Dobivate MP4 datoteke u formatima 16:9 i 9:16.",
+    a: "Platforme se razlikuju po tome dopuštaju li prijenos videa i gdje, a njihova se pravila mijenjaju, pa provjerite što dopušta vaš oglas. Video uvijek možete koristiti na vlastitoj web-stranici i društvenim mrežama te na svakoj platformi koja dopušta video. Dobivate MP4 datoteke u formatu 16:9, a uz Premium i 9:16.",
   },
   units: {
     q: "Imam nekoliko apartmana u istoj zgradi. Kako se to naplaćuje?",

@@ -20,7 +20,7 @@ export const q = {
   },
   fleet: {
     q: 'Podem fazer vídeos para uma frota inteira?',
-    a: 'Sim. Cada iate recebe o seu próprio vídeo, com o mesmo estilo calmo, para que a frota pareça coerente no seu site. Fazemos até 2 vídeos por dia, e a data de entrega é acordada no orçamento.',
+    a: 'Sim. Cada iate recebe o seu próprio vídeo, com o mesmo estilo calmo, para que a frota pareça coerente no seu site. A entrega demora cerca de 3 semanas, e os vídeos Premium têm prioridade.',
   },
   roomTypes: {
     q: 'Um vídeo do hotel inteiro ou um por tipo de quarto?',
@@ -48,11 +48,11 @@ export const q = {
   },
   volume: {
     q: 'Como funciona o preço por volume?',
-    a: 'Um único vídeo custa 100 €. A partir de 5 vídeos, o preço por vídeo é de 95 € e desce 5 € a cada 5 vídeos, até um mínimo de 50 € por vídeo. Mais de 100 vídeos: preparamos um orçamento.',
+    a: 'Um vídeo Standard custa 95 €. A partir de 10 vídeos, o preço por vídeo desce 5 € a cada 5 vídeos, até um mínimo de 50 €. Um vídeo Premium custa 149 €, até um mínimo de 100 €. Mais de 100 vídeos: preparamos um orçamento.',
   },
   platforms: {
     q: 'Posso usar o vídeo no Airbnb ou no Booking.com?',
-    a: 'Cada plataforma decide se é possível carregar um vídeo e onde, e as regras mudam, por isso confirme o que o seu próprio anúncio permite. Pode sempre usar o vídeo no seu site, nas redes sociais e em qualquer plataforma que aceite vídeo. Recebe ficheiros MP4 em 16:9 e 9:16.',
+    a: 'Cada plataforma decide se é possível carregar um vídeo e onde, e as regras mudam, por isso confirme o que o seu próprio anúncio permite. Pode sempre usar o vídeo no seu site, nas redes sociais e em qualquer plataforma que aceite vídeo. Recebe ficheiros MP4 em 16:9, e também em 9:16 com o Premium.',
   },
   units: {
     q: 'Tenho vários apartamentos no mesmo edifício. Como é cobrado?',

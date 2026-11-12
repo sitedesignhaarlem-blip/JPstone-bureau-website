@@ -4,7 +4,7 @@ import type { UI } from './en';
 const nl: UI = {
   meta: {
     homeTitle: "Still to Film · Walkthrough-video's van je listingfoto's",
-    homeDesc: "We maken van de foto's op je jacht- of hotellisting een rustige walkthrough-video van 60 tot 90 seconden. Geen draaidag, geen software, door een mens gecheckt.",
+    homeDesc: "We maken van de foto's op je jacht- of hotellisting een rustige walkthrough-video van 35 tot 55 seconden. Geen draaidag, geen software, door een mens gecheckt.",
     libraryTitle: 'Bibliotheek · Still to Film',
     libraryDesc: "Southern Cross: zes clips van een motorcatamaran, met AI gemaakt van de bestaande listingfoto's.",
     howTitle: 'Werkwijze · Still to Film',
@@ -34,7 +34,7 @@ const nl: UI = {
     s1Title: "Je stuurt foto's",
     s1Text: "Een link naar je listing is genoeg. Hoe scherper je foto's, hoe mooier de film.",
     s2Title: 'Wij maken de film',
-    s2Text: "Met AI, op basis van jouw foto's, en gecontroleerd door een mens. 60 tot 90 seconden, in 16:9 voor je site en 9:16 voor social.",
+    s2Text: "Met AI, op basis van jouw foto's, en gecontroleerd door een mens. Ongeveer 35 seconden in 16:9 voor je site, of met Premium 55 seconden plus een 9:16-versie voor social.",
     s3Title: 'Jij geeft feedback',
     s3Text: 'Wil je iets anders? Zeg wat, dan passen we het aan. Revisies zitten erbij.',
     s4Title: 'Jij publiceert',
@@ -123,28 +123,19 @@ const nl: UI = {
   },
   packages: {
     title: 'Pakketten.',
-    lead: 'Elke opdracht krijgt vooraf een vaste offerte. Prijzen zijn inclusief btw.',
-    price: '€100',
-    perVideo: 'per video',
-    from: 'vanaf',
-    items: [
-      { name: 'Los', for: 'Eén jacht of één kamertype.', includes: 'Eén video in 16:9 en 9:16, 60 tot 90 seconden.' },
-      { name: 'Vloot', for: 'Meerdere jachten, of een heel hotel.', includes: "Zoveel video's als je nodig hebt, in één vaste stijl, beide formaten." },
-      { name: 'Doorlopend', for: 'Elk seizoen nieuwe listings.', includes: "Tot 100 video's per maand, beide formaten, per maand opzegbaar." },
-    ],
-    note: 'Twijfel je welke past? Begin met de gratis proefvideo: een korte preview van 15 tot 25 seconden.',
+    lead: 'Standard of Premium, eenmalig of met een maandplan. Alle prijzen inclusief btw.',
   },
   faq: {
     title: 'Vragen.',
     items: [
       { q: 'Van wie is de video?', a: 'Na betaling gebruik je hem onbeperkt voor je eigen marketing: je website, listings, social media en advertenties. Alleen doorverkopen als losse video mag niet.' },
-      { q: 'Hoe snel heb ik hem?', a: "De levertijd staat in je offerte. We maken tot 2 video's per dag, en spreken de leverdatum altijd vooraf met je af. De gratis proefvideo komt meestal eerst, zodat je kunt oordelen voordat je iets vastlegt." },
-      { q: 'Hoeveel revisies zitten erin?', a: '2 rondes per video. Een revisie is een aanpassing met dezelfde foto’s en dezelfde opzet. Nieuwe foto’s of een nieuwe opzet tellen als een nieuwe video.' },
-      { q: 'Welke formaten krijg ik?', a: "Een video duurt 60 tot 90 seconden. 16:9 voor je website en listingplatforms, en 9:16 voor Instagram, TikTok en Reels. Je krijgt mp4-bestanden, klaar om te uploaden." },
+      { q: 'Hoe snel heb ik hem?', a: "Ongeveer 3 weken van bestelling tot oplevering. Premium-video's krijgen voorrang in de productie. De gratis proefvideo komt eerst, zodat je kunt oordelen voordat je iets vastlegt." },
+      { q: 'Hoeveel revisies zitten erin?', a: "Standard heeft 2 rondes per video, Premium 3. Een revisie is een aanpassing met dezelfde foto’s en dezelfde opzet. Nieuwe foto’s of een nieuwe opzet tellen als een nieuwe video." },
+      { q: 'Welke formaten krijg ik?', a: "Standard duurt ongeveer 35 seconden, in 16:9 voor je website en listingplatforms. Premium duurt ongeveer 55 seconden en krijg je ook in 9:16 voor Instagram, TikTok en Reels. Je krijgt mp4-bestanden, klaar om te uploaden." },
       { q: "Welke foto's hebben jullie nodig?", a: "De foto's van je listing zijn genoeg. Hoe hoger de kwaliteit van de foto's, hoe hoger de kwaliteit van de film: scherp, goed belicht en in hoge resolutie werkt het best. Heb je de originele bestanden van je fotograaf, stuur die dan mee." },
       { q: "Is dit gemaakt met AI?", a: "Ja. Software maakt van je foto’s camerabewegingen. Daarna bekijkt een mens elke video helemaal voor oplevering, zodat hij laat zien wat op je foto’s staat en niets wat er niet is." },
       { q: "Heb ik zelf kennis of software nodig?", a: "Nee. Je stuurt een link naar je listing of de foto’s, en wij doen de rest. Je hoeft geen tool te leren, geen prompts te schrijven en geen account aan te maken." },
-      { q: 'Wat zit er in de gratis proefvideo?', a: 'Een korte preview van 15 tot 25 seconden, met een paar shots van je eigen listingfoto’s. Zo zie je wat je foto’s kunnen worden; de volledige video duurt 60 tot 90 seconden. Vrijblijvend en zonder factuur. Een link naar je listing is genoeg.' },
+      { q: 'Wat zit er in de gratis proefvideo?', a: 'Een korte preview van 15 tot 25 seconden, met een paar shots van je eigen listingfoto’s. Zo zie je wat je foto’s kunnen worden; de volledige video duurt 35 tot 55 seconden. Vrijblijvend en zonder factuur. Een link naar je listing is genoeg.' },
     ],
   },
   promise: {
@@ -184,15 +175,7 @@ const nl: UI = {
   vertical: {
     eyebrow: "Twee formaten",
     title: "Liggend en staand.",
-    lead: "Elke video krijg je in twee formaten: 16:9 voor je website en listings, 9:16 voor Reels, TikTok en Stories. Zit in elk pakket.",
-  },
-  calc: {
-    title: 'Wat kost het?',
-    label: "Aantal video's",
-    total: 'Totaal',
-    perVideo: 'Prijs per video',
-    note: "Inclusief btw. Beide formaten en 2 revisies inbegrepen. Per 5 video's gaat de prijs per video €5 omlaag, tot minimaal €50.",
-    more: "Meer dan 100 video's? Dan maken we een offerte.",
+    lead: "Met Premium krijg je beide formaten: 16:9 voor je website en listings, 9:16 voor Reels, TikTok en Stories. Standard is 16:9.",
   },
   booking: {
     title: 'Liever eerst even praten?',
@@ -203,10 +186,10 @@ const nl: UI = {
   prospect: {
     eyebrow: 'Gemaakt voor {company}',
     title: 'Dit is {listing}, als film.',
-    lead: "We maakten deze korte preview van de foto's die al op je listing staan. Geen draaidag, geen bezoek. Gratis en vrijblijvend. Een volledige video duurt 60 tot 90 seconden.",
+    lead: "We maakten deze korte preview van de foto's die al op je listing staan. Geen draaidag, geen bezoek. Gratis en vrijblijvend. Een volledige video duurt 35 tot 55 seconden.",
     cta: 'Ja, dit wil ik voor mijn hele vloot',
     whatsapp: 'Stel een vraag via WhatsApp',
-    price: 'Vanaf €100 per video. Beide formaten en 2 revisies inbegrepen.',
+    price: "Vanaf €95 per video, 2 revisies inbegrepen. Premium voegt 9:16 en een derde revisie toe.",
     waMessage: 'Hoi, ik zag de proefvideo voor {company}. Ik wil graag meer weten.',
     mailSubject: 'Proefvideo voor {company}',
   },

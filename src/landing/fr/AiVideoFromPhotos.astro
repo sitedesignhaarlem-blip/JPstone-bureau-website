@@ -13,7 +13,7 @@ const faq = [q.ai, q.limits, q.skills, q.photos];
   description="Comment l’IA transforme des photos d’annonce en vidéo de visite, son prix, ses limites, et comment une vérification humaine la garde fidèle à vos photos."
   eyebrow="Explications"
   h1="Vidéo IA à partir de photos d’annonce : méthode, prix et limites"
-  summary="La vidéo IA à partir de photos utilise un logiciel pour ajouter des mouvements de caméra et des images intermédiaires à des photos fixes, si bien qu’une série de photos d’annonce devient un court film de visite. Still to Film le fait pour vous : vous envoyez les photos, nous réalisons une vidéo de 60 à 90 secondes, et une personne vérifie chaque vidéo avant la livraison."
+  summary="La vidéo IA à partir de photos utilise un logiciel pour ajouter des mouvements de caméra et des images intermédiaires à des photos fixes, si bien qu’une série de photos d’annonce devient un court film de visite. Still to Film le fait pour vous : vous envoyez les photos, nous réalisons une vidéo de 35 à 55 secondes, et une personne vérifie chaque vidéo avant la livraison."
   faqTitle="Questions sur la vidéo IA"
   faqItems={faq}
   service
@@ -28,7 +28,7 @@ const faq = [q.ai, q.limits, q.skills, q.photos];
     <li><strong>Le choix des photos.</strong> Toutes les photos ne fonctionnent pas en mouvement. Nous choisissons celles qui sont nettes et montrent bien les lieux, et nous décidons de l’ordre de la visite.</li>
     <li><strong>Le choix des mouvements.</strong> Pour chaque photo, nous choisissons un mouvement de caméra adapté : lent et régulier, jamais rapide ni étourdissant.</li>
     <li><strong>La génération des clips.</strong> L’IA transforme chaque photo en un court clip. Certains essais ne sont pas justes ; nous les écartons et les refaisons.</li>
-    <li><strong>Le montage.</strong> Nous assemblons les clips en un film de 60 à 90 secondes, en 16:9 et 9:16.</li>
+    <li><strong>Le montage.</strong> Nous assemblons les clips en un film de 35 à 55 secondes, en 16:9 (et 9:16 en Premium).</li>
     <li><strong>La vérification.</strong> Une personne regarde toute la vidéo avant que vous la voyiez (voir plus bas).</li>
   </ol>
 
@@ -42,8 +42,8 @@ const faq = [q.ai, q.limits, q.skills, q.photos];
         <tr><td data-label="Sujet">Choix des photos et des mouvements</td><td data-label="Outil en libre-service">Vous</td><td data-label="Still to Film">Nous</td></tr>
         <tr><td data-label="Sujet">Essais ratés</td><td data-label="Outil en libre-service">Vous les repérez et recommencez</td><td data-label="Still to Film">Nous les écartons avant que vous voyiez quoi que ce soit</td></tr>
         <tr><td data-label="Sujet">Contrôle qualité</td><td data-label="Outil en libre-service">À vous de le faire</td><td data-label="Still to Film">Une personne regarde chaque vidéo en entier</td></tr>
-        <tr><td data-label="Sujet">Formats</td><td data-label="Outil en libre-service">Selon l’outil</td><td data-label="Still to Film">16:9 et 9:16, les deux inclus</td></tr>
-        <tr><td data-label="Sujet">Modifications</td><td data-label="Outil en libre-service">Vous refaites tout vous-même</td><td data-label="Still to Film">Deux séries de révisions incluses</td></tr>
+        <tr><td data-label="Sujet">Formats</td><td data-label="Outil en libre-service">Selon l’outil</td><td data-label="Still to Film">16:9, et 9:16 en Premium</td></tr>
+        <tr><td data-label="Sujet">Modifications</td><td data-label="Outil en libre-service">Vous refaites tout vous-même</td><td data-label="Still to Film">Deux séries de révisions incluses, trois en Premium</td></tr>
       </tbody>
     </table>
   </div>
@@ -57,11 +57,11 @@ const faq = [q.ai, q.limits, q.skills, q.photos];
   </ul>
 
   <h2>Comment se passe la vérification ?</h2>
-  <p>Avant la livraison, une personne regarde chaque vidéo du début à la fin et la compare aux photos. Nous cherchons tout ce qui ne correspond pas : des détails qui changent de forme, des lignes qui se courbent, des objets qui apparaissent ou disparaissent, un mouvement qui ne semble pas naturel. Si quelque chose ne va pas, nous refaisons le clip ou le retirons. Ce n’est qu’ensuite que vous voyez la vidéo, et vous avez toujours deux séries de révisions.</p>
+  <p>Avant la livraison, une personne regarde chaque vidéo du début à la fin et la compare aux photos. Nous cherchons tout ce qui ne correspond pas : des détails qui changent de forme, des lignes qui se courbent, des objets qui apparaissent ou disparaissent, un mouvement qui ne semble pas naturel. Si quelque chose ne va pas, nous refaisons le clip ou le retirons. Ce n’est qu’ensuite que vous voyez la vidéo, et vous avez toujours deux séries de révisions (trois en Premium).</p>
 
   <h2>Quand un jour de tournage est-il le meilleur choix ?</h2>
   <p>La vidéo IA à partir de photos ne convient pas à tout. Un jour de tournage est le meilleur choix si vous voulez des personnes à l’image, du son réel, une interview, des images de drone d’endroits dont vous n’avez pas de photos, ou des pièces qui n’ont jamais été photographiées. Si vous avez déjà de bonnes photos et voulez une visite calme pour chaque annonce, la vidéo IA fait le travail sans journée sur place.</p>
 
   <h2>Combien ça coûte ?</h2>
-  <p>Une seule vidéo coûte 100 €, TVA incluse. À partir de 5 vidéos, le prix par vidéo baisse de 5 € toutes les 5 vidéos, jusqu’à 50 €. Consultez la <a href={pagePath(lang, 'pricing')}>grille tarifaire</a> complète, ou commencez par une vidéo d’essai gratuite réalisée à partir de vos propres photos.</p>
+  <p>Une vidéo Standard coûte 95 €, TVA incluse. À partir de 10 vidéos, le prix par vidéo baisse de 5 € toutes les 5 vidéos, jusqu’à 50 €. Consultez la <a href={pagePath(lang, 'pricing')}>grille tarifaire</a> complète, ou commencez par une vidéo d’essai gratuite réalisée à partir de vos propres photos.</p>
 </Landing>

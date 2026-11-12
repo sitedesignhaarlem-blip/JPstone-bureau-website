@@ -20,7 +20,7 @@ export const q = {
   },
   fleet: {
     q: 'Pouvez-vous réaliser des vidéos pour toute une flotte ?',
-    a: 'Oui. Chaque yacht a sa propre vidéo, dans un même style calme, pour que la flotte paraisse cohérente sur votre site. Nous réalisons jusqu’à 2 vidéos par jour, et la date de livraison est convenue dans le devis.',
+    a: 'Oui. Chaque yacht a sa propre vidéo, dans un même style calme, pour que la flotte paraisse cohérente sur votre site. La livraison prend environ 3 semaines, et les vidéos Premium sont prioritaires.',
   },
   roomTypes: {
     q: 'Une vidéo pour tout l’hôtel, ou une par type de chambre ?',
@@ -48,11 +48,11 @@ export const q = {
   },
   volume: {
     q: 'Comment fonctionne le prix dégressif ?',
-    a: 'Une seule vidéo coûte 100 €. À partir de 5 vidéos, le prix est de 95 € par vidéo, puis il baisse de 5 € toutes les 5 vidéos, jusqu’à 50 € par vidéo. Plus de 100 vidéos : nous établissons un devis.',
+    a: 'Une vidéo Standard coûte 95 €. À partir de 10 vidéos, le prix baisse de 5 € toutes les 5 vidéos, jusqu’à 50 € par vidéo. Une vidéo Premium coûte 149 €, jusqu’à 100 €. Plus de 100 vidéos : nous établissons un devis.',
   },
   platforms: {
     q: "Puis-je utiliser la vidéo sur Airbnb ou Booking.com ?",
-    a: "Les plateformes diffèrent quant à la possibilité et à l’endroit où l’on peut mettre en ligne une vidéo, et leurs règles changent : vérifiez ce que votre propre annonce permet. Vous pouvez toujours utiliser la vidéo sur votre propre site et sur les réseaux sociaux, ainsi que sur toute plateforme qui accepte la vidéo. Vous recevez des fichiers MP4 en 16:9 et 9:16.",
+    a: "Les plateformes diffèrent quant à la possibilité et à l’endroit où l’on peut mettre en ligne une vidéo, et leurs règles changent : vérifiez ce que votre propre annonce permet. Vous pouvez toujours utiliser la vidéo sur votre propre site et sur les réseaux sociaux, ainsi que sur toute plateforme qui accepte la vidéo. Vous recevez des fichiers MP4 en 16:9, et aussi en 9:16 avec le Premium.",
   },
   units: {
     q: "J’ai plusieurs appartements dans un même immeuble. Comment est-ce facturé ?",

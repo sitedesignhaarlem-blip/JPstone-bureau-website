@@ -1,0 +1,56 @@
+---
+// Standard and Premium side by side: base price, volume and monthly price, and what is included.
+// Used on the pricing page and the home page. Texts: src/i18n/pricing.ts; numbers: pricing.config.ts.
+import { PRICING, type Tier } from '../data/pricing.config';
+import { htmlLang, type Locale } from '../i18n';
+import { fillIn, pricingUI } from '../i18n/pricing';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const cmp = pricingUI[lang].compare;
+const money = new Intl.NumberFormat(htmlLang[lang], { style: 'currency', currency: PRICING.currency, maximumFractionDigits: 0 });
+const tiers = PRICING.tiers;
+const firstPlan = PRICING.monthly.sizes[0];
+const planPrice = (tier: Tier) => money.format(PRICING.monthly.perVideo[tier][firstPlan] * firstPlan);
+const list = (items: string[], tier: Tier) => items.map((s) => fillIn(s, { s: tiers[tier].seconds, r: tiers[tier].revisions }));
+---
+  <div class="tiers">
+    {(['standard', 'premium'] as Tier[]).map((tier) => (
+      <section class:list={['tier', { 'tier--premium': tier === 'premium' }]} aria-labelledby={`tier-${tier}`}>
+        <h3 id={`tier-${tier}`}>{tier === 'standard' ? cmp.standardName : cmp.premiumName}</h3>
+        <p class="muted">{tier === 'standard' ? cmp.standardTag : cmp.premiumTag}</p>
+        <p class="tier-price"><strong>{money.format(PRICING.oneOff[tier].base)}</strong> <span class="muted">{cmp.perVideo}</span></p>
+        <p class="tier-sub muted">
+          {fillIn(cmp.volume, { price: money.format(PRICING.oneOff[tier].floor) })}<br />
+          {fillIn(cmp.orMonthly, { price: planPrice(tier), n: firstPlan })}
+        </p>
+        {tier === 'premium' && <p class="tier-plus">{cmp.everything}</p>}
+        <ul class="tier-list" role="list">
+          {list(tier === 'standard' ? cmp.standard : cmp.premium, tier).map((item) => (
+            <li><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>{item}</li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+
+
+<style>
+  .tiers { display: grid; gap: var(--space-4); margin-top: var(--space-4); }
+  .tier { display: grid; gap: var(--space-2); align-content: start; padding: var(--space-5); background: var(--bg); border-radius: var(--radius); }
+  .tier--premium { box-shadow: inset 0 0 0 1.5px var(--accent); }
+  .tier h3 { margin: 0; font-size: var(--step-h3); }
+  .tier-price { margin-top: var(--space-2); }
+  .tier-price strong { font-size: var(--step-h3); font-variant-numeric: tabular-nums; }
+  .tier-sub { font-size: var(--step-small); }
+  .tier-plus { margin-top: var(--space-2); font-weight: 600; font-size: var(--step-small); }
+  .tier-list { display: grid; gap: var(--space-2); padding: 0; margin: var(--space-2) 0 0; list-style: none; }
+  .tier-list li { display: flex; gap: var(--space-2); align-items: flex-start; }
+  .tier-list svg { flex: none; margin-top: 0.4em; color: var(--accent); }
+
+  @media (min-width: 40rem) {
+    .tiers { grid-template-columns: 1fr 1fr; }
+  }
+</style>

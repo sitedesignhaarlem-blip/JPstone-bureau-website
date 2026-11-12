@@ -1,6 +1,24 @@
-# Still to Film
+// /llms.txt: a plain-text summary of the business for AI assistants. Prices, plan sizes and dates
+// come from src/data/pricing.config.ts, so they always match the rest of the site.
+import type { APIRoute } from 'astro';
+import { PRICING as P } from '../data/pricing.config';
 
-> Still to Film turns the photos already on a yacht charter or boutique hotel listing into a calm 60 to 90 second AI walkthrough video. There is no filming day and no crew on board. Every video is delivered in 16:9 and 9:16 (MP4).
+const eur = (n: number) => n.toLocaleString('en-GB');
+const std = P.tiers.standard;
+const prem = P.tiers.premium;
+const o = P.oneOff;
+const plans = (tier: 'standard' | 'premium') =>
+  P.monthly.sizes.map((n) => `EUR ${eur(P.monthly.perVideo[tier][n] * n)} for ${n}`).join(', ');
+const earlyDate = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Amsterdam' }).format(new Date(P.earlyBird.until));
+const priceLines = [
+  `- Standard, one-off: EUR ${o.standard.base} per video. From ${o.standard.discountFrom} videos the price per video drops by EUR ${o.standard.step} for every ${o.standard.block} videos, down to a minimum of EUR ${o.standard.floor}.`,
+  `- Premium, one-off: EUR ${o.premium.base} per video, with the same volume discount, down to a minimum of EUR ${o.premium.floor}.`,
+  `- Monthly plans, billed monthly, cancel any time with ${P.monthly.noticeMonths} month's notice, unused videos do not roll over: Standard ${plans('standard')} videos a month; Premium ${plans('premium')} videos a month. Extra videos cost the plan's price per video.`,
+].join('\n');
+
+const body = `# Still to Film
+
+> Still to Film turns the photos already on a yacht charter or boutique hotel listing into a calm AI walkthrough video of about ${std.seconds} seconds (Standard) or ${prem.seconds} seconds (Premium). There is no filming day and no crew on board. Standard is delivered in 16:9, Premium in 16:9 and 9:16 (MP4).
 
 Still to Film is a small studio based in the Netherlands. We work for yacht charter companies, boutique hotels and vacation rental hosts worldwide, in English, Dutch, German, French, Spanish, Croatian and Portuguese.
 
@@ -9,11 +27,10 @@ Still to Film is a small studio based in the Netherlands. We work for yacht char
 - Done for you: the customer needs no skills, software, prompts or account. They send a link to the listing (or the photos) and we do the rest.
 - A person checks every video in full before delivery. This is what separates the service from self-serve AI video tools.
 - We take the existing listing photos (or a link to the listing) and turn them into a walkthrough video with AI-generated camera movement.
-- Length: 60 to 90 seconds per video.
-- Formats: 16:9 for websites and listing platforms, 9:16 for Instagram Reels, TikTok and Stories. Both formats are included, as MP4 files.
-- Revisions: 2 revision rounds per video are included. A revision is a change with the same photos and the same concept; new photos or a new concept count as a new video.
-- Capacity: up to 2 videos per day. The delivery date is agreed in the quote.
-- Free sample: a short preview of 15 to 25 seconds with a few shots, made from the customer's own listing photos, with no obligation. A full video is 60 to 90 seconds.
+- Two packages: Standard (about ${std.seconds} seconds, 16:9 landscape, ${std.revisions} revision rounds) and Premium (about ${prem.seconds} seconds, 16:9 landscape and 9:16 vertical for Reels, TikTok and Shorts, ${prem.revisions} revision rounds, priority in the production queue). Files are MP4.
+- Revisions: a revision is a change with the same photos and the same concept; new photos or a new concept count as a new video.
+- Turnaround: roughly ${P.turnaroundWeeks} weeks from order to delivery.
+- Free sample: a short preview of 15 to 25 seconds with a few shots, made from the customer's own listing photos, with no obligation. A full video is about ${std.seconds} seconds (Standard) or ${prem.seconds} seconds (Premium).
 
 ## What it can and cannot do
 
@@ -23,14 +40,14 @@ Still to Film is a small studio based in the Netherlands. We work for yacht char
 
 ## Pricing (including VAT)
 
-- EUR 100 per video for a single video.
-- EUR 95 per video from 5 videos.
-- The price per video drops by EUR 5 for every 5 videos, down to a minimum of EUR 50 per video.
-- Early-bird discount: 10% off orders placed online before 1 January 2027.
-- More than 100 videos: custom quote.
-- Payment: by bank transfer. Orders under EUR 1,000 (incl. VAT) are paid in full before work starts; from EUR 1,000, 50% when ordering and 50% after delivery. An invoice for every payment.
-- Ordering: online at https://stilltofilm.com/order/ (choose the number of videos; the price follows the ladder) or by quote.
-- Client account: customers log in with a one-time e-mail code to see their order, watch and download their videos, and give feedback or request revisions.
+${priceLines}
+- Coming soon: an interactive 3D walkthrough (waitlist only, not available yet).
+- Price calculator: https://stilltofilm.com/pricing/
+- Early-bird discount: ${P.earlyBird.percent}% off one-off orders placed before ${earlyDate}.
+- More than ${P.oneOff.maxVideos} videos: custom quote.
+- Payment: by bank transfer. Orders under EUR ${eur(P.splitPaymentFrom)} (incl. VAT) are paid in full before work starts; from EUR ${eur(P.splitPaymentFrom)}, 50% when ordering and 50% after delivery. An invoice for every payment.
+- Ordering: online at https://stilltofilm.com/order/ (Standard videos: choose the number of videos; the price follows the ladder) or by quote.
+- Client account: customers log in with a password or a one-time e-mail code to see their order, watch and download their videos, and give feedback or request revisions.
 - Referral: one free video on the next order for every company a customer refers that places an order.
 - Usage: unlimited use for the customer's own marketing (website, listings, social media, advertising). No resale as a standalone video.
 
@@ -68,3 +85,6 @@ Other languages: [Nederlands](https://stilltofilm.com/nl/), [Deutsch](https://st
 
 - Email: sitedesignhaarlem@gmail.com
 - Phone and WhatsApp: +31 6 57 24 96 07
+`;
+
+export const GET: APIRoute = () => new Response(body, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });

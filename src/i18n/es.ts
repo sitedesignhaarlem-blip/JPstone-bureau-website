@@ -4,7 +4,7 @@ import type { UI } from './en';
 const es: UI = {
   meta: {
     homeTitle: 'Still to Film · Vídeos de recorrido con las fotos de tu anuncio',
-    homeDesc: "Convertimos las fotos de tu anuncio de yate u hotel en un vídeo de recorrido de 60 a 90 s. Sin rodaje ni software, y una persona revisa cada vídeo.",
+    homeDesc: "Convertimos las fotos de tu anuncio de yate u hotel en un vídeo de recorrido de 35 a 55 s. Sin rodaje ni software, y una persona revisa cada vídeo.",
     libraryTitle: 'Biblioteca · Still to Film',
     libraryDesc: 'Southern Cross: seis clips de un catamarán a motor, hechos con IA a partir de las fotos de su anuncio.',
     howTitle: 'Cómo funciona · Still to Film',
@@ -34,7 +34,7 @@ const es: UI = {
     s1Title: 'Nos envías fotos',
     s1Text: "Basta con el enlace de tu anuncio. Cuanto más nítidas tus fotos, mejor la película.",
     s2Title: 'Hacemos la película',
-    s2Text: "Con IA, a partir de tus fotos, y revisado por una persona. De 60 a 90 segundos, en 16:9 para tu web y 9:16 para redes sociales.",
+    s2Text: "Con IA, a partir de tus fotos, y revisado por una persona. Unos 35 segundos en 16:9 para tu web, o con Premium 55 segundos y una versión 9:16 para redes sociales.",
     s3Title: 'Nos das tu opinión',
     s3Text: '¿Quieres cambiar algo? Dinos qué y lo ajustamos. Las revisiones están incluidas.',
     s4Title: 'Tú publicas',
@@ -123,28 +123,19 @@ const es: UI = {
   },
   packages: {
     title: 'Paquetes.',
-    lead: 'Cada encargo recibe un presupuesto cerrado antes de empezar. Precios con IVA incluido.',
-    price: '€100',
-    perVideo: 'por vídeo',
-    from: 'desde',
-    items: [
-      { name: 'Individual', for: 'Un yate o un tipo de habitación.', includes: 'Un vídeo en 16:9 y 9:16, de 60 a 90 segundos.' },
-      { name: 'Flota', for: 'Varios yates, o un hotel entero.', includes: 'Tantos vídeos como necesites, con un mismo estilo, en ambos formatos.' },
-      { name: 'Continuo', for: 'Anuncios nuevos cada temporada.', includes: 'Hasta 100 vídeos al mes, ambos formatos, cancelable cada mes.' },
-    ],
-    note: '¿No sabes cuál encaja? Empieza con el vídeo de prueba gratis: un avance corto de 15 a 25 segundos.',
+    lead: 'Standard o Premium, puntual o con un plan mensual. Todos los precios con IVA incluido.',
   },
   faq: {
     title: 'Preguntas.',
     items: [
       { q: '¿De quién es el vídeo?', a: 'Una vez pagado, puedes usarlo sin límites para tu propio marketing: web, anuncios, redes sociales y publicidad. Solo no puedes revenderlo como vídeo independiente.' },
-      { q: '¿Cuándo lo recibo?', a: 'El plazo de entrega figura en tu presupuesto. Hacemos hasta 2 vídeos al día, y la fecha de entrega siempre la acordamos contigo de antemano. El vídeo de prueba gratis suele llegar antes, para que puedas valorarlo sin compromiso.' },
-      { q: '¿Cuántas revisiones incluye?', a: '2 rondas por vídeo. Una revisión es un cambio con las mismas fotos y el mismo planteamiento. Fotos nuevas o un planteamiento nuevo cuentan como un vídeo nuevo.' },
-      { q: '¿Qué formatos recibo?', a: "Cada vídeo dura de 60 a 90 segundos. 16:9 para tu web y las plataformas de anuncios, y 9:16 para Instagram, TikTok y Reels. Recibes archivos MP4, listos para subir." },
+      { q: '¿Cuándo lo recibo?', a: "Unas 3 semanas desde el pedido hasta la entrega. Los vídeos Premium tienen prioridad en la producción. La muestra gratis llega primero, para que puedas valorar antes de comprometerte." },
+      { q: '¿Cuántas revisiones incluye?', a: "El Standard incluye 2 rondas por vídeo, el Premium 3. Una revisión es un cambio con las mismas fotos y el mismo planteamiento. Fotos nuevas o un planteamiento nuevo cuentan como un vídeo nuevo." },
+      { q: '¿Qué formatos recibo?', a: "El Standard dura unos 35 segundos, en 16:9 para tu web y las plataformas de anuncios. El Premium dura unos 55 segundos y también viene en 9:16 para Instagram, TikTok y Reels. Recibes archivos MP4, listos para subir." },
       { q: "¿Qué fotos necesitáis?", a: "Bastan las fotos de tu anuncio. Cuanta más calidad tengan las fotos, más calidad tendrá la película: nítidas, bien iluminadas y en alta resolución funcionan mejor. Si tienes los archivos originales de tu fotógrafo, envíalos." },
       { q: "¿Está hecho con IA?", a: "Sí. Un software convierte tus fotos en movimientos de cámara. Después, una persona ve cada vídeo completo antes de la entrega, para que muestre lo que hay en tus fotos y nada que no esté." },
       { q: "¿Necesito conocimientos o software?", a: "No. Nos envías el enlace de tu anuncio o las fotos, y nosotros hacemos el resto. No hay herramienta que aprender, ni prompts que escribir, ni cuenta que crear." },
-      { q: '¿Qué incluye el vídeo de prueba gratis?', a: 'Un avance corto de 15 a 25 segundos, con algunas tomas hechas con las fotos de tu propio anuncio. Así ves en qué pueden convertirse tus fotos; el vídeo completo dura de 60 a 90 segundos. Sin compromiso y sin factura. Basta con el enlace de tu anuncio.' },
+      { q: '¿Qué incluye el vídeo de prueba gratis?', a: 'Un avance corto de 15 a 25 segundos, con algunas tomas hechas con las fotos de tu propio anuncio. Así ves en qué pueden convertirse tus fotos; el vídeo completo dura de 35 a 55 segundos. Sin compromiso y sin factura. Basta con el enlace de tu anuncio.' },
     ],
   },
   promise: {
@@ -184,15 +175,7 @@ const es: UI = {
   vertical: {
     eyebrow: "Dos formatos",
     title: "Horizontal y vertical.",
-    lead: "Cada vídeo lo recibes en dos formatos: 16:9 para tu web y tus anuncios, 9:16 para Reels, TikTok y Stories. Incluido en todos los paquetes.",
-  },
-  calc: {
-    title: '¿Cuánto cuesta?',
-    label: 'Número de vídeos',
-    total: 'Total',
-    perVideo: 'Precio por vídeo',
-    note: "IVA incluido. Ambos formatos y 2 revisiones incluidas. Cada 5 vídeos, el precio por vídeo baja 5 €, hasta un mínimo de 50 €.",
-    more: '¿Más de 100 vídeos? Te preparamos un presupuesto.',
+    lead: "Con Premium recibes los dos formatos: 16:9 para tu web y tus anuncios, 9:16 para Reels, TikTok y Stories. El Standard es 16:9.",
   },
   booking: {
     title: '¿Prefieres hablar primero?',
@@ -203,10 +186,10 @@ const es: UI = {
   prospect: {
     eyebrow: 'Hecho para {company}',
     title: 'Esto es {listing}, en película.',
-    lead: 'Hicimos este avance corto con las fotos que ya tienes en tu anuncio. Sin rodaje, sin visita. Gratis y sin compromiso. Un vídeo completo dura de 60 a 90 segundos.',
+    lead: 'Hicimos este avance corto con las fotos que ya tienes en tu anuncio. Sin rodaje, sin visita. Gratis y sin compromiso. Un vídeo completo dura de 35 a 55 segundos.',
     cta: 'Sí, lo quiero para toda mi flota',
     whatsapp: 'Pregunta por WhatsApp',
-    price: 'Desde 100 € por vídeo. Ambos formatos y 2 revisiones incluidas.',
+    price: "Desde 95 € por vídeo, 2 revisiones incluidas. Premium añade el 9:16 y una tercera revisión.",
     waMessage: 'Hola, he visto el vídeo de prueba para {company}. Me gustaría saber más.',
     mailSubject: 'Vídeo de prueba para {company}',
   },

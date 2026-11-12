@@ -10,6 +10,7 @@ import { currentEmail, isAdmin, portalReady } from '../../lib/supabase';
 import { MAX_ONLINE_VIDEOS, SPLIT_FROM_CENTS } from '../../lib/orders';
 import { EARLY_BIRD, earlyBirdActive, earlyBirdDate } from '../../data/promo';
 import { promoUI } from '../../i18n/promo';
+import { PRICING } from '../../data/pricing.config';
 import { fill, portalLang, portalUI } from '../../i18n/portal';
 
 const lang = portalLang(Astro.url, Astro.request, Astro.cookies.get('lang')?.value);
@@ -47,7 +48,7 @@ const mailBody = lang === 'nl' ? "Aantal video's:\nLink naar listing:\nBedrijf:\
       <div class="field">
         <label for="o-count">{o.count}</label>
         <input id="o-count" name="videos_count" type="number" min="1" max={MAX_ONLINE_VIDEOS} value={start} required aria-describedby="o-count-hint" />
-        <p id="o-count-hint" class="muted hint">{fill(o.countHint, { max: MAX_ONLINE_VIDEOS })}</p>
+        <p id="o-count-hint" class="muted hint">{fill(o.countHint, { max: MAX_ONLINE_VIDEOS, s: PRICING.tiers.standard.seconds })}</p>
       </div>
       <dl class="sum" aria-live="polite">
         <div><dt>{o.perVideo}</dt><dd data-per></dd></div>

@@ -13,7 +13,7 @@ const faq = [q.ai, q.limits, q.skills, q.photos];
   description="AI-video van foto's: hoe listingfoto's een walkthrough worden, wat het kost, wat het wel en niet laat zien, en hoe een mens elke video controleert."
   eyebrow="Uitleg"
   h1="AI-video van foto's: hoe het werkt, wat het kost en wat je kunt verwachten"
-  summary="Bij AI-video van foto's voegt software camerabeweging en tussenbeelden toe aan stilstaande foto's, zodat een set listingfoto's een korte walkthrough-film wordt. Still to Film doet dit als dienst: jij stuurt de foto's, wij maken een video van 60–90 seconden, en een mens controleert elke video voor oplevering."
+  summary="Bij AI-video van foto's voegt software camerabeweging en tussenbeelden toe aan stilstaande foto's, zodat een set listingfoto's een korte walkthrough-film wordt. Still to Film doet dit als dienst: jij stuurt de foto's, wij maken een video van 35–55 seconden, en een mens controleert elke video voor oplevering."
   faqTitle="Vragen over AI-video"
   faqItems={faq}
   service
@@ -28,7 +28,7 @@ const faq = [q.ai, q.limits, q.skills, q.photos];
     <li><strong>Foto's kiezen.</strong> Niet elke foto werkt in beweging. We kiezen de foto's die scherp zijn en de ruimte goed laten zien, en bepalen de volgorde van de rondgang.</li>
     <li><strong>Bewegingen kiezen.</strong> Per foto kiezen we een camerabeweging die erbij past: langzaam en rustig, nooit snel of duizelig.</li>
     <li><strong>Clips maken.</strong> De AI maakt van elke foto een korte clip. Sommige pogingen zien er niet goed uit; die gooien we weg en maken we opnieuw.</li>
-    <li><strong>Monteren.</strong> We zetten de clips samen tot één film van 60 tot 90 seconden, in 16:9 en 9:16.</li>
+    <li><strong>Monteren.</strong> We zetten de clips samen tot één film van 35 tot 55 seconden, in 16:9 (en 9:16 met Premium).</li>
     <li><strong>Controleren.</strong> Een mens bekijkt de hele video voordat jij hem ziet (zie hieronder).</li>
   </ol>
 
@@ -42,8 +42,8 @@ const faq = [q.ai, q.limits, q.skills, q.photos];
         <tr><td data-label="Onderwerp">Foto's en bewegingen kiezen</td><td data-label="Zelf doen">Jij</td><td data-label="Still to Film">Doen wij</td></tr>
         <tr><td data-label="Onderwerp">Mislukte pogingen</td><td data-label="Zelf doen">Jij ziet ze en probeert het opnieuw</td><td data-label="Still to Film">Gooien wij weg voordat jij iets ziet</td></tr>
         <tr><td data-label="Onderwerp">Kwaliteitscontrole</td><td data-label="Zelf doen">Aan jou</td><td data-label="Still to Film">Een mens bekijkt elke video helemaal</td></tr>
-        <tr><td data-label="Onderwerp">Formaten</td><td data-label="Zelf doen">Hangt af van de tool</td><td data-label="Still to Film">16:9 en 9:16, beide inbegrepen</td></tr>
-        <tr><td data-label="Onderwerp">Aanpassingen</td><td data-label="Zelf doen">Je doet het zelf opnieuw</td><td data-label="Still to Film">Twee revisierondes inbegrepen</td></tr>
+        <tr><td data-label="Onderwerp">Formaten</td><td data-label="Zelf doen">Hangt af van de tool</td><td data-label="Still to Film">16:9, en 9:16 erbij met Premium</td></tr>
+        <tr><td data-label="Onderwerp">Aanpassingen</td><td data-label="Zelf doen">Je doet het zelf opnieuw</td><td data-label="Still to Film">Twee revisierondes inbegrepen, drie bij Premium</td></tr>
       </tbody>
     </table>
   </div>
@@ -57,11 +57,11 @@ const faq = [q.ai, q.limits, q.skills, q.photos];
   </ul>
 
   <h2>Hoe werkt de kwaliteitscontrole?</h2>
-  <p>Voor oplevering bekijkt een mens elke video van begin tot eind en vergelijkt hem met de foto's. We letten op alles wat niet klopt: details die van vorm veranderen, lijnen die buigen, voorwerpen die verschijnen of verdwijnen, beweging die onnatuurlijk aanvoelt. Klopt er iets niet, dan maken we die clip opnieuw of halen we hem eruit. Pas daarna zie jij de video, en je hebt dan nog steeds twee revisierondes.</p>
+  <p>Voor oplevering bekijkt een mens elke video van begin tot eind en vergelijkt hem met de foto's. We letten op alles wat niet klopt: details die van vorm veranderen, lijnen die buigen, voorwerpen die verschijnen of verdwijnen, beweging die onnatuurlijk aanvoelt. Klopt er iets niet, dan maken we die clip opnieuw of halen we hem eruit. Pas daarna zie jij de video, en je hebt dan nog steeds twee revisierondes (drie bij Premium).</p>
 
   <h2>Wanneer is een draaidag de betere keuze?</h2>
   <p>AI-video van foto's past niet bij alles. Een draaidag is de betere keuze als je mensen in beeld wilt, echt geluid, een interview, dronebeelden van plekken waar je geen foto's van hebt, of ruimtes die nooit zijn gefotografeerd. Heb je al goede foto's en wil je een rustige walkthrough voor elke listing, dan doet AI-video het werk zonder een dag op locatie.</p>
 
   <h2>Wat kost het?</h2>
-  <p>Eén losse video kost €100, inclusief btw. Vanaf 5 video's gaat de prijs per video per 5 video's €5 omlaag, tot minimaal €50. Bekijk de volledige <a href={pagePath(lang, 'pricing')}>prijsstaffel</a>, of begin met een gratis proefvideo van je eigen foto's.</p>
+  <p>Een Standard-video kost €95, inclusief btw. Vanaf 10 video's gaat de prijs per 5 video's €5 omlaag, tot minimaal €50. Premium begint bij €149 per video. Bekijk de volledige <a href={pagePath(lang, 'pricing')}>prijsstaffel</a>, of begin met een gratis proefvideo van je eigen foto's.</p>
 </Landing>

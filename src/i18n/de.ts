@@ -4,7 +4,7 @@ import type { UI } from './en';
 const de: UI = {
   meta: {
     homeTitle: 'Still to Film · Walkthrough-Videos aus Ihren Inseratsfotos',
-    homeDesc: "Aus den Fotos Ihres Yacht- oder Hotelinserats machen wir ein ruhiges Walkthrough-Video von 60–90 Sekunden. Kein Drehtag, keine Software, jedes Video geprüft.",
+    homeDesc: "Aus den Fotos Ihres Yacht- oder Hotelinserats machen wir ein ruhiges Walkthrough-Video von 35–55 Sekunden. Kein Drehtag, keine Software, jedes Video geprüft.",
     libraryTitle: 'Bibliothek · Still to Film',
     libraryDesc: 'Southern Cross: sechs Clips eines Motorkatamarans, mit KI aus den vorhandenen Inseratsfotos erstellt.',
     howTitle: 'So funktioniert’s · Still to Film',
@@ -34,7 +34,7 @@ const de: UI = {
     s1Title: 'Sie senden Fotos',
     s1Text: "Ein Link zu Ihrem Inserat genügt. Je schärfer Ihre Fotos, desto besser der Film.",
     s2Title: 'Wir machen den Film',
-    s2Text: "Mit KI, auf Basis Ihrer Fotos, und von einem Menschen geprüft. 60 bis 90 Sekunden, in 16:9 für Ihre Website und 9:16 für Social Media.",
+    s2Text: "Mit KI, auf Basis Ihrer Fotos, und von einem Menschen geprüft. Etwa 35 Sekunden in 16:9 für Ihre Website, oder mit Premium 55 Sekunden plus eine 9:16-Fassung für Social Media.",
     s3Title: 'Sie geben Feedback',
     s3Text: 'Soll etwas anders sein? Sagen Sie uns, was, und wir passen es an. Korrekturen sind inklusive.',
     s4Title: 'Sie veröffentlichen',
@@ -123,28 +123,19 @@ const de: UI = {
   },
   packages: {
     title: 'Pakete.',
-    lead: 'Jeder Auftrag bekommt vorab ein Festpreisangebot. Preise inklusive Umsatzsteuer.',
-    price: '€100',
-    perVideo: 'pro Video',
-    from: 'ab',
-    items: [
-      { name: 'Einzeln', for: 'Eine Yacht oder ein Zimmertyp.', includes: 'Ein Video in 16:9 und 9:16, 60 bis 90 Sekunden.' },
-      { name: 'Flotte', for: 'Mehrere Yachten oder ein ganzes Hotel.', includes: 'So viele Videos, wie Sie brauchen, in einheitlichem Stil, beide Formate.' },
-      { name: 'Laufend', for: 'Jede Saison neue Inserate.', includes: 'Bis zu 100 Videos pro Monat, beide Formate, monatlich kündbar.' },
-    ],
-    note: 'Unsicher, was passt? Beginnen Sie mit dem kostenlosen Probevideo: eine kurze Vorschau von 15 bis 25 Sekunden.',
+    lead: 'Standard oder Premium, einmalig oder im Monatsplan. Alle Preise inklusive MwSt.',
   },
   faq: {
     title: 'Fragen.',
     items: [
       { q: 'Wem gehört das Video?', a: 'Nach Zahlung dürfen Sie es unbegrenzt für Ihr eigenes Marketing nutzen: Website, Inserate, Social Media und Werbung. Nur ein Weiterverkauf als eigenständiges Video ist nicht erlaubt.' },
-      { q: 'Wie schnell bekomme ich es?', a: 'Die Lieferzeit steht in Ihrem Angebot. Wir erstellen bis zu 2 Videos pro Tag, und den Liefertermin stimmen wir immer vorab mit Ihnen ab. Das kostenlose Probevideo kommt meist zuerst, damit Sie urteilen können, bevor Sie sich festlegen.' },
-      { q: 'Wie viele Korrekturen sind enthalten?', a: '2 Runden pro Video. Eine Korrektur ist eine Änderung mit denselben Fotos und demselben Konzept. Neue Fotos oder ein neues Konzept gelten als neues Video.' },
-      { q: 'Welche Formate bekomme ich?', a: "Ein Video dauert 60 bis 90 Sekunden. 16:9 für Ihre Website und Inseratsplattformen, 9:16 für Instagram, TikTok und Reels. Sie erhalten MP4-Dateien, fertig zum Hochladen." },
+      { q: 'Wie schnell bekomme ich es?', a: "Etwa 3 Wochen von der Bestellung bis zur Lieferung. Premium-Videos haben Vorrang in der Produktion. Das kostenlose Probevideo kommt zuerst, damit Sie urteilen können, bevor Sie sich festlegen." },
+      { q: 'Wie viele Korrekturen sind enthalten?', a: "Standard enthält 2 Runden pro Video, Premium 3. Eine Korrektur ist eine Änderung mit denselben Fotos und demselben Konzept. Neue Fotos oder ein neues Konzept gelten als neues Video." },
+      { q: 'Welche Formate bekomme ich?', a: "Standard dauert etwa 35 Sekunden, in 16:9 für Ihre Website und Inseratsplattformen. Premium dauert etwa 55 Sekunden und kommt zusätzlich in 9:16 für Instagram, TikTok und Reels. Sie erhalten MP4-Dateien, fertig zum Hochladen." },
       { q: "Welche Fotos brauchen Sie?", a: "Die Fotos Ihres Inserats genügen. Je höher die Qualität der Fotos, desto höher die Qualität des Films: scharf, gut belichtet und in hoher Auflösung funktioniert am besten. Haben Sie die Originaldateien Ihres Fotografen, senden Sie diese mit." },
       { q: "Wird das mit KI gemacht?", a: "Ja. Software macht aus Ihren Fotos Kamerabewegungen. Danach sieht sich ein Mensch jedes Video vor der Lieferung vollständig an, damit es zeigt, was auf Ihren Fotos ist, und nichts, was nicht da ist." },
       { q: "Brauche ich Vorkenntnisse oder Software?", a: "Nein. Sie senden einen Link zu Ihrem Inserat oder die Fotos, den Rest machen wir. Sie müssen kein Tool lernen, keine Prompts schreiben und kein Konto anlegen." },
-      { q: 'Was enthält das kostenlose Probevideo?', a: 'Eine kurze Vorschau von 15 bis 25 Sekunden mit einigen Einstellungen aus Ihren eigenen Inseratsfotos. So sehen Sie, was aus Ihren Fotos werden kann; das vollständige Video dauert 60 bis 90 Sekunden. Unverbindlich und ohne Rechnung. Ein Link zu Ihrem Inserat genügt.' },
+      { q: 'Was enthält das kostenlose Probevideo?', a: 'Eine kurze Vorschau von 15 bis 25 Sekunden mit einigen Einstellungen aus Ihren eigenen Inseratsfotos. So sehen Sie, was aus Ihren Fotos werden kann; das vollständige Video dauert 35 bis 55 Sekunden. Unverbindlich und ohne Rechnung. Ein Link zu Ihrem Inserat genügt.' },
     ],
   },
   promise: {
@@ -184,15 +175,7 @@ const de: UI = {
   vertical: {
     eyebrow: "Zwei Formate",
     title: "Quer und hoch.",
-    lead: "Jedes Video erhalten Sie in zwei Formaten: 16:9 für Ihre Website und Inserate, 9:16 für Reels, TikTok und Stories. In jedem Paket enthalten.",
-  },
-  calc: {
-    title: 'Was kostet es?',
-    label: 'Anzahl Videos',
-    total: 'Gesamt',
-    perVideo: 'Preis pro Video',
-    note: "Inkl. USt. Beide Formate und 2 Korrekturen inklusive. Alle 5 Videos sinkt der Preis pro Video um 5 €, bis auf 50 €.",
-    more: 'Mehr als 100 Videos? Wir erstellen Ihnen ein Angebot.',
+    lead: "Mit Premium erhalten Sie beide Formate: 16:9 für Ihre Website und Inserate, 9:16 für Reels, TikTok und Stories. Standard ist 16:9.",
   },
   booking: {
     title: 'Lieber erst sprechen?',
@@ -203,10 +186,10 @@ const de: UI = {
   prospect: {
     eyebrow: 'Erstellt für {company}',
     title: 'Das ist {listing}, als Film.',
-    lead: 'Wir haben diese kurze Vorschau aus den Fotos gemacht, die schon in Ihrem Inserat stehen. Kein Dreh, kein Besuch. Kostenlos und unverbindlich. Ein vollständiges Video dauert 60 bis 90 Sekunden.',
+    lead: 'Wir haben diese kurze Vorschau aus den Fotos gemacht, die schon in Ihrem Inserat stehen. Kein Dreh, kein Besuch. Kostenlos und unverbindlich. Ein vollständiges Video dauert 35 bis 55 Sekunden.',
     cta: 'Ja, das möchte ich für meine ganze Flotte',
     whatsapp: 'Frage per WhatsApp stellen',
-    price: 'Ab 100 € pro Video. Beide Formate und 2 Korrekturen inklusive.',
+    price: "Ab 95 € pro Video, 2 Korrekturen inklusive. Premium bringt 9:16 und eine dritte Korrektur dazu.",
     waMessage: 'Hallo, ich habe das Probevideo für {company} gesehen. Ich möchte gern mehr erfahren.',
     mailSubject: 'Probevideo für {company}',
   },

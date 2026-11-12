@@ -5,7 +5,7 @@
 const en = {
   meta: {
     homeTitle: 'Still to Film · Walkthrough videos from your listing photos',
-    homeDesc: "We turn the photos on your yacht or hotel listing into a calm 60–90 second walkthrough video. No shoot day, no software, and a person checks every video.",
+    homeDesc: "We turn the photos on your yacht or hotel listing into a calm 35–55 second walkthrough video. No shoot day, no software, and a person checks every video.",
     libraryTitle: 'Library · Still to Film',
     libraryDesc: 'Southern Cross: six clips of a motor catamaran, made with AI from its existing listing photos.',
     howTitle: 'How it works · Still to Film',
@@ -35,7 +35,7 @@ const en = {
     s1Title: 'You send photos',
     s1Text: "A link to your listing is enough. The sharper your photos, the better the film.",
     s2Title: 'We make the film',
-    s2Text: "With AI, based on your photos, and checked by a person. 60 to 90 seconds, in 16:9 for your website and 9:16 for social.",
+    s2Text: "With AI, based on your photos, and checked by a person. About 35 seconds in 16:9 for your website, or 55 seconds plus a 9:16 version for social with Premium.",
     s3Title: 'You give feedback',
     s3Text: 'Want something changed? Tell us what, and we adjust it. Revisions are included.',
     s4Title: 'You publish',
@@ -125,28 +125,19 @@ const en = {
   },
   packages: {
     title: 'Packages.',
-    lead: 'Every project gets a fixed quote before we start. Prices include VAT.',
-    price: '€100',
-    perVideo: 'per video',
-    from: 'from',
-    items: [
-      { name: 'Single', for: 'One yacht or one room type.', includes: 'One video in 16:9 and 9:16, 60 to 90 seconds.' },
-      { name: 'Fleet', for: 'Several yachts, or a whole hotel.', includes: 'As many videos as you need, in one consistent style, both formats.' },
-      { name: 'Ongoing', for: 'New listings every season.', includes: 'Up to 100 videos a month, both formats, cancel any month.' },
-    ],
-    note: 'Not sure which fits? Start with the free sample: a short preview of 15 to 25 seconds.',
+    lead: 'Standard or Premium, one-off or a monthly plan. All prices include VAT.',
   },
   faq: {
     title: 'Questions.',
     items: [
       { q: 'Who owns the video?', a: 'Once paid, you can use it without limits for your own marketing: your website, listings, social media and ads. You just can’t resell it as a standalone video.' },
-      { q: 'How fast do I get it?', a: 'The delivery time is in your quote. We make up to 2 videos a day, and we always agree the delivery date with you beforehand. The free sample usually comes first, so you can judge before you commit.' },
-      { q: 'How many revisions are included?', a: '2 rounds per video. A revision is a change with the same photos and the same concept. New photos or a new concept count as a new video.' },
-      { q: 'Which formats do I get?', a: "Each video runs 60 to 90 seconds. 16:9 for your website and listing platforms, and 9:16 for Instagram, TikTok and Reels. You get MP4 files, ready to upload." },
+      { q: 'How fast do I get it?', a: "Roughly 3 weeks from your order to delivery. Premium videos get priority in the production queue. The free sample comes first, so you can judge before you commit." },
+      { q: 'How many revisions are included?', a: "Standard includes 2 rounds per video, Premium 3. A revision is a change with the same photos and the same concept. New photos or a new concept count as a new video." },
+      { q: 'Which formats do I get?', a: "Standard is about 35 seconds in 16:9, for your website and listing platforms. Premium is about 55 seconds and also comes in 9:16 for Instagram, TikTok and Reels. You get MP4 files, ready to upload." },
       { q: "Which photos do you need?", a: "The photos from your listing are enough. The higher the quality of the photos, the higher the quality of the film: sharp, well lit and in high resolution works best. If you have the original files from your photographer, send those." },
       { q: "Is this made with AI?", a: "Yes. Software turns your photos into camera movement. Then a person watches every video in full before delivery, so it shows what is in your photos and nothing that isn’t." },
       { q: "Do I need any skills or software?", a: "No. You send a link to your listing or the photos, and we do the rest. There is no tool to learn, no prompts to write and no account to set up." },
-      { q: 'What does the free sample include?', a: 'A short preview of 15 to 25 seconds, with a few shots made from your own listing photos. It shows what your photos can become; the full video is 60 to 90 seconds. No obligation and no invoice. A link to your listing is all we need.' },
+      { q: 'What does the free sample include?', a: 'A short preview of 15 to 25 seconds, with a few shots made from your own listing photos. It shows what your photos can become; the full video is 35 to 55 seconds. No obligation and no invoice. A link to your listing is all we need.' },
     ],
   },
   promise: {
@@ -186,15 +177,7 @@ const en = {
   vertical: {
     eyebrow: "Two formats",
     title: "Landscape and portrait.",
-    lead: "Every video comes in both formats: 16:9 for your website and listings, 9:16 for Reels, TikTok and Stories. Included in every package.",
-  },
-  calc: {
-    title: 'What does it cost?',
-    label: 'Number of videos',
-    total: 'Total',
-    perVideo: 'Price per video',
-    note: "Incl. VAT. Both formats and 2 revisions included. Every 5 videos, the price per video drops by €5, down to €50.",
-    more: 'More than 100 videos? We’ll make you a quote.',
+    lead: "With Premium you get both formats: 16:9 for your website and listings, 9:16 for Reels, TikTok and Stories. Standard comes in 16:9.",
   },
   booking: {
     title: 'Rather talk first?',
@@ -205,10 +188,10 @@ const en = {
   prospect: {
     eyebrow: 'Made for {company}',
     title: 'This is {listing}, as a film.',
-    lead: 'We made this short preview from the photos already on your listing. No shoot, no visit. Free, with no obligation. A full video is 60 to 90 seconds.',
+    lead: 'We made this short preview from the photos already on your listing. No shoot, no visit. Free, with no obligation. A full video is 35 to 55 seconds.',
     cta: 'Yes, I want this for my whole fleet',
     whatsapp: 'Ask a question on WhatsApp',
-    price: 'From €100 per video. Both formats and 2 revisions included.',
+    price: "From €95 per video, 2 revisions included. Premium adds 9:16 and a third revision.",
     waMessage: 'Hi, I saw the sample video for {company}. I’d like to know more.',
     mailSubject: 'Sample video for {company}',
   },

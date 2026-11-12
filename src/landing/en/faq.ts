@@ -20,7 +20,7 @@ export const q = {
   },
   fleet: {
     q: 'Can you make videos for a whole fleet?',
-    a: 'Yes. Each yacht gets its own video in one calm style, so the fleet looks consistent on your website. We make up to 2 videos a day, and the delivery date is agreed in the quote.',
+    a: 'Yes. Each yacht gets its own video in one calm style, so the fleet looks consistent on your website. Delivery takes roughly 3 weeks, and Premium videos get priority.',
   },
   roomTypes: {
     q: 'One video for the whole hotel, or one per room type?',
@@ -48,11 +48,11 @@ export const q = {
   },
   volume: {
     q: 'How does the volume price work?',
-    a: 'A single video costs €100. From 5 videos the price per video is €95, and it drops by €5 for every 5 videos, down to €50 per video. More than 100 videos: we make a quote.',
+    a: 'A Standard video costs €95. From 10 videos the price per video drops by €5 for every 5 videos, down to €50. A Premium video costs €149, down to €100. More than 100 videos: we make a quote.',
   },
   platforms: {
     q: "Can I use the video on Airbnb or Booking.com?",
-    a: "Platforms differ in whether and where they accept a video upload, and their rules change, so check what your own listing allows. You can always use the video on your own website and on social media, and on any platform that allows video. You get MP4 files in 16:9 and 9:16.",
+    a: "Platforms differ in whether and where they accept a video upload, and their rules change, so check what your own listing allows. You can always use the video on your own website and on social media, and on any platform that allows video. You get MP4 files in 16:9, and also in 9:16 with Premium.",
   },
   units: {
     q: "I have several apartments in one building. How is that priced?",

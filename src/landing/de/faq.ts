@@ -20,7 +20,7 @@ export const q = {
   },
   fleet: {
     q: 'Können Sie Videos für eine ganze Flotte machen?',
-    a: 'Ja. Jede Yacht bekommt ihr eigenes Video im selben ruhigen Stil, damit Ihre Flotte auf der Website einheitlich wirkt. Wir erstellen bis zu 2 Videos pro Tag, und den Liefertermin vereinbaren wir im Angebot.',
+    a: 'Ja. Jede Yacht bekommt ihr eigenes Video im selben ruhigen Stil, damit Ihre Flotte auf der Website einheitlich wirkt. Die Lieferung dauert etwa 3 Wochen, Premium-Videos haben Vorrang.',
   },
   roomTypes: {
     q: 'Ein Video für das ganze Hotel oder eins pro Zimmertyp?',
@@ -48,11 +48,11 @@ export const q = {
   },
   volume: {
     q: 'Wie funktioniert der Mengenpreis?',
-    a: 'Ein einzelnes Video kostet 100 €. Ab 5 Videos kostet ein Video 95 €, und alle 5 Videos sinkt der Preis pro Video um 5 €, bis auf 50 € pro Video. Mehr als 100 Videos: Wir erstellen ein Angebot.',
+    a: 'Ein Standard-Video kostet 95 €. Ab 10 Videos sinkt der Preis pro Video alle 5 Videos um 5 €, bis auf 50 €. Ein Premium-Video kostet 149 €, bis hinunter zu 100 €. Mehr als 100 Videos: Wir erstellen ein Angebot.',
   },
   platforms: {
     q: "Kann ich das Video auf Airbnb oder Booking.com verwenden?",
-    a: "Plattformen unterscheiden sich darin, ob und wo sie den Upload eines Videos erlauben, und ihre Regeln ändern sich. Prüfen Sie daher, was Ihr eigenes Inserat zulässt. Auf Ihrer eigenen Website und in Social Media können Sie das Video immer verwenden, ebenso auf jeder Plattform, die Videos erlaubt. Sie erhalten MP4-Dateien in 16:9 und 9:16.",
+    a: "Plattformen unterscheiden sich darin, ob und wo sie den Upload eines Videos erlauben, und ihre Regeln ändern sich. Prüfen Sie daher, was Ihr eigenes Inserat zulässt. Auf Ihrer eigenen Website und in Social Media können Sie das Video immer verwenden, ebenso auf jeder Plattform, die Videos erlaubt. Sie erhalten MP4-Dateien in 16:9, mit Premium auch in 9:16.",
   },
   units: {
     q: "Ich habe mehrere Wohnungen in einem Haus. Wie wird das berechnet?",

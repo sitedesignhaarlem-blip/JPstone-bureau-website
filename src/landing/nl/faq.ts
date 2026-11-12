@@ -20,7 +20,7 @@ export const q = {
   },
   fleet: {
     q: 'Kunnen jullie video\'s maken voor een hele vloot?',
-    a: "Ja. Elk jacht krijgt een eigen video in één rustige stijl, zodat je vloot er op je website consistent uitziet. We maken tot 2 video's per dag, en de leverdatum spreken we af in de offerte.",
+    a: "Ja. Elk jacht krijgt een eigen video in één rustige stijl, zodat je vloot er op je website consistent uitziet. Levering duurt ongeveer 3 weken, en Premium-video's krijgen voorrang.",
   },
   roomTypes: {
     q: 'Eén video voor het hele hotel, of één per kamertype?',
@@ -48,11 +48,11 @@ export const q = {
   },
   volume: {
     q: 'Hoe werkt de staffelprijs?',
-    a: "Eén losse video kost €100. Vanaf 5 video's is de prijs €95 per video, en per 5 video's gaat er €5 af, tot minimaal €50 per video. Meer dan 100 video's: dan maken we een offerte.",
+    a: "Een Standard-video kost €95. Vanaf 10 video's gaat er per 5 video's €5 af, tot minimaal €50 per video. Een Premium-video kost €149, omlaag tot €100. Meer dan 100 video's: dan maken we een offerte.",
   },
   platforms: {
     q: "Kan ik de video op Airbnb of Booking.com gebruiken?",
-    a: "Platforms verschillen in of en waar je een video kunt uploaden, en hun regels veranderen, dus kijk wat jouw eigen listing toestaat. Op je eigen website en social media kun je de video altijd gebruiken, en op elk platform dat video toestaat. Je krijgt mp4-bestanden in 16:9 en 9:16.",
+    a: "Platforms verschillen in of en waar je een video kunt uploaden, en hun regels veranderen, dus kijk wat jouw eigen listing toestaat. Op je eigen website en social media kun je de video altijd gebruiken, en op elk platform dat video toestaat. Je krijgt mp4-bestanden in 16:9, en met Premium ook in 9:16.",
   },
   units: {
     q: "Ik heb meerdere appartementen in één gebouw. Hoe werkt de prijs?",

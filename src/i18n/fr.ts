@@ -4,7 +4,7 @@ import type { UI } from './en';
 const fr: UI = {
   meta: {
     homeTitle: 'Still to Film · Vidéos de visite à partir de vos photos',
-    homeDesc: "Les photos de votre annonce de yacht ou d’hôtel deviennent une vidéo de visite de 60 à 90 s. Sans tournage ni logiciel, chaque vidéo vérifiée par une personne.",
+    homeDesc: "Les photos de votre annonce de yacht ou d’hôtel deviennent une vidéo de visite de 35 à 55 s. Sans tournage ni logiciel, chaque vidéo vérifiée par une personne.",
     libraryTitle: 'Bibliothèque · Still to Film',
     libraryDesc: 'Southern Cross : six clips d’un catamaran à moteur, réalisés avec l’IA à partir des photos de son annonce.',
     howTitle: 'Comment ça marche · Still to Film',
@@ -34,7 +34,7 @@ const fr: UI = {
     s1Title: 'Vous envoyez des photos',
     s1Text: "Le lien de votre annonce suffit. Plus vos photos sont nettes, plus le film est beau.",
     s2Title: 'Nous réalisons le film',
-    s2Text: "Avec l’IA, à partir de vos photos, et vérifiée par une personne. De 60 à 90 secondes, en 16:9 pour votre site et en 9:16 pour les réseaux sociaux.",
+    s2Text: "Avec l’IA, à partir de vos photos, et vérifiée par une personne. Environ 35 secondes en 16:9 pour votre site, ou en Premium 55 secondes avec une version 9:16 pour les réseaux sociaux.",
     s3Title: 'Vous donnez votre avis',
     s3Text: 'Vous voulez changer quelque chose ? Dites-nous quoi, et nous l’ajustons. Les révisions sont incluses.',
     s4Title: 'Vous publiez',
@@ -123,28 +123,19 @@ const fr: UI = {
   },
   packages: {
     title: 'Formules.',
-    lead: 'Chaque commande reçoit un devis fixe avant de commencer. Prix TTC.',
-    price: '€100',
-    perVideo: 'par vidéo',
-    from: 'à partir de',
-    items: [
-      { name: 'Unique', for: 'Un yacht ou un type de chambre.', includes: 'Une vidéo en 16:9 et 9:16, de 60 à 90 secondes.' },
-      { name: 'Flotte', for: 'Plusieurs yachts, ou tout un hôtel.', includes: 'Autant de vidéos que nécessaire, dans un style cohérent, deux formats.' },
-      { name: 'Continu', for: 'De nouvelles annonces chaque saison.', includes: 'Jusqu’à 100 vidéos par mois, deux formats, résiliable chaque mois.' },
-    ],
-    note: 'Vous hésitez ? Commencez par la vidéo d’essai gratuite : un court aperçu de 15 à 25 secondes.',
+    lead: 'Standard ou Premium, ponctuel ou en forfait mensuel. Tous les prix sont TTC.',
   },
   faq: {
     title: 'Questions.',
     items: [
       { q: 'À qui appartient la vidéo ?', a: 'Après paiement, vous pouvez l’utiliser sans limite pour votre propre marketing : site web, annonces, réseaux sociaux et publicité. Seule la revente en tant que vidéo indépendante est exclue.' },
-      { q: 'En combien de temps est-elle livrée ?', a: 'Le délai figure dans votre devis. Nous réalisons jusqu’à 2 vidéos par jour, et la date de livraison est toujours convenue avec vous à l’avance. La vidéo d’essai gratuite arrive en général d’abord, pour que vous puissiez juger avant de vous engager.' },
-      { q: 'Combien de révisions sont incluses ?', a: '2 séries par vidéo. Une révision est une modification avec les mêmes photos et le même concept. De nouvelles photos ou un nouveau concept comptent comme une nouvelle vidéo.' },
-      { q: 'Quels formats vais-je recevoir ?', a: "Chaque vidéo dure de 60 à 90 secondes. 16:9 pour votre site et les plateformes d’annonces, 9:16 pour Instagram, TikTok et Reels. Vous recevez des fichiers MP4, prêts à être publiés." },
+      { q: 'En combien de temps est-elle livrée ?', a: "Environ 3 semaines entre la commande et la livraison. Les vidéos Premium sont prioritaires dans la production. L’extrait gratuit arrive d’abord, pour que vous puissiez juger avant de vous engager." },
+      { q: 'Combien de révisions sont incluses ?', a: "Le Standard comprend 2 séries par vidéo, le Premium 3. Une révision est une modification avec les mêmes photos et la même idée. De nouvelles photos ou une nouvelle idée comptent comme une nouvelle vidéo." },
+      { q: 'Quels formats vais-je recevoir ?', a: "Le Standard dure environ 35 secondes, en 16:9 pour votre site et les plateformes d’annonces. Le Premium dure environ 55 secondes et existe aussi en 9:16 pour Instagram, TikTok et Reels. Vous recevez des fichiers MP4, prêts à être publiés." },
       { q: "De quelles photos avez-vous besoin ?", a: "Les photos de votre annonce suffisent. Plus la qualité des photos est élevée, plus la qualité du film l’est aussi : des photos nettes, bien éclairées et en haute résolution donnent le meilleur résultat. Si vous avez les fichiers originaux de votre photographe, envoyez-les." },
       { q: "Est-ce réalisé avec l’IA ?", a: "Oui. Un logiciel transforme vos photos en mouvements de caméra. Ensuite, une personne regarde chaque vidéo en entier avant la livraison, pour qu’elle montre ce qui est sur vos photos et rien d’autre." },
       { q: "Ai-je besoin de compétences ou d’un logiciel ?", a: "Non. Vous envoyez le lien de votre annonce ou les photos, et nous faisons le reste. Aucun outil à apprendre, aucun prompt à écrire, aucun compte à créer." },
-      { q: 'Que comprend la vidéo d’essai gratuite ?', a: 'Un court aperçu de 15 à 25 secondes, avec quelques plans réalisés à partir de vos propres photos d’annonce. Vous voyez ce que vos photos peuvent devenir ; la vidéo complète dure de 60 à 90 secondes. Sans engagement et sans facture. Le lien de votre annonce suffit.' },
+      { q: 'Que comprend la vidéo d’essai gratuite ?', a: 'Un court aperçu de 15 à 25 secondes, avec quelques plans réalisés à partir de vos propres photos d’annonce. Vous voyez ce que vos photos peuvent devenir ; la vidéo complète dure de 35 à 55 secondes. Sans engagement et sans facture. Le lien de votre annonce suffit.' },
     ],
   },
   promise: {
@@ -184,15 +175,7 @@ const fr: UI = {
   vertical: {
     eyebrow: "Deux formats",
     title: "Paysage et portrait.",
-    lead: "Chaque vidéo vous est livrée en deux formats : 16:9 pour votre site et vos annonces, 9:16 pour les Reels, TikTok et les Stories. Inclus dans chaque formule.",
-  },
-  calc: {
-    title: 'Combien ça coûte ?',
-    label: 'Nombre de vidéos',
-    total: 'Total',
-    perVideo: 'Prix par vidéo',
-    note: "TVA incluse. Deux formats et 2 révisions inclus. Toutes les 5 vidéos, le prix par vidéo baisse de 5 €, jusqu’à 50 €.",
-    more: 'Plus de 100 vidéos ? Nous vous faisons un devis.',
+    lead: "Avec le Premium, vous recevez les deux formats : 16:9 pour votre site et vos annonces, 9:16 pour les Reels, TikTok et les Stories. Le Standard est en 16:9.",
   },
   booking: {
     title: 'Vous préférez en parler d’abord ?',
@@ -203,10 +186,10 @@ const fr: UI = {
   prospect: {
     eyebrow: 'Réalisé pour {company}',
     title: 'Voici {listing}, en film.',
-    lead: 'Nous avons réalisé ce court aperçu à partir des photos déjà présentes sur votre annonce. Pas de tournage, pas de visite. Gratuit et sans engagement. Une vidéo complète dure de 60 à 90 secondes.',
+    lead: 'Nous avons réalisé ce court aperçu à partir des photos déjà présentes sur votre annonce. Pas de tournage, pas de visite. Gratuit et sans engagement. Une vidéo complète dure de 35 à 55 secondes.',
     cta: 'Oui, je veux ça pour toute ma flotte',
     whatsapp: 'Poser une question sur WhatsApp',
-    price: 'À partir de 100 € par vidéo. Deux formats et 2 révisions inclus.',
+    price: "À partir de 95 € par vidéo, 2 révisions incluses. Le Premium ajoute le 9:16 et une troisième révision.",
     waMessage: 'Bonjour, j’ai vu la vidéo d’essai pour {company}. J’aimerais en savoir plus.',
     mailSubject: 'Vidéo d’essai pour {company}',
   },

@@ -18,7 +18,7 @@ export function useTranslations(locale: Locale): UI {
 }
 
 // Date the legal pages were last checked. Update when the legal text changes.
-const LEGAL_UPDATED = new Date('2026-10-28T12:00:00Z');
+const LEGAL_UPDATED = new Date('2026-11-12T12:00:00Z');
 
 /** The legal "last updated" date, written the way each language writes dates. */
 export function legalDate(locale: Locale): string {
@@ -28,7 +28,7 @@ export function legalDate(locale: Locale): string {
 // When the text of the landing pages (yacht, hotel, pricing…) last changed. Shown on the page and
 // sent as dateModified, so search engines and AI assistants can see the information is current.
 // Change it whenever you change prices or other facts on those pages.
-export const CONTENT_UPDATED = '2026-10-23';
+export const CONTENT_UPDATED = '2026-11-12';
 
 /** A date written out in the language, e.g. "23 October 2026". */
 export function formatDate(locale: Locale, date: Date | string): string {

@@ -4,7 +4,7 @@ import type { UI } from './en';
 const hr: UI = {
   meta: {
     homeTitle: 'Still to Film · Video-obilasci od fotografija iz vašeg oglasa',
-    homeDesc: "Fotografije iz oglasa za jahtu ili hotel pretvaramo u miran video-obilazak od 60 do 90 s. Bez snimanja i softvera, a čovjek pregleda svaki video.",
+    homeDesc: "Fotografije iz oglasa za jahtu ili hotel pretvaramo u miran video-obilazak od 35 do 55 s. Bez snimanja i softvera, a čovjek pregleda svaki video.",
     libraryTitle: 'Galerija · Still to Film',
     libraryDesc: 'Southern Cross: šest isječaka motornog katamarana, izrađenih umjetnom inteligencijom od fotografija iz oglasa.',
     howTitle: 'Kako funkcionira · Still to Film',
@@ -34,7 +34,7 @@ const hr: UI = {
     s1Title: 'Pošaljete fotografije',
     s1Text: "Dovoljna je poveznica na vaš oglas. Što su fotografije oštrije, to je film bolji.",
     s2Title: 'Mi izrađujemo film',
-    s2Text: "Umjetnom inteligencijom, na temelju vaših fotografija, a pregledava ga čovjek. Od 60 do 90 sekundi, u formatu 16:9 za vašu web-stranicu i 9:16 za društvene mreže.",
+    s2Text: "Umjetnom inteligencijom, na temelju vaših fotografija, a pregledava ga čovjek. Oko 35 sekundi u formatu 16:9 za vašu web-stranicu, ili s Premiumom 55 sekundi i verzija 9:16 za društvene mreže.",
     s3Title: 'Date povratnu informaciju',
     s3Text: 'Želite nešto promijeniti? Recite nam što i prilagodit ćemo. Izmjene su uključene.',
     s4Title: 'Vi objavite',
@@ -123,28 +123,19 @@ const hr: UI = {
   },
   packages: {
     title: 'Paketi.',
-    lead: 'Za svaki projekt prije početka dobivate ponudu s fiksnom cijenom. Cijene uključuju PDV.',
-    price: '€100',
-    perVideo: 'po videu',
-    from: 'od',
-    items: [
-      { name: 'Pojedinačno', for: 'Jedna jahta ili jedan tip sobe.', includes: 'Jedan video u formatu 16:9 i 9:16, od 60 do 90 sekundi.' },
-      { name: 'Flota', for: 'Više jahti ili cijeli hotel.', includes: 'Onoliko videozapisa koliko vam treba, u jednakom stilu, u oba formata.' },
-      { name: 'Kontinuirano', for: 'Novi oglasi svake sezone.', includes: 'Do 100 videozapisa mjesečno, oba formata, otkaz u bilo kojem mjesecu.' },
-    ],
-    note: 'Niste sigurni što vam odgovara? Počnite s besplatnim probnim videom: kratkim pregledom od 15 do 25 sekundi.',
+    lead: 'Standard ili Premium, jednokratno ili kroz mjesečni plan. Sve cijene uključuju PDV.',
   },
   faq: {
     title: 'Pitanja.',
     items: [
       { q: 'Čiji je video?', a: 'Nakon plaćanja možete ga bez ograničenja koristiti za vlastiti marketing: web-stranicu, oglase, društvene mreže i oglašavanje. Samo ga ne smijete preprodavati kao samostalan video.' },
-      { q: 'Koliko brzo ga dobivam?', a: 'Rok isporuke naveden je u vašoj ponudi. Izrađujemo do 2 videa dnevno, a datum isporuke uvijek unaprijed dogovaramo s vama. Besplatni probni video obično stiže prvi, kako biste mogli procijeniti prije nego što se obvežete.' },
-      { q: 'Koliko je izmjena uključeno?', a: '2 kruga po videu. Izmjena je promjena s istim fotografijama i istim konceptom. Nove fotografije ili novi koncept računaju se kao novi video.' },
-      { q: 'Koje formate dobivam?', a: "Svaki video traje od 60 do 90 sekundi. 16:9 za vašu web-stranicu i platforme za oglase, 9:16 za Instagram, TikTok i Reels. Dobivate MP4 datoteke, spremne za učitavanje." },
+      { q: 'Koliko brzo ga dobivam?', a: "Otprilike 3 tjedna od narudžbe do isporuke. Premium videi imaju prednost u izradi. Besplatni probni video stiže prvi, kako biste mogli procijeniti prije nego što se obvežete." },
+      { q: 'Koliko je izmjena uključeno?', a: "Standard uključuje 2 kruga po videu, Premium 3. Izmjena je promjena s istim fotografijama i istim konceptom. Nove fotografije ili novi koncept računaju se kao novi video." },
+      { q: 'Koje formate dobivam?', a: "Standard traje oko 35 sekundi, u formatu 16:9 za vašu web-stranicu i platforme za oglase. Premium traje oko 55 sekundi i dolazi i u formatu 9:16 za Instagram, TikTok i Reels. Dobivate MP4 datoteke, spremne za učitavanje." },
       { q: 'Koje vam fotografije trebaju?', a: "Dovoljne su fotografije iz vašeg oglasa. Što je kvaliteta fotografija viša, to je kvaliteta filma viša: najbolje su oštre, dobro osvijetljene fotografije visoke rezolucije. Ako imate izvorne datoteke od svog fotografa, pošaljite njih." },
       { q: 'Izrađuje li se ovo umjetnom inteligencijom?', a: "Da. Softver od vaših fotografija stvara pokrete kamere. Zatim čovjek prije isporuke pogleda svaki video u cijelosti, kako bi prikazivao ono što je na vašim fotografijama i ništa što nije." },
       { q: 'Trebaju li mi neka znanja ili softver?', a: "Ne. Pošaljete poveznicu na svoj oglas ili fotografije, a mi radimo ostalo. Ne trebate učiti nikakav alat, pisati upite (promptove) ni otvarati račun." },
-      { q: 'Što uključuje besplatni probni video?', a: 'Kratak pregled od 15 do 25 sekundi s nekoliko kadrova izrađenih od fotografija iz vašeg oglasa. Pokazuje što vaše fotografije mogu postati; cijeli video traje od 60 do 90 sekundi. Bez obveze i bez računa. Dovoljna nam je poveznica na vaš oglas.' },
+      { q: 'Što uključuje besplatni probni video?', a: 'Kratak pregled od 15 do 25 sekundi s nekoliko kadrova izrađenih od fotografija iz vašeg oglasa. Pokazuje što vaše fotografije mogu postati; cijeli video traje od 35 do 55 sekundi. Bez obveze i bez računa. Dovoljna nam je poveznica na vaš oglas.' },
     ],
   },
   promise: {
@@ -184,15 +175,7 @@ const hr: UI = {
   vertical: {
     eyebrow: 'Dva formata',
     title: 'Vodoravno i okomito.',
-    lead: 'Svaki video dobivate u oba formata: 16:9 za vašu web-stranicu i oglase, 9:16 za Reels, TikTok i Stories. Uključeno u svaki paket.',
-  },
-  calc: {
-    title: 'Koliko košta?',
-    label: 'Broj videozapisa',
-    total: 'Ukupno',
-    perVideo: 'Cijena po videu',
-    note: 'PDV uključen. Oba formata i 2 kruga izmjena uključeni. Svakih 5 videozapisa cijena po videu pada za 5 €, do najniže 50 €.',
-    more: 'Više od 100 videozapisa? Izradit ćemo vam ponudu.',
+    lead: "S Premiumom dobivate oba formata: 16:9 za vašu web-stranicu i oglase, 9:16 za Reels, TikTok i Stories. Standard je u formatu 16:9.",
   },
   booking: {
     title: 'Radije biste prvo razgovarali?',
@@ -203,10 +186,10 @@ const hr: UI = {
   prospect: {
     eyebrow: 'Izrađeno za {company}',
     title: 'Ovo je {listing}, kao film.',
-    lead: 'Ovaj kratki pregled izradili smo od fotografija koje su već u vašem oglasu. Bez snimanja, bez posjeta. Besplatno i bez obveze. Cijeli video traje od 60 do 90 sekundi.',
+    lead: 'Ovaj kratki pregled izradili smo od fotografija koje su već u vašem oglasu. Bez snimanja, bez posjeta. Besplatno i bez obveze. Cijeli video traje od 35 do 55 sekundi.',
     cta: 'Da, želim ovo za cijelu svoju flotu',
     whatsapp: 'Postavite pitanje na WhatsAppu',
-    price: 'Od 100 € po videu. Oba formata i 2 kruga izmjena uključeni.',
+    price: "Od 95 € po videu, 2 kruga izmjena uključena. Premium dodaje 9:16 i treći krug izmjena.",
     waMessage: 'Pozdrav, probni video za {company} je stigao. Zanima me više.',
     mailSubject: 'Probni video za {company}',
   },
