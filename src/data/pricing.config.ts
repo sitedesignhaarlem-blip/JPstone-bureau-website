@@ -20,6 +20,7 @@ export interface OneOffRule {
 
 export const PRICING = {
   currency: 'EUR',
+  /** Used only to work out amounts without VAT; the site shows every price including VAT. */
   vatRate: 0.21,
 
   tiers: {

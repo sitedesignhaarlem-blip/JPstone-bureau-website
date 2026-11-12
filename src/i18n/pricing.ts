@@ -31,7 +31,7 @@ export interface PricingUI {
     early: string; // {p}
     total: string;
     totalMonth: string;
-    exclVat: string; // {amount}
+    inclVat: string;
     saved: string; // {amount}
     nudge: string; // {count} {price}
     custom: string;
@@ -92,7 +92,7 @@ export const pricingUI: Record<Locale, PricingUI> = {
       early: 'Early-bird discount {p}%',
       total: 'Total',
       totalMonth: 'Per month',
-      exclVat: '{amount} excl. VAT',
+      inclVat: 'incl. VAT',
       saved: 'You save {amount} compared with the base price.',
       nudge: 'From {count} videos you pay {price} per video.',
       custom: 'Custom quote',
@@ -168,7 +168,7 @@ export const pricingUI: Record<Locale, PricingUI> = {
       early: 'Vroegboekkorting {p}%',
       total: 'Totaal',
       totalMonth: 'Per maand',
-      exclVat: '{amount} excl. btw',
+      inclVat: 'incl. btw',
       saved: 'Je bespaart {amount} ten opzichte van de basisprijs.',
       nudge: 'Vanaf {count} video\'s betaal je {price} per video.',
       custom: 'Offerte op maat',
@@ -244,7 +244,7 @@ export const pricingUI: Record<Locale, PricingUI> = {
       early: 'Frühbucherrabatt {p} %',
       total: 'Gesamt',
       totalMonth: 'Pro Monat',
-      exclVat: '{amount} ohne MwSt.',
+      inclVat: 'inkl. MwSt.',
       saved: 'Sie sparen {amount} gegenüber dem Grundpreis.',
       nudge: 'Ab {count} Videos zahlen Sie {price} pro Video.',
       custom: 'Individuelles Angebot',
@@ -320,7 +320,7 @@ export const pricingUI: Record<Locale, PricingUI> = {
       early: 'Remise early bird {p} %',
       total: 'Total',
       totalMonth: 'Par mois',
-      exclVat: '{amount} HT',
+      inclVat: 'TTC',
       saved: 'Vous économisez {amount} par rapport au prix de base.',
       nudge: 'À partir de {count} vidéos, vous payez {price} par vidéo.',
       custom: 'Devis sur mesure',
@@ -396,7 +396,7 @@ export const pricingUI: Record<Locale, PricingUI> = {
       early: 'Descuento anticipado {p} %',
       total: 'Total',
       totalMonth: 'Al mes',
-      exclVat: '{amount} sin IVA',
+      inclVat: 'IVA incluido',
       saved: 'Ahorras {amount} frente al precio base.',
       nudge: 'Desde {count} vídeos pagas {price} por vídeo.',
       custom: 'Presupuesto a medida',
@@ -472,7 +472,7 @@ export const pricingUI: Record<Locale, PricingUI> = {
       early: 'Popust za ranu narudžbu {p} %',
       total: 'Ukupno',
       totalMonth: 'Mjesečno',
-      exclVat: '{amount} bez PDV-a',
+      inclVat: 's PDV-om',
       saved: 'Štedite {amount} u odnosu na osnovnu cijenu.',
       nudge: 'Od {count} videa plaćate {price} po videu.',
       custom: 'Ponuda po mjeri',
@@ -548,7 +548,7 @@ export const pricingUI: Record<Locale, PricingUI> = {
       early: 'Desconto antecipado {p} %',
       total: 'Total',
       totalMonth: 'Por mês',
-      exclVat: '{amount} sem IVA',
+      inclVat: 'IVA incluído',
       saved: 'Poupa {amount} face ao preço base.',
       nudge: 'A partir de {count} vídeos paga {price} por vídeo.',
       custom: 'Orçamento à medida',

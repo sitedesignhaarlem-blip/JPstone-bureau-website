@@ -71,7 +71,7 @@ const texts = { ...c, names, earlyTerms: fillIn(c.earlyTerms, { date: earlyBirdD
         <div class="pc-line" data-out-row="earlyBird" hidden={!early}><dt class="muted">{texts.early}</dt><dd data-out="earlyBird">− {money(q.earlyBird)}</dd></div>
         <div class="pc-line pc-total"><dt data-out="totalLabel">{c.total}</dt><dd data-out="total">{money(q.total)}</dd></div>
       </dl>
-      <p class="pc-excl muted" data-out="excl">{fillIn(c.exclVat, { amount: money(q.totalExclVat) })}</p>
+      <p class="pc-excl muted" data-out="excl">{c.inclVat}</p>
       <p class="pc-hint" data-out="saved">{q.saved > 0 ? fillIn(c.saved, { amount: money(q.saved) }) : ''}</p>
       <p class="pc-hint" data-out="nudge">{step ? fillIn(c.nudge, { count: step.count, price: money(step.perVideo) }) : ''}</p>
       <ul class="pc-terms muted" role="list" data-out="terms">
@@ -146,7 +146,7 @@ const texts = { ...c, names, earlyTerms: fillIn(c.earlyTerms, { date: earlyBirdD
       set(out('earlyBird'), '− ' + money(q.earlyBird));
       out('totalLabel').textContent = monthly ? t.totalMonth : t.total;
       set(out('total'), q.custom ? t.custom : money(q.total));
-      out('excl').textContent = q.custom ? '' : fill(t.exclVat, { amount: money(q.totalExclVat) });
+      out('excl').textContent = q.custom ? '' : t.inclVat;
       out('saved').textContent = q.saved > 0 ? fill(t.saved, { amount: money(q.saved) }) : '';
       const step = monthly || q.custom ? null : nextStep(tier, count);
       out('nudge').textContent = step ? fill(t.nudge, { count: step.count, price: money(step.perVideo) }) : '';
