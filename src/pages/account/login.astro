@@ -41,6 +41,7 @@ if (portalReady) {
           return Astro.redirect(next);
         }
         await recordAttempt(keys);
+        if (e.code !== 'invalid_credentials') console.error('login failed', e.status, e.code);
         unconfirmed = e.code === 'email_not_confirmed';
         error = unconfirmed ? l.unconfirmed : l.wrong;
       }
@@ -56,6 +57,7 @@ if (portalReady) {
           email,
           options: { emailRedirectTo: new URL('/account/auth/callback/', Astro.url).href, shouldCreateUser: true },
         });
+        if (e) console.error('login code failed', e.status, e.code);
         if (e?.status === 429 || e?.code === 'over_email_send_rate_limit') error = l.wait;
         else if (e) error = l.error;
         else {

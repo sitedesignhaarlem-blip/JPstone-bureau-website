@@ -42,6 +42,7 @@ if (portalReady) {
           options: { emailRedirectTo: new URL('/account/auth/callback/?flow=confirm', Astro.url).href },
         });
         sentTo = values.email;
+        if (e) console.error('resend failed', e.status, e.code);
         if (e?.status === 429 || e?.code === 'over_email_send_rate_limit') error = p.login.wait;
         else resent = true;
       }
@@ -66,7 +67,11 @@ if (portalReady) {
         });
         // Supabase answers the same whether or not the address already has an account, so this page
         // never tells anyone which addresses are registered.
+        // Only the error code goes to the log, never the address, so problems can be traced in Vercel.
+        if (e && e.code !== 'user_already_exists') console.error('signup failed', e.status, e.code);
         if (e && e.code === 'weak_password') error = p.pwProblem.short;
+        else if (e && (e.status === 429 || e.code === 'over_email_send_rate_limit' || e.code === 'over_request_rate_limit')) error = p.login.wait;
+        else if (e && (e.code === 'email_address_invalid' || e.code === 'validation_failed')) error = r.error;
         else if (e && e.code !== 'user_already_exists') error = p.login.error;
         else sentTo = values.email;
       }
