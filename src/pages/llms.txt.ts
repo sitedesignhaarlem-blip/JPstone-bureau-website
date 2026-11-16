@@ -2,6 +2,7 @@
 // come from src/data/pricing.config.ts, so they always match the rest of the site.
 import type { APIRoute } from 'astro';
 import { PRICING as P } from '../data/pricing.config';
+import { site } from '../data/site';
 
 const eur = (n: number) => n.toLocaleString('en-GB');
 const std = P.tiers.standard;
@@ -83,7 +84,7 @@ Other languages: [Nederlands](https://stilltofilm.com/nl/), [Deutsch](https://st
 
 ## Contact
 
-- Email: sitedesignhaarlem@gmail.com
+- Email: ${site.email}
 - Phone and WhatsApp: +31 6 57 24 96 07
 `;
 
