@@ -11,7 +11,7 @@ import { join } from 'node:path';
 const walk = (dir) => readdirSync(dir).flatMap((f) => { const p = join(dir, f); return statSync(p).isDirectory() ? walk(p) : f === 'index.html' ? [p] : []; });
 const DIST = existsSync('dist/client') ? 'dist/client' : 'dist';
 const pages = walk(DIST).map((p) => '/' + p.slice(DIST.length).replace(/^\//, '').replace(/index\.html$/, '')).sort();
-const browser = await chromium.launch({ executablePath: process.env.CHROME || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+const browser = await chromium.launch({ executablePath: process.env.CHROME || '/opt/pw-browsers/chromium' });
 let failed = 0;
 for (const w of [390, 1280]) {
   // bypassCSP: the site's CSP would otherwise block the axe script we inject.

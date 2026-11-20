@@ -12,6 +12,7 @@ import Vertical from '../components/Vertical.astro';
 import DoneForYou from '../components/DoneForYou.astro';
 import Reviews from '../components/Reviews.astro';
 import AccountCta from '../components/AccountCta.astro';
+import StillpostTeaser from '../components/StillpostTeaser.astro';
 import { hasPage, pagePath, useTranslations, type Locale } from '../i18n';
 
 interface Props {
@@ -60,6 +61,7 @@ const t = useTranslations(lang);
     <Faq lang={lang} more={hasPage(lang, 'faq') ? { href: pagePath(lang, 'faq'), label: t.landing.allQuestions } : undefined} />
 
     <ContactSection lang={lang} />
+    <StillpostTeaser lang={lang} />
   </main>
 
   <SiteFooter lang={lang} />

@@ -1,0 +1,47 @@
+---
+// Small block at the bottom of the home page that points to Stillpost, the sister business for
+// still posts and Meta ads. The mark is Stillpost's own logo (two rounded bars on green).
+import type { Locale } from '../i18n';
+import { stillpostUI, stillpostUrl } from '../i18n/stillpost';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const s = stillpostUI[lang];
+---
+<section class="section stillpost" aria-labelledby="stillpost-title">
+  <div class="wrap">
+    <a class="stillpost-card" href={stillpostUrl(lang)} rel="noopener">
+      <svg class="stillpost-mark" viewBox="0 0 64 64" width="56" height="56" aria-hidden="true" focusable="false">
+        <rect width="64" height="64" rx="14" fill="#2d6a4f" />
+        <g fill="#f5f5f7"><rect x="12" y="16" width="32" height="14" rx="3.5" /><rect x="20" y="34" width="32" height="14" rx="3.5" /></g>
+      </svg>
+      <span class="stillpost-text">
+        <h2 id="stillpost-title" class="stillpost-title">{s.title}</h2>
+        <span class="muted">{s.text}</span>
+        <span class="link-more stillpost-cta">{s.cta}</span>
+      </span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .stillpost { padding-block: var(--space-8); }
+  .stillpost-card {
+    display: flex; gap: var(--space-5); align-items: flex-start; max-width: 46rem; padding: var(--space-5);
+    border: 1px solid var(--line); border-radius: var(--radius); color: var(--fg); text-decoration: none;
+    transition: border-color var(--dur) var(--ease);
+  }
+  .stillpost-card:hover { border-color: #2d6a4f; text-decoration: none; }
+  .stillpost-card:hover .stillpost-cta { text-decoration: underline; }
+  .stillpost-cta { color: var(--accent); font-weight: 600; }
+  .stillpost-mark { flex: none; }
+  .stillpost-text { display: grid; gap: var(--space-2); }
+  .stillpost-title { font-size: var(--step-h3); font-weight: 600; line-height: 1.15; }
+  @media (prefers-reduced-motion: reduce) { .stillpost-card { transition: none; } }
+  @media (max-width: 30rem) {
+    .stillpost-card { flex-direction: column; }
+    .stillpost-mark { width: 44px; height: 44px; }
+  }
+</style>
